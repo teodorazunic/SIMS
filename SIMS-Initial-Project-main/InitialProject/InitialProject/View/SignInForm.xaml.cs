@@ -50,9 +50,16 @@ namespace InitialProject
             {
                 if(user.Password == txtPassword.Password)
                 {
-                    AccommodationOverview accommodationOverview = new AccommodationOverview(user);
-                    accommodationOverview.Show();
-                    Close();
+                    if (user.Role == UserRole.guest1) {
+                        AccommodationOverview accommodationOverview = new AccommodationOverview(user);
+                        accommodationOverview.Show();
+                        Close();
+                    } else
+                    {
+                        CommentsOverview commentsOverview = new CommentsOverview(user);
+                        commentsOverview.Show();
+                        Close();
+                    }
                 } 
                 else
                 {
