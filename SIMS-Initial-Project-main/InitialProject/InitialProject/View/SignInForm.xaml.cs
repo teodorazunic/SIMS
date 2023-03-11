@@ -50,8 +50,8 @@ namespace InitialProject
             {
                 if(user.Password == txtPassword.Password)
                 {
-                    CommentsOverview commentsOverview = new CommentsOverview(user);
-                    commentsOverview.Show();
+                    AccommodationOverview accommodationOverview = new AccommodationOverview(user);
+                    accommodationOverview.Show();
                     Close();
                 } 
                 else
