@@ -53,7 +53,7 @@ namespace InitialProject.Model
         {
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
-            Location = new Location() {City = values[2], State = values[3]};
+            Location = new Location() {City = values[2], Country = values[3]};
             Description = values[4];
             Language = new Language() { Name = values[5] };
             MaxGuests = Convert.ToInt32(values[6]);
