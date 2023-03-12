@@ -13,6 +13,15 @@ namespace InitialProject.Model
         public string State { get; set; }
 
         public string Adress { get; set; }
+        
+        public Location() { }
+
+        public Location(string city, string state, string adress)
+        {
+            City = city;
+            State = state;
+            Adress = adress;
+        }
 
     }
 }
