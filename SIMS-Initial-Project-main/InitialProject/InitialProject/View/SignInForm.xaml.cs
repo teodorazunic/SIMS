@@ -54,7 +54,13 @@ namespace InitialProject
                         AccommodationOverview accommodationOverview = new AccommodationOverview(user);
                         accommodationOverview.Show();
                         Close();
-                    } else
+                    } else if (user.Role == UserRole.guest2)
+                    {
+                        TourOverview tourOverview = new TourOverview(user);
+                        tourOverview.Show();
+                        Close();
+                        
+                    }else
                     {
                         CommentsOverview commentsOverview = new CommentsOverview(user);
                         commentsOverview.Show();
