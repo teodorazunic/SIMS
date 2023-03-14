@@ -1,15 +1,9 @@
 using InitialProject.Model;
 using InitialProject.Repository;
-using System;
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace InitialProject.Forms
 {
@@ -125,11 +119,6 @@ namespace InitialProject.Forms
             ObservableCollection<Accommodation>  accommodations = new ObservableCollection<Accommodation>(_repository.SearchAccommodation(AccommodationName, AccommodationCity, AccommodationCountry, AccommodationType, AccommodationGuestsNumber, AccommodationReservationNumber));
             Accommodations.Clear();
             foreach (var accommodation in accommodations) Accommodations.Add(accommodation);
-        }
-
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
