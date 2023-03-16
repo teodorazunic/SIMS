@@ -66,6 +66,8 @@ namespace InitialProject.Repository
             return filteredAccomodations;
         }
 
+
+
         public Accommodation Save(Accommodation accommodation)
         {
             accommodation.Id = NextId();
