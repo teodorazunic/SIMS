@@ -1,8 +1,8 @@
 using InitialProject.Model;
 using InitialProject.Serializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace InitialProject.Repository
 {
@@ -24,6 +24,46 @@ namespace InitialProject.Repository
         {
             _accommodations = _serializer.FromCSV(FilePath);
             return _accommodations;
+        }
+        public List<Accommodation> SearchAccommodation(string name, string city, string country, string type, int guestsNumber, int reservationDays)
+        {
+            _accommodations = _serializer.FromCSV(FilePath);
+
+            List<Accommodation> filteredAccomodations = _accommodations;
+
+
+           if (name != null && name != "")
+            {
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.Name.Contains(name));
+            }
+
+            if (city != null && city != "")
+            {
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.City == city);
+           }
+
+            if (country != null && country != "")
+            {
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.Country == country);
+            }
+
+            if (type != null && type != "")
+            {
+                AccommodationType accommodationType = (AccommodationType) Enum.Parse(typeof(AccommodationType), type);
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.Type == accommodationType);
+            }
+
+            if (guestsNumber > 0)
+            {
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.GuestsNumber >= guestsNumber);
+            }
+
+            if (reservationDays > 0)
+            {
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.ReservationDays <= reservationDays);
+            }
+
+            return filteredAccomodations;
         }
 
         public Accommodation Save(Accommodation accommodation)

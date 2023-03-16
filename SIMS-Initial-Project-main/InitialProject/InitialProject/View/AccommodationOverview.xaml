@@ -35,5 +35,34 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
+
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Name:</Label>
+            <TextBox x:Name="Name" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">City:</Label>
+            <TextBox x:Name="City" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationCity, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Country:</Label>
+            <TextBox x:Name="Country" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationCountry, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Type:</Label>
+            <TextBox x:Name="Type" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationType, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Guests number:</Label>
+            <TextBox x:Name="GuestsNumber" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationGuestsNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Reservation number:</Label>
+            <TextBox x:Name="ReservationNumber" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationReservationNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Button Click="SearchAccommodation">Search</Button>
+           
+        </ToolBar>
     </Grid>
 </Window>
