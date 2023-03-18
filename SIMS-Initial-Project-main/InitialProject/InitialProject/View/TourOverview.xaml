@@ -35,6 +35,29 @@
             </DataGrid>
 
         </StackPanel>
+            
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Name:</Label>
+            <TextBox x:Name="Name" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=TourName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0" Height="30">City:</Label>
+            <TextBox x:Name="City" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=TourCity, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Country:</Label>
+            <TextBox x:Name="Country" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=TourCountry, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Duration:</Label>
+            <TextBox x:Name="Duration" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=TourDuration, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Language:</Label>
+            <TextBox x:Name="Language" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=TourLanguage, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Number of people:</Label>
+            <TextBox x:Name="NumberOfPeople" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=TourNumberOfPeople, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Button Click="SearchTour">Search</Button>
+        </ToolBar>
 
     </Grid>
 </Window>

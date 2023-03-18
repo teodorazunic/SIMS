@@ -18,7 +18,7 @@ namespace InitialProject.Model
 
         public string Description { get; set; }
 
-        Language Language { get; set; }
+        public Language Language { get; set; }
 
         public int MaxGuests { get; set; }
 
