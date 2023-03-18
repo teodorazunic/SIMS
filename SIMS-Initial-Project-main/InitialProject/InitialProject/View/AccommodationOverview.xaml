@@ -22,6 +22,7 @@
 
                 <StackPanel Grid.Row="2" Grid.Column="1">
             <DataGrid ItemsSource="{Binding Accommodations}"
+                      SelectedItem="{Binding SelectedAccommodation}"
                       IsReadOnly="True" SelectionMode="Single" 
                   AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
                 <DataGrid.Columns>
@@ -33,6 +34,13 @@
                     <DataGridTextColumn Header="Nights stay" Binding="{Binding ReservationDays}" Width="*"/>
 
                 </DataGrid.Columns>
+
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="OnRowClick"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+
             </DataGrid>
         </StackPanel>
 
