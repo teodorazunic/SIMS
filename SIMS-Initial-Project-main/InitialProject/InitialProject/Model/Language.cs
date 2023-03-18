@@ -11,6 +11,14 @@ namespace InitialProject.Model
         public string Name { get; set; }
 
         public int Id { get; set; }
+        
+        public Language(){}
+
+        public Language(string name, int id)
+        {
+            Name = name;
+            Id = id;
+        }
 
     }
 }

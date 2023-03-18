@@ -10,9 +10,18 @@ namespace InitialProject.Model
     {
         public string City { get; set; }
 
-        public string State { get; set; }
+        public string Country { get; set; }
 
         public string Adress { get; set; }
+        
+        public Location() { }
+
+        public Location(string city, string country, string adress)
+        {
+            City = city;
+            Country = country;
+            Adress = adress;
+        }
 
     }
 }

@@ -26,8 +26,8 @@
                   AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
-                    <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
-                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*"/>
                     <DataGridTextColumn Header="Appartment Type" Binding="{Binding Type}" Width="*"/>
                     <DataGridTextColumn Header="Number of Guests" Binding="{Binding GuestsNumber}" Width="*"/>
                     <DataGridTextColumn Header="Nights stay" Binding="{Binding ReservationDays}" Width="*"/>

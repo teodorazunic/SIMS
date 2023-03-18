@@ -13,5 +13,14 @@ namespace InitialProject.Model
         public string Atrraction { get; set; }
 
         public int AtrractionId { get; set; }
+        
+        public KeyPoint() { }
+
+        public KeyPoint(Location location, string atrraction, int atrractionId)
+        {
+            Location = location;
+            Atrraction = atrraction;
+            AtrractionId = atrractionId;
+        }
     }
 }
