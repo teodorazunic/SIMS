@@ -92,6 +92,16 @@ namespace InitialProject.Forms
         {
             
             string message = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id,SelectedAccommodation.Id, DateFrom, DateTo, DaysNumber, GuestsNumber);
+            if (message == "Rezervacija je uspesno sacuvana")
+            {
+                Close();
+            }
+            else
+            {
+                ReservationStatus reservationStatus = new ReservationStatus(SelectedAccommodation.Id, LoggedInUser, message);
+                reservationStatus.Show();
+                Close();
+            }
         }
     }
 }
