@@ -8,7 +8,7 @@ namespace InitialProject.Repository
 {
     public class AccommodationRepository
     {
-        private const string FilePath = "../../../Resources/Data/accommodation.csv";
+        private const string FilePath = "../../../Resources/Data/accommodations.csv";
 
         private readonly Serializer<Accommodation> _serializer;
 
@@ -24,6 +24,12 @@ namespace InitialProject.Repository
         {
             _accommodations = _serializer.FromCSV(FilePath);
             return _accommodations;
+        }
+
+        public Accommodation GetAccommodationById(int id)
+        {
+            _accommodations = _serializer.FromCSV(FilePath);
+            return _accommodations.Find(a => a.Id == id);
         }
         public List<Accommodation> SearchAccommodation(string name, string city, string country, string type, int guestsNumber, int reservationDays)
         {
@@ -66,8 +72,6 @@ namespace InitialProject.Repository
             return filteredAccomodations;
         }
 
-
-
         public Accommodation Save(Accommodation accommodation)
         {
             accommodation.Id = NextId();
@@ -87,7 +91,6 @@ namespace InitialProject.Repository
             return _accommodations.Max(a => a.Id) + 1;
         }
 
-
         public void Delete(Accommodation accommodation)
         {
             _accommodations = _serializer.FromCSV(FilePath);
@@ -95,9 +98,6 @@ namespace InitialProject.Repository
             _accommodations.Remove(founded);
             _serializer.ToCSV(FilePath, _accommodations);
         }
-
-
-
 
         public Accommodation Update(Accommodation accommodation)
         {
@@ -109,10 +109,5 @@ namespace InitialProject.Repository
             _serializer.ToCSV(FilePath, _accommodations);
             return accommodation;
         }
-
-
-
-
     }
-
 }
