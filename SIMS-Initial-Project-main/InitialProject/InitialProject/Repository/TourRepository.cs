@@ -28,6 +28,46 @@ namespace InitialProject.Repository
             _tours = _serializer.FromCSV(FilePath);
             return _tours;
         }
+        
+        public List<Tour> SearchTour(string name, string city, string country, int duration, string language, int numberOfPeople)
+        {
+            _tours = _serializer.FromCSV(FilePath);
+
+            List<Tour> filteredTours = _tours;
+
+
+            if (name != null && name != "")
+            {
+                filteredTours = filteredTours.FindAll(t => t.Name.Contains(name));
+            }
+
+            if (city != null && city != "")
+            {
+                filteredTours = filteredTours.FindAll(t => t.Location.City == city);
+            }
+
+            if (country != null && country != "")
+            {
+                filteredTours = filteredTours.FindAll(t => t.Location.Country == country);
+            }
+
+            if (duration > 0)
+            {
+                filteredTours = filteredTours.FindAll(t => t.Duration == duration);
+            }
+
+            if (language != null && language != "")
+            {
+                filteredTours = filteredTours.FindAll(t => t.Language.Name == language);
+            }
+
+            if (numberOfPeople > 0)
+            {
+                filteredTours = filteredTours.FindAll(t => t.MaxGuests >= numberOfPeople);
+            }
+
+            return filteredTours;
+        }
 
     }
 }
