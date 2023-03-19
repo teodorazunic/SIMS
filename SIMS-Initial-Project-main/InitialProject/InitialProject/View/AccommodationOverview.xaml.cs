@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Input;
 
 namespace InitialProject.Forms
 {
@@ -22,6 +23,19 @@ namespace InitialProject.Forms
         private string _type = "";
         private int _guestsNumber = 0;
         private int _reservationNumber = 0;
+        private Accommodation _selectedAccommodation;
+        public Accommodation SelectedAccommodation
+        {
+            get => _selectedAccommodation;
+            set
+            {
+                if (value != _selectedAccommodation)
+                {
+                    _selectedAccommodation = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public string AccommodationName
         {
             get => _name;
@@ -119,6 +133,13 @@ namespace InitialProject.Forms
             ObservableCollection<Accommodation>  accommodations = new ObservableCollection<Accommodation>(_repository.SearchAccommodation(AccommodationName, AccommodationCity, AccommodationCountry, AccommodationType, AccommodationGuestsNumber, AccommodationReservationNumber));
             Accommodations.Clear();
             foreach (var accommodation in accommodations) Accommodations.Add(accommodation);
+        }
+
+        public void OnRowClick(object sender, MouseButtonEventArgs e)
+        {
+            CheckAccommodation checkAccommodation = new CheckAccommodation(SelectedAccommodation.Id, LoggedInUser);
+            checkAccommodation.Show();
+            Close();
         }
     }
 }
