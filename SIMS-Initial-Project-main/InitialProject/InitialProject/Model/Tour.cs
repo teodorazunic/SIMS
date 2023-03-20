@@ -18,7 +18,7 @@ namespace InitialProject.Model
 
         public string Description { get; set; }
 
-        Language Language { get; set; }
+        public Language Language { get; set; }
 
         public int MaxGuests { get; set; }
 
@@ -45,7 +45,7 @@ namespace InitialProject.Model
 
         public string[] ToCSV()
         {
-            string[] csvValues = {Id.ToString(), Name, Location.ToString(), Description, Language.ToString(), MaxGuests.ToString(), KeyPoint.ToString(), Start.ToString("d/M/yyyy HH:mm"), Duration.ToString()};
+            string[] csvValues = {Id.ToString(), Name, Location.Country, Location.City, Description, Language.Name, MaxGuests.ToString(), KeyPoint.Atrraction, Start.ToString("d/M/yyyy HH:mm"), Duration.ToString()};
             return csvValues;
         }
 

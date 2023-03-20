@@ -12,15 +12,13 @@ namespace InitialProject.Model
 
         public string Country { get; set; }
 
-        public string Adress { get; set; }
         
         public Location() { }
 
-        public Location(string city, string country, string adress)
+        public Location(string city, string country)
         {
             City = city;
             Country = country;
-            Adress = adress;
         }
 
     }

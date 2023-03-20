@@ -22,5 +22,10 @@ namespace InitialProject.Model
             Atrraction = atrraction;
             AtrractionId = atrractionId;
         }
+
+        public KeyPoint(string atrraction)
+        {
+            Atrraction = atrraction;
+        }
     }
 }
