@@ -52,8 +52,6 @@ namespace InitialProject.View
          }
 
 
-
-
         private void GradeAlert(object sender, RoutedEventArgs e)
         {
 
