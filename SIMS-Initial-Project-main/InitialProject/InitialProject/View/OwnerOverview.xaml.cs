@@ -31,6 +31,7 @@ namespace InitialProject.View
 
         private readonly AccommodationRepository _repository;
 
+        public int DaysLeftForGrade = 5;
 
         public OwnerOverview(User user)
         {
@@ -40,7 +41,28 @@ namespace InitialProject.View
             _repository = new AccommodationRepository();
         }
 
+        public OwnerOverview()
+        {
+        }
+
+         private void OpenOwnerForm(object sender, RoutedEventArgs e)
+         {
+             OwnerForm1 createOwnerForm = new OwnerForm1();
+             createOwnerForm.Show();
+         }
 
 
+
+
+        private void GradeAlert(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenGradeForm(object sender, RoutedEventArgs e)
+        {
+            GradeForm createGradeForm = new GradeForm();
+            createGradeForm.Show();
+        }
     }
 }

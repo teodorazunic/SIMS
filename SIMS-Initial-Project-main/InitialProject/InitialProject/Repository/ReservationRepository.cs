@@ -2,6 +2,8 @@
 using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 namespace InitialProject.Repository
 {
     public class ReservationRepository
@@ -60,6 +62,33 @@ namespace InitialProject.Repository
             _reservations.Add(reservation);
             _serializer.ToCSV(FilePath, _reservations);
             return "Rezervacija je uspesno sacuvana";
+        }
+
+
+        public List<Reservation> ReadFromReservationsCsv(string FileName)
+        {
+            List<Reservation> reservations = new List<Reservation>();
+
+            using (StreamReader sr = new StreamReader(FileName))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+
+                    string[] fields = line.Split('|');
+                    Reservation reservation = new Reservation();
+                    reservation.Id = Convert.ToInt32(fields[0]);
+                    reservation.GuestId = Convert.ToInt32(fields[1]);
+                    reservation.AccommodationId = Convert.ToInt32(fields[2]);
+                    reservation.DateFrom = Convert.ToDateTime(fields[3]);
+                    reservation.DateTo = Convert.ToDateTime(fields[4]);
+                    reservation.DaysNumber = Convert.ToInt32(fields[5]);
+                    reservation.GuestsNumber = Convert.ToInt32(fields[6]);
+                    reservations.Add(reservation);
+
+                }
+            }
+            return reservations;
         }
     }
 }

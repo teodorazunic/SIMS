@@ -42,7 +42,7 @@
                      Text="{Binding Path=TourName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label Grid.Row="0" Grid.Column="0" Height="30">City:</Label>
             <TextBox x:Name="City" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
-                     Text="{Binding Path=TourCity, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                     Text="{Binding Path=TourCity, UpdateSourceTrigger=PropertyChanged}" TextChanged="City_TextChanged"></TextBox>
             <Label Grid.Row="0" Grid.Column="0" Height="30">Country:</Label>
             <TextBox x:Name="Country" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
                      Text="{Binding Path=TourCountry, UpdateSourceTrigger=PropertyChanged}"></TextBox>

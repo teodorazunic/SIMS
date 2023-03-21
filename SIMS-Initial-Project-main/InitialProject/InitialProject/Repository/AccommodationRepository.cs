@@ -99,7 +99,6 @@ namespace InitialProject.Repository
                     accommodation.Name = fields[1];
                     accommodation.Location = new Location() { City = fields[2], Country = fields[3] };
                     accommodation.Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), fields[4], false);
-                    accommodation.Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), fields[4], false);
                     accommodation.GuestsNumber = Convert.ToInt32(fields[4]);
                     accommodation.ReservationDays = Convert.ToInt32(fields[5]);
                     accommodation.CancellationDeadlineDays = Convert.ToInt32(fields[6]);
@@ -130,7 +129,7 @@ namespace InitialProject.Repository
             _serializer.ToCSV(FilePath, _accommodations);
         }
 
-        public Accommodation Update(Accommodation accommodation)
+       public Accommodation Update(Accommodation accommodation)
         {
             _accommodations = _serializer.FromCSV(FilePath);
             Accommodation current = _accommodations.Find(a => a.Id == accommodation.Id);
