@@ -1,5 +1,6 @@
 using InitialProject.Model;
 using InitialProject.Repository;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -14,13 +15,15 @@ namespace InitialProject.Forms
     public partial class AccommodationOverview : Window
     {
         private readonly AccommodationRepository _repository;
+
+        public List<string> AccommodationTypes = new List<string>() { "", "apartment", "house", "cottage" };
         public static ObservableCollection<Accommodation> Accommodations { get; set; }
         public User LoggedInUser { get; set; }
 
         private string _name = "";
         private string _city = "";
         private string _country = "";
-        private string _type = "";
+        private int _typeIndex = -1;
         private int _guestsNumber = 0;
         private int _reservationNumber = 0;
         private Accommodation _selectedAccommodation;
@@ -75,14 +78,14 @@ namespace InitialProject.Forms
             }
         }
 
-        public string AccommodationType
+        public int AccommodationTypeIndex
         {
-            get => _type;
+            get => _typeIndex;
             set
             {
-                if (value != _type)
+                if (value != _typeIndex)
                 {
-                    _type = value;
+                    _typeIndex = value;
                     OnPropertyChanged();
                 }
             }
@@ -130,6 +133,11 @@ namespace InitialProject.Forms
         }
 
         public void SearchAccommodation (object sender, RoutedEventArgs e) {
+            string AccommodationType = "";
+            if (AccommodationTypeIndex > 0)
+            {
+                AccommodationType = AccommodationTypes[AccommodationTypeIndex];
+            }
             ObservableCollection<Accommodation>  accommodations = new ObservableCollection<Accommodation>(_repository.SearchAccommodation(AccommodationName, AccommodationCity, AccommodationCountry, AccommodationType, AccommodationGuestsNumber, AccommodationReservationNumber));
             Accommodations.Clear();
             foreach (var accommodation in accommodations) Accommodations.Add(accommodation);
