@@ -33,6 +33,9 @@
                     <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
                 </DataGrid.Columns>   
             </DataGrid>
+                
+            <Button Width="120" Height="30"  Content="Go to reservations" 
+                Click="Reservation_Button_Click"/>
 
         </StackPanel>
             
