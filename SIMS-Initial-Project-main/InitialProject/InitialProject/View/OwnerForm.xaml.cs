@@ -63,14 +63,14 @@ namespace InitialProject.View
             int id = repository.NextId();
             String name = txtName.Text;
             Location location = new Location(txtCity.Text, txtCountry.Text);
-           // AccommodationType type = (AccommodationType)cbtypes.SelectedValue;
+            //AccommodationType type = (AccommodationType)cbtypes.SelectedValue;
             int max = Convert.ToInt32(numMax.Text);
             int min = Convert.ToInt32(numMin.Text);
             int cancelDays = Convert.ToInt32(deadlineDays.Text);
 
-            Accommodation accommodation = new Accommodation(name, location, Type, max, min, cancelDays, 1);
+            Accommodation accommodation = new Accommodation(name, location, type, max, min, cancelDays, 1);
             Accommodation saveAccommodation = repository.Save(accommodation);
-            MessageBox.Show("Succesfully added accommodation!");
+            MessageBox.Show("Accommodation successfully registered!");
         }
     }
 }

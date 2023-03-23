@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject.View"
         mc:Ignorable="d"
-         Title="OwnerOverview" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+Title="OwnerOverview" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen">
     <Grid Loaded="GradeAlert">
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="760"/>
@@ -24,23 +23,20 @@
 
         <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
             <Button Click="OpenOwnerForm">
-                <StackPanel Orientation="Horizontal" Width="80">
+                <StackPanel Orientation="Horizontal" Width="200">
                     <Image Source="../Resources/Images/add.png" Width="20" Height="25" RenderTransformOrigin="0.5,0.6"/>
-                    <TextBlock Text="Register" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    <TextBlock Text="Register Accommodation" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="200"/>
                 </StackPanel>
             </Button>
             <Separator/>
-
             <Button Click="OpenGradeForm" >
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Width="200">
                     <Image Source="../Resources/Images/add.png" Width="20" Height="25"/>
-                    <TextBlock Text="Grade Guest" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="80" />
+                    <TextBlock Text="Grade Guest" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100" />
                 </StackPanel>
             </Button>
             <Separator/>
-
-
-
         </ToolBar>
+
     </Grid>
 </Window>
