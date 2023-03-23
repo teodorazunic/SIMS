@@ -41,17 +41,17 @@ namespace InitialProject.Repository
 
            if (name != null && name != "")
             {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.Name.Contains(name));
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.Name.ToLower().Contains(name.ToLower()));
             }
 
             if (city != null && city != "")
             {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.City == city);
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.City.ToLower() == city.ToLower());
            }
 
             if (country != null && country != "")
             {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.Country == country);
+                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.Country.ToLower() == country.ToLower());
             }
 
             if (type != null && type != "")

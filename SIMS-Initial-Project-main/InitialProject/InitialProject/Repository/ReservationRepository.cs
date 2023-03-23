@@ -3,6 +3,7 @@ using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace InitialProject.Repository
 {
@@ -23,45 +24,76 @@ namespace InitialProject.Repository
             _reservations = _serializer.FromCSV(FilePath);
         }
 
+        public int getId()
+        {
+            _reservations = this.GetAllReservations();
+            return _reservations.Max(reservation => reservation.Id);
+        }
+
         public List<Reservation> GetAllReservations()
         {
             _reservations = _serializer.FromCSV(FilePath);
             return _reservations;
         }
 
-        public String GetReservationsForGuest(int guestId, int accommodationId, string dateFrom, string dateTo, int daysNumber, int guestsNumber)
+        public String GetReservationsForGuest(int guestId, int accommodationId, DateTime dateFrom, DateTime dateTo, int daysNumber)
         {
             _reservations = _serializer.FromCSV(FilePath);
 
-            DateTime dateFromDT = DateTime.Parse(dateFrom);
-            DateTime dateToDT = DateTime.Parse(dateTo);
+            Accommodation accommodation = _accommodationRepository.GetAccommodationById(accommodationId);
+
+            if (accommodation.ReservationDays > daysNumber)
+            {
+                return "Minimalni dozvoljeni broj dana je " + accommodation.ReservationDays;
+            }
 
             List<Reservation> accommodationReservations = _reservations.FindAll(reservation => reservation.AccommodationId == accommodationId
-             && ((reservation.DateFrom>= dateFromDT && reservation.DateFrom <= dateToDT) || (reservation.DateTo >= dateFromDT && reservation.DateTo <= dateToDT)));
+             && ((reservation.DateFrom >= dateFrom && reservation.DateFrom <= dateTo) || (reservation.DateTo >= dateFrom && reservation.DateTo <= dateTo)));
 
             if(accommodationReservations.Count > 0)
             {
-                return "Smestaj je vec rezervisan, mozete rezervisati smestaj za datum" + dateToDT.AddDays(1) + " - " + dateToDT.AddDays(daysNumber+1);
+                DateTime reservedDateTo = dateTo;
+                foreach (Reservation r in accommodationReservations)
+                {
+                    if(r.DateTo > reservedDateTo)
+                    {
+                        reservedDateTo = r.DateTo;
+                    }
+                }
+                String dateFromFormat = reservedDateTo.AddDays(1).ToString("dd MMMM yyyy");
+                String dateToFormat = reservedDateTo.AddDays(daysNumber+1).ToString("dd MMMM yyyy");
+                return "Smestaj je vec rezervisan, prvi slobodan datum je od " + dateFromFormat + " do " + dateToFormat;
+            } else
+            {
+                return "Datumi su slobodni";
             }
 
-            Reservation reservation = new Reservation(guestId, accommodationId, dateFromDT, dateToDT, daysNumber, guestsNumber);
+     
+        }
 
-            return this.SaveReservation(reservation);
+        public string checkGuests(Reservation reservation, int guestsNumber)
+        {
+            Accommodation accommodation = _accommodationRepository.GetAccommodationById(reservation.AccommodationId);
+
+            if (guestsNumber > accommodation.GuestsNumber)
+            {
+                return "Broj gostiju prekoracuje dozvoljeni broj gostiju";
+            } else
+            {
+                return this.SaveReservation(reservation);
+            }
         }
 
         public String SaveReservation(Reservation reservation)
         {
-            Accommodation accommodation = _accommodationRepository.GetAccommodationById(reservation.AccommodationId);
 
-            if (reservation.GuestsNumber > accommodation.GuestsNumber)
-            {
-                return "Broj gostiju prekoracuje dozvoljeni broj gostiju";
-            }
+           int reservationId = this.getId();
+            reservation.Id = reservationId + 1;
 
             _reservations = _serializer.FromCSV(FilePath);
             _reservations.Add(reservation);
             _serializer.ToCSV(FilePath, _reservations);
-            return "Rezervacija je uspesno sacuvana";
+            return "Rezervacija je uspesno sacuvana!";
         }
 
 

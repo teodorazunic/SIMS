@@ -1,6 +1,7 @@
 using InitialProject.Model;
 using InitialProject.Repository;
 using Microsoft.VisualBasic;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -17,22 +18,10 @@ namespace InitialProject.Forms
         public static Accommodation SelectedAccommodation { get; set; }
         public User LoggedInUser { get; set; }
 
-        private string _dateFrom = "May 3 2023";
-        private string _dateTo = "May 3 2023";
-        private int _daysNumber = 0;
-        private int _guestsNumber = 0;
-        public int GuestsNumber
-        {
-            get => _guestsNumber;
-            set
-            {
-                if (value != _guestsNumber)
-                {
-                    _guestsNumber = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        private DateTime _dateFrom = DateTime.Now;
+        private DateTime _dateTo = DateTime.Now;
+        private int _daysNumber = 1;
+
         public int DaysNumber
         {
             get => _daysNumber;
@@ -46,7 +35,7 @@ namespace InitialProject.Forms
             }
         }
 
-        public string DateFrom
+        public DateTime ReservationDateFrom
         {
             get => _dateFrom;
             set
@@ -59,7 +48,7 @@ namespace InitialProject.Forms
             }
         }
 
-        public string DateTo
+        public DateTime ReservationDateTo
         {
             get => _dateTo;
             set
@@ -90,17 +79,34 @@ namespace InitialProject.Forms
 
         public void CheckReservation(object sender, RoutedEventArgs e)
         {
-            
-            string message = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id,SelectedAccommodation.Id, DateFrom, DateTo, DaysNumber, GuestsNumber);
-            if (message == "Rezervacija je uspesno sacuvana")
+
+            if (ReservationDateFrom < DateTime.Now || ReservationDateTo < DateTime.Now)
             {
-                Close();
+                MessageBox.Show("Datum ne moze biti u proslosti");
+            }
+            else
+
+            if (ReservationDateFrom > ReservationDateTo)
+            {
+                MessageBox.Show("Datum odlaska mora biti pre datuma polaska");
             }
             else
             {
-                ReservationStatus reservationStatus = new ReservationStatus(SelectedAccommodation.Id, LoggedInUser, message);
-                reservationStatus.Show();
-                Close();
+
+                string message = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id, SelectedAccommodation.Id, ReservationDateFrom, ReservationDateTo, DaysNumber);
+                if (message == "Datumi su slobodni")
+                {
+                    SaveReservation saveReservation = new SaveReservation(SelectedAccommodation.Id, LoggedInUser, ReservationDateFrom, ReservationDateTo, DaysNumber);
+                    saveReservation.Show();
+                    Close();
+                }
+                else
+                {
+                    ReservationStatus reservationStatus = new ReservationStatus(SelectedAccommodation.Id, LoggedInUser, message);
+                    reservationStatus.Show();
+                    Close();
+                }
+
             }
         }
     }

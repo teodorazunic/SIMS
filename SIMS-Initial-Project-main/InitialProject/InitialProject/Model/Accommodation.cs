@@ -22,7 +22,6 @@ namespace InitialProject.Model
         public AccommodationType Type { get; set; }
         public int GuestsNumber { get; set; }
         public int ReservationDays { get; set; }
-
         public int CancellationDeadlineDays { get; set; }
 
 
