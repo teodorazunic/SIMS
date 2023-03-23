@@ -1,6 +1,7 @@
 ﻿using InitialProject.Forms;
 using InitialProject.Model;
 using InitialProject.Repository;
+using InitialProject.View;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -45,7 +46,7 @@ namespace InitialProject
 
         private void SignIn(object sender, RoutedEventArgs e)
         {
-            User user = _repository.GetByUsername(Username);
+                User user = _repository.GetByUsername(Username);
             if (user != null)
             {
                 if(user.Password == txtPassword.Password)
@@ -60,7 +61,22 @@ namespace InitialProject
                         tourOverview.Show();
                         Close();
                         
-                    }else
+                    }
+                    else if (user.Role == UserRole.owner)
+                    {
+
+                        OwnerOverview ownerOverview = new OwnerOverview(user);
+                        ownerOverview.Show();
+                        Close();
+                    }
+                    else if (user.Role == UserRole.guide)
+                    {
+                        TourForm tourForm = new TourForm();
+                        tourForm.Show();
+                        Close();
+
+                    }
+                    else
                     {
                         CommentsOverview commentsOverview = new CommentsOverview(user);
                         commentsOverview.Show();

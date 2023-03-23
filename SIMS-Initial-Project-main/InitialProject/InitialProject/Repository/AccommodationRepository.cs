@@ -2,6 +2,7 @@ using InitialProject.Model;
 using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace InitialProject.Repository
@@ -81,6 +82,35 @@ namespace InitialProject.Repository
             return accommodation;
         }
 
+
+        public List<Accommodation> ReadFromAccommodationCsv(string FileName)
+        {
+            List<Accommodation> accommodations = new List<Accommodation>();
+
+            using (StreamReader sr = new StreamReader(FileName))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+
+                    string[] fields = line.Split('|');
+                    Accommodation accommodation = new Accommodation();
+                    accommodation.Id = Convert.ToInt32(fields[0]);
+                    accommodation.Name = fields[1];
+                    accommodation.Location = new Location() { City = fields[2], Country = fields[3] };
+                    accommodation.Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), fields[4], false);
+                    accommodation.GuestsNumber = Convert.ToInt32(fields[4]);
+                    accommodation.ReservationDays = Convert.ToInt32(fields[5]);
+                    accommodation.CancellationDeadlineDays = Convert.ToInt32(fields[6]);
+
+
+                    accommodations.Add(accommodation);
+
+                }
+            }
+            return accommodations;
+        }
+
         public int NextId()
         {
             _accommodations = _serializer.FromCSV(FilePath);
@@ -99,7 +129,7 @@ namespace InitialProject.Repository
             _serializer.ToCSV(FilePath, _accommodations);
         }
 
-        public Accommodation Update(Accommodation accommodation)
+       public Accommodation Update(Accommodation accommodation)
         {
             _accommodations = _serializer.FromCSV(FilePath);
             Accommodation current = _accommodations.Find(a => a.Id == accommodation.Id);

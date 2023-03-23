@@ -69,5 +69,24 @@ namespace InitialProject.Repository
             return filteredTours;
         }
 
+        public Tour Save(Tour tour)
+        {
+            tour.Id = NextId();
+            _tours = _serializer.FromCSV(FilePath);
+            _tours.Add(tour);
+            _serializer.ToCSV(FilePath, _tours);
+            return tour;
+        }
+
+        public int NextId()
+        {
+            _tours = _serializer.FromCSV(FilePath);
+            if (_tours.Count < 1)
+            {
+                return 1;
+            }
+            return _tours.Max(t => t.Id) + 1;
+        }
+
     }
 }

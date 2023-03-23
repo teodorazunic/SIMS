@@ -12,13 +12,16 @@ namespace InitialProject.Model
     }
     public class Accommodation : ISerializable
     {
+        private int max;
+        private int min;
+        private int cancelDays;
+
         public int Id { get; set; }
         public string Name { get; set; }
         public Location Location { get; set; }
         public AccommodationType Type { get; set; }
         public int GuestsNumber { get; set; }
         public int ReservationDays { get; set; }
-
         public int CancellationDeadlineDays { get; set; }
 
 
@@ -27,7 +30,7 @@ namespace InitialProject.Model
 
         public Accommodation() { }
 
-        public Accommodation(string name, Location location, AccommodationType type, int guestsNumber, int reservationDays, int cancellationDeadlineDays)
+        public Accommodation(string name, Location location, AccommodationType type, int guestsNumber, int reservationDays, int cancellationDeadlineDays, int v1)
 
         {
             Name = name;
@@ -40,10 +43,20 @@ namespace InitialProject.Model
 
         }
 
+        public Accommodation(string name, Location location, AccommodationType type, int max, int min, int cancelDays)
+        {
+            Name = name;
+            Location = location;
+            Type = type;
+            this.max = max;
+            this.min = min;
+            this.cancelDays = cancelDays;
+        }
+
         public string[] ToCSV()
         {
 
-            string[] csvValues = { Id.ToString(), Name, Location.ToString(), Type.ToString(), GuestsNumber.ToString(), ReservationDays.ToString(), CancellationDeadlineDays.ToString() };
+            string[] csvValues = { Id.ToString(), Name, Location.City, Location.Country, Type.ToString(), GuestsNumber.ToString(), ReservationDays.ToString(), CancellationDeadlineDays.ToString() };
             return csvValues;
         }
 
