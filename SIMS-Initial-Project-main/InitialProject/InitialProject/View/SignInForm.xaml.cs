@@ -68,7 +68,15 @@ namespace InitialProject
                         OwnerOverview ownerOverview = new OwnerOverview(user);
                         ownerOverview.Show();
                         Close();
-                    }else
+                    }
+                    else if (user.Role == UserRole.guide)
+                    {
+                        TourForm tourForm = new TourForm();
+                        tourForm.Show();
+                        Close();
+
+                    }
+                    else
                     {
                         CommentsOverview commentsOverview = new CommentsOverview(user);
                         commentsOverview.Show();
