@@ -29,6 +29,24 @@ namespace InitialProject.Repository
             return _tours;
         }
         
+         public Tour GetTourById(int id)
+        {
+            _tours = _serializer.FromCSV(FilePath);
+            return _tours.Find(t => t.Id == id);
+        }
+
+        public void UpdateMaxGuests(int id, int guests)
+        {
+            var tours = GetAllTours();
+            var tourToUpdate = tours.FirstOrDefault(t => t.Id == id);
+
+            if (tourToUpdate != null)
+            {
+                tourToUpdate.MaxGuests = guests;
+                _serializer.ToCSV(FilePath, tours);
+            }
+        }
+        
         public List<Tour> SearchTour(string name, string city, string country, int duration, string language, int numberOfPeople)
         {
             _tours = _serializer.FromCSV(FilePath);
