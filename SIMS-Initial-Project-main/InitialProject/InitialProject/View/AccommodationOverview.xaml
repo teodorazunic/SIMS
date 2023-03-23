@@ -58,15 +58,19 @@
                      Text="{Binding Path=AccommodationCountry, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Label Grid.Row="0" Grid.Column="0" Height="30">Type:</Label>
-            <TextBox x:Name="Type" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
-                     Text="{Binding Path=AccommodationType, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-
+            <ComboBox Grid.Column="1" Grid.RowSpan="2" Width="80"  Height="20"  SelectedIndex="{Binding AccommodationTypeIndex}">
+                <ComboBoxItem>all</ComboBoxItem>
+                <ComboBoxItem>apartment</ComboBoxItem>
+                <ComboBoxItem>house</ComboBoxItem>
+                <ComboBoxItem>cottage</ComboBoxItem>
+            </ComboBox>
+            
             <Label Grid.Row="0" Grid.Column="0" Height="30">Guests number:</Label>
-            <TextBox x:Name="GuestsNumber" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+            <TextBox x:Name="GuestsNumber" Grid.Column="1" Grid.RowSpan="2" Width="40"  Height="20" TextWrapping="Wrap"
                      Text="{Binding Path=AccommodationGuestsNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Label Grid.Row="0" Grid.Column="0" Height="30">Reservation number:</Label>
-            <TextBox x:Name="ReservationNumber" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+            <TextBox x:Name="ReservationNumber" Grid.Column="1" Grid.RowSpan="2" Width="40"  Height="20" TextWrapping="Wrap"
                      Text="{Binding Path=AccommodationReservationNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Button Click="SearchAccommodation">Search</Button>
