@@ -71,8 +71,8 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guide)
                     {
-                        TourForm tourForm = new TourForm();
-                        tourForm.Show();
+                        GuideTours guideTours = new GuideTours(user);
+                        guideTours.Show();
                         Close();
 
                     }

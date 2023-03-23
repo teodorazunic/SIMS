@@ -28,7 +28,9 @@ namespace InitialProject.Model
 
         public int Duration { get; set; }
 
-        public Tour( int id, string name, Location location, string description, Language language, int maxGuests, KeyPoint keyPoint, DateTime start, int duration)
+        public string Image { get; set; }
+
+        public Tour( int id, string name, Location location, string description, Language language, int maxGuests, KeyPoint keyPoint, DateTime start, int duration, string image)
         {
             Id = id;
             Name = name;
@@ -39,6 +41,7 @@ namespace InitialProject.Model
             KeyPoint = keyPoint;
             Start = start;
             Duration = duration;
+            Image = image;
         }
 
         public Tour(){}
