@@ -53,15 +53,15 @@ namespace InitialProject.View
 
             for (int i = 0; i < reservations.Count; i++)
             {
-                DateTime dateTimeNow = DateTime.Now;
-                if (reservations[i].DateFrom < dateTimeNow && reservations[i].DateTo.AddDays(5) > dateTimeNow)
+                DateTime currentDate = DateTime.Now;
+                if (reservations[i].DateTo < currentDate || reservations[i].DateTo.AddDays(5) > currentDate)
                 {
                     GuestsCB.Items.Add(reservations[i].GuestId.ToString());
                 }
             }
         }
 
-         private void Fill(object sender, RoutedEventArgs e)
+         private void Clean(object sender, RoutedEventArgs e)
         {
             CB1.Items.Add("1");
             CB1.Items.Add("2");
@@ -70,7 +70,7 @@ namespace InitialProject.View
             CB1.Items.Add("5");
         }
 
-        private void Fill1(object sender, RoutedEventArgs e)
+        private void Respect(object sender, RoutedEventArgs e)
         {
             CB2.Items.Add("1");
             CB2.Items.Add("2");
@@ -106,10 +106,10 @@ namespace InitialProject.View
 
             for (int i = 0; i < reservations.Count; i++)
             {
-                DateTime dateTimeNow = DateTime.Now;
-                if (reservations[i].DateTo < dateTimeNow && reservations[i].DateTo.AddDays(5) > dateTimeNow)
+                DateTime currentDate = DateTime.Now;
+                if (reservations[i].DateTo < currentDate || reservations[i].DateTo.AddDays(5) > currentDate)
                 {
-                    MessageBox.Show("You have " + (5 - (dateTimeNow.Day - reservations[i].DateTo.Day)).ToString() + " days left to grade " + reservations[i].GuestId);
+                    MessageBox.Show("There are " + (5 - (currentDate.Day - reservations[i].DateTo.Day)).ToString() + " days left to grade guest " + reservations[i].GuestId);
                 }
             }
         }
