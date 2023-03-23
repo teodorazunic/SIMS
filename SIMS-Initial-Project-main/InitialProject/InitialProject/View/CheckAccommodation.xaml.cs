@@ -102,9 +102,7 @@ namespace InitialProject.Forms
                 }
                 else
                 {
-                    ReservationStatus reservationStatus = new ReservationStatus(SelectedAccommodation.Id, LoggedInUser, message);
-                    reservationStatus.Show();
-                    Close();
+                    MessageBox.Show(message);
                 }
 
             }
