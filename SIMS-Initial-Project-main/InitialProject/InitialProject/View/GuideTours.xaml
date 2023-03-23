@@ -7,11 +7,23 @@
         mc:Ignorable="d"
         Title="GuideTours" Height="450" Width="800">
     <Grid>
-        <Label Content="Guide id" HorizontalAlignment="Left" Margin="100,80,0,0" VerticalAlignment="Top"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="443,85,179,169"/>
-        <TextBox x:Name="txtGuideId" HorizontalAlignment="Left" Margin="175,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Date" HorizontalAlignment="Left" Margin="100,111,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="180,113,0,0" VerticalAlignment="Top"/>
+        <Label Content="Guide id" HorizontalAlignment="Left" Margin="22,25,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtGuideId" HorizontalAlignment="Left" Margin="22,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Show tours" HorizontalAlignment="Left" Margin="50,94,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <DataGrid x:Name="GuideTours1"  IsReadOnly="True" SelectionMode="Single" 
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="147,6,10,195" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
+                <DataGridTextColumn Header="Language" Binding="{Binding Language.Name}" Width="*" />
+                <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />
+                <DataGridTextColumn Header="Key Points" Binding="{Binding KeyPoint.Atrraction}" Width="*" />
+                <DataGridTextColumn Header="Start Time" Binding="{Binding Start}" Width="*" />
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

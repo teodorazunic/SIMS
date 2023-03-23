@@ -48,7 +48,7 @@ namespace InitialProject.Model
 
         public string[] ToCSV()
         {
-            string[] csvValues = {Id.ToString(), Name, Location.Country, Location.City, Description, Language.Name, MaxGuests.ToString(), KeyPoint.Atrraction, Start.ToString("d/M/yyyy HH:mm"), Duration.ToString()};
+            string[] csvValues = {Id.ToString(), Name, Location.Country, Location.City, Description, Language.Name, MaxGuests.ToString(), KeyPoint.Atrraction, Start.ToString("dd/MM/yyyy HH:mm"), Duration.ToString()};
             return csvValues;
         }
 
