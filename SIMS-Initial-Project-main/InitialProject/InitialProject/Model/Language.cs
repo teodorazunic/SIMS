@@ -10,15 +10,17 @@ namespace InitialProject.Model
     {
         public string Name { get; set; }
 
-        public int Id { get; set; }
+        //public int Id { get; set; }
         
         public Language(){}
 
-        public Language(string name, int id)
+        public Language(string name)
         {
             Name = name;
-            Id = id;
+            //Id = id;
         }
+
+
 
     }
 }

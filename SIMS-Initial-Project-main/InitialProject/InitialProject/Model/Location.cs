@@ -12,7 +12,6 @@ namespace InitialProject.Model
 
         public string Country { get; set; }
 
-       // public string Adress { get; set; }
         
         public Location() { }
 
@@ -20,7 +19,6 @@ namespace InitialProject.Model
         {
             City = city;
             Country = country;
-          
         }
 
     }
