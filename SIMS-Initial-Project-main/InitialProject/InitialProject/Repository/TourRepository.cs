@@ -23,6 +23,7 @@ namespace InitialProject.Repository
 
         }
 
+
         public List<Tour> GetAllTours()
         {
             _tours = _serializer.FromCSV(FilePath);

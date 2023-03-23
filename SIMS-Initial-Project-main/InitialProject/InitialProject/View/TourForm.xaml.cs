@@ -29,6 +29,7 @@ namespace InitialProject.View
         TourRepository repository = new TourRepository();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
 
             int id = repository.NextId();
             String name = txtName.Text;
@@ -37,10 +38,11 @@ namespace InitialProject.View
             Language language = new Language(txtLanguage.Text);
             int maxGuests = Convert.ToInt32(txtMaxGuests.Text);
             KeyPoint keyPoint = new KeyPoint(txtAtrraction.Text);
-            DateTime start = Convert.ToDateTime(txtStart.Text);
+            DateTime start = Convert.ToDateTime(datePicker1.Text);
             int duration = Convert.ToInt32(txtDuration.Text);
+            string image = txtImage.Text;
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, keyPoint, start, duration);
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, keyPoint, start, duration, image);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
         }
