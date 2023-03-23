@@ -80,6 +80,7 @@ namespace InitialProject.Repository
                 return "Broj gostiju prekoracuje dozvoljeni broj gostiju";
             } else
             {
+                reservation.GuestsNumber = guestsNumber;
                 return this.SaveReservation(reservation);
             }
         }
