@@ -126,6 +126,13 @@ namespace InitialProject
             Tours.Clear();
             foreach (var tour in tours) Tours.Add(tour);
         }
+        
+         private void Reservation_Button_Click(object sender, RoutedEventArgs e)
+        {
+            TourReservation tourReservation = new TourReservation();
+            tourReservation.Show();
+
+        }
 
         private void City_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
