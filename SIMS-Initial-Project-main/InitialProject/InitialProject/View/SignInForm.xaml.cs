@@ -71,8 +71,8 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guide)
                     {
-                        GuideTours guideTours = new GuideTours(user);
-                        guideTours.Show();
+                        GuideOverview guideOverview = new GuideOverview(user);
+                        guideOverview.Show();
                         Close();
 
                     }
