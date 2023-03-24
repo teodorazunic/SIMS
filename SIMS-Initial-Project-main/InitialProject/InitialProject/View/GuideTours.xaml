@@ -7,11 +7,9 @@
         mc:Ignorable="d"
         Title="GuideTours" Height="450" Width="800">
     <Grid>
-        <Label Content="Guide id" HorizontalAlignment="Left" Margin="22,25,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtGuideId" HorizontalAlignment="Left" Margin="22,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Show tours" HorizontalAlignment="Left" Margin="50,94,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Show tours" HorizontalAlignment="Left" Margin="361,358,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <DataGrid x:Name="GuideTours1"  IsReadOnly="True" SelectionMode="Single" 
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="147,6,10,195" SelectionChanged="DataGrid_SelectionChanged">
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="28,6,43,105" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
                 <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
