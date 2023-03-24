@@ -102,6 +102,7 @@ namespace InitialProject.Repository
                     accommodation.GuestsNumber = Convert.ToInt32(fields[4]);
                     accommodation.ReservationDays = Convert.ToInt32(fields[5]);
                     accommodation.CancellationDeadlineDays = Convert.ToInt32(fields[6]);
+                    accommodation.PictureUrl = fields[7];
 
 
                     accommodations.Add(accommodation);

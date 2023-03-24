@@ -67,8 +67,9 @@ namespace InitialProject.View
             int max = Convert.ToInt32(numMax.Text);
             int min = Convert.ToInt32(numMin.Text);
             int cancelDays = Convert.ToInt32(deadlineDays.Text);
+            String picture = txtPic.Text;
 
-            Accommodation accommodation = new Accommodation(name, location, Type, max, min, cancelDays, 1);
+            Accommodation accommodation = new Accommodation(name, location, Type, max, min, cancelDays, picture, 1);
             Accommodation saveAccommodation = repository.Save(accommodation);
             MessageBox.Show("Accommodation successfully registered!");
         }

@@ -23,6 +23,7 @@ namespace InitialProject.Model
         public int GuestsNumber { get; set; }
         public int ReservationDays { get; set; }
         public int CancellationDeadlineDays { get; set; }
+        public string PictureUrl { get; set; }
 
 
 
@@ -30,7 +31,7 @@ namespace InitialProject.Model
 
         public Accommodation() { }
 
-        public Accommodation(string name, Location location, AccommodationType type, int guestsNumber, int reservationDays, int cancellationDeadlineDays, int v1)
+        public Accommodation(string name, Location location, AccommodationType type, int guestsNumber, int reservationDays, int cancellationDeadlineDays, string picture, int v1)
 
         {
             Name = name;
@@ -39,9 +40,11 @@ namespace InitialProject.Model
             GuestsNumber = guestsNumber;
             ReservationDays = reservationDays;
             CancellationDeadlineDays = cancellationDeadlineDays;
+            PictureUrl = picture;
 
 
         }
+
 
         public Accommodation(string name, Location location, AccommodationType type, int max, int min, int cancelDays)
         {
@@ -56,7 +59,7 @@ namespace InitialProject.Model
         public string[] ToCSV()
         {
 
-            string[] csvValues = { Id.ToString(), Name, Location.City, Location.Country, Type.ToString(), GuestsNumber.ToString(), ReservationDays.ToString(), CancellationDeadlineDays.ToString() };
+            string[] csvValues = { Id.ToString(), Name, Location.City, Location.Country, Type.ToString(), GuestsNumber.ToString(), ReservationDays.ToString(), CancellationDeadlineDays.ToString(), PictureUrl };
             return csvValues;
         }
 
@@ -69,6 +72,7 @@ namespace InitialProject.Model
             GuestsNumber = Convert.ToInt32(values[5]);
             ReservationDays = Convert.ToInt32(values[6]);
             CancellationDeadlineDays = Convert.ToInt32(values[7]);
+            //PictureUrl = values[8];
 
         }
     }

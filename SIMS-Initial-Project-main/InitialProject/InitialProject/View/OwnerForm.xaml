@@ -21,7 +21,7 @@
         <TextBox x:Name="numMin" HorizontalAlignment="Left" Height="26" Margin="120,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
         <TextBox x:Name="deadlineDays" HorizontalAlignment="Left" Height="26" Margin="152,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
         <TextBox x:Name="txtCountry" HorizontalAlignment="Left" Height="26" Margin="288,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <TextBox HorizontalAlignment="Left" Height="26" Margin="120,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="txtPic" HorizontalAlignment="Left" Height="26" Margin="120,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
         <Button Content="Save " HorizontalAlignment="Left" Margin="86,324,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <ComboBox x:Name="cbtypes" HorizontalAlignment="Left" Height="26" Margin="102,110,0,0" VerticalAlignment="Top" Width="153"
                   SelectedValue="{Binding Path=type, UpdateSourceTrigger=PropertyChanged}"/>
