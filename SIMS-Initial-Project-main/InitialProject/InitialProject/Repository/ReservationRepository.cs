@@ -62,7 +62,7 @@ namespace InitialProject.Repository
             else
             {
 
-                for (DateTime date = dateFrom; date < dateTo; date = date.AddDays(1))
+                for (DateTime date = dateFrom; date < dateTo.AddDays(-daysNumber); date = date.AddDays(1))
                 {
                     ReservationDate reservationDate = new ReservationDate(date, date.AddDays(daysNumber));
                     reservationDates.Add(reservationDate);
