@@ -36,39 +36,39 @@ namespace InitialProject.Repository
             return _reservations;
         }
 
-        public String GetReservationsForGuest(int guestId, int accommodationId, DateTime dateFrom, DateTime dateTo, int daysNumber)
+        public List<ReservationDate> GetReservationsForGuest(int guestId, int accommodationId, DateTime dateFrom, DateTime dateTo, int daysNumber)
         {
             _reservations = _serializer.FromCSV(FilePath);
 
-            Accommodation accommodation = _accommodationRepository.GetAccommodationById(accommodationId);
-
-            if (accommodation.ReservationDays > daysNumber)
-            {
-                return "Minimalni dozvoljeni broj dana je " + accommodation.ReservationDays;
-            }
-
             List<Reservation> accommodationReservations = _reservations.FindAll(reservation => reservation.AccommodationId == accommodationId
-             && ((reservation.DateFrom >= dateFrom && reservation.DateFrom <= dateTo) || (reservation.DateTo >= dateFrom && reservation.DateTo <= dateTo)));
+             && ((reservation.DateFrom >= dateFrom && reservation.DateFrom <= dateFrom.AddDays(daysNumber)) || (reservation.DateTo >= dateFrom && reservation.DateTo <= dateFrom.AddDays(daysNumber))));
 
-            if(accommodationReservations.Count > 0)
+
+            List<ReservationDate> reservationDates = new List<ReservationDate>();
+
+            if (accommodationReservations.Count > 0)
             {
-                DateTime reservedDateTo = dateTo;
+                DateTime reservedDateTo = dateFrom.AddDays(daysNumber);
                 foreach (Reservation r in accommodationReservations)
                 {
-                    if(r.DateTo > reservedDateTo)
+                    if (r.DateTo > reservedDateTo)
                     {
                         reservedDateTo = r.DateTo;
                     }
                 }
-                String dateFromFormat = reservedDateTo.AddDays(1).ToString("dd MMMM yyyy");
-                String dateToFormat = reservedDateTo.AddDays(daysNumber+1).ToString("dd MMMM yyyy");
-                return "Smestaj je vec rezervisan, prvi slobodan datum je od " + dateFromFormat + " do " + dateToFormat;
-            } else
-            {
-                return "Datumi su slobodni";
-            }
 
-     
+                reservationDates.Add(new ReservationDate(reservedDateTo, reservedDateTo.AddDays(daysNumber + 1)));
+            }
+            else
+            {
+
+                for (DateTime date = dateFrom; date < dateTo; date = date.AddDays(1))
+                {
+                    ReservationDate reservationDate = new ReservationDate(date, date.AddDays(daysNumber));
+                    reservationDates.Add(reservationDate);
+                }
+            }
+            return reservationDates;
         }
 
         public string checkGuests(Reservation reservation, int guestsNumber)
@@ -78,7 +78,8 @@ namespace InitialProject.Repository
             if (guestsNumber > accommodation.GuestsNumber)
             {
                 return "Broj gostiju prekoracuje dozvoljeni broj gostiju";
-            } else
+            }
+            else
             {
                 reservation.GuestsNumber = guestsNumber;
                 return this.SaveReservation(reservation);
@@ -88,7 +89,7 @@ namespace InitialProject.Repository
         public String SaveReservation(Reservation reservation)
         {
 
-           int reservationId = this.getId();
+            int reservationId = this.getId();
             reservation.Id = reservationId + 1;
 
             _reservations = _serializer.FromCSV(FilePath);

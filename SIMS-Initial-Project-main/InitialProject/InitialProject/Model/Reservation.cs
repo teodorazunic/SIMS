@@ -27,7 +27,6 @@ namespace InitialProject.Model
 
         public string[] ToCSV()
         {
-
             string[] csvValues = { Id.ToString(), GuestId.ToString(), AccommodationId.ToString(), DateFrom.ToString(),
                 DateTo.ToString(), DaysNumber.ToString(), GuestsNumber.ToString() };
             return csvValues;

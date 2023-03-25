@@ -32,43 +32,79 @@ namespace InitialProject.Repository
             _accommodations = _serializer.FromCSV(FilePath);
             return _accommodations.Find(a => a.Id == id);
         }
-        public List<Accommodation> SearchAccommodation(string name, string city, string country, string type, int guestsNumber, int reservationDays)
+
+        public List<Accommodation> findByName(List<Accommodation> accommodations, string name)
+        {
+            if (name != null && name != "")
+            {
+                return accommodations.FindAll(a => a.Name.ToLower().Contains(name.ToLower()));
+            }
+
+            return accommodations;
+        }
+        public List<Accommodation> findByCity(List<Accommodation> accommodations, string city)
+        {
+            if (city != null && city != "")
+            {
+                return accommodations.FindAll(a => a.Location.City.ToLower().Contains(city.ToLower()));
+            }
+
+            return accommodations;
+        }
+
+        public List<Accommodation> findByCountry(List<Accommodation> accommodations, string country)
+        {
+            if (country != null && country != "")
+            {
+                return accommodations.FindAll(a => a.Location.Country.ToLower().Contains(country.ToLower()));
+            }
+
+            return accommodations;
+        }
+
+        public List<Accommodation> findByType(List<Accommodation> accommodations, string type)
+        {
+            if (type != null && type != "")
+            {
+                AccommodationType accommodationType = (AccommodationType)Enum.Parse(typeof(AccommodationType), type);
+                return accommodations.FindAll(a => a.Type == accommodationType);
+            }
+
+            return accommodations;
+        }
+
+        public List<Accommodation> findByGuestsNumber(List<Accommodation> accommodations, int guestsNumber)
+        {
+            if (guestsNumber > 0)
+            {
+                return accommodations.FindAll(a => a.GuestsNumber >= guestsNumber);
+            }
+
+            return accommodations;
+        }
+
+        public List<Accommodation> findByReservationDays(List<Accommodation> accommodations, int reservationDays)
+        {
+            if (reservationDays > 0)
+            {
+                return accommodations.FindAll(a => a.ReservationDays <= reservationDays);
+            }
+
+            return accommodations;
+        }
+
+        public List<Accommodation> SearchAccommodation(Accommodation accommodation, string type)
         {
             _accommodations = _serializer.FromCSV(FilePath);
 
             List<Accommodation> filteredAccomodations = _accommodations;
 
-
-           if (name != null && name != "")
-            {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.Name.ToLower().Contains(name.ToLower()));
-            }
-
-            if (city != null && city != "")
-            {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.City.ToLower() == city.ToLower());
-           }
-
-            if (country != null && country != "")
-            {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.Location.Country.ToLower() == country.ToLower());
-            }
-
-            if (type != null && type != "")
-            {
-                AccommodationType accommodationType = (AccommodationType) Enum.Parse(typeof(AccommodationType), type);
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.Type == accommodationType);
-            }
-
-            if (guestsNumber > 0)
-            {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.GuestsNumber >= guestsNumber);
-            }
-
-            if (reservationDays > 0)
-            {
-                filteredAccomodations = filteredAccomodations.FindAll(a => a.ReservationDays <= reservationDays);
-            }
+            filteredAccomodations = this.findByName(filteredAccomodations, accommodation.Name);
+            filteredAccomodations = this.findByCity(filteredAccomodations, accommodation.Location.City);
+            filteredAccomodations = this.findByCountry(filteredAccomodations, accommodation.Location.Country);
+            filteredAccomodations = this.findByType(filteredAccomodations, type);
+            filteredAccomodations = this.findByGuestsNumber(filteredAccomodations, accommodation.GuestsNumber);
+            filteredAccomodations = this.findByReservationDays(filteredAccomodations, accommodation.ReservationDays);
 
             return filteredAccomodations;
         }
@@ -92,8 +128,8 @@ namespace InitialProject.Repository
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine();
-
                     string[] fields = line.Split('|');
+
                     Accommodation accommodation = new Accommodation();
                     accommodation.Id = Convert.ToInt32(fields[0]);
                     accommodation.Name = fields[1];
@@ -103,7 +139,6 @@ namespace InitialProject.Repository
                     accommodation.ReservationDays = Convert.ToInt32(fields[5]);
                     accommodation.CancellationDeadlineDays = Convert.ToInt32(fields[6]);
                     accommodation.PictureUrl = fields[7];
-
 
                     accommodations.Add(accommodation);
 
@@ -130,13 +165,13 @@ namespace InitialProject.Repository
             _serializer.ToCSV(FilePath, _accommodations);
         }
 
-       public Accommodation Update(Accommodation accommodation)
+        public Accommodation Update(Accommodation accommodation)
         {
             _accommodations = _serializer.FromCSV(FilePath);
             Accommodation current = _accommodations.Find(a => a.Id == accommodation.Id);
             int index = _accommodations.IndexOf(current);
             _accommodations.Remove(current);
-            _accommodations.Insert(index, accommodation);       // keep ascending order of ids in file 
+            _accommodations.Insert(index, accommodation);
             _serializer.ToCSV(FilePath, _accommodations);
             return accommodation;
         }

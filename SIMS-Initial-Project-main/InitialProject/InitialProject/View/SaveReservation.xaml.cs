@@ -2,6 +2,7 @@ using InitialProject.Model;
 using InitialProject.Repository;
 using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -16,13 +17,14 @@ namespace InitialProject.Forms
 
         private readonly AccommodationRepository _repository;
         private readonly ReservationRepository _reservationRepository;
+        private readonly List<ReservationDate> _reservationDates;
+
         public static Accommodation SelectedAccommodation { get; set; }
         public User LoggedInUser { get; set; }
-        public DateTime DateFrom { get; set; }
-        public DateTime DateTo { get; set; }
         public int DaysNumber { get; set; }
 
         private int _guestsNumber = 0;
+        private int _reservationDateIndex;
 
         public int GuestsNumber
         {
@@ -36,18 +38,30 @@ namespace InitialProject.Forms
                 }
             }
         }
+        public int ReservationDateIndex
+        {
+            get => _reservationDateIndex;
+            set
+            {
+                if (value != _reservationDateIndex)
+                {
+                    _reservationDateIndex = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public SaveReservation(int accommodationId, User LoggedUser, DateTime dateFrom, DateTime dateTo, int daysNumber)
+        public SaveReservation(List<ReservationDate> reservationDates,int accommodationId, User LoggedUser, int daysNumber)
         {
             InitializeComponent();
             DataContext = this;
             _repository = new AccommodationRepository();
+            _reservationDates = reservationDates;
             _reservationRepository = new ReservationRepository();
             SelectedAccommodation = _repository.GetAccommodationById(accommodationId);
-            DateFrom = dateFrom;
-            DateTo = dateTo;
             DaysNumber = daysNumber;
             LoggedInUser = LoggedUser;
+            ReservationDates.ItemsSource = _reservationDates;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -60,8 +74,8 @@ namespace InitialProject.Forms
         {
             Reservation newReservation = new Reservation();
             newReservation.GuestId = LoggedInUser.Id;
-            newReservation.DateFrom = DateFrom;
-            newReservation.DateTo = DateTo;
+            newReservation.DateFrom = _reservationDates[ReservationDateIndex].DateFrom;
+            newReservation.DateTo = _reservationDates[ReservationDateIndex].DateTo;
             newReservation.AccommodationId = SelectedAccommodation.Id;
             newReservation.DaysNumber = DaysNumber;
 
@@ -74,6 +88,12 @@ namespace InitialProject.Forms
             } else  {
                 MessageBox.Show(message);
             }
+        }
+        public void Logout(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            Close();
         }
     }
 }
