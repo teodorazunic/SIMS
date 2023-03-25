@@ -132,13 +132,25 @@ namespace InitialProject.Forms
             Accommodations = new ObservableCollection<Accommodation>(_repository.GetAllAccomodations());
         }
 
-        public void SearchAccommodation (object sender, RoutedEventArgs e) {
+        public void SearchAccommodation(object sender, RoutedEventArgs e)
+        {
             string AccommodationType = "";
             if (AccommodationTypeIndex > 0)
             {
                 AccommodationType = AccommodationTypes[AccommodationTypeIndex];
             }
-            ObservableCollection<Accommodation>  accommodations = new ObservableCollection<Accommodation>(_repository.SearchAccommodation(AccommodationName, AccommodationCity, AccommodationCountry, AccommodationType, AccommodationGuestsNumber, AccommodationReservationNumber));
+
+            Accommodation accommodationToSearch = new Accommodation();
+            accommodationToSearch.Name = AccommodationName;
+            accommodationToSearch.GuestsNumber = AccommodationGuestsNumber;
+            accommodationToSearch.ReservationDays = AccommodationReservationNumber;
+
+            Location location = new Location();
+            location.City = AccommodationCity;
+            location.Country = AccommodationCountry;
+            accommodationToSearch.Location = location;
+
+            ObservableCollection<Accommodation> accommodations = new ObservableCollection<Accommodation>(_repository.SearchAccommodation(accommodationToSearch, AccommodationType));
             Accommodations.Clear();
             foreach (var accommodation in accommodations) Accommodations.Add(accommodation);
         }
@@ -147,6 +159,13 @@ namespace InitialProject.Forms
         {
             CheckAccommodation checkAccommodation = new CheckAccommodation(SelectedAccommodation.Id, LoggedInUser);
             checkAccommodation.Show();
+            Close();
+        }
+
+        public void Logout(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
             Close();
         }
     }

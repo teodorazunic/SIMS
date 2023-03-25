@@ -2,6 +2,7 @@ using InitialProject.Model;
 using InitialProject.Repository;
 using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -91,21 +92,24 @@ namespace InitialProject.Forms
                 MessageBox.Show("Datum odlaska mora biti pre datuma polaska");
             }
             else
+                if (SelectedAccommodation.ReservationDays > DaysNumber)
             {
-
-                string message = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id, SelectedAccommodation.Id, ReservationDateFrom, ReservationDateTo, DaysNumber);
-                if (message == "Datumi su slobodni")
-                {
-                    SaveReservation saveReservation = new SaveReservation(SelectedAccommodation.Id, LoggedInUser, ReservationDateFrom, ReservationDateTo, DaysNumber);
-                    saveReservation.Show();
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show(message);
-                }
+                MessageBox.Show("Minimalni dozvoljeni broj dana je " + SelectedAccommodation.ReservationDays);
+            }
+            else
+            {
+                List <ReservationDate> reservationDates = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id, SelectedAccommodation.Id, ReservationDateFrom, ReservationDateTo, DaysNumber);
+                SaveReservation saveReservation = new SaveReservation(reservationDates, SelectedAccommodation.Id, LoggedInUser, DaysNumber);
+                saveReservation.Show();
+                Close();
 
             }
+        }
+        public void Logout(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            Close();
         }
     }
 }
