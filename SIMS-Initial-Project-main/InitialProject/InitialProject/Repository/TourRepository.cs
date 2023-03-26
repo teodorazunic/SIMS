@@ -88,13 +88,26 @@ namespace InitialProject.Repository
 
         public void UpdateMaxGuests(int id, int guests)
         {
-            var tours = GetAllTours();
-            var tourToUpdate = tours.FirstOrDefault(t => t.Id == id);
+            _tours = _serializer.FromCSV(FilePath);
+            Tour tour = GetTourById(id);
 
-            if (tourToUpdate != null)
+            if (tour != null)
             {
-                tourToUpdate.MaxGuests = guests;
-                _serializer.ToCSV(FilePath, tours);
+                tour.MaxGuests = tour.MaxGuests - guests;
+                _serializer.ToCSV(FilePath, _tours);
+            }
+        }
+
+        public string CheckMaxGuests(int id, int guests)
+        {
+            Tour tour = GetTourById(id);
+            if(guests > tour.MaxGuests)
+            {
+                return "Number of atendees exceeds max guests number";
+            }
+            else
+            {
+                return "You were added to the tour!";
             }
         }
         
