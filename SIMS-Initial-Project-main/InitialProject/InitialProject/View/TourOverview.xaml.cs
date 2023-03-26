@@ -1,4 +1,5 @@
-﻿using InitialProject.Model;
+using InitialProject.Forms;
+using InitialProject.Model;
 using InitialProject.Repository;
 using InitialProject.View;
 using System.Collections.ObjectModel;
@@ -24,6 +25,20 @@ namespace InitialProject
         private int _duration = 0;
         private string _language = "";
         private int _numberOfPeople = 0;
+        private Tour _selectedTour;
+
+        public Tour SelectedTour
+        {
+            get => _selectedTour;
+            set
+            {
+                if (value != _selectedTour)
+                {
+                    _selectedTour= value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string TourName
         {
@@ -128,11 +143,12 @@ namespace InitialProject
             foreach (var tour in tours) Tours.Add(tour);
         }
         
-         private void Reservation_Button_Click(object sender, RoutedEventArgs e)
-        {
-            TourReservation tourReservation = new TourReservation();
-            tourReservation.Show();
 
+        public void OnRowClick(object sender, MouseButtonEventArgs e)
+        {
+            TourReservation2 tourReservation = new TourReservation2(SelectedTour.Id, LoggedInUser);
+            tourReservation.Show();
+            Close();
         }
 
         private void City_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
