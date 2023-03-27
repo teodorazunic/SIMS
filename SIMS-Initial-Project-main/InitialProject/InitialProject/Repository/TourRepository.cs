@@ -62,9 +62,9 @@ namespace InitialProject.Repository
                     tour.Description = fields[4];
                     tour.Language = new Language() { Name = fields[5] };
                     tour.MaxGuests = Convert.ToInt32(fields[6]);
-                    tour.KeyPoint = new KeyPoint() { Atrraction = fields[7] };
-                    tour.Start = Convert.ToDateTime(fields[8]);
-                    tour.Duration = Convert.ToInt32(fields[9]);
+                    tour.Start = Convert.ToDateTime(fields[7]);
+                    tour.Duration = Convert.ToInt32(fields[8]);
+                    
                     tours.Add(tour);
 
 

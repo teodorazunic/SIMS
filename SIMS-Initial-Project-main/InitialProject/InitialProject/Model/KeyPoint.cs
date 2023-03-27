@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InitialProject.Serializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,26 +7,43 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Model
 {
-    public class KeyPoint
+    public class KeyPoint :ISerializable
     {
-        public Location Location { get; set; }
+        
+        public string Name { get; set; }
 
-        public string Atrraction { get; set; }
+        public int Id { get; set; }
 
-        public int AtrractionId { get; set; }
+        public int TourId { get; set; }
         
         public KeyPoint() { }
 
-        public KeyPoint(Location location, string atrraction, int atrractionId)
+        public KeyPoint(string name, int id)
         {
-            Location = location;
-            Atrraction = atrraction;
-            AtrractionId = atrractionId;
+            Name = name;
+            Id = id;
         }
 
-        public KeyPoint(string atrraction)
+        public KeyPoint(string name, int id, int tourId)
         {
-            Atrraction = atrraction;
+            Name = name;
+            Id = id;
+            TourId = tourId;
+        }
+
+        public string[] ToCSV()
+        {
+            string[] csvValues = { Id.ToString(), Name, TourId.ToString()};
+            return csvValues;
+        }
+
+        
+
+        public void FromCSV(string[] values)
+        {
+            Id = Convert.ToInt32(values[0]);
+            Name = values[1];
+            TourId = Convert.ToInt32(values[2]);
         }
     }
 }

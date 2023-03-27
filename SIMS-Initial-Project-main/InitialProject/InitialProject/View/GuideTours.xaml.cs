@@ -38,6 +38,23 @@ namespace InitialProject.View
         private int _duration = 0;
         private string _language = "";
         private int _numberOfPeople = 0;
+        private Tour _selectedTour;
+
+        public Tour SelectedTour
+        {
+            get => _selectedTour;
+            set
+            {
+                if (value != _selectedTour)
+                {
+                    _selectedTour = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
+
+
 
         public string TourName
         {
@@ -119,6 +136,9 @@ namespace InitialProject.View
 
         
         private readonly TourRepository _repository = new TourRepository();
+        private readonly KeyPointRepository _keyPointRepository = new KeyPointRepository();
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -134,6 +154,8 @@ namespace InitialProject.View
             LoggedInUser = user;
             _repository = new TourRepository();
             const string FilePath = "../../../Resources/Data/tour.csv";
+            _keyPointRepository = new KeyPointRepository();
+            //SelectedTour = _repository.GetTourById
             Tours = new ObservableCollection<Tour>(_repository.GetTodaysTours(FilePath));
         }
 
@@ -143,6 +165,16 @@ namespace InitialProject.View
             const string FilePath = "../../../Resources/Data/tour.csv";
             tours = _repository.GetTodaysTours(FilePath);
             GuideTours1.ItemsSource = tours;
+        }
+
+        public void OnRowClick(object sender, RoutedEventArgs e)
+        {
+            SelectedTour = _repository.GetTourById(SelectedTour.Id);
+            List<KeyPoint> keyPoints = new List<KeyPoint>();
+            keyPoints = _keyPointRepository.GetKeyPointbyTourId(SelectedTour.Id);
+            KeyPoints.ItemsSource = keyPoints;
+
+
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
