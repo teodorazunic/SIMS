@@ -35,40 +35,43 @@ namespace InitialProject.Repository
             _reservations = _serializer.FromCSV(FilePath);
             return _reservations;
         }
+        public bool IsAvailable(List<Reservation> reservations, DateTime startDate, DateTime endDate)
+        {
+            foreach (Reservation reservation in reservations)
+            {
+                if (reservation.DateFrom < endDate && startDate < reservation.DateTo)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
-        public List<ReservationDate> GetReservationsForGuest(int guestId, int accommodationId, DateTime dateFrom, DateTime dateTo, int daysNumber)
+        public List<ReservationDate> GetReservationsForGuest(int guestId, int accommodationId, DateTime fromDate, DateTime toDate, int daysNumber)
         {
             _reservations = _serializer.FromCSV(FilePath);
-
-            List<Reservation> accommodationReservations = _reservations.FindAll(reservation => reservation.AccommodationId == accommodationId
-             && ((reservation.DateFrom >= dateFrom && reservation.DateFrom <= dateFrom.AddDays(daysNumber)) || (reservation.DateTo >= dateFrom && reservation.DateTo <= dateFrom.AddDays(daysNumber))));
-
-
-            List<ReservationDate> reservationDates = new List<ReservationDate>();
-
-            if (accommodationReservations.Count > 0)
+            List<Reservation> accommodationReservations = _reservations.FindAll(reservation => reservation.AccommodationId == accommodationId);
+            List<ReservationDate> availableDates = new List<ReservationDate>();
+            DateTime currentDate = fromDate;
+            while (currentDate.AddDays(daysNumber) < toDate)
             {
-                DateTime reservedDateTo = dateFrom.AddDays(daysNumber);
-                foreach (Reservation r in accommodationReservations)
+                DateTime endDate = currentDate.AddDays(daysNumber);
+                if (IsAvailable(accommodationReservations, currentDate, endDate))
                 {
-                    if (r.DateTo > reservedDateTo)
-                    {
-                        reservedDateTo = r.DateTo;
-                    }
+                    availableDates.Add(new ReservationDate(currentDate, endDate));
                 }
-
-                reservationDates.Add(new ReservationDate(reservedDateTo, reservedDateTo.AddDays(daysNumber + 1)));
+                currentDate = currentDate.AddDays(1);
             }
-            else
+            if (availableDates.Count == 0)
             {
-
-                for (DateTime date = dateFrom; date < dateTo.AddDays(-daysNumber); date = date.AddDays(1))
+                DateTime firstAvailableDate = fromDate;
+                while (!IsAvailable(accommodationReservations, firstAvailableDate, firstAvailableDate.AddDays(daysNumber)))
                 {
-                    ReservationDate reservationDate = new ReservationDate(date, date.AddDays(daysNumber));
-                    reservationDates.Add(reservationDate);
+                    firstAvailableDate = firstAvailableDate.AddDays(1);
                 }
+                availableDates.Add(new ReservationDate(firstAvailableDate, firstAvailableDate.AddDays(daysNumber)));
             }
-            return reservationDates;
+            return availableDates;
         }
 
         public string checkGuests(Reservation reservation, int guestsNumber)
