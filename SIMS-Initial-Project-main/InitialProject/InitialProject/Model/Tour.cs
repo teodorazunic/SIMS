@@ -22,8 +22,6 @@ namespace InitialProject.Model
 
         public int MaxGuests { get; set; }
 
-        public KeyPoint KeyPoint { get; set; }
-
         public DateTime Start { get; set; }
 
         public int Duration { get; set; }
@@ -32,7 +30,7 @@ namespace InitialProject.Model
 
         public List <KeyPoint> KeyPoints { get; set; }
 
-        public Tour( int id, string name, Location location, string description, Language language, int maxGuests, KeyPoint keyPoint, DateTime start, int duration, string image)
+        public Tour( int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image)
         {
             Id = id;
             Name = name;
@@ -40,7 +38,6 @@ namespace InitialProject.Model
             Description = description;
             Language = language;
             MaxGuests = maxGuests;
-            KeyPoint = keyPoint;
             Start = start;
             Duration = duration;
             Image = image;
@@ -69,20 +66,6 @@ namespace InitialProject.Model
         }
 
 
-
-
-        //public void FromCSV(string[] values)
-        //{
-        //    Id = Convert.ToInt32(values[0]);
-        //    Name = values[1];
-        //    Location = new Location() {City = values[2], Country = values[3]};
-        //    Description = values[4];
-        //    Language = new Language() { Name = values[5] };
-        //    MaxGuests = Convert.ToInt32(values[6]);
-        //    KeyPoint = new KeyPoint() { Name = values[7] };
-        //    Start = Convert.ToDateTime(values[8]);
-        //    Duration = Convert.ToInt32(values[9]);
-        //}
 
         public void FromCSV(string[] values)
         {

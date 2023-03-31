@@ -56,16 +56,27 @@ namespace InitialProject.Repository
             return sameIdKeyPoint;
         }
 
-        public void SaveKeyPoints(KeyPoint keyPoint)
+        public KeyPoint SaveKeyPoint(KeyPoint keyPoint)
         {
 
-            int keyPointId = this.getId();
-            keyPoint.Id = keyPointId + 1;
+           int keyPointId = this.getId();
+           keyPoint.Id = keyPointId + 1;
 
-            _keyPoints = _serializer.FromCSV(FilePath);
+           _keyPoints = _serializer.FromCSV(FilePath);
             _keyPoints.Add(keyPoint);
             _serializer.ToCSV(FilePath, _keyPoints);
-            
+            return keyPoint;
+
+        }
+
+        public int NextId()
+        {
+            _keyPoints = _serializer.FromCSV(FilePath);
+            if (_keyPoints.Count < 1)
+            {
+                return 1;
+            }
+            return _keyPoints.Max(t => t.Id) + 1;
         }
 
 

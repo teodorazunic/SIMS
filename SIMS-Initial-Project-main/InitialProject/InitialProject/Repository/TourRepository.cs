@@ -86,6 +86,7 @@ namespace InitialProject.Repository
             return _tours.Find(t => t.Id == id);
         }
 
+        
         public void UpdateMaxGuests(int id, int guests)
         {
             var tours = GetAllTours();

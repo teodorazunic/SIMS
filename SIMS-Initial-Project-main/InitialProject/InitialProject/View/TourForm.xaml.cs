@@ -27,7 +27,10 @@ namespace InitialProject.View
         }
 
         TourRepository repository = new TourRepository();
+        KeyPointRepository keyPointRepository = new KeyPointRepository();
         List<KeyPoint> keyPoints = new List<KeyPoint>();
+
+       
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
@@ -42,18 +45,21 @@ namespace InitialProject.View
             int duration = Convert.ToInt32(txtDuration.Text);
             string image = txtImage.Text;
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, keyPoints);
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            int id = repository.NextId();
+            int id = keyPointRepository.NextId();
             string name = txtKeyPoint.Text;
+            int tourId = repository.NextId();
+            
 
-            KeyPoint keypoint = new KeyPoint(name, id);
+            KeyPoint keypoint = new KeyPoint(name, id, tourId);
             keyPoints.Add(keypoint);
+            KeyPoint saveKeyPoint = keyPointRepository.SaveKeyPoint(keypoint);
             txtKeyPoint.Text = "";
 
         }
