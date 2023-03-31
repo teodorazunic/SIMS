@@ -53,7 +53,7 @@ namespace InitialProject.Repository
             List<Reservation> accommodationReservations = _reservations.FindAll(reservation => reservation.AccommodationId == accommodationId);
             List<ReservationDate> availableDates = new List<ReservationDate>();
             DateTime currentDate = fromDate;
-            while (currentDate.AddDays(daysNumber) < toDate)
+            while (currentDate.AddDays(daysNumber) <= toDate)
             {
                 DateTime endDate = currentDate.AddDays(daysNumber);
                 if (IsAvailable(accommodationReservations, currentDate, endDate))
