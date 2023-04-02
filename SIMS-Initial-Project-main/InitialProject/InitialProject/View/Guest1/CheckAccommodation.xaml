@@ -53,8 +53,8 @@
             </Grid>
 
             <Button Grid.Row="2" Click="CheckReservation" Content="Check" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="60"/>
-
             <Button Click="Logout" HorizontalAlignment="Right" VerticalAlignment="Bottom">Log out</Button>
+            <Button Click="AddReview" Content="Add a review" Width="105"/>
         </StackPanel>
     </Grid>
 </Window>

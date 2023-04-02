@@ -105,6 +105,13 @@ namespace InitialProject.Forms
 
             }
         }
+
+        public void AddReview(object sender, RoutedEventArgs e)
+        {
+            AccommodationReviewForm accommodationReviewForm = new AccommodationReviewForm(LoggedInUser, SelectedAccommodation);
+            accommodationReviewForm.Show();
+            Close();
+        }
         public void Logout(object sender, RoutedEventArgs e)
         {
             SignInForm signInForm = new SignInForm();

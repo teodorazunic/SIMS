@@ -162,6 +162,13 @@ namespace InitialProject.Forms
             Close();
         }
 
+        public void ShowReservations(object sender, RoutedEventArgs e)
+        {
+            MyReservations myReservations = new MyReservations(LoggedInUser);
+            myReservations.Show();
+            Close();
+        }
+
         public void Logout(object sender, RoutedEventArgs e)
         {
             SignInForm signInForm = new SignInForm();
