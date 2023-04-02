@@ -43,6 +43,7 @@
 
             </DataGrid>
 
+            <Button Click="ShowReservations" HorizontalAlignment="Right" VerticalAlignment="Bottom">My reservations</Button>
             <Button Click="Logout" HorizontalAlignment="Right" VerticalAlignment="Bottom">Log out</Button>
         </StackPanel>
 

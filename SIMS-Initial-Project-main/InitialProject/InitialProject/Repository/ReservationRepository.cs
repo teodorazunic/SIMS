@@ -24,20 +24,35 @@ namespace InitialProject.Repository
             _reservations = _serializer.FromCSV(FilePath);
         }
 
-        public int getId()
+        public int GetLastId()
         {
-            _reservations = this.GetAllReservations();
             return _reservations.Max(reservation => reservation.Id);
         }
 
-        public List<Reservation> GetAllReservations()
+        public List<Reservation> GetAll()
         {
-            _reservations = _serializer.FromCSV(FilePath);
             return _reservations;
         }
-        public bool IsAvailable(List<Reservation> reservations, DateTime startDate, DateTime endDate)
+
+        public List<ReservationAccommodation> GetAllByGuestId(int GuestId)
         {
-            foreach (Reservation reservation in reservations)
+            List<Reservation> guestReservations = _reservations.FindAll(reservation => reservation.GuestId == GuestId);
+
+            List<ReservationAccommodation> reservationAccommodations = new List<ReservationAccommodation>();
+
+            foreach (Reservation reservation in guestReservations)
+            {
+                Accommodation accommodation = _accommodationRepository.GetAccommodationById(reservation.AccommodationId);
+                ReservationAccommodation reservationAccommodation = new ReservationAccommodation(accommodation, reservation);
+                reservationAccommodations.Add(reservationAccommodation);
+            }
+
+            return reservationAccommodations;
+        }
+
+        public bool IsAvailable(List<Reservation> accommodationReservations, DateTime startDate, DateTime endDate)
+        {
+            foreach (Reservation reservation in accommodationReservations)
             {
                 if (reservation.DateFrom < endDate && startDate < reservation.DateTo)
                 {
@@ -49,28 +64,34 @@ namespace InitialProject.Repository
 
         public List<ReservationDate> GetReservationsForGuest(int guestId, int accommodationId, DateTime fromDate, DateTime toDate, int daysNumber)
         {
-            _reservations = _serializer.FromCSV(FilePath);
             List<Reservation> accommodationReservations = _reservations.FindAll(reservation => reservation.AccommodationId == accommodationId);
             List<ReservationDate> availableDates = new List<ReservationDate>();
             DateTime currentDate = fromDate;
+
             while (currentDate.AddDays(daysNumber) <= toDate)
             {
                 DateTime endDate = currentDate.AddDays(daysNumber);
+
                 if (IsAvailable(accommodationReservations, currentDate, endDate))
                 {
                     availableDates.Add(new ReservationDate(currentDate, endDate));
                 }
+
                 currentDate = currentDate.AddDays(1);
             }
+
             if (availableDates.Count == 0)
             {
                 DateTime firstAvailableDate = fromDate;
+
                 while (!IsAvailable(accommodationReservations, firstAvailableDate, firstAvailableDate.AddDays(daysNumber)))
                 {
                     firstAvailableDate = firstAvailableDate.AddDays(1);
                 }
+
                 availableDates.Add(new ReservationDate(firstAvailableDate, firstAvailableDate.AddDays(daysNumber)));
             }
+
             return availableDates;
         }
 
@@ -89,15 +110,35 @@ namespace InitialProject.Repository
             }
         }
 
+        public string DeleteReservation(Reservation reservation)
+        {
+            DateTime currentDate = DateTime.Now;
+            Accommodation reservationAccommodation = _accommodationRepository.GetAccommodationById(reservation.AccommodationId);
+
+            if (reservationAccommodation.ReservationDays > 0 &&
+                reservation.DateFrom.AddDays(-reservationAccommodation.ReservationDays) < currentDate)
+            {
+                return "Rezervaciju nije moguce otkazati";
+            }
+            else if ((reservation.DateFrom - currentDate).TotalHours < 24)
+            {
+                return "Rezervaciju nije moguce otkazati";
+            }
+
+            _reservations.Remove(reservation);
+            _serializer.ToCSV(FilePath, _reservations);
+            return "Uspesno obrisana rezervacija!";
+        }
+
         public String SaveReservation(Reservation reservation)
         {
 
-            int reservationId = this.getId();
+            int reservationId = this.GetLastId();
             reservation.Id = reservationId + 1;
 
-            _reservations = _serializer.FromCSV(FilePath);
             _reservations.Add(reservation);
             _serializer.ToCSV(FilePath, _reservations);
+
             return "Rezervacija je uspesno sacuvana!";
         }
 
