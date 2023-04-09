@@ -85,6 +85,19 @@ namespace InitialProject.Repository
             _tours = _serializer.FromCSV(FilePath);
             return _tours.Find(t => t.Id == id);
         }
+        
+        public Tour GetTourByCity(string city, int id)
+        {
+            _tours = _serializer.FromCSV(FilePath);
+
+            Tour tour = GetTourById(id);
+            if (tour != null && tour.Location.City == city && tour.MaxGuests > 0)
+            {
+                return tour;
+            }
+
+            return _tours.FirstOrDefault(t => t.Location.City == city && t.MaxGuests > 0 && t.Id != id);
+        }
 
         public void UpdateMaxGuests(int id, int guests)
         {
