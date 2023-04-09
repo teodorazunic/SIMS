@@ -58,23 +58,36 @@ namespace InitialProject.View
             _repository = new TourRepository();
             Tours = new ObservableCollection<Tour>(_repository.GetAllTours());
             SelectedTour = _repository.GetTourById(id);
+            cityTextBlock.Text = SelectedTour.Location.City;
 
         }
 
-        private void CheckGuests(object sender, RoutedEventArgs e)
+       private void CheckGuests(object sender, RoutedEventArgs e)
         {
             string message = _repository.CheckMaxGuests(SelectedTour.Id, GuestsNumber);
 
-            if (message == "You were added to the tour!")
+            if (SelectedTour.MaxGuests == 0)
             {
-                _repository.UpdateMaxGuests(SelectedTour.Id, GuestsNumber);
-                MessageBox.Show(message);
-                
+                Tour newTour = _repository.GetTourByCity(SelectedTour.Location.City, SelectedTour.Id);
+                if (newTour != null && newTour.MaxGuests > 0)
+                {
+                    SelectedTour = newTour;
+                    cityTextBlock.Text = SelectedTour.Location.City;
+                    string suggestion = "This tour has no available slots left. You might want to check out " + SelectedTour.Name + "!";
+                    MessageBox.Show(suggestion);
+                }
+                else
+                {
+                    string suggestion = "This tour has no available slots left and there are no other tours available in this location.";
+                    MessageBox.Show(suggestion);
+                }
             }
             else
             {
+                _repository.UpdateMaxGuests(SelectedTour.Id, GuestsNumber);
                 MessageBox.Show(message);
             }
+            
         }
     }
 }
