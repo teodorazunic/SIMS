@@ -1,0 +1,45 @@
+﻿<Window x:Class="InitialProject.Forms.ReservationRequestForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.Forms"
+        mc:Ignorable="d"
+        Title="Reservation request" Height="336" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,13" RenderTransformOrigin="0.506,0.489">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition Width="661*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Width="500" Margin="19,29,142,30" Grid.RowSpan="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Reservation:</Label>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ReservationAccommodation.SelectedAccommodation.Name}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Height="30">Comment:</Label>
+            <TextBox x:Name="ReviewComment" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"
+                     Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,25"/>
+
+
+        </Grid>
+        <WrapPanel Grid.Row="2" FlowDirection="RightToLeft" Grid.ColumnSpan="2">
+            <Button Click="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="20, 5, 20, 5" Height="20" Width="60"/>
+            <Button Name="btnSave"  Click="Save"  Content="Save" HorizontalAlignment="Left"  Margin="20, 5, 20, 5" Height="20" Width="60"/>
+        </WrapPanel>
+    </Grid>
+</Window>

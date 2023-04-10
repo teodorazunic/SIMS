@@ -29,4 +29,9 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\Services\" />
+    <Folder Include="WPF\ViewModels\" />
+  </ItemGroup>
+
 </Project>
