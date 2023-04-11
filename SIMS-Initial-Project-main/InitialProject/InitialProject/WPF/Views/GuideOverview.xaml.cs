@@ -1,5 +1,7 @@
 ﻿using InitialProject.Domain.Models;
+using InitialProject.Forms;
 using InitialProject.Repository;
+using InitialProject.WPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +54,15 @@ namespace InitialProject.View
             guideTours.Show();
             Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+                MyTours myTours = new MyTours(LoggedInUser);
+                myTours.Show();
+                Close();
+            }
+        }
     }
-}
+
 

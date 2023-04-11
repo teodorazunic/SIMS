@@ -23,6 +23,7 @@
             </Button>
             <Separator/>
         </ToolBar>
+        <Button Content="My tours" HorizontalAlignment="Left" Margin="385,198,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>

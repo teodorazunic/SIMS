@@ -1,4 +1,6 @@
-﻿using InitialProject.Domain.Models;
+﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Serializer;
 using System;
 using System.Collections;
@@ -181,6 +183,20 @@ namespace InitialProject.Repository
                 return 1;
             }
             return _tours.Max(t => t.Id) + 1;
+        }
+
+        public string CancelTour(Tour tour)
+        {
+            DateTime currentDate = DateTime.Now;
+
+            if ((tour.Start - currentDate).TotalHours < 48)
+            {
+                return "Rezervaciju nije moguce otkazati";
+            }
+
+            _tours.Remove(tour);
+            _serializer.ToCSV(FilePath, _tours);
+            return "Uspesno obrisana rezervacija!";
         }
 
     }
