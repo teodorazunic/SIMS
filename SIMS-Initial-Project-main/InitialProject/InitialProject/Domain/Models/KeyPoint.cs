@@ -15,6 +15,8 @@ namespace InitialProject.Domain.Models
         public int Id { get; set; }
 
         public int TourId { get; set; }
+
+        public bool IsChecked { get; set; }
         
         public KeyPoint() { }
 
@@ -24,16 +26,17 @@ namespace InitialProject.Domain.Models
             Id = id;
         }
 
-        public KeyPoint(string name, int id, int tourId)
+        public KeyPoint(string name, int id, int tourId, bool isChecked)
         {
             Name = name;
             Id = id;
             TourId = tourId;
+            IsChecked = false;
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Name, TourId.ToString()};
+            string[] csvValues = { Id.ToString(), Name, TourId.ToString(), IsChecked.ToString()};
             return csvValues;
         }
 
@@ -44,6 +47,7 @@ namespace InitialProject.Domain.Models
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
             TourId = Convert.ToInt32(values[2]);
+            IsChecked = Convert.ToBoolean(values[3]);
         }
     }
 }
