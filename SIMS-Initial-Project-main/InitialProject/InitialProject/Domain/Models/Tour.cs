@@ -29,8 +29,10 @@ namespace InitialProject.Domain.Models
         public string Image { get; set; }
 
         public List <KeyPoint> KeyPoints { get; set; }
+        
+        public int GuideId { get; set; }
 
-        public Tour( int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image)
+        public Tour( int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, int guideId)
         {
             Id = id;
             Name = name;
@@ -41,9 +43,10 @@ namespace InitialProject.Domain.Models
             Start = start;
             Duration = duration;
             Image = image;
+            GuideId = guideId;
         }
 
-        public Tour(int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, List<KeyPoint> keyPoints)
+        public Tour(int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, List<KeyPoint> keyPoints, int guideId)
         {
             Id = id;
             Name = name;
@@ -55,13 +58,14 @@ namespace InitialProject.Domain.Models
             Duration = duration;
             Image = image;
             KeyPoints = keyPoints;
+            GuideId = guideId;
         }
 
         public Tour(){}
 
         public string[] ToCSV()
         {
-            string[] csvValues = {Id.ToString(), Name, Location.City, Location.Country, Description, Language.Name, MaxGuests.ToString(), Start.ToString("dd-MMM-y HH:mm:ss tt"), Duration.ToString(), Image};
+            string[] csvValues = {Id.ToString(), Name, Location.City, Location.Country, Description, Language.Name, MaxGuests.ToString(), Start.ToString("dd-MMM-y HH:mm:ss tt"), Duration.ToString(), Image, GuideId.ToString()};
             return csvValues;
         }
 
@@ -77,7 +81,7 @@ namespace InitialProject.Domain.Models
             MaxGuests = Convert.ToInt32(values[6]);
             Start = Convert.ToDateTime(values[7]);
             Duration = Convert.ToInt32(values[8]);
-            
+            GuideId = Convert.ToInt32(values[9]);
         }
 
     }

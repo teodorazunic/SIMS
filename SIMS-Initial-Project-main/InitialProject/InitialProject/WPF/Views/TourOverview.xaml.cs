@@ -148,6 +148,13 @@ namespace InitialProject
         {
             TourReservation2 tourReservation = new TourReservation2(SelectedTour.Id, LoggedInUser);
             tourReservation.Show();
+            //Close();
+        }
+        
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
             Close();
         }
 
