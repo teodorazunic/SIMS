@@ -21,6 +21,8 @@ namespace InitialProject.View
     /// </summary>
     public partial class TourForm : Window
     {
+        public User LoggedInUser { get; set; }
+        
         public TourForm()
         {
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace InitialProject.View
             int duration = Convert.ToInt32(txtDuration.Text);
             string image = txtImage.Text;
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image);
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, LoggedInUser.Id);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
         }
