@@ -26,7 +26,14 @@ namespace InitialProject.View
     {
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
-
+        public GuideTours()
+        {
+            InitializeComponent();
+        }
+        void OnChecked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         public static ObservableCollection<Tour> Tours { get; set; }
 
@@ -179,7 +186,13 @@ namespace InitialProject.View
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //DataGrid ThisGrid = (DataGrid)sender;
+            //KeyPoint selectedKeyPoint = (KeyPoint)ThisGrid.SelectedItem;
+            //selectedKeyPoint.Status = "Active";
+            //ThisGrid.Items.Refresh();
             
+            //selectedKeyPoint.Status = "Active";
+            //selectedKeyPoint = _keyPointRepository.Update(selectedKeyPoint);
 
         }
     }

@@ -102,5 +102,16 @@ namespace InitialProject.Repository
             return keyPoints;
         }
 
+        public KeyPoint Update(KeyPoint keyPoint)
+        {
+            _keyPoints = _serializer.FromCSV(FilePath);
+            KeyPoint current = _keyPoints.Find(c => c.Id == keyPoint.Id);
+            int index = _keyPoints.IndexOf(current);
+            _keyPoints.Remove(current);
+            //_keyPoints.Insert(index, keyPoint);
+            _serializer.ToCSV(FilePath, _keyPoints);
+            return keyPoint;
+        }
+
     }
 }

@@ -55,10 +55,9 @@ namespace InitialProject.View
             int id = keyPointRepository.NextId();
             string name = txtKeyPoint.Text;
             int tourId = repository.NextId();
-            bool isChecked = false;
             
 
-            KeyPoint keypoint = new KeyPoint(name, id, tourId, isChecked);
+            KeyPoint keypoint = new KeyPoint(name, id, tourId);
             keyPoints.Add(keypoint);
             KeyPoint saveKeyPoint = keyPointRepository.SaveKeyPoint(keypoint);
             txtKeyPoint.Text = "";
