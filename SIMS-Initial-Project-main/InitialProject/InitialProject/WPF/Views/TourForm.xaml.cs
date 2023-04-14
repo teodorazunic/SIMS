@@ -1,4 +1,5 @@
-﻿using InitialProject.Domain.Models;
+﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,9 @@ namespace InitialProject.View
     public partial class TourForm : Window
     {
         public User LoggedInUser { get; set; }
-        
+
+
+
         public TourForm()
         {
             InitializeComponent();
@@ -46,8 +49,9 @@ namespace InitialProject.View
             DateTime start = Convert.ToDateTime(datePicker1.Text);
             int duration = Convert.ToInt32(txtDuration.Text);
             string image = txtImage.Text;
+            int guideId = Convert.ToInt32(LoggedInUser.Id);
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, LoggedInUser.Id);
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image,guideId);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
         }

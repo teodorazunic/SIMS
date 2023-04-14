@@ -26,7 +26,7 @@ namespace InitialProject.Domain.Models
             Password = password;
             Role = role;
         }
-
+        
         public string[] ToCSV()
         {
             string[] csvValues = { Id.ToString(), Username, Password, Role.ToString() };

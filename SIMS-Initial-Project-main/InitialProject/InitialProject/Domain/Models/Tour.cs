@@ -46,21 +46,6 @@ namespace InitialProject.Domain.Models
             GuideId = guideId;
         }
 
-        public Tour(int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, List<KeyPoint> keyPoints, int guideId)
-        {
-            Id = id;
-            Name = name;
-            Location = location;
-            Description = description;
-            Language = language;
-            MaxGuests = maxGuests;
-            Start = start;
-            Duration = duration;
-            Image = image;
-            KeyPoints = keyPoints;
-            GuideId = guideId;
-        }
-
         public Tour(){}
 
         public string[] ToCSV()
