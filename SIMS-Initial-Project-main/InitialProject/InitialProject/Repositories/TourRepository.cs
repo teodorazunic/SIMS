@@ -74,7 +74,7 @@ namespace InitialProject.Repository
             tour.Status = "Ended";
             Update(tour);
             _serializer.ToCSV(FilePath, _tours);
-            return "Uspesno otkazana rezervacija!";
+            return "Uspesno otkazana tura!";
         }
         public List<Tour> ReadFromToursCsv(string filename)
         {
