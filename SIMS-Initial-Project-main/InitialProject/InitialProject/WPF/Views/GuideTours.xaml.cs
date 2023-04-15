@@ -26,8 +26,6 @@ namespace InitialProject.View
     {
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
-
-
         public static ObservableCollection<Tour> Tours { get; set; }
 
         public User LoggedInUser { get; set; }
@@ -52,86 +50,6 @@ namespace InitialProject.View
                 }
             }
 
-        }
-
-
-
-        public string TourName
-        {
-            get => _name;
-            set
-            {
-                if (value != _name)
-                {
-                    _name = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string TourCity
-        {
-            get => _city;
-            set
-            {
-                if (value != _city)
-                {
-                    _city = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string TourCountry
-        {
-            get => _country;
-            set
-            {
-                if (value != _country)
-                {
-                    _country = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public int TourDuration
-        {
-            get => _duration;
-            set
-            {
-                if (value != _duration)
-                {
-                    _duration = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string TourLanguage
-        {
-            get => _language;
-            set
-            {
-                if (value != _language)
-                {
-                    _language = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public int TourNumberOfPeople
-        {
-            get => _numberOfPeople;
-            set
-            {
-                if (value != _numberOfPeople)
-                {
-                    _numberOfPeople = value;
-                    OnPropertyChanged();
-                }
-            }
         }
 
         
@@ -173,7 +91,6 @@ namespace InitialProject.View
             List<KeyPoint> keyPoints = new List<KeyPoint>();
             keyPoints = _keyPointRepository.GetKeyPointbyTourId(SelectedTour.Id);
             KeyPoints.ItemsSource = keyPoints;
-
 
         }
 

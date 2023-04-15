@@ -32,6 +32,8 @@ namespace InitialProject.Domain.Models
         
         public int GuideId { get; set; }
 
+        public string Status { get; set; }
+
         public Tour( int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, int guideId)
         {
             Id = id;
