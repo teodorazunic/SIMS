@@ -7,21 +7,22 @@
         mc:Ignorable="d"
         Title="CancelTour" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="GuideTours1"  IsReadOnly="True" SelectionMode="Single" 
-            ItemsSource="{Binding Tours}"
-            SelectedItem="{Binding SelectedTour}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="27,28,27,82">
+        <Button Content="Cancel tour" HorizontalAlignment="Left" Margin="355,381,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <DataGrid  Name="Tours" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}" IsReadOnly="True" SelectionMode="Single" 
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="62,41,40,109">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
                 <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
                 <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
+                <DataGridTextColumn Header="Language" Binding="{Binding Language.Name}" Width="*" />
                 <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />
                 <DataGridTextColumn Header="Start Time" Binding="{Binding Start}" Width="*" />
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
+                <DataGridTextColumn Header="Image" Binding="{Binding Image}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
-            
         </DataGrid>
-        <Button Content="Cancel tour" HorizontalAlignment="Left" Margin="355,381,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>
