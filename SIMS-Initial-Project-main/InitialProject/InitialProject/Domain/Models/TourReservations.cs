@@ -9,6 +9,8 @@ namespace InitialProject.Domain.Models
 {
     public class TourReservations : ISerializable
     {
+        public int TourReservationId { get; set; }
+        
         public int TourId { get; set; }
 
         public int GuestId { get; set; }
@@ -19,8 +21,9 @@ namespace InitialProject.Domain.Models
 
         public TourReservations() { }
 
-        public TourReservations(int tourId, int guestId, int numberOfGuests, bool usedVoucher)
+        public TourReservations(int tourReservationId, int tourId, int guestId, int numberOfGuests, bool usedVoucher)
         {
+            TourReservationId = tourReservationId;
             TourId = tourId;
             GuestId = guestId;
             NumberOfGuests = numberOfGuests;
@@ -29,12 +32,17 @@ namespace InitialProject.Domain.Models
 
         public void FromCSV(string[] values)
         {
-            throw new NotImplementedException();
+            TourReservationId = Convert.ToInt32(values[0]);
+            TourId = Convert.ToInt32(values[1]);
+            GuestId = Convert.ToInt32(values[2]);
+            NumberOfGuests = Convert.ToInt32(values[3]);
+            UsedVoucher = Convert.ToBoolean(values[4]);
         }
 
         public string[] ToCSV()
         {
-            throw new NotImplementedException();
+            string[] csvValues = { TourReservationId.ToString(),TourId.ToString(), GuestId.ToString(), NumberOfGuests.ToString(), UsedVoucher.ToString() };
+            return csvValues;
         }
     }
 }
