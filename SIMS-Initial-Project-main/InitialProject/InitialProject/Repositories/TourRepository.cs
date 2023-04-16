@@ -1,4 +1,7 @@
-﻿using InitialProject.Domain.Models;
+﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
+using InitialProject.Forms;
 using InitialProject.Serializer;
 using System;
 using System.Collections;
@@ -44,6 +47,35 @@ namespace InitialProject.Repository
             return tours;
         }
 
+        public List<Tour> GetPendingTours()
+        {
+            List<Tour> allTours = ReadFromToursCsv(FilePath);
+            List<Tour> tours = new List<Tour>();
+
+            foreach (Tour tour in allTours)
+            {
+                if (tour.Status == "Pending")
+                {
+                    tours.Add(tour);
+                }
+            }
+            return tours;
+        }
+
+        public string CancelTour(Tour tour)
+        {
+            DateTime currentDate = DateTime.Now;
+            
+            if ((currentDate - tour.Start).TotalHours < 48)
+            {
+                return "Turu nije moguce otkazati";
+            }
+
+            tour.Status = "Ended";
+            Update(tour);
+            _serializer.ToCSV(FilePath, _tours);
+            return "Uspesno otkazana tura!";
+        }
         public List<Tour> ReadFromToursCsv(string filename)
         {
             List<Tour> tours = new List<Tour>();
@@ -62,9 +94,10 @@ namespace InitialProject.Repository
                     tour.Description = fields[4];
                     tour.Language = new Language() { Name = fields[5] };
                     tour.MaxGuests = Convert.ToInt32(fields[6]);
-                    //tour.KeyPoint = new KeyPoint() { Atrraction = fields[7] };
                     tour.Start = Convert.ToDateTime(fields[7]);
                     tour.Duration = Convert.ToInt32(fields[8]);
+                    tour.Image= fields[9];
+                    tour.Status = fields[10];
                     tours.Add(tour);
 
 
@@ -164,6 +197,26 @@ namespace InitialProject.Repository
             return filteredTours;
         }
 
+        public bool IsStarted()
+        {
+            int countStartedTours = 0;
+            List<Tour> tours = ReadFromToursCsv(FilePath);
+            foreach (Tour tour in tours)
+            {
+                if (tour.Status == "Started")
+                    countStartedTours++;
+            }
+            if (countStartedTours != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public Tour Save(Tour tour)
         {
             tour.Id = NextId();
@@ -183,5 +236,17 @@ namespace InitialProject.Repository
             return _tours.Max(t => t.Id) + 1;
         }
 
+        public Tour Update(Tour tour)
+        {
+            _tours = _serializer.FromCSV(FilePath);
+            Tour current = _tours.Find(c => c.Id == tour.Id);
+            int index = _tours.IndexOf(current);
+            _tours.Remove(current);
+            _tours.Insert(index, tour);
+            _serializer.ToCSV(FilePath, _tours);
+            return tour;
+        }
+
+    
     }
 }

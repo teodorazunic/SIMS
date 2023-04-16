@@ -22,6 +22,13 @@
                 </StackPanel>
             </Button>
             <Separator/>
+            <Button Click="OpenCancelTour">
+                <StackPanel Orientation="Horizontal" Width="200">
+                    <Image Source="/Resources/Images/add.png" Width="20" Height="25" RenderTransformOrigin="0.5,0.6"/>
+                    <TextBlock Text="Cancel Tour" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="200"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
         </ToolBar>
 
     </Grid>
