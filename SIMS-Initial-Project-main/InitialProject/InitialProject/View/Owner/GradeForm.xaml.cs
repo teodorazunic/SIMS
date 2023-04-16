@@ -29,6 +29,8 @@ namespace InitialProject.View
 
         private readonly GradeGuestRepository _repository;
         private readonly ReservationRepository reservationRepository;
+        private readonly GradeGuestRepository gradeGuestRepository;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -41,27 +43,24 @@ namespace InitialProject.View
             InitializeComponent();
             Title = "Grade guest";
             DataContext = this;
-            _repository = new GradeGuestRepository();
+            gradeGuestRepository = new GradeGuestRepository();
             reservationRepository = new ReservationRepository();
         }
 
         private void GuestLoaded(object sender, RoutedEventArgs e)
         {
             List<Reservation> reservations = new List<Reservation>();
-            string FilePath = "../../../Resources/Data/reservations.csv";
-            reservations = reservationRepository.ReadFromReservationsCsv(FilePath);
+
+            reservations = reservationRepository.GetAll();
 
             for (int i = 0; i < reservations.Count; i++)
             {
-                DateTime currentDate = DateTime.Now;
-                if (reservations[i].DateTo < currentDate || reservations[i].DateTo.AddDays(5) > currentDate)
-                {
-                    GuestsCB.Items.Add(reservations[i].GuestId.ToString());
-                }
+                if (gradeGuestRepository.FindGuestsForGrade(i) != null)
+                    GuestsCB.Items.Add(gradeGuestRepository.FindGuestsForGrade(i));
             }
         }
 
-         private void Clean(object sender, RoutedEventArgs e)
+        private void Clean(object sender, RoutedEventArgs e)
         {
             CB1.Items.Add("1");
             CB1.Items.Add("2");
@@ -82,37 +81,40 @@ namespace InitialProject.View
         private void SaveGrade_Click(object sender, RoutedEventArgs e)
         {
 
+            object selectedItem = GuestsCB.SelectedItem;
+            Reservation oldReservation = new Reservation();
+            int id;
+            string line = selectedItem.ToString();
+            string[] fields = line.Split(' ');
+            id = Convert.ToInt32(fields[0]);
+
             GuestGrade newGrade = new GuestGrade(
                 GuestsCB.Text,
                 Convert.ToInt32(CB1.Text),
                 Convert.ToInt32(CB2.Text),
-                CommentText.Text);
-            _repository.Save(newGrade);
+                CommentText.Text,
+                id);
+            gradeGuestRepository.Save(newGrade);
 
             CommentText.Clear();
-            object selectedItem = GuestsCB.SelectedItem;
-            if (GuestsCB.Items.Contains(selectedItem))
-            {
-                GuestsCB.Items.Remove(selectedItem);
-            }
-
+            oldReservation = reservationRepository.GetReservationById(id);
+            GuestsCB.Items.Remove(selectedItem);
+            reservationRepository.LogicalDelete(oldReservation);
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+            private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<Reservation> reservations = new List<Reservation>();
-            string FilePath = "../../../Resources/Data/reservations.csv";
-            reservations = reservationRepository.ReadFromReservationsCsv(FilePath);
+            reservations = reservationRepository.GetAll();
 
             for (int i = 0; i < reservations.Count; i++)
             {
-                DateTime currentDate = DateTime.Now;
-                if (reservations[i].DateTo < currentDate || reservations[i].DateTo.AddDays(5) > currentDate)
+                if (gradeGuestRepository.ShowMessageForGrade(i) != null)
                 {
-                    MessageBox.Show("There are " + (5 - (currentDate.Day - reservations[i].DateTo.Day)).ToString() + " days left to grade guest " + reservations[i].GuestId);
+                    MessageBox.Show(gradeGuestRepository.ShowMessageForGrade(i));
                 }
+                gradeGuestRepository.FindAndLogicalDeleteExpiredReservation(i);
             }
         }
 
     }
-}
+ }

@@ -14,7 +14,12 @@ namespace InitialProject.Model
         public int RespectingRules { get; set; }
         public string CommentText { get; set; }
 
+        public int ReservationId { get; set; }
+
         public GuestGrade() { }
+
+
+
 
         public GuestGrade(string guestUserName, int cleanilness, int respectingRules, string commentText)
         {
@@ -22,11 +27,21 @@ namespace InitialProject.Model
             Cleanliness = cleanilness;
             RespectingRules = respectingRules;
             CommentText = commentText;
+
+        }
+        public GuestGrade(string guestUserName, int cleanilness, int respectingRules, string commentText, int reservationId)
+        {
+            GuestUserName = guestUserName;
+            Cleanliness = cleanilness;
+            RespectingRules = respectingRules;
+            CommentText = commentText;
+            ReservationId = reservationId;
+
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { GuestUserName, Cleanliness.ToString(), RespectingRules.ToString(), CommentText };
+            string[] csvValues = { GuestUserName, Cleanliness.ToString(), RespectingRules.ToString(), CommentText, ReservationId.ToString() };
             return csvValues;
         }
 
@@ -36,6 +51,7 @@ namespace InitialProject.Model
             Cleanliness = Convert.ToInt32(values[1]);
             RespectingRules = Convert.ToInt32(values[2]);
             CommentText = values[3];
+            ReservationId = Convert.ToInt32(values[4]);
         }
 
     }

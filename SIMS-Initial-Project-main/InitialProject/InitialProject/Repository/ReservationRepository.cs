@@ -24,15 +24,77 @@ namespace InitialProject.Repository
             _reservations = _serializer.FromCSV(FilePath);
         }
 
+        public List<Reservation> GetAll()
+        {
+            List<Reservation> reservations = new List<Reservation>();
+
+            using (StreamReader sr = new StreamReader(FilePath))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+
+                    string[] fields = line.Split('|');
+                    Reservation reservation = new Reservation();
+                    reservation.Id = Convert.ToInt32(fields[0]);
+                    reservation.GuestUserName = fields[1];
+                    reservation.AccommodationId = Convert.ToInt32(fields[2]);
+                    reservation.DateFrom = Convert.ToDateTime(fields[3]);
+                    reservation.DateTo = Convert.ToDateTime(fields[4]);
+                    reservation.DaysNumber = Convert.ToInt32(fields[5]);
+                    reservation.GuestsNumber = Convert.ToInt32(fields[6]);
+                    reservation.GradeStatus = fields[7];
+                    reservations.Add(reservation);
+
+                }
+            }
+            return reservations;
+        }
+
+        public Reservation Update(Reservation reservation)
+        {
+            _reservations = _serializer.FromCSV(FilePath);
+            Reservation current = _reservations.Find(c => c.Id == reservation.Id);
+            int index = _reservations.IndexOf(current);
+            _reservations.Remove(current);
+            _reservations.Insert(index, reservation);
+            _serializer.ToCSV(FilePath, _reservations);
+            return reservation;
+        }
+
+        public void LogicalDeleteExpire(Reservation reservation)
+        {
+            if (reservation.GradeStatus != "Graded" && reservation.GradeStatus != "Expired")
+            {
+                reservation.GradeStatus = "Expire";
+                Update(reservation);
+            }
+        }
+
+        public void LogicalDelete(Reservation reservation)
+        {
+            reservation.GradeStatus = "Graded";
+            Update(reservation);
+        }
+
+
         public int GetLastId()
         {
             return _reservations.Max(reservation => reservation.Id);
         }
 
-        public List<Reservation> GetAll()
+       /* public List<Reservation> GetAll()
         {
             return _reservations;
         }
+       */
+
+        public Reservation GetReservationById(int id)
+        {
+            _reservations = _serializer.FromCSV(FilePath);
+            return _reservations.Find(r => r.Id == id);
+        }
+
 
         public List<ReservationAccommodation> GetAllByGuestId(int GuestId)
         {
@@ -142,7 +204,8 @@ namespace InitialProject.Repository
             return "Rezervacija je uspesno sacuvana!";
         }
 
-
+           
+       
         public List<Reservation> ReadFromReservationsCsv(string FileName)
         {
             List<Reservation> reservations = new List<Reservation>();
@@ -157,11 +220,12 @@ namespace InitialProject.Repository
                     Reservation reservation = new Reservation();
                     reservation.Id = Convert.ToInt32(fields[0]);
                     reservation.GuestId = Convert.ToInt32(fields[1]);
-                    reservation.AccommodationId = Convert.ToInt32(fields[2]);
-                    reservation.DateFrom = Convert.ToDateTime(fields[3]);
-                    reservation.DateTo = Convert.ToDateTime(fields[4]);
-                    reservation.DaysNumber = Convert.ToInt32(fields[5]);
-                    reservation.GuestsNumber = Convert.ToInt32(fields[6]);
+                    reservation.GuestUserName = fields[2];
+                    reservation.AccommodationId = Convert.ToInt32(fields[3]);
+                    reservation.DateFrom = Convert.ToDateTime(fields[4]);
+                    reservation.DateTo = Convert.ToDateTime(fields[5]);
+                    reservation.DaysNumber = Convert.ToInt32(fields[6]);
+                    reservation.GuestsNumber = Convert.ToInt32(fields[7]);
                     reservations.Add(reservation);
 
                 }

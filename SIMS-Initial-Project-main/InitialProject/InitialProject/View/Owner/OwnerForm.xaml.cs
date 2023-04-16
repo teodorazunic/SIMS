@@ -44,7 +44,7 @@ namespace InitialProject.View
             get { return type; }
             set
             {
-                type = Type;
+                type = value;
                 OnPropertyChanged(nameof(Type));
             }
         }
@@ -77,6 +77,13 @@ namespace InitialProject.View
         private void cbtypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        public void Logout(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            Close();
         }
     }
 }

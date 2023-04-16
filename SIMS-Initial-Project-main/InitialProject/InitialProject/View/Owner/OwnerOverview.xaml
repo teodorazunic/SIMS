@@ -1,0 +1,61 @@
+﻿<Window x:Class="InitialProject.View.OwnerOverview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.View"
+        mc:Ignorable="d"
+Title="OwnerOverview" Height="768" Width="1024" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen">
+    <Grid Loaded="GradeAlert">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="760"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+
+            <Button Click="OpenMoveReservation" >
+                <StackPanel Orientation="Horizontal" Width="200">
+
+                    <TextBlock Text="Reservations" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100" />
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Click="OpenReviewList" >
+                <StackPanel Orientation="Horizontal" Width="200">
+                    <TextBlock Text="Reviews from guests" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="200" />
+                </StackPanel>
+            </Button>
+            <Separator/>
+        </ToolBar>
+        <Button Click="Logout" Content="Log out" Margin="242,635,427,0" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"/>
+        <DataGrid ItemsSource="{Binding Accommodations}"
+                      SelectedItem="{Binding SelectedAccommodation}"
+                      IsReadOnly="True" SelectionMode="Single" 
+                  AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Grid.Column="1" Margin="242,104,29,64" Grid.Row="2" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*"/>
+                <DataGridTextColumn Header="Appartment Type" Binding="{Binding Type}" Width="*"/>
+            </DataGrid.Columns>
+
+
+
+        </DataGrid>
+        <Button Content="Register Accommodation" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="37" Margin="33,52,0,0" Grid.Row="2" VerticalAlignment="Top" Width="244" Click="Button_Click"/>
+        <Label x:Name="SuperOwnerLabel" Content="" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top" Width="268" FontSize="30" Loaded="SuperOwnerLabel_Loaded" Grid.Column="1" Grid.Row="2"/>
+        <Button Content="Grade The Guest" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="37" Margin="33,117,0,0" Grid.Row="2" VerticalAlignment="Top" Width="244" Click="GradeGuest"/>
+
+    </Grid>
+</Window>

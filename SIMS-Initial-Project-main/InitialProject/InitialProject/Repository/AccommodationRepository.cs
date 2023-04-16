@@ -33,6 +33,17 @@ namespace InitialProject.Repository
             return _accommodations.Find(a => a.Id == id);
         }
 
+
+        public Accommodation GetAccommodationByName(string name)
+        {
+            List<Accommodation> accommodationList = GetAllAccomodations();
+            foreach (Accommodation accommodation in accommodationList)
+            {
+                if (accommodation.Name == name)
+                    return accommodation;
+            }
+            return null;
+        }
         public List<Accommodation> findByName(List<Accommodation> accommodations, string name)
         {
             if (name != null && name != "")

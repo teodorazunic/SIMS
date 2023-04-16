@@ -1,0 +1,17 @@
+﻿<Window x:Class="InitialProject.View.Owner.ReservationMovingRequests"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.View.Owner"
+        mc:Ignorable="d"
+        Title="ReservationMovingRequests" Height="768" Width="1024">
+    <Grid>
+        <DataGrid x:Name="DataPanel" Margin="69,145,69,187" Loaded="OnLoad" SelectionChanged="ReservationInfo"/>
+        <Button Content="Accept" HorizontalAlignment="Left" Margin="69,590,0,0" VerticalAlignment="Top" Height="66" Width="161" FontSize="20" Click="AcceptMoveReservation" RenderTransformOrigin="0.59,2.803"/>
+        <Button Content="Decline" HorizontalAlignment="Left" Margin="793,590,0,0" VerticalAlignment="Top" Height="66" Width="162" FontSize="20" Click="DeclineMoveReservation"/>
+        <Label x:Name="ReservationInfoLabel" Content="" HorizontalAlignment="Center" Margin="0,590,0,0" VerticalAlignment="Top" Height="66" Width="532" RenderTransformOrigin="0.061,-1.432"/>
+        <Label Content="Requests for moving reservations" HorizontalAlignment="Left" Height="56" Margin="326,84,0,0" VerticalAlignment="Top" Width="504" FontSize="24"/>
+
+    </Grid>
+</Window>
