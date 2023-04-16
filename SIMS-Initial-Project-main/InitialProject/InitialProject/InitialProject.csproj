@@ -29,4 +29,18 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\Services\" />
+    <Folder Include="WPF\ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="WPF\Views\Owner\ReservationMovingRequests.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Owner\ReviewFromGuests.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

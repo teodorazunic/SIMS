@@ -1,0 +1,85 @@
+<Window x:Class="InitialProject.Forms.AccommodationOverview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.Forms"
+        mc:Ignorable="d"
+        Title="Accommodation" Height="727" Width="974" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,32,10,-57">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="760"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="51,10,51,239" >
+
+            <DataGrid ItemsSource="{Binding Accommodations}"
+                      SelectedItem="{Binding SelectedAccommodation}"
+                      IsReadOnly="True" SelectionMode="Single" 
+                  AutoGenerateColumns="False" Height="280" HeadersVisibility="Column" FontSize="13" Width="785">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*"/>
+                    <DataGridTextColumn Header="Appartment Type" Binding="{Binding Type}" Width="*"/>
+                    <DataGridTextColumn Header="Number of Guests" Binding="{Binding GuestsNumber}" Width="*"/>
+                    <DataGridTextColumn Header="Nights stay" Binding="{Binding ReservationDays}" Width="*"/>
+
+                </DataGrid.Columns>
+
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <EventSetter Event="Control.MouseDoubleClick" Handler="OnRowClick"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+
+            </DataGrid>
+
+            <Button Click="ShowReservations" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My reservations"/>
+            <Button Click="ShowRequests" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My requests"/>
+            <Button Click="Logout" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Log out"/>
+        </StackPanel>
+
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Name:</Label>
+            <TextBox x:Name="Name" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">City:</Label>
+            <TextBox x:Name="City" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationCity, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Country:</Label>
+            <TextBox x:Name="Country" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationCountry, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Type:</Label>
+            <ComboBox Grid.Column="1" Grid.RowSpan="2" Width="80"  Height="20"  SelectedIndex="{Binding AccommodationTypeIndex}">
+                <ComboBoxItem>all</ComboBoxItem>
+                <ComboBoxItem>apartment</ComboBoxItem>
+                <ComboBoxItem>house</ComboBoxItem>
+                <ComboBoxItem>cottage</ComboBoxItem>
+            </ComboBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Guests number:</Label>
+            <TextBox x:Name="GuestsNumber" Grid.Column="1" Grid.RowSpan="2" Width="40"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationGuestsNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Reservation number:</Label>
+            <TextBox x:Name="ReservationNumber" Grid.Column="1" Grid.RowSpan="2" Width="40"  Height="20" TextWrapping="Wrap"
+                     Text="{Binding Path=AccommodationReservationNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Button Click="SearchAccommodation">Search</Button>
+
+        </ToolBar>
+    </Grid>
+</Window>
