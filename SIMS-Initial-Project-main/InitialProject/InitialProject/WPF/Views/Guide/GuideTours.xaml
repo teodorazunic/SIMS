@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="GuideTours" Height="450" Width="800">
     <Grid>
-        <Button Content="Show tours" HorizontalAlignment="Left" Margin="194,360,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <DataGrid x:Name="Tours"  IsReadOnly="True" SelectionMode="Single" 
                   ItemsSource="{Binding Tours}"
                   SelectedItem="{Binding SelectedTour}"
@@ -19,6 +18,7 @@
                 <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />
                 <DataGridTextColumn Header="Start Time" Binding="{Binding Start}" Width="*" />
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
@@ -41,8 +41,8 @@
                     <EventSetter Event="MouseDoubleClick" Handler="OnRowClick1"/>
                 </Style>
             </DataGrid.ItemContainerStyle>
-            
-            
+
+
         </DataGrid>
         <Button  Content="Activate" HorizontalAlignment="Left" Margin="539,157,0,0" VerticalAlignment="Top" Click="Activate"/>
         <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
@@ -57,6 +57,8 @@
 
 
         </DataGrid>
+        <Button  Content="Start Tour" HorizontalAlignment="Left" Margin="70,375,0,0" VerticalAlignment="Top" Width="69" Click="StartTour"/>
+        <Button  Content="End Tour" HorizontalAlignment="Left" Margin="168,375,0,0" VerticalAlignment="Top" Width="68" Click="EndTour"/>
 
     </Grid>
 </Window>

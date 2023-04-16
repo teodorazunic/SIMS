@@ -30,10 +30,6 @@ namespace InitialProject.View
         private const string FilePathKP = "../../../Resources/Data/keypoints.csv";
 
 
-        //public static ObservableCollection<Tour> Tours { get; set; }
-
-        //public static ObservableCollection<KeyPoint> KeyPoints { get; set; }
-
         public User LoggedInUser { get; set; }
 
         private Tour _selectedTour;
@@ -91,16 +87,9 @@ namespace InitialProject.View
             LoggedInUser = user;
             _repository = new TourRepository();
             _keyPointRepository = new KeyPointRepository();
-            //Tours = new ObservableCollection<Tour>(_repository.GetTodaysTours(FilePath));
             Tours.ItemsSource = _repository.GetTodaysTours(FilePath);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            List<Tour> tours = new List<Tour>();
-            tours = _repository.GetTodaysTours(FilePath);
-            Tours.ItemsSource = tours;
-        }
 
         public void OnRowClick(object sender, RoutedEventArgs e)
         {
@@ -120,11 +109,6 @@ namespace InitialProject.View
 
         }
 
-        //private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-
-        //}
-
         private void Activate(object sender, RoutedEventArgs e)
         {
             if (_selectedKeyPoint != null)
@@ -137,6 +121,35 @@ namespace InitialProject.View
 
         }
 
-        
+        private void StartTour(object sender, RoutedEventArgs e)
+        {
+            bool isTourStarted = _repository.IsStarted();
+            if (isTourStarted == true) {
+                MessageBox.Show("Nije moguce zapoceti turu");
+            }
+            else
+            {
+                _selectedTour.Status = "Started";
+                _selectedTour = _repository.Update(_selectedTour);
+                MessageBox.Show("Tura je zapoceta.");
+            }
+        }
+
+        private void EndTour(object sender, RoutedEventArgs e)
+        {
+            _selectedTour.Status = "Ended";
+            _selectedTour = _repository.Update(_selectedTour);
+            MessageBox.Show("Tura je zavrsena.");
+
+            foreach (KeyPoint kp in KeyPoints.Items)
+            {
+                if (kp.Status == "Active")
+                {
+                    kp.Status = "Inactive";
+                    _keyPointRepository.Update(kp);
+                }
+            }
+
+        }
     }
 }

@@ -197,6 +197,26 @@ namespace InitialProject.Repository
             return filteredTours;
         }
 
+        public bool IsStarted()
+        {
+            int countStartedTours = 0;
+            List<Tour> tours = ReadFromToursCsv(FilePath);
+            foreach (Tour tour in tours)
+            {
+                if (tour.Status == "Started")
+                    countStartedTours++;
+            }
+            if (countStartedTours != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public Tour Save(Tour tour)
         {
             tour.Id = NextId();
