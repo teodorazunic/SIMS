@@ -28,10 +28,40 @@ namespace InitialProject.Repository
             _keyPoints = _serializer.FromCSV(FilePath);
         }
 
+        public string Activate(KeyPoint keyPoint)
+        {
+            if (keyPoint.Status == "Active")
+            {
+                return "Kljucna tacka je vec aktivna";
+            }
+
+            keyPoint.Status = "Active";
+            Update(keyPoint);
+            _serializer.ToCSV(FilePath, _keyPoints);
+            return "Uspesno aktivirana kljucna tacka!";
+        }
+
+        public KeyPoint Update(KeyPoint keyPoint)
+        {
+            _keyPoints = _serializer.FromCSV(FilePath);
+            KeyPoint current = _keyPoints.Find(c => c.Id == keyPoint.Id);
+            int index = _keyPoints.IndexOf(current);
+            _keyPoints.Remove(current);
+            _keyPoints.Insert(index, keyPoint);
+            _serializer.ToCSV(FilePath, _keyPoints);
+            return keyPoint;
+        }
+
         public int getId()
         {
             _keyPoints = this.GetAllKeyPoints();
             return _keyPoints.Max(keyPoint => keyPoint.Id);
+        }
+
+        public KeyPoint GetKeyPointById(int id)
+        {
+            _keyPoints = _serializer.FromCSV(FilePath);
+            return _keyPoints.Find(t => t.Id == id);
         }
 
         public List<KeyPoint> GetAllKeyPoints()

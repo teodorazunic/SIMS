@@ -1,4 +1,5 @@
 ﻿using InitialProject.Domain.Models;
+using InitialProject.Repositories;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
@@ -26,17 +27,18 @@ namespace InitialProject.View
     {
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
-        public static ObservableCollection<Tour> Tours { get; set; }
+        private const string FilePathKP = "../../../Resources/Data/keypoints.csv";
+
+
+        //public static ObservableCollection<Tour> Tours { get; set; }
+
+        //public static ObservableCollection<KeyPoint> KeyPoints { get; set; }
 
         public User LoggedInUser { get; set; }
 
-        private string _name = "";
-        private string _city = "";
-        private string _country = "";
-        private int _duration = 0;
-        private string _language = "";
-        private int _numberOfPeople = 0;
         private Tour _selectedTour;
+        private KeyPoint _selectedKeyPoint;
+        private GuestOnTour _selectedGuest;
 
         public Tour SelectedTour
         {
@@ -52,11 +54,28 @@ namespace InitialProject.View
 
         }
 
-        
-        private readonly TourRepository _repository = new TourRepository();
-        private readonly KeyPointRepository _keyPointRepository = new KeyPointRepository();
+        public KeyPoint SelectedKeyPoint
+        {
+            get => _selectedKeyPoint;
+            set
+            {
+                if (value != _selectedKeyPoint)
+                {
+                    _selectedKeyPoint = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
 
         
+
+
+        private readonly TourRepository _repository = new TourRepository();
+        private readonly KeyPointRepository _keyPointRepository = new KeyPointRepository();
+        private readonly GuestOnTourRepository _guestOnTourRepository = new GuestOnTourRepository();
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -71,18 +90,16 @@ namespace InitialProject.View
             DataContext = this;
             LoggedInUser = user;
             _repository = new TourRepository();
-            const string FilePath = "../../../Resources/Data/tour.csv";
             _keyPointRepository = new KeyPointRepository();
-            //SelectedTour = _repository.GetTourById
-            Tours = new ObservableCollection<Tour>(_repository.GetTodaysTours(FilePath));
+            //Tours = new ObservableCollection<Tour>(_repository.GetTodaysTours(FilePath));
+            Tours.ItemsSource = _repository.GetTodaysTours(FilePath);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<Tour> tours = new List<Tour>();
-            const string FilePath = "../../../Resources/Data/tour.csv";
             tours = _repository.GetTodaysTours(FilePath);
-            GuideTours1.ItemsSource = tours;
+            Tours.ItemsSource = tours;
         }
 
         public void OnRowClick(object sender, RoutedEventArgs e)
@@ -94,9 +111,32 @@ namespace InitialProject.View
 
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void OnRowClick1(object sender, RoutedEventArgs e)
         {
+            SelectedKeyPoint = _keyPointRepository.GetKeyPointById(SelectedKeyPoint.Id);
+            List<GuestOnTour> guestsOnTour = new List<GuestOnTour>();
+            guestsOnTour = _guestOnTourRepository.GetGuestByKeyPointId(SelectedKeyPoint.Id);
+            Guests.ItemsSource = guestsOnTour;
 
         }
+
+        //private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+
+        //}
+
+        private void Activate(object sender, RoutedEventArgs e)
+        {
+            if (_selectedKeyPoint != null)
+            {
+                string message = _keyPointRepository.Activate(_selectedKeyPoint);
+
+                MessageBox.Show(message);
+            }
+            KeyPoints.Items.Refresh();
+
+        }
+
+        
     }
 }

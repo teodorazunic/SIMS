@@ -8,10 +8,10 @@
         Title="GuideTours" Height="450" Width="800">
     <Grid>
         <Button Content="Show tours" HorizontalAlignment="Left" Margin="194,360,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <DataGrid x:Name="GuideTours1"  IsReadOnly="True" SelectionMode="Single" 
+        <DataGrid x:Name="Tours"  IsReadOnly="True" SelectionMode="Single" 
                   ItemsSource="{Binding Tours}"
                   SelectedItem="{Binding SelectedTour}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="4,10,400,101" SelectionChanged="DataGrid_SelectionChanged">
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="4,10,400,101" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
                 <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
@@ -28,14 +28,34 @@
         </DataGrid>
         <DataGrid x:Name="KeyPoints"  IsReadOnly="True" SelectionMode="Single" 
                   ItemsSource="{Binding KeyPoints}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="427,10,103,298" SelectionChanged="DataGrid_SelectionChanged">
+                  SelectedItem="{Binding SelectedKeyPoint}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="427,10,103,298" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
                 <DataGridTextColumn Header="Tour Id" Binding="{Binding TourId}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="OnRowClick1"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
             
             
+        </DataGrid>
+        <Button  Content="Activate" HorizontalAlignment="Left" Margin="539,157,0,0" VerticalAlignment="Top" Click="Activate"/>
+        <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
+            ItemsSource="{Binding GuestsOnTour}"
+            SelectedItem="{Binding SelectedGuest}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="427,198,103,110" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Name" Binding="{Binding GuestName}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
+            </DataGrid.Columns>
+
+
         </DataGrid>
 
     </Grid>
