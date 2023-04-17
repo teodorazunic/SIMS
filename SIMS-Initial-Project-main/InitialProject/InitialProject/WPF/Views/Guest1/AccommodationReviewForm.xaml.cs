@@ -1,5 +1,7 @@
-﻿using InitialProject.Domain.Model;
+﻿using InitialProject.Domain;
+using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repository;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +19,7 @@ namespace InitialProject.Forms
         public static Accommodation SelectedAccommodation { get; set; }
         public User LoggedInUser { get; set; }
 
-        private readonly AccommodationReviewRepository _repository;
+        private readonly IAccommodationReviewRepository _repository;
 
         private List<AccommodationReviewImage> Images;
 
@@ -89,7 +91,7 @@ namespace InitialProject.Forms
             InitializeComponent();
             Title = "Add a review";
             DataContext = this;
-            _repository = new AccommodationReviewRepository();
+            _repository = Injector.CreateInstance<IAccommodationReviewRepository>();
             Images = new List<AccommodationReviewImage>();
             SelectedAccommodation = selectedAccommodation;
             LoggedInUser = loggedInUser;

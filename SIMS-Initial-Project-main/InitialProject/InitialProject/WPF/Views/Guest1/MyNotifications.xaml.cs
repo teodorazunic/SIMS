@@ -1,5 +1,6 @@
-﻿using InitialProject.Domain.Model;
+﻿using InitialProject.Domain;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repositories;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -15,7 +16,7 @@ namespace InitialProject.Forms
 
         public User LoggedInUser { get; set; }
 
-        private readonly NotificationRepository _repository;
+        private readonly INotificationRepository _repository;
 
         private Notification _selectedNotification;
 
@@ -43,7 +44,7 @@ namespace InitialProject.Forms
             InitializeComponent();
             DataContext = this;
             LoggedInUser = user;
-            _repository = new NotificationRepository();
+            _repository = Injector.CreateInstance<INotificationRepository>();
             Notifications.ItemsSource = _repository.GetAllForUser(user.Id);
         }
 

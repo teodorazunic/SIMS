@@ -1,5 +1,7 @@
-﻿using InitialProject.Domain.Model;
+﻿using InitialProject.Domain;
+using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repository;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +20,7 @@ namespace InitialProject.Forms
 
         public User LoggedInUser { get; set; }
 
-        private readonly ReservationRepository _repository;
+        private readonly IReservationRepository _repository;
 
         private ReservationAccommodation _selectedReservationAccommodation;
 
@@ -46,7 +48,7 @@ namespace InitialProject.Forms
             InitializeComponent();
             DataContext = this;
             LoggedInUser = user;
-            _repository = new ReservationRepository();
+            _repository = Injector.CreateInstance<IReservationRepository>();
             Reservations.ItemsSource = _repository.GetAllByGuestId(user.Id);
         }
 

@@ -1,3 +1,4 @@
+using InitialProject.Domain;
 using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
@@ -16,9 +17,9 @@ namespace InitialProject.Forms
     /// </summary>
     public partial class CheckAccommodation : Window
     {
-        private readonly AccommodationRepository _repository;
-        private readonly ReservationRepository _reservationRepository;
-        private readonly AccommodationReviewRepository _accommodationReviewRepository;
+        private readonly IAccommodationRepository _repository;
+        private readonly IReservationRepository _reservationRepository;
+        private readonly IAccommodationReviewRepository _accommodationReviewRepository;
         public static Accommodation SelectedAccommodation { get; set; }
         public User LoggedInUser { get; set; }
 
@@ -75,9 +76,9 @@ namespace InitialProject.Forms
         {
             InitializeComponent();
             DataContext = this;
-            _repository = new AccommodationRepository();
-            _reservationRepository = new ReservationRepository();
-            _accommodationReviewRepository = new AccommodationReviewRepository();
+            _repository = Injector.CreateInstance<IAccommodationRepository>();
+            _reservationRepository = Injector.CreateInstance<IReservationRepository>();
+            _accommodationReviewRepository = Injector.CreateInstance<IAccommodationReviewRepository>();
             SelectedAccommodation = _repository.GetAccommodationById(accommodationId);
             LoggedInUser = LoggedUser;
         }
