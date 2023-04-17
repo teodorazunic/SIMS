@@ -12,7 +12,7 @@ namespace InitialProject.Domain.RepositoryInterfaces
 
         public string FindGuestsForGrade(int i);
 
-        public void FindAndLogicalDeleteExpiredReservation(int i);
+        public void FindAndDeleteExpiredReservation(int i);
 
         public string ShowMessageForGrade(int i);
 

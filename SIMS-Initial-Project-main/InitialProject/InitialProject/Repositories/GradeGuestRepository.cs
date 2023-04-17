@@ -42,7 +42,7 @@ namespace InitialProject.Repository
 
 
 
-        public void FindAndLogicalDeleteExpiredReservation(int i)
+        public void FindAndDeleteExpiredReservation(int i)
         {
             List<Reservation> reservations = new List<Reservation>();
             reservations = reservationRepository.GetAll();

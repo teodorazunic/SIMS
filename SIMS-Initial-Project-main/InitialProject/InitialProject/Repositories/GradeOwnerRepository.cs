@@ -47,34 +47,32 @@ namespace InitialProject.Repository
         }
 
 
-        public int CountGradesFromOwnerRating(string OwnerUserName)
+        public int CountGradesFromOwnerRating()
         {
             int count = 0;
-            List<GradeOwner> grades = GetAll();
-            foreach (GradeOwner grade in grades)
+            List<AccommodationReview> grades = accommodationReviewRepository.GetAll();
+            foreach (AccommodationReview grade in grades)
             {
-                if (grade.OwnerUsername == OwnerUserName)
                     count++;
             }
             return count;
         }
-        public int GetAverageOwnerRating(string OwnerUserName)
+        public int GetAverageOwnerRating()
         {
             int Grade = 0;
-            List<GradeOwner> grades = GetAll();
-            foreach (GradeOwner grade in grades)
+            List<AccommodationReview> grades = accommodationReviewRepository.GetAll();
+            foreach (AccommodationReview grade in grades)
             {
-                if (grade.OwnerUsername == OwnerUserName)
-                    Grade = Grade + grade.OwnerRating;
+                    Grade = Grade + grade.Staff;
             }
-            return Grade / CountGradesFromOwnerRating(OwnerUserName);
+            return Grade / CountGradesFromOwnerRating();
         }
 
-        public string SuperOwner(string username)
+        public string SuperOwner()
         {
-            if (CountGradesFromOwnerRating(username) >= 50)
+            if (CountGradesFromOwnerRating() >= 50)
             {
-                if (GetAverageOwnerRating(username) < 9.5)
+                if (GetAverageOwnerRating() < 9.5)
                 {
                     return "OWNER Pera";
                 }
