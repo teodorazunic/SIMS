@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using InitialProject.Domain.Model;
 using System.Windows;
-using InitialProject.Forms;
 using InitialProject.Model;
 using InitialProject.Repository;
 using InitialProject.Serializer;
+using InitialProject.Domain.RepositoryInterfaces;
+using InitialProject.Forms;
+using InitialProject.Domain.Models;
 
 namespace InitialProject.Repositories
 {
-    internal class ReservationMovingRepository
+    internal class ReservationMovingRepository : IReservationMovingRepository
     {
         private const string FilePath = "../../../Resources/Data/movingrequests.csv";
         private readonly Serializer<ReservationMoving> _serializer;
         private readonly ReservationRepository reservationRepository;
         private readonly AccommodationRepository accommodationRepository;
+        private readonly NotificationRepository notificationRepository;
         private List<ReservationMoving> _reservations;
 
         public ReservationMovingRepository()
@@ -27,31 +28,17 @@ namespace InitialProject.Repositories
             _reservations = _serializer.FromCSV(FilePath);
             reservationRepository = new ReservationRepository();
             accommodationRepository = new AccommodationRepository();
+            notificationRepository = new NotificationRepository();
+        }
+
+        public List<ReservationMoving> GetAllPending()
+        {
+            return _reservations.FindAll(req => req.Status == RequestStatus.pending);
         }
 
         public List<ReservationMoving> GetAll()
         {
-            List<ReservationMoving> reservations = new List<ReservationMoving>();
-
-            using (StreamReader sr = new StreamReader(FilePath))
-            {
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-
-                    string[] fields = line.Split('|');
-                    ReservationMoving reservation = new ReservationMoving();
-                    reservation.ReservationId = Convert.ToInt32(fields[0]);
-                    reservation.AccommodationId = Convert.ToInt32(fields[1]);
-                    reservation.GuestUsername = fields[2];
-                    reservation.OldStartDate = Convert.ToDateTime(fields[3]);
-                    reservation.OldEndDate = Convert.ToDateTime(fields[4]);
-                    reservation.NewStartDate = Convert.ToDateTime(fields[5]);
-                    reservation.NewEndDate = Convert.ToDateTime(fields[6]);
-                    reservations.Add(reservation);
-                }
-            }
-            return reservations;
+            return _reservations;
         }
 
         public ReservationMoving GetById(int id)
@@ -69,8 +56,14 @@ namespace InitialProject.Repositories
         {
             _reservations = _serializer.FromCSV(FilePath);
             ReservationMoving founded = _reservations.Find(c => c.ReservationId == reservation.ReservationId);
-            _reservations.Remove(founded);
+            founded.Status = RequestStatus.rejected;
             _serializer.ToCSV(FilePath, _reservations);
+
+            Notification notification = new Notification();
+            notification.Message = "Your reservation request: " + reservation.Id + " was rejected";
+            notification.UserId = reservation.GuestId;
+            notification.HasRead = false;
+            notificationRepository.Save(notification);
         }
 
         public ReservationMoving Save(ReservationMoving moveReservation)
@@ -81,8 +74,19 @@ namespace InitialProject.Repositories
             return moveReservation;
         }
 
-        public void MoveReservation(int id, DateTime newStartDate, DateTime newEndDate)
+        public void MoveReservation(int guestId, int requestId, int id, DateTime newStartDate, DateTime newEndDate)
         {
+
+            ReservationMoving request = _reservations.Find(req => req.Id == requestId);
+            request.Status = RequestStatus.approved;
+            _serializer.ToCSV(FilePath, _reservations);
+
+            Notification notification = new Notification();
+            notification.Message = "Your reservation request: " + requestId + " was approved";
+            notification.UserId = guestId;
+            notification.HasRead = false;
+            notificationRepository.Save(notification);
+
             List<Reservation> reservations = reservationRepository.GetAll();
             foreach (Reservation reservation in reservations)
             {
@@ -91,7 +95,6 @@ namespace InitialProject.Repositories
                     reservation.DateFrom = newStartDate;
                     reservation.DateTo = newEndDate;
                     reservationRepository.Update(reservation);
-                    Delete(GetById(id));
                     MessageBox.Show("Reservation succesfuly changed.");
                 }
             }
@@ -137,6 +140,29 @@ namespace InitialProject.Repositories
             }
             return true;
         }
+        private int GetLastId()
+        {
+            if (_reservations != null && _reservations.Count > 0)
+                return _reservations.Max(reservationRequest => reservationRequest.Id);
 
+            return 0;
+        }
+
+        public List<ReservationMoving> GetAllForGuest(int GuestId)
+        {
+            return _reservations.FindAll(reservationsRequest => reservationsRequest.GuestId == GuestId);
+        }
+
+        public string CreateReservationRequest(ReservationMoving reservationRequest)
+        {
+            int reservationRequestId = this.GetLastId();
+            reservationRequest.Id = reservationRequestId + 1;
+
+            _reservations.Add(reservationRequest);
+            _serializer.ToCSV(FilePath, _reservations);
+
+            return "Zahtev je uspesno poslat!";
+        }
     }
+
 }

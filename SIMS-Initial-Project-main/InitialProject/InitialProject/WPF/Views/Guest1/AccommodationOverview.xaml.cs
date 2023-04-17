@@ -170,6 +170,13 @@ namespace InitialProject.Forms
             Close();
         }
 
+        public void ShowNotifications(object sender, RoutedEventArgs e)
+        {
+            MyNotifications myNotifications = new MyNotifications(LoggedInUser);
+            myNotifications.Show();
+            Close();
+        }
+
         public void ShowRequests(object sender, RoutedEventArgs e)
         {
             ReservationRequests myReservationRequests = new ReservationRequests(LoggedInUser);

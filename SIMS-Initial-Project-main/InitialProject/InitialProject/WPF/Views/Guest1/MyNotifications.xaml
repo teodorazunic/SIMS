@@ -1,0 +1,41 @@
+﻿<Window x:Class="InitialProject.Forms.MyNotifications"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.Forms"
+        mc:Ignorable="d"
+        Title="Reservations" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="760"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <DataGrid Name="Notifications" ItemsSource="{Binding Notifications}"
+                      SelectedItem="{Binding SelectedNotification}"
+                      IsReadOnly="True" SelectionMode="Single" 
+                  AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*"/>
+                    <DataGridTextColumn Header="Read" Binding="{Binding HasRead}" Width="*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </StackPanel>
+
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+            <Button Click="MarkRead">Mark as read</Button>
+        </ToolBar>
+
+    </Grid>
+</Window>

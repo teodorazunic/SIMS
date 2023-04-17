@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace InitialProject.Repository
 {
-    public class AccommodationReviewRepository: IAccommodationReviewRepository
+    public class AccommodationReviewRepository : IAccommodationReviewRepository
     {
         private const string FilePath = "../../../Resources/Data/accommodationreview.csv";
 
@@ -34,6 +34,18 @@ namespace InitialProject.Repository
                 return _accommodationReviews.Max(review => review.Id);
             }
             return 0;
+        }
+
+        public bool checkIfReviewed(int accommodationId, int guestId)
+        {
+            AccommodationReview accommodationReview = _accommodationReviews.Find(review => review.AccommodationId == accommodationId && review.GuestId == guestId);
+
+            if (accommodationReview != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public string SaveReview(AccommodationReview accommodationReview, List<AccommodationReviewImage> images)

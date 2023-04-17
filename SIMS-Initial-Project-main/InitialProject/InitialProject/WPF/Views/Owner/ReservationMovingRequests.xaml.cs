@@ -32,10 +32,9 @@ namespace InitialProject.View.Owner
             SelectedReservation = new ReservationMoving();
         }
 
-
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            DataPanel.ItemsSource = reservationMovingRepository.GetAll();
+            DataPanel.ItemsSource = reservationMovingRepository.GetAllPending();
         }
 
 
@@ -44,8 +43,8 @@ namespace InitialProject.View.Owner
             if (this.SelectedReservation != null)
             {
                 SelectedReservation = (ReservationMoving)DataPanel.SelectedItem;
-                reservationMovingRepository.MoveReservation(SelectedReservation.ReservationId, SelectedReservation.NewStartDate, SelectedReservation.NewEndDate);
-                DataPanel.ItemsSource = reservationMovingRepository.GetAll();
+                reservationMovingRepository.MoveReservation(SelectedReservation.GuestId, SelectedReservation.Id, SelectedReservation.ReservationId, SelectedReservation.NewStartDate, SelectedReservation.NewEndDate);
+                DataPanel.ItemsSource = reservationMovingRepository.GetAllPending();
             }
             else { }
         }
@@ -56,7 +55,7 @@ namespace InitialProject.View.Owner
             {
                 SelectedReservation = (ReservationMoving)DataPanel.SelectedItem;
                 reservationMovingRepository.Delete(SelectedReservation);
-                DataPanel.ItemsSource = reservationMovingRepository.GetAll();
+                DataPanel.ItemsSource = reservationMovingRepository.GetAllPending();
             }
             else { }
         }
@@ -64,7 +63,10 @@ namespace InitialProject.View.Owner
         private void ReservationInfo(object sender, SelectionChangedEventArgs e)
         {
             SelectedReservation = (ReservationMoving)DataPanel.SelectedItem;
-            ReservationInfoLabel.Content = reservationMovingRepository.TextForReservationInfo(SelectedReservation.ReservationId, SelectedReservation.AccommodationId, SelectedReservation.NewStartDate, SelectedReservation.NewEndDate);
+            if (SelectedReservation != null)
+            {
+                ReservationInfoLabel.Content = reservationMovingRepository.TextForReservationInfo(SelectedReservation.ReservationId, SelectedReservation.AccommodationId, SelectedReservation.NewStartDate, SelectedReservation.NewEndDate);
+            }
         }
     }
 }
