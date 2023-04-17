@@ -1,9 +1,10 @@
-﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Forms;
 using InitialProject.Repository;
 using InitialProject.Serializer;
+using InitialProject.WPF.Views.Guest2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +31,9 @@ namespace InitialProject.Repositories
 
         public List<TourReservations> GetAllReservationsByGuestId(int GuestId)
         {
-            List<TourReservations> allReservations = _serializer.FromCSV(FilePath);
+            _tourreservations = _serializer.FromCSV(FilePath);
+            return _tourreservations.FindAll(t => t.GuestId == GuestId);
 
-            List<TourReservations> reservationsByGuest = allReservations
-                .Where(reservation => reservation.GuestId == GuestId)
-                .ToList();
-
-            return reservationsByGuest;
         }
 
         public List<TourReservations> GetAllReservationsByTourId(int TourId)
@@ -48,6 +45,21 @@ namespace InitialProject.Repositories
                 .ToList();
 
             return reservationsByTour;
+        }
+
+        public List<TourReservations> CheckReservedTourStatus()
+        {
+            List<TourReservations> endedTours = new List<TourReservations>();
+            Tour tours = new Tour();
+            foreach (var tour in endedTours)
+            {
+                tours = _tourRepository.GetTourById(tour.TourId);
+                if (tours.Status == "Ended")
+                {
+                    endedTours.Add(tour);
+                }
+            }
+            return endedTours;
         }
 
         public void SaveReservation(TourReservations tourreservations)
