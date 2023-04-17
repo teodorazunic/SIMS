@@ -62,6 +62,21 @@ namespace InitialProject.Repository
             return tours;
         }
 
+        public List<Tour> GetEndedTours(string filename)
+        {
+            List<Tour> allTours = ReadFromToursCsv(FilePath);
+            List<Tour> tours = new List<Tour>();
+
+            foreach (Tour tour in allTours)
+            {
+                if (tour.Status == "Ended")
+                {
+                    tours.Add(tour);
+                }
+            }
+            return tours;
+        }
+
         public string CancelTour(Tour tour)
         {
             DateTime currentDate = DateTime.Now;

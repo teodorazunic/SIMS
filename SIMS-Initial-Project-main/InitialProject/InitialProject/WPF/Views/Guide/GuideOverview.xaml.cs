@@ -1,6 +1,7 @@
 ﻿using InitialProject.Domain.Models;
 using InitialProject.Repository;
 using InitialProject.WPF.Views;
+using InitialProject.WPF.Views.Guide;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,13 @@ namespace InitialProject.View
             cancelTour.Show();
             Close();
         }
-            
+
+        private void OpenReviews(object sender, RoutedEventArgs e)
+        {
+            Reviews reviews = new Reviews(LoggedInUser);
+            reviews.Show();
+            Close();
+        }
     }
 }
 

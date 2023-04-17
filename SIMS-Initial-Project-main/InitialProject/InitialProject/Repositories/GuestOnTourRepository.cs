@@ -17,6 +17,8 @@ namespace InitialProject.Repositories
 
         private KeyPointRepository _keyPointRepository;
 
+        private TourRepository _tourRepository;
+
         private List<GuestOnTour> _guestsOnTour;
 
         public GuestOnTourRepository()
@@ -24,6 +26,7 @@ namespace InitialProject.Repositories
             _serializer = new Serializer<GuestOnTour>();
             _guestsOnTour = _serializer.FromCSV(FilePath);
             _keyPointRepository = new KeyPointRepository();
+            _tourRepository = new TourRepository();
 
         }
 
@@ -48,6 +51,23 @@ namespace InitialProject.Repositories
             foreach (GuestOnTour gt in _guestsOnTour)
             {
                 if (id == gt.StartingKeyPoint.Id)
+                {
+                    sameIdGuests.Add(gt);
+                }
+
+            }
+            return sameIdGuests;
+        }
+
+        public List<GuestOnTour> GetGuestByTourId(int id)
+        {
+            Tour tour = _tourRepository.GetTourById(id);
+            _guestsOnTour = _serializer.FromCSV(FilePath);
+            List<GuestOnTour> sameIdGuests = new List<GuestOnTour>();
+
+            foreach (GuestOnTour gt in _guestsOnTour)
+            {
+                if (id == gt.StartingKeyPoint.TourId)
                 {
                     sameIdGuests.Add(gt);
                 }
