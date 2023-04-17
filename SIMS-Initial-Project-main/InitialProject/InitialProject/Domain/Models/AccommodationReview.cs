@@ -10,6 +10,7 @@ namespace InitialProject.Domain.Model
         public int Cleanliness { get; set; }
         public int Staff { get; set; }
         public string Comment { get; set; }
+        public int ReservationId { get; set; }
 
         public AccommodationReview(int guestId, int accommodationId, int cleanliness, int staff, string comment)
         {
@@ -24,7 +25,7 @@ namespace InitialProject.Domain.Model
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), GuestId.ToString(), AccommodationId.ToString(), Cleanliness.ToString(), Staff.ToString(), Comment };
+            string[] csvValues = { Id.ToString(), GuestId.ToString(), AccommodationId.ToString(), Cleanliness.ToString(), Staff.ToString(), Comment, ReservationId.ToString()};
             return csvValues;
         }
 
@@ -36,6 +37,7 @@ namespace InitialProject.Domain.Model
             Cleanliness = int.Parse(values[3]);
             Staff = int.Parse(values[4]);
             Comment = values[5];
+            ReservationId = int.Parse(values[6]);
         }
 
     }

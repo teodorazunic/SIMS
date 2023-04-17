@@ -27,6 +27,11 @@ namespace InitialProject.Repository
             _reservationRepository = new ReservationRepository();
         }
 
+        public List<AccommodationReview> GetAll()
+        {
+            return _accommodationReviews;
+        }
+
         private int GetLastId()
         {
             if (_accommodationReviews != null && _accommodationReviews.Count > 0)
@@ -74,6 +79,7 @@ namespace InitialProject.Repository
                 }
             }
 
+            accommodationReview.ReservationId = reservation.Id;
             int accommodationReviewId = GetLastId() + 1;
             accommodationReview.Id = accommodationReviewId;
 
