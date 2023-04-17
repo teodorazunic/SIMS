@@ -30,7 +30,23 @@ namespace InitialProject.WPF.Views.Guide
 
         private Tour _selectedTour;
 
-        private KeyPoint _selectedKeyPoint;
+        private GuestOnTour _selectedGuest;
+
+        private GradeGuide _selectedGradeGuide;
+
+        //public GuestOnTour SelectedGuest
+        //{
+        //    get => _selectedGuest;
+        //    set
+        //    {
+        //        if (value != _selectedGuest)
+        //        {
+        //            _selectedGuest = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
 
         public Tour SelectedTour
         {
@@ -53,13 +69,13 @@ namespace InitialProject.WPF.Views.Guide
             DataContext = this;
             LoggedInUser = user;
             _repository = new TourRepository();
-            _keyPointRepository = new KeyPointRepository();
+            _guestOnTourRepository = new GuestOnTourRepository();
             Tours.ItemsSource = _repository.GetEndedTours(FilePath);
         }
 
         private readonly TourRepository _repository;
-        private readonly KeyPointRepository _keyPointRepository = new KeyPointRepository();
         private readonly GuestOnTourRepository _guestOnTourRepository = new GuestOnTourRepository();
+        private readonly GradeGuideRepository _gradeGuideRepository = new GradeGuideRepository();
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -77,9 +93,29 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void OnRowClick1(object sender, RoutedEventArgs e)
         {
+            _selectedGuest = (GuestOnTour)Guests.SelectedItem;
+            List<GradeGuide> gradeGuide = new List<GradeGuide>();
+            gradeGuide = _gradeGuideRepository.GetGradeByGuestId(_selectedGuest.GuestId);
+            Grades.ItemsSource = gradeGuide;
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _selectedGradeGuide = (GradeGuide)Grades.SelectedItem;
+
+            if (_selectedGradeGuide != null)
+            {
+                _selectedGradeGuide.Validation = "Invalid";
+                _gradeGuideRepository.Update(_selectedGradeGuide);
+                MessageBox.Show("Uspesno prijavljena recenzija.");
+
+            }
+            Grades.Items.Refresh();
+        }
+
+       
     }
 }

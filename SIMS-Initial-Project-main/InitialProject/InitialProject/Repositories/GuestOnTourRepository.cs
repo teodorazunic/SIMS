@@ -19,6 +19,8 @@ namespace InitialProject.Repositories
 
         private TourRepository _tourRepository;
 
+        private GradeGuideRepository _gradeGuideRepository;
+
         private List<GuestOnTour> _guestsOnTour;
 
         public GuestOnTourRepository()
@@ -27,6 +29,7 @@ namespace InitialProject.Repositories
             _guestsOnTour = _serializer.FromCSV(FilePath);
             _keyPointRepository = new KeyPointRepository();
             _tourRepository = new TourRepository();
+            _gradeGuideRepository = new GradeGuideRepository();
 
         }
 

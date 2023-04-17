@@ -17,18 +17,21 @@ namespace InitialProject.Domain.Models
 
         public int GuideLanguage { get; set; }
 
-        public int TourEntertaiment { get; set; }
+        public int Overall { get; set; }
 
         public string Comment { get; set; }
 
-        public GradeGuide(int id,int guestId, int guideKnowledge, int guideLanguage, int tourEntertaiment, string comment)
+        public string Validation { get; set; }
+
+        public GradeGuide(int id,int guestId, int guideKnowledge, int guideLanguage, int overall, string comment, string validation)
         {
             Id = id;
             GuestId = guestId;
             GuideKnowledge = guideKnowledge;
             GuideLanguage = guideLanguage;
-            TourEntertaiment = tourEntertaiment;
+            Overall = overall;
             Comment = comment;
+            Validation = "Valid";
         }
 
         public GradeGuide()
@@ -37,7 +40,7 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(),GuestId.ToString(), GuideKnowledge.ToString(), GuideLanguage.ToString(), TourEntertaiment.ToString(), Comment };
+            string[] csvValues = { Id.ToString(),GuestId.ToString(), GuideKnowledge.ToString(), GuideLanguage.ToString(), Overall.ToString(), Comment, Validation };
             return csvValues;
         }
 
@@ -47,8 +50,9 @@ namespace InitialProject.Domain.Models
             GuestId = Convert.ToInt32(values[1]);
             GuideKnowledge = Convert.ToInt32(values[2]);
             GuideLanguage = Convert.ToInt32(values[3]);
-            TourEntertaiment = Convert.ToInt32(values[4]);
+            Overall = Convert.ToInt32(values[4]);
             Comment = values[5];
+            Validation = values[6];
         }
     }
 }

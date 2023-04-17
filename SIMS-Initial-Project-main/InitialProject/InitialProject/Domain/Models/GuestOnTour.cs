@@ -21,7 +21,6 @@ namespace InitialProject.Domain.Models
 
         public KeyPoint StartingKeyPoint { get; set; }
 
-        public int Grade { get; set; }
 
         
 
@@ -36,7 +35,7 @@ namespace InitialProject.Domain.Models
         public GuestOnTour() { }
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.TourId.ToString(), StartingKeyPoint.Status, Grade.ToString() };
+            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.TourId.ToString(), StartingKeyPoint.Status };
             return csvValues;
         }
 
@@ -47,7 +46,6 @@ namespace InitialProject.Domain.Models
             GuestName = values[2];
             NumberOfGuests = Convert.ToInt32(values[3]);
             StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(values[4]), Name = values[5], TourId = Convert.ToInt32(values[6]), Status = values[7] };
-            Grade = Convert.ToInt32(values[8]);
 
         }
     }
