@@ -53,21 +53,25 @@ namespace InitialProject.Repository
 
             List<Reservation> allReservations = _reservationRepository.GetAll();
 
-            if (allReservations != null)
+            if (allReservations == null || allReservations.Count == 0)
             {
-                Reservation reservation = allReservations.Find(r => r.AccommodationId == accommodationReview.AccommodationId
+                return "Nije moguce ostaviti recenziju";
+            }
+            Reservation reservation = allReservations.Find(r => r.AccommodationId == accommodationReview.AccommodationId
             && r.GuestId == accommodationReview.GuestId);
 
-                if (reservation != null)
+            if (reservation == null)
+            {
+                return "Nemate pristup ostavljanju recencije";
+            }
+            else
+            {
+                DateTime currentDate = DateTime.Now;
+
+                if (reservation.DateTo.AddDays(5) < currentDate)
                 {
-                    DateTime currentDate = DateTime.Now;
-
-                    if (reservation.DateTo.AddDays(5) < currentDate)
-                    {
-                        return "Nije moguce ostaviti recenziju";
-                    }
+                    return "Rok za ostavljanje recencije je istekao";
                 }
-
             }
 
             int accommodationReviewId = GetLastId() + 1;
