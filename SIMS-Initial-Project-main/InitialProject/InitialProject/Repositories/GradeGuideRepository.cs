@@ -1,7 +1,8 @@
-﻿using InitialProject.Domain.Models;
+using InitialProject.Domain.Models;
 using InitialProject.Model;
 using InitialProject.Repository;
 using InitialProject.Serializer;
+using InitialProject.WPF.Views.Guest2;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,14 @@ namespace InitialProject.Repositories
         private GuestOnTourRepository _guestOnTourRepository;
 
         private List<GradeGuide> _gradeGuide;
+
+        private TourReservationRepositery _tourReservationRepositery;
+
+        //private List<TourReservations> _tourReservations;
+
+        //private TourRepository _tourRepository;
+
+        private List<Tour> _tours;
 
         public GradeGuideRepository()
         {
@@ -48,6 +57,16 @@ namespace InitialProject.Repositories
             return sameIdGrade;
         }
 
+        public int NextId()
+        {
+            _gradeGuide = _serializer.FromCSV(FilePath);
+            if (_gradeGuide.Count < 1)
+            {
+                return 1;
+            }
+            return _gradeGuide.Max(g => g.Id) + 1;
+        }
+
         public GradeGuide Update(GradeGuide gradeGuide)
         {
             _gradeGuide = _serializer.FromCSV(FilePath);
@@ -58,6 +77,27 @@ namespace InitialProject.Repositories
             _serializer.ToCSV(FilePath, _gradeGuide);
             return gradeGuide;
         }
+
+        public GradeGuide SaveGrade(GradeGuide gradeGuide)
+        {
+            _gradeGuide = _serializer.FromCSV(FilePath);
+            _gradeGuide.Add(gradeGuide);
+            _serializer.ToCSV(FilePath, _gradeGuide);
+            return gradeGuide;
+        }
+
+        public List<TourReservations> ShowToursForGrading(int GuestId)
+        {
+            _gradeGuide = _serializer.FromCSV(FilePath);
+            List<TourReservations> tourReservations = new List<TourReservations>();
+            _tourReservationRepositery = new TourReservationRepositery();
+            tourReservations = _tourReservationRepositery.GetAllReservationsByGuestId(GuestId);
+            tourReservations = _tourReservationRepositery.CheckReservedTourStatus();
+
+            return tourReservations;
+            
+        }
+
 
         //public bool UpdateCheck(GradeGuide gradeGuide)
         //{
