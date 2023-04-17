@@ -1,0 +1,63 @@
+﻿<Window x:Class="InitialProject.WPF.Views.Guide.Reviews"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide"
+        mc:Ignorable="d"
+        Title="Review" Height="450" Width="800">
+    <Grid>
+        <Button Content="Repport" HorizontalAlignment="Left" Margin="554,366,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="6.222,-0.739"/>
+        <DataGrid x:Name="Tours"  IsReadOnly="True" SelectionMode="Single" 
+            ItemsSource="{Binding Tours}"
+            SelectedItem="{Binding SelectedTour}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="4,24,400,87" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="Control.MouseDoubleClick" Handler="OnRowClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        
+        <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
+            ItemsSource="{Binding GuestsOnTour}"
+            SelectedItem="{Binding SelectedGuest}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="414,24,10,284" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Name" Binding="{Binding GuestName}" Width="*" />
+                <DataGridTextColumn Header="KeyPoint" Binding="{Binding StartingKeyPoint.Name}" Width="*" />
+               
+            </DataGrid.Columns>
+
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="OnRowClick1"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <DataGrid x:Name="Grades"  IsReadOnly="True" SelectionMode="Single" 
+            ItemsSource="{Binding GradeGuides}"
+            SelectedItem="{Binding SelectedReview}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="414,176,10,87"   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Guest Id" Binding="{Binding GuestId}" Width="*" />
+                <DataGridTextColumn Header="Knowledge" Binding="{Binding GuideKnowledge}" Width="*" />
+                <DataGridTextColumn Header="Language" Binding="{Binding GuideLanguage}" Width="*" />
+                <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="*" />
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*" />
+                <DataGridTextColumn Header="Validation" Binding="{Binding Validation}" Width="*" />
+            </DataGrid.Columns>
+
+
+
+        </DataGrid>
+
+    </Grid>
+</Window>

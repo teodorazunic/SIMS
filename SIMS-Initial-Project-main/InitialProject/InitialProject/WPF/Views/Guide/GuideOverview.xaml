@@ -7,25 +7,36 @@
         mc:Ignorable="d"
         Title="GuideOverview" Height="450" Width="800">
     <Grid>
-        <ToolBar Grid.Row="0" Margin="0,0,0,372">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="83*"/>
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.Row="0" Margin="0,0,0,372" Grid.ColumnSpan="2">
             <Button Click="OpenTourForm">
-                <StackPanel Orientation="Horizontal" Width="200">
+                <StackPanel Orientation="Horizontal" Width="133">
                     <Image Source="/Resources/Images/add.png" Width="20" Height="25" RenderTransformOrigin="0.5,0.6"/>
-                    <TextBlock Text="Create new tour" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="200"/>
+                    <TextBlock Text="Create new tour" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100"/>
                 </StackPanel>
             </Button>
             <Separator/>
             <Button Click="OpenGuideTours" >
-                <StackPanel Orientation="Horizontal" Width="200">
+                <StackPanel Orientation="Horizontal" Width="114">
                     <Image Source="/Resources/Images/add.png" Width="20" Height="25"/>
                     <TextBlock Text="Todays tours" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100" />
                 </StackPanel>
             </Button>
             <Separator/>
             <Button Click="OpenCancelTour">
-                <StackPanel Orientation="Horizontal" Width="200">
+                <StackPanel Orientation="Horizontal" Width="125">
                     <Image Source="/Resources/Images/add.png" Width="20" Height="25" RenderTransformOrigin="0.5,0.6"/>
-                    <TextBlock Text="Cancel Tour" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="200"/>
+                    <TextBlock Text="Cancel Tour" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Click="OpenReviews" >
+                <StackPanel Orientation="Horizontal" Width="92">
+                    <Image Source="/Resources/Images/add.png" Width="20" Height="25"/>
+                    <TextBlock Text="Reviews" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100" />
                 </StackPanel>
             </Button>
             <Separator/>

@@ -21,6 +21,9 @@ namespace InitialProject.Domain.Models
 
         public KeyPoint StartingKeyPoint { get; set; }
 
+
+        
+
         public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint)
         {
             Id = id;
@@ -43,7 +46,6 @@ namespace InitialProject.Domain.Models
             GuestName = values[2];
             NumberOfGuests = Convert.ToInt32(values[3]);
             StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(values[4]), Name = values[5], TourId = Convert.ToInt32(values[6]), Status = values[7] };
-
 
         }
     }

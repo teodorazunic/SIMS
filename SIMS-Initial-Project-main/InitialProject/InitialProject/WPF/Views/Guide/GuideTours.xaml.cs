@@ -27,9 +27,6 @@ namespace InitialProject.View
     {
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
-        private const string FilePathKP = "../../../Resources/Data/keypoints.csv";
-
-
         public User LoggedInUser { get; set; }
 
         private Tour _selectedTour;

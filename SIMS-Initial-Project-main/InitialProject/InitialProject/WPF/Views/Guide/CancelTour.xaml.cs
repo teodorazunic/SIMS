@@ -26,7 +26,6 @@ namespace InitialProject.WPF.Views
     /// </summary>
     public partial class CancelTour : Window
     {
-        //public static ObservableCollection<Tour> Tours { get; set; }
 
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
@@ -60,7 +59,6 @@ namespace InitialProject.WPF.Views
             DataContext = this;
             LoggedInUser = user;
             _repository = new TourRepository();
-            //Tours = new ObservableCollection<Tour>(_repository.GetPendingTours(FilePath));
             Tours.ItemsSource = _repository.GetPendingTours();
         }
 
