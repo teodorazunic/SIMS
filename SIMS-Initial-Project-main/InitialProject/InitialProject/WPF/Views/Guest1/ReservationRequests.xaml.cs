@@ -14,7 +14,7 @@ namespace InitialProject.Forms
     {
         public User LoggedInUser { get; set; }
 
-        private readonly ReservationRequestRepository _repository;
+        private readonly ReservationMovingRepository _repository;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -27,7 +27,7 @@ namespace InitialProject.Forms
             InitializeComponent();
             DataContext = this;
             LoggedInUser = user;
-            _repository = new ReservationRequestRepository();
+            _repository = new ReservationMovingRepository();
             ReservationRequestsList.ItemsSource = _repository.GetAllForGuest(user.Id);
         }
 

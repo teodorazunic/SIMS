@@ -13,10 +13,9 @@ namespace InitialProject.Domain.Model
     }
     public class Accommodation : ISerializable
     {
-        private int max;
-        private int min;
-        private int cancelDays;
-
+        int max;
+        int min;
+        int cancelDays;
         public int Id { get; set; }
         public string Name { get; set; }
         public Location Location { get; set; }
@@ -26,9 +25,11 @@ namespace InitialProject.Domain.Model
         public int CancellationDeadlineDays { get; set; }
         public string PictureUrl { get; set; }
 
+        public int OwnerId { get; set; }
+
         public Accommodation() { }
 
-        public Accommodation(string name, Location location, AccommodationType type, int guestsNumber, int reservationDays, int cancellationDeadlineDays, string picture, int v1)
+        public Accommodation(string name, Location location, AccommodationType type, int guestsNumber, int reservationDays, int cancellationDeadlineDays, string picture, int ownerId)
 
         {
             Name = name;
@@ -38,6 +39,7 @@ namespace InitialProject.Domain.Model
             ReservationDays = reservationDays;
             CancellationDeadlineDays = cancellationDeadlineDays;
             PictureUrl = picture;
+            OwnerId = ownerId;
         }
 
         public Accommodation(string name, Location location, AccommodationType type, int max, int min, int cancelDays)
@@ -65,7 +67,8 @@ namespace InitialProject.Domain.Model
             GuestsNumber = Convert.ToInt32(values[5]);
             ReservationDays = Convert.ToInt32(values[6]);
             CancellationDeadlineDays = Convert.ToInt32(values[7]);
-            //PictureUrl = values[8];
+            OwnerId = Convert.ToInt32(values[8]);
+            //PictureUrl = values[9];
         }
     }
 }

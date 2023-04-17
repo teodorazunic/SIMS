@@ -1,5 +1,6 @@
 using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repository;
 using Microsoft.VisualBasic;
 using System;
@@ -17,6 +18,7 @@ namespace InitialProject.Forms
     {
         private readonly AccommodationRepository _repository;
         private readonly ReservationRepository _reservationRepository;
+        private readonly AccommodationReviewRepository _accommodationReviewRepository;
         public static Accommodation SelectedAccommodation { get; set; }
         public User LoggedInUser { get; set; }
 
@@ -75,6 +77,7 @@ namespace InitialProject.Forms
             DataContext = this;
             _repository = new AccommodationRepository();
             _reservationRepository = new ReservationRepository();
+            _accommodationReviewRepository = new AccommodationReviewRepository();
             SelectedAccommodation = _repository.GetAccommodationById(accommodationId);
             LoggedInUser = LoggedUser;
         }
@@ -99,7 +102,7 @@ namespace InitialProject.Forms
             }
             else
             {
-                List <ReservationDate> reservationDates = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id, SelectedAccommodation.Id, ReservationDateFrom, ReservationDateTo, DaysNumber);
+                List<ReservationDate> reservationDates = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id, SelectedAccommodation.Id, ReservationDateFrom, ReservationDateTo, DaysNumber);
                 SaveReservation saveReservation = new SaveReservation(reservationDates, SelectedAccommodation.Id, LoggedInUser, DaysNumber);
                 saveReservation.Show();
                 Close();
@@ -109,9 +112,18 @@ namespace InitialProject.Forms
 
         public void AddReview(object sender, RoutedEventArgs e)
         {
-            AccommodationReviewForm accommodationReviewForm = new AccommodationReviewForm(LoggedInUser, SelectedAccommodation);
-            accommodationReviewForm.Show();
-            Close();
+            bool isAlreadyReviewed = _accommodationReviewRepository.checkIfReviewed(SelectedAccommodation.Id, LoggedInUser.Id);
+            if (isAlreadyReviewed)
+            {
+                MessageBox.Show("Vec ste ostavili recenziju za ovaj smestaj");
+                Close();
+            }
+            else
+            {
+                AccommodationReviewForm accommodationReviewForm = new AccommodationReviewForm(LoggedInUser, SelectedAccommodation);
+                accommodationReviewForm.Show();
+                Close();
+            }
         }
         public void Logout(object sender, RoutedEventArgs e)
         {

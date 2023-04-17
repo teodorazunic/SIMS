@@ -1,5 +1,7 @@
 ﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
+using InitialProject.Repositories;
 using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,8 @@ namespace InitialProject.Repository
 
         private AccommodationRepository _accommodationRepository;
 
+        private readonly NotificationRepository _notificationRepository;
+
         private List<Reservation> _reservations;
 
         public ReservationRepository()
@@ -23,33 +27,7 @@ namespace InitialProject.Repository
             _serializer = new Serializer<Reservation>();
             _accommodationRepository = new AccommodationRepository();
             _reservations = _serializer.FromCSV(FilePath);
-        }
-
-        public List<Reservation> GetAll()
-        {
-            List<Reservation> reservations = new List<Reservation>();
-
-            using (StreamReader sr = new StreamReader(FilePath))
-            {
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-
-                    string[] fields = line.Split('|');
-                    Reservation reservation = new Reservation();
-                    reservation.Id = Convert.ToInt32(fields[0]);
-                    reservation.GuestUserName = fields[1];
-                    reservation.AccommodationId = Convert.ToInt32(fields[2]);
-                    reservation.DateFrom = Convert.ToDateTime(fields[3]);
-                    reservation.DateTo = Convert.ToDateTime(fields[4]);
-                    reservation.DaysNumber = Convert.ToInt32(fields[5]);
-                    reservation.GuestsNumber = Convert.ToInt32(fields[6]);
-                    reservation.GradeStatus = fields[7];
-                    reservations.Add(reservation);
-
-                }
-            }
-            return reservations;
+            _notificationRepository = new NotificationRepository();
         }
 
         public Reservation Update(Reservation reservation)
@@ -84,11 +62,10 @@ namespace InitialProject.Repository
             return _reservations.Max(reservation => reservation.Id);
         }
 
-       /* public List<Reservation> GetAll()
+        public List<Reservation> GetAll()
         {
             return _reservations;
         }
-       */
 
         public Reservation GetReservationById(int id)
         {
@@ -188,6 +165,12 @@ namespace InitialProject.Repository
                 return "Rezervaciju nije moguce otkazati";
             }
 
+            Notification notification = new Notification();
+            notification.Message = "Guest has canceled reservation: " + reservation.Id;
+            notification.HasRead = false;
+            notification.UserId = _accommodationRepository.GetAccommodationById(reservation.AccommodationId).OwnerId;
+            _notificationRepository.Save(notification);
+
             _reservations.Remove(reservation);
             _serializer.ToCSV(FilePath, _reservations);
             return "Uspesno obrisana rezervacija!";
@@ -205,8 +188,8 @@ namespace InitialProject.Repository
             return "Rezervacija je uspesno sacuvana!";
         }
 
-           
-       
+
+
         public List<Reservation> ReadFromReservationsCsv(string FileName)
         {
             List<Reservation> reservations = new List<Reservation>();

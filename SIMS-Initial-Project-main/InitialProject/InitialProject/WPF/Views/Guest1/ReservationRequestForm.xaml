@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject.Forms"
         mc:Ignorable="d"
-        Title="Reservation request" Height="336" Width="700" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,0,13" RenderTransformOrigin="0.506,0.489">
+        Title="Reservation request" Height="568" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,-6" RenderTransformOrigin="0.506,0.489">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="39*"/>
             <ColumnDefinition Width="661*"/>
@@ -17,8 +17,10 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Width="500" Margin="19,29,142,30" Grid.RowSpan="3" Grid.Column="1">
+        <Grid Grid.Row="0" Width="500" Margin="19,29,142,173" Grid.RowSpan="3" Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -35,9 +37,14 @@
             <TextBox x:Name="ReviewComment" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"
                      Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,25"/>
 
+            <Label Grid.Row="2" Grid.Column="0" Height="30">Date from:</Label>
+            <Label Grid.Row="3" Grid.Column="0" Height="30">Date to:</Label>
+            <DatePicker Width="100" Grid.Row="2" Grid.Column="1" x:Name="DateFrom" SelectedDate="{Binding ReservationDateFrom}" Height="25" VerticalAlignment="Center"/>
+            <DatePicker Width="100" Grid.Row="3" Grid.Column="1" x:Name="DateTo" SelectedDate="{Binding ReservationDateTo}" Height="25" VerticalAlignment="Center"/>
+
 
         </Grid>
-        <WrapPanel Grid.Row="2" FlowDirection="RightToLeft" Grid.ColumnSpan="2">
+        <WrapPanel Grid.Row="2" FlowDirection="RightToLeft" Grid.ColumnSpan="2" Margin="0,189,0,10">
             <Button Click="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="20, 5, 20, 5" Height="20" Width="60"/>
             <Button Name="btnSave"  Click="Save"  Content="Save" HorizontalAlignment="Left"  Margin="20, 5, 20, 5" Height="20" Width="60"/>
         </WrapPanel>
