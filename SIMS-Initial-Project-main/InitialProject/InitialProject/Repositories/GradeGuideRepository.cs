@@ -59,6 +59,21 @@ namespace InitialProject.Repositories
             return gradeGuide;
         }
 
+        //public bool UpdateCheck(GradeGuide gradeGuide)
+        //{
+        //    int id = gradeGuide.GuestId;
+        //    List<GuestOnTour> guests = _guestOnTourRepository.GetAllGuestsOnTour();
+        //    Tour tour = new Tour();
+        //    for(int i = 0; i<guests.Count; i++)
+        //    {
+        //        if (guests[i].GuestId == id)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
         public List<GradeGuide> GetAll()
         {
             List<GradeGuide> grades = new List<GradeGuide>();

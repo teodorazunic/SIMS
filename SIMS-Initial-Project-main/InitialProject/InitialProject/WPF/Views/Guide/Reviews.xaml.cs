@@ -34,18 +34,7 @@ namespace InitialProject.WPF.Views.Guide
 
         private GradeGuide _selectedGradeGuide;
 
-        //public GuestOnTour SelectedGuest
-        //{
-        //    get => _selectedGuest;
-        //    set
-        //    {
-        //        if (value != _selectedGuest)
-        //        {
-        //            _selectedGuest = value;
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
+    
 
 
         public Tour SelectedTour
@@ -108,10 +97,9 @@ namespace InitialProject.WPF.Views.Guide
 
             if (_selectedGradeGuide != null)
             {
-                _selectedGradeGuide.Validation = "Invalid";
-                _gradeGuideRepository.Update(_selectedGradeGuide);
+               _selectedGradeGuide.Validation = "Invalid";
+               _gradeGuideRepository.Update(_selectedGradeGuide);
                 MessageBox.Show("Uspesno prijavljena recenzija.");
-
             }
             Grades.Items.Refresh();
         }
