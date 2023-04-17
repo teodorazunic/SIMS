@@ -21,6 +21,12 @@ namespace InitialProject.Repositories
         private TourRepository _tourRepository;
 
         private List<TourReservations> _tourreservations;
+        
+        public TourReservationRepositery()
+        {
+            _serializer = new Serializer<TourReservations>();
+            _tourreservations = _serializer.FromCSV(FilePath);
+        }
 
         public List<TourReservations> GetAllReservationsByGuestId(int GuestId)
         {
@@ -44,19 +50,17 @@ namespace InitialProject.Repositories
             return reservationsByTour;
         }
 
-        public TourReservations SaveReservation(TourReservations tourreservations)
+        public void SaveReservation(TourReservations tourreservations)
         {
 
             tourreservations.TourReservationId = NextId();
-            _tourreservations = _serializer.FromCSV(FilePath);
             _tourreservations.Add(tourreservations);
             _serializer.ToCSV(FilePath, _tourreservations);
-            return tourreservations;
         }
 
         public int NextId()
         {
-            _tourreservations = _serializer.FromCSV(FilePath);
+           
             if (_tourreservations.Count < 1)
             {
                 return 1;
@@ -64,9 +68,6 @@ namespace InitialProject.Repositories
             return _tourreservations.Max(t=> t.TourReservationId) + 1;
         }
 
-        void ITourReservationRepository.SaveReservation(TourReservations tourreservations)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
