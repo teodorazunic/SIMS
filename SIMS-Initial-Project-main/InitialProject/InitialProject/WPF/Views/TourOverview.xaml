@@ -28,7 +28,6 @@
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
                     <DataGridTextColumn Header="Language" Binding="{Binding Language.Name}" Width="*" />
                     <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />
-                    <DataGridTextColumn Header="Key Points" Binding="{Binding KeyPoint.Atrraction}" Width="*" />
                     <DataGridTextColumn Header="Start Time" Binding="{Binding Start}" Width="*" />
                     <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
                 </DataGrid.Columns>
