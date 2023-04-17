@@ -12,12 +12,14 @@ namespace InitialProject.Domain.RepositoryInterfaces
     {
         public Voucher GetVoucherById(int voucherId);
 
-        public Voucher GetVoucherByGuestId(int guestId);
+        public List<Voucher> GetVoucherByGuestId(int guestId);
 
         public Voucher GetVoucherByGuideId(int guideId);
 
         public void DeleteVoucher();
 
         public int NextId();
+        
+        public List<Voucher> GetAllVouchers();
     }
 }

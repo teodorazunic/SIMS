@@ -63,6 +63,7 @@
             <Button Click="SearchTour">Search</Button>
             <Button Click="LogOut">LOGOUT</Button>
         </ToolBar>
+        <Button Grid.Column="1" Click="ShowVouchers" Content="Vouchers" HorizontalAlignment="Left" Margin="131,507,0,0" Grid.Row="2" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

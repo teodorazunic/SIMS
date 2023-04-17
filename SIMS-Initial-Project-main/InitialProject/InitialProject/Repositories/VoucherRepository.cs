@@ -38,10 +38,11 @@ namespace InitialProject.Repositories
             }
         }
 
-        public Voucher GetVoucherByGuestId(int guestId)
+        public List<Voucher> GetVoucherByGuestId(int guestId)
         {
+
             _vouchers = _serializer.FromCSV(FilePath);
-            return _vouchers.Find(v => v.GuestId == guestId);
+            return _vouchers.FindAll(v => v.GuestId == guestId);
         }
 
         public Voucher GetVoucherByGuideId(int guideId)
@@ -54,6 +55,12 @@ namespace InitialProject.Repositories
         {
             _vouchers = _serializer.FromCSV(FilePath);
             return _vouchers.Find(v => v.VoucherId == voucherId);
+        }
+        
+          public List<Voucher> GetAllVouchers()
+        {
+            _vouchers = _serializer.FromCSV(FilePath);
+            return _vouchers;
         }
 
         public int NextId()
