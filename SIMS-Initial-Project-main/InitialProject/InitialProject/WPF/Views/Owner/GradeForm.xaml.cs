@@ -117,5 +117,9 @@ namespace InitialProject.View
             }
         }
 
+        private void GuestsCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
  }
