@@ -1,5 +1,7 @@
-﻿using InitialProject.Domain.Model;
+﻿using InitialProject.Domain;
+using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repositories;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -14,7 +16,7 @@ namespace InitialProject.Forms
     {
         public User LoggedInUser { get; set; }
 
-        private readonly ReservationMovingRepository _repository;
+        private readonly IReservationMovingRepository _repository;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -27,7 +29,7 @@ namespace InitialProject.Forms
             InitializeComponent();
             DataContext = this;
             LoggedInUser = user;
-            _repository = new ReservationMovingRepository();
+            _repository = Injector.CreateInstance<IReservationMovingRepository>();
             ReservationRequestsList.ItemsSource = _repository.GetAllForGuest(user.Id);
         }
 

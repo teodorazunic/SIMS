@@ -1,5 +1,7 @@
+using InitialProject.Domain;
 using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repository;
 using Microsoft.VisualBasic;
 using System;
@@ -16,8 +18,8 @@ namespace InitialProject.Forms
     public partial class SaveReservation : Window
     {
 
-        private readonly AccommodationRepository _repository;
-        private readonly ReservationRepository _reservationRepository;
+        private readonly IAccommodationRepository _repository;
+        private readonly IReservationRepository _reservationRepository;
         private readonly List<ReservationDate> _reservationDates;
 
         public static Accommodation SelectedAccommodation { get; set; }
@@ -56,9 +58,9 @@ namespace InitialProject.Forms
         {
             InitializeComponent();
             DataContext = this;
-            _repository = new AccommodationRepository();
+            _repository = Injector.CreateInstance<IAccommodationRepository>();
             _reservationDates = reservationDates;
-            _reservationRepository = new ReservationRepository();
+            _reservationRepository = Injector.CreateInstance<IReservationRepository>();
             SelectedAccommodation = _repository.GetAccommodationById(accommodationId);
             DaysNumber = daysNumber;
             LoggedInUser = LoggedUser;

@@ -1,5 +1,7 @@
+using InitialProject.Domain;
 using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repository;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +17,7 @@ namespace InitialProject.Forms
     /// </summary>
     public partial class AccommodationOverview : Window
     {
-        private readonly AccommodationRepository _repository;
+        private readonly IAccommodationRepository _repository;
 
         public List<string> AccommodationTypes = new List<string>() { "", "apartment", "house", "cottage" };
         public static ObservableCollection<Accommodation> Accommodations { get; set; }
@@ -129,7 +131,7 @@ namespace InitialProject.Forms
             InitializeComponent();
             DataContext = this;
             LoggedInUser = user;
-            _repository = new AccommodationRepository();
+            _repository = Injector.CreateInstance<IAccommodationRepository>();
             Accommodations = new ObservableCollection<Accommodation>(_repository.GetAllAccomodations());
         }
 
