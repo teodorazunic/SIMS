@@ -169,5 +169,11 @@ namespace InitialProject
             Vouchers vouchers = new Vouchers(LoggedInUser);
             vouchers.Show();
         }
+        
+        private void Ratings(object sender, RoutedEventArgs e)
+        {
+            ShowPastTours ratings = new ShowPastTours(LoggedInUser);
+            ratings.Show();
+        }
     }
 }
