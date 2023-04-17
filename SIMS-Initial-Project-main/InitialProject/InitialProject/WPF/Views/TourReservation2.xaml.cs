@@ -25,8 +25,12 @@ namespace InitialProject.View
     public partial class TourReservation2 : Window
     {
         public static ObservableCollection<Tour> Tours { get; set; }
+        
+        public static ObservableCollection<TourReservations> TourReservations{ get; set; }
 
         private readonly TourRepository _repository;
+        
+        private readonly TourReservationRepositery _reservationRepository;
 
         public static Tour SelectedTour { get; set; }
         public User LoggedInUser { get; set; }
@@ -56,8 +60,10 @@ namespace InitialProject.View
             DataContext = this;
             InitializeComponent();
             _repository = new TourRepository();
+            _reservationRepository = new TourReservationRepositery();
             Tours = new ObservableCollection<Tour>(_repository.GetAllTours());
             SelectedTour = _repository.GetTourById(id);
+            LoggedInUser = LoggedUser;
             cityTextBlock.Text = SelectedTour.Location.City;
 
         }
@@ -84,6 +90,12 @@ namespace InitialProject.View
             }
             else
             {
+                TourReservations tourReservations = new TourReservations();
+                tourReservations.TourId = SelectedTour.Id;
+                tourReservations.GuestId = LoggedInUser.Id;
+                tourReservations.NumberOfGuests = GuestsNumber;
+                tourReservations.UsedVoucher = false;
+                _reservationRepository.SaveReservation(tourReservations);
                 _repository.UpdateMaxGuests(SelectedTour.Id, GuestsNumber);
                 MessageBox.Show(message);
             }
