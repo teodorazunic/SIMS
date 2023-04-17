@@ -84,6 +84,11 @@ namespace InitialProject.WPF.ViewModels.Guest1
 
         public void SaveReview()
         {
+            if((Cleanliness < 1 || Cleanliness > 5) || ((Staff < 1 || Staff > 5)))
+            {
+                MessageBox.Show("Ocena mora imati vrednost 1-5");
+                return;
+            }
             AccommodationReview accommodationReview = new AccommodationReview(LoggedInUser.Id, SelectedAccommodation.Id, Cleanliness, Staff, Comment);
 
             string message = _repository.SaveReview(accommodationReview, Images);
