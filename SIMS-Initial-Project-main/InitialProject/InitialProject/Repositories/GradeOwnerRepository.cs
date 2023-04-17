@@ -13,13 +13,14 @@ namespace InitialProject.Repository
     {
         private const string FilePath = "../../../Resources/Data/ownergrades.csv";
         private readonly ReservationRepository reservationRepository;
-
+        private readonly AccommodationReviewRepository accommodationReviewRepository;
         private List<GradeOwner> ownerGrades;
 
         public GradeOwnerRepository()
         {
             reservationRepository = new ReservationRepository();
             ownerGrades = GetAll();
+            accommodationReviewRepository = new AccommodationReviewRepository();
         }
 
         public List<GradeOwner> GetAll()
@@ -88,10 +89,10 @@ namespace InitialProject.Repository
             }
 
         }
-        public List<GradeOwner> ShowReviewsForOwner()
+        public List<AccommodationReview> ShowReviewsForOwner()
         {
             List<Reservation> allReservation = reservationRepository.GetAll();
-            List<GradeOwner> ownerGrades = new List<GradeOwner>();
+            List<AccommodationReview> ownerGrades = new List<AccommodationReview>();
             foreach (Reservation reservation in allReservation)
             {
                 if (reservation.GradeStatus == "Graded")
@@ -105,10 +106,10 @@ namespace InitialProject.Repository
             return ownerGrades;
         }
 
-        internal GradeOwner FindOwnerGradeByReservationId(int id)
+        internal AccommodationReview FindOwnerGradeByReservationId(int id)
         {
-            List<GradeOwner> grades = GetAll();
-            foreach (GradeOwner grade in grades)
+            List<AccommodationReview> grades = accommodationReviewRepository.GetAll();
+           foreach (AccommodationReview grade in grades)
             {
                 if (grade.ReservationId == id)
                 {
@@ -120,8 +121,8 @@ namespace InitialProject.Repository
 
         public bool IsOwnerGradeExists(int id)
         {
-            List<GradeOwner> grades = GetAll();
-            foreach (GradeOwner grade in grades)
+            List<AccommodationReview> grades = accommodationReviewRepository.GetAll(); 
+            foreach (AccommodationReview grade in grades)
             {
                 if (grade.ReservationId == id)
                 {
