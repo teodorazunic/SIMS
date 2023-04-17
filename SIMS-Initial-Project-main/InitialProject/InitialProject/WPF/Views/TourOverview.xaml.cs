@@ -162,5 +162,11 @@ namespace InitialProject
         {
 
         }
+        
+         private void ShowVouchers(object sender, RoutedEventArgs e)
+        {
+            Vouchers vouchers = new Vouchers(LoggedInUser);
+            vouchers.Show();
+        }
     }
 }
