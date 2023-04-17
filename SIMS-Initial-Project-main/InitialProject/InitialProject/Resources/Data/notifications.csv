@@ -2,3 +2,5 @@
 2|2|Your reservation request: 4 was approved|True
 3|1|Guest has canceled reservation: 7|False
 4|2|Your reservation request: 5 was approved|True
+5|2|Your reservation request: 4 was rejected|False
+6|2|Your reservation request: 4 was rejected|False

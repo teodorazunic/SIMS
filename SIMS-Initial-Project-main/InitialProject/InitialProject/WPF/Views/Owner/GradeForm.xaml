@@ -17,6 +17,6 @@
         <ComboBox x:Name="CB1" HorizontalAlignment="Left" Margin="153,51,0,0" VerticalAlignment="Top" Width="120" Loaded="Clean" RenderTransformOrigin="0.782,0.53"/>
         <ComboBox x:Name="CB2" HorizontalAlignment="Left" Margin="333,49,0,0" VerticalAlignment="Top" Width="120" Loaded="Respect"/>
         <Label x:Name="TimeLeft" Content="" HorizontalAlignment="Left" Margin="235,49,0,0" VerticalAlignment="Top" Width="165"/>
-        <ComboBox x:Name="GuestsCB" HorizontalAlignment="Left" Margin="5,51,0,0" VerticalAlignment="Top" Width="120" Loaded="GuestLoaded"/>
+        <ComboBox x:Name="GuestsCB" HorizontalAlignment="Left" Margin="5,51,0,0" VerticalAlignment="Top" Width="120" Loaded="GuestLoaded" SelectionChanged="GuestsCB_SelectionChanged"/>
     </Grid>
 </Window>
