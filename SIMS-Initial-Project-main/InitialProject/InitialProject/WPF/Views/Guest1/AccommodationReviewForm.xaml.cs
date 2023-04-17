@@ -1,11 +1,6 @@
-﻿using InitialProject.Domain;
-using InitialProject.Domain.Model;
+﻿using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
-using InitialProject.Domain.RepositoryInterfaces;
-using InitialProject.Repository;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using InitialProject.WPF.ViewModels.Guest1;
 using System.Windows;
 
 namespace InitialProject.Forms
@@ -15,114 +10,25 @@ namespace InitialProject.Forms
     /// </summary>
     public partial class AccommodationReviewForm : Window
     {
-
-        public static Accommodation SelectedAccommodation { get; set; }
-        public User LoggedInUser { get; set; }
-
-        private readonly IAccommodationReviewRepository _repository;
-
-        private List<AccommodationReviewImage> Images;
-
-        private int _cleanliness = 5;
-        private int _staff = 5;
-        private string _comment = "";
-        private string _image = "";
-
-        public int Cleanliness
-        {
-            get => _cleanliness;
-            set
-            {
-                if (value != _cleanliness)
-                {
-                    _cleanliness = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public int Staff
-        {
-            get => _staff;
-            set
-            {
-                if (value != _staff)
-                {
-                    _staff = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        public string Comment
-        {
-            get => _comment;
-            set
-            {
-                if (value != _comment)
-                {
-                    _comment = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string Image
-        {
-            get => _image;
-            set
-            {
-                if (value != _image)
-                {
-                    _image = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        private AccommodationReviewFormViewModel _accommodationReviewFormViewModel;
 
         public AccommodationReviewForm(User loggedInUser, Accommodation selectedAccommodation)
         {
             InitializeComponent();
             Title = "Add a review";
-            DataContext = this;
-            _repository = Injector.CreateInstance<IAccommodationReviewRepository>();
-            Images = new List<AccommodationReviewImage>();
-            SelectedAccommodation = selectedAccommodation;
-            LoggedInUser = loggedInUser;
+            _accommodationReviewFormViewModel = new AccommodationReviewFormViewModel(loggedInUser, selectedAccommodation);
+            DataContext = _accommodationReviewFormViewModel;
         }
 
         private void SaveReview(object sender, RoutedEventArgs e)
         {
-            AccommodationReview accommodationReview = new AccommodationReview(LoggedInUser.Id, SelectedAccommodation.Id, Cleanliness, Staff, Comment);
-
-            string message = _repository.SaveReview(accommodationReview, Images);
-
-            MessageBox.Show(message);
-            AccommodationOverview overview = new AccommodationOverview(LoggedInUser);
-            overview.Show();
+            _accommodationReviewFormViewModel.SaveReview();
             Close();
         }
 
         private void SetImage(object sender, RoutedEventArgs e)
         {
-
-            if (Image == null || Image == "")
-            {
-                MessageBox.Show("Upisite validan url!");
-                return;
-            }
-
-            AccommodationReviewImage accommodationReviewImage = new AccommodationReviewImage();
-            accommodationReviewImage.ImageUrl = Image;
-
-            Images.Add(accommodationReviewImage);
-            ReviewImages.ItemsSource = Images;
+            ReviewImages.ItemsSource = _accommodationReviewFormViewModel.SetImage();
             ReviewImages.Items.Refresh();
         }
 

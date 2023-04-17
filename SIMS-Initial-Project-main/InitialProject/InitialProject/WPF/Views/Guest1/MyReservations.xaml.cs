@@ -1,14 +1,6 @@
-﻿using InitialProject.Domain;
-using InitialProject.Domain.Model;
-using InitialProject.Domain.Models;
-using InitialProject.Domain.RepositoryInterfaces;
-using InitialProject.Repository;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using InitialProject.Domain.Models;
+using InitialProject.WPF.ViewModels.Guest1;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace InitialProject.Forms
 {
@@ -17,69 +9,25 @@ namespace InitialProject.Forms
     /// </summary>
     public partial class MyReservations : Window
     {
-
-        public User LoggedInUser { get; set; }
-
-        private readonly IReservationRepository _repository;
-
-        private ReservationAccommodation _selectedReservationAccommodation;
-
-        public ReservationAccommodation SelectedReservationAccommodation
-        {
-            get => _selectedReservationAccommodation;
-            set
-            {
-                if (value != _selectedReservationAccommodation)
-                {
-                    _selectedReservationAccommodation = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        private MyReservationsViewModel _myReservationsViewModel;
 
         public MyReservations(User user)
         {
             InitializeComponent();
-            DataContext = this;
-            LoggedInUser = user;
-            _repository = Injector.CreateInstance<IReservationRepository>();
-            Reservations.ItemsSource = _repository.GetAllByGuestId(user.Id);
+            _myReservationsViewModel = new MyReservationsViewModel(user);
+            DataContext = _myReservationsViewModel;
+            Reservations.ItemsSource = _myReservationsViewModel.GetReservationsByGuestId();
         }
 
         public void Delete(object sender, RoutedEventArgs e)
         {
-
-            if (SelectedReservationAccommodation != null)
-            {
-                Reservation reservation = SelectedReservationAccommodation.SelectedReservation;
-                string message = _repository.DeleteReservation(reservation);
-
-                MessageBox.Show(message);
-
-                Reservations.ItemsSource = _repository.GetAllByGuestId(LoggedInUser.Id);
-                Reservations.Items.Refresh();
-
-            }
+            Reservations.ItemsSource = _myReservationsViewModel.Delete();
+            Reservations.Items.Refresh();
         }
         public void SendRequest(object sender, RoutedEventArgs e)
         {
-
-            if (SelectedReservationAccommodation != null)
-            {
-                ReservationAccommodation reservationAccommodation = SelectedReservationAccommodation;
-                
-                ReservationRequestForm form = new ReservationRequestForm(LoggedInUser, reservationAccommodation);
-                form.Show();
-                Close();
-            }
+            _myReservationsViewModel.SendRequest();
+            Close();
         }
-
-
     }
 }

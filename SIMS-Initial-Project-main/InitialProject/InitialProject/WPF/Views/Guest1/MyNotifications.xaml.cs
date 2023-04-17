@@ -2,6 +2,7 @@
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repositories;
+using InitialProject.WPF.ViewModels.Guest1;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -13,55 +14,20 @@ namespace InitialProject.Forms
     /// </summary>
     public partial class MyNotifications : Window
     {
-
-        public User LoggedInUser { get; set; }
-
-        private readonly INotificationRepository _repository;
-
-        private Notification _selectedNotification;
-
-        public Notification SelectedNotification
-        {
-            get => _selectedNotification;
-            set
-            {
-                if (value != _selectedNotification)
-                {
-                    _selectedNotification = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        private MyNotificationsViewModel _myNotificationsViewModel;
 
         public MyNotifications(User user)
         {
             InitializeComponent();
-            DataContext = this;
-            LoggedInUser = user;
-            _repository = Injector.CreateInstance<INotificationRepository>();
-            Notifications.ItemsSource = _repository.GetAllForUser(user.Id);
+            _myNotificationsViewModel = new MyNotificationsViewModel(user);
+            DataContext = _myNotificationsViewModel;
+            Notifications.ItemsSource = _myNotificationsViewModel.GetNotificationsForUser();
         }
 
         public void MarkRead(object sender, RoutedEventArgs e)
         {
-
-            if (SelectedNotification != null)
-            {
-                SelectedNotification.HasRead = true;
-                _repository.Update(SelectedNotification);
-
-
-                Notifications.ItemsSource = _repository.GetAllForUser(LoggedInUser.Id);
-                Notifications.Items.Refresh();
-
-            }
+            Notifications.ItemsSource = _myNotificationsViewModel.MarkRead();
+            Notifications.Items.Refresh();
         }
-
     }
 }
