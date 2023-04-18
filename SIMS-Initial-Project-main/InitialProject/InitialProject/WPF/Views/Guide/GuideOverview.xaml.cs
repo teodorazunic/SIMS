@@ -23,10 +23,6 @@ namespace InitialProject.View
     /// </summary>
     public partial class GuideOverview : Window
     {
-        public GuideOverview()
-        {
-            InitializeComponent();
-        }
 
         public User LoggedInUser { get; set; }
 
@@ -74,6 +70,10 @@ namespace InitialProject.View
         {
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
+        private void OpenTourStatistics(object sender, RoutedEventArgs e)
+        {
+            TourStatistics tourStatistics = new TourStatistics(LoggedInUser);
+            tourStatistics.Show();
             Close();
         }
     }
