@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InitialProject.Domain.Models;
+using InitialProject.Repository;
 
 namespace InitialProject.Repositories
 {
@@ -18,10 +19,13 @@ namespace InitialProject.Repositories
 
         private List<Voucher> _vouchers;
 
+        private readonly GuestOnTourRepository _guestOnTourRepository;
+
         public VoucherRepository()
         {
             _serializer = new Serializer<Voucher>();
             _vouchers = _serializer.FromCSV(FilePath);
+            _guestOnTourRepository = new GuestOnTourRepository();
 
         }
 
@@ -36,6 +40,32 @@ namespace InitialProject.Repositories
                     ;
                 }
             }
+        }
+
+        public void SendVouchers(int id)
+        {
+            List<GuestOnTour> guests = _guestOnTourRepository.GetAllGuestsOnTour();
+            for(int i = 0; i < guests.Count; i++)
+            {
+                if (guests[i].StartingKeyPoint.TourId == id)
+                {
+                    Voucher voucher = new Voucher();
+                    voucher.Title = "Vaucer za otkazanu turu.";
+                    voucher.GuestId = guests[i].GuestId;
+                    voucher.ValidUntil = DateTime.Now;
+                    Save(voucher);
+                }
+            }
+            
+        }
+
+        public Voucher Save(Voucher voucher)
+        {
+            voucher.VoucherId = NextId();
+            _vouchers = _serializer.FromCSV(FilePath);
+            _vouchers.Add(voucher);
+            _serializer.ToCSV(FilePath, _vouchers);
+            return voucher;
         }
 
         public List<Voucher> GetVoucherByGuestId(int guestId)

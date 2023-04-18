@@ -2,6 +2,7 @@ using InitialProject.Domain.Models;
 using InitialProject.Forms;
 using InitialProject.Repository;
 using InitialProject.View;
+using InitialProject.WPF.Views;
 using InitialProject.WPF.Views.Guest2;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
