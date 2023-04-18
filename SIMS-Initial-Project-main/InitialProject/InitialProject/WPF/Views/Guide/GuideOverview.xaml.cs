@@ -66,14 +66,17 @@ namespace InitialProject.View
             Close();
         }
 
-        private void LogOut(object sender, RoutedEventArgs e)
-        {
-            SignInForm signInForm = new SignInForm();
-            signInForm.Show();
         private void OpenTourStatistics(object sender, RoutedEventArgs e)
         {
             TourStatistics tourStatistics = new TourStatistics(LoggedInUser);
             tourStatistics.Show();
+            Close();
+        }
+
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
             Close();
         }
     }
