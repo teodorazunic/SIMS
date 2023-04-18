@@ -47,9 +47,9 @@ namespace InitialProject.Repository
             return tours;
         }
 
-        public List<Tour> GetPendingTours()
+        public List<Tour> GetPendingTours(string filename)
         {
-            List<Tour> allTours = ReadFromToursCsv(FilePath);
+            List<Tour> allTours = ReadFromToursCsv(filename);
             List<Tour> tours = new List<Tour>();
 
             foreach (Tour tour in allTours)
@@ -81,15 +81,15 @@ namespace InitialProject.Repository
         {
             DateTime currentDate = DateTime.Now;
             
-            if ((currentDate - tour.Start).TotalHours < 48)
+            if ((tour.Start -currentDate).TotalHours < 48)
             {
-                return "Turu nije moguce otkazati";
+                return "Unable to cancel tour";
             }
 
             tour.Status = "Ended";
             Update(tour);
             _serializer.ToCSV(FilePath, _tours);
-            return "Uspesno otkazana tura!";
+            return "Succesfully canceled tour!";
         }
         public List<Tour> ReadFromToursCsv(string filename)
         {

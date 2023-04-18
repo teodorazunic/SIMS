@@ -63,7 +63,7 @@ namespace InitialProject.WPF.Views
             LoggedInUser = user;
             _repository = new TourRepository();
             _voucherRepository = new VoucherRepository();
-            Tours.ItemsSource = _repository.GetPendingTours();
+            Tours.ItemsSource = _repository.GetPendingTours(FilePath);
 
         }
 

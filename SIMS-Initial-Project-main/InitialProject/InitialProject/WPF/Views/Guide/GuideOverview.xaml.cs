@@ -69,6 +69,13 @@ namespace InitialProject.View
             reviews.Show();
             Close();
         }
+
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            Close();
+        }
     }
 }
 

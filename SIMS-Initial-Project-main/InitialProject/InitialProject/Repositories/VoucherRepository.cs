@@ -50,9 +50,10 @@ namespace InitialProject.Repositories
                 if (guests[i].StartingKeyPoint.TourId == id)
                 {
                     Voucher voucher = new Voucher();
+                    DateTime voucherDate = voucher.ValidUntil;
                     voucher.Title = "Vaucer za otkazanu turu.";
                     voucher.GuestId = guests[i].GuestId;
-                    voucher.ValidUntil = DateTime.Now;
+                    voucher.ValidUntil = voucherDate.AddYears(1) ;
                     Save(voucher);
                 }
             }
