@@ -1,4 +1,4 @@
-﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Model;
 using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,9 @@ namespace InitialProject.Domain.Models
 
         public string Validation { get; set; }
 
-        public GradeGuide(int id,int guestId, int guideKnowledge, int guideLanguage, int overall, string comment, string validation)
+        public string PictureUrl { get; set; }
+
+        public GradeGuide(int id,int guestId, int guideKnowledge, int guideLanguage, int overall, string comment, string validation, string pictureUrl)
         {
             Id = id;
             GuestId = guestId;
@@ -32,6 +34,8 @@ namespace InitialProject.Domain.Models
             Overall = overall;
             Comment = comment;
             Validation = "Valid";
+            PictureUrl = pictureUrl;
+
         }
 
         public GradeGuide()
@@ -40,7 +44,7 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(),GuestId.ToString(), GuideKnowledge.ToString(), GuideLanguage.ToString(), Overall.ToString(), Comment, Validation };
+            string[] csvValues = { Id.ToString(),GuestId.ToString(), GuideKnowledge.ToString(), GuideLanguage.ToString(), Overall.ToString(), Comment, Validation, PictureUrl };
             return csvValues;
         }
 
@@ -53,6 +57,7 @@ namespace InitialProject.Domain.Models
             Overall = Convert.ToInt32(values[4]);
             Comment = values[5];
             Validation = values[6];
+            PictureUrl = values[7];
         }
     }
 }

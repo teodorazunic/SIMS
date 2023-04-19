@@ -1,0 +1,24 @@
+﻿<Window x:Class="InitialProject.WPF.Views.Guide.TourStatistics"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide"
+        mc:Ignorable="d"
+        Title="TourStatistics" Height="450" Width="800">
+    <Grid>
+        <DataGrid Name="MostVisitedTour" Margin="77,72,59,251"/>
+        <RadioButton Content="All years" HorizontalAlignment="Left" Margin="141,36,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <ComboBox Name ="ComboBox" Width="120" Margin="349,5,331,352" Loaded="Fill" />
+        <Button Content="Select year" HorizontalAlignment="Left" Margin="536,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.416,-0.208" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="204,296,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="204,343,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="204,389,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="18" HorizontalAlignment="Left" Margin="113,296,0,0" VerticalAlignment="Top"/>
+        <Label Content="18-50" HorizontalAlignment="Left" Margin="109,339,0,0" VerticalAlignment="Top"/>
+        <Label Content="50+" HorizontalAlignment="Left" Margin="109,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.804,3.565"/>
+        <TextBox HorizontalAlignment="Left" Margin="648,296,0,0" TextWrapping="Wrap" Text="Yes" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Voucher" HorizontalAlignment="Left" Margin="567,292,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

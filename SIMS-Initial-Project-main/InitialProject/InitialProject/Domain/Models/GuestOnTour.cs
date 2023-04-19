@@ -21,6 +21,8 @@ namespace InitialProject.Domain.Models
 
         public KeyPoint StartingKeyPoint { get; set; }
 
+        public int Age { get; set; }
+
 
         
 

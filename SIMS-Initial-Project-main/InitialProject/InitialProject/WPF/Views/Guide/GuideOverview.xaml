@@ -39,6 +39,21 @@
                     <TextBlock Text="Reviews" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100" />
                 </StackPanel>
             </Button>
+            
+            <Separator/>
+            <Button Click="LogOut">
+                <StackPanel Orientation="Horizontal" Width="125">
+                    <Image Source="/Resources/Images/add.png" Width="20" Height="25" RenderTransformOrigin="0.5,0.6"/>
+                    <TextBlock Text="LogOut" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Click="OpenTourStatistics">
+                <StackPanel Orientation="Horizontal" Width="125">
+                    <Image Source="/Resources/Images/add.png" Width="20" Height="25" RenderTransformOrigin="0.5,0.6"/>
+                    <TextBlock Text="TourStatistics" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" Width="100"/>
+                </StackPanel>
+            </Button>
             <Separator/>
         </ToolBar>
 
