@@ -4,3 +4,8 @@
 4|2|Your reservation request: 5 was approved|True
 5|2|Your reservation request: 4 was rejected|False
 6|2|Your reservation request: 4 was rejected|False
+7|2|Your reservation request: 4 was approved|False
+8|2|Your reservation request: 5 was approved|False
+9|2|Your reservation request: 5 was approved|False
+10|2|Your reservation request: 4 was rejected|True
+11|1|Guest has canceled reservation: 6|False

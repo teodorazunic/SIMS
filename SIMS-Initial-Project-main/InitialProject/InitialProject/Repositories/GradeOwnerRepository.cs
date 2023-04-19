@@ -70,9 +70,9 @@ namespace InitialProject.Repository
 
         public string SuperOwner()
         {
-            if (CountGradesFromOwnerRating() >= 50)
+            if (CountGradesFromOwnerRating() >= 1)
             {
-                if (GetAverageOwnerRating() < 9.5)
+                if (GetAverageOwnerRating() < 4.5)
                 {
                     return "OWNER Pera";
                 }
