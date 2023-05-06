@@ -19,13 +19,13 @@ namespace InitialProject.Domain
             { typeof(IReservationRepository), new ReservationRepository() },
             { typeof(IReservationMovingRepository), new ReservationMovingRepository() },
 
-            { typeof(INotificationService), new NotificationService(Injector.CreateInstance<INotificationRepository>()) },
+           /* { typeof(INotificationService), new NotificationService(Injector.CreateInstance<INotificationRepository>()) },
              { typeof(IAccommodationService), new AccommodationService(Injector.CreateInstance<IAccommodationRepository>()) },
              { typeof(IAccommodationReviewService), new AccommodationReviewService(Injector.CreateInstance<IAccommodationReviewRepository>()) },
              { typeof(IAccommodationReviewImageService), new AccommodationReviewImageService(Injector.CreateInstance<IAccommodationReviewImageRepository>()) },
              { typeof(IReservationService), new ReservationService(Injector.CreateInstance<IReservationRepository>()) },
              { typeof(IReservationMovingService), new ReservationMovingService(Injector.CreateInstance<IReservationMovingRepository>()) }
-
+           */
     };
 
         public static T CreateInstance<T>()
