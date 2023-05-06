@@ -1,6 +1,7 @@
 ﻿using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Forms;
+using InitialProject.Repositories;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,8 @@ namespace InitialProject.WPF.Views
 
         private readonly TourRepository _repository;
 
+        private readonly VoucherRepository _voucherRepository;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -59,7 +62,9 @@ namespace InitialProject.WPF.Views
             DataContext = this;
             LoggedInUser = user;
             _repository = new TourRepository();
-            Tours.ItemsSource = _repository.GetPendingTours();
+            _voucherRepository = new VoucherRepository();
+            Tours.ItemsSource = _repository.GetPendingTours(FilePath);
+
         }
 
 
@@ -68,9 +73,8 @@ namespace InitialProject.WPF.Views
             if(_selectedTour != null)
             {
                 string message = _repository.CancelTour(_selectedTour);
-
+                _voucherRepository.SendVouchers(_selectedTour.Id);
                 MessageBox.Show(message);
-                 
                 
             }
             Tours.Items.Refresh();

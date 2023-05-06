@@ -116,27 +116,55 @@ namespace InitialProject.View
             }
             KeyPoints.Items.Refresh();
 
+            int numOfActiveKeyPoints = 0;
+            foreach (KeyPoint point in KeyPoints.Items)
+            {
+                if (point.Status == "Active")
+                    numOfActiveKeyPoints++;
+            }
+
+
+            if (numOfActiveKeyPoints == KeyPoints.Items.Count)
+            {
+                _selectedTour.Status = "Finished";
+                _selectedTour = _repository.Update(_selectedTour);
+                _selectedTour = null;
+                foreach (KeyPoint kp in KeyPoints.Items)
+                {
+                    if (kp.Status == "Active")
+                    {
+                        kp.Status = "Inactive";
+                        _keyPointRepository.Update(kp);
+                    }
+                }
+                MessageBox.Show("Tour finished.");
+                KeyPoints.Items.Refresh();
+            }
+
         }
 
         private void StartTour(object sender, RoutedEventArgs e)
         {
             bool isTourStarted = _repository.IsStarted();
             if (isTourStarted == true) {
-                MessageBox.Show("Nije moguce zapoceti turu");
+                MessageBox.Show("It is not possible to start the tour.");
             }
             else
             {
                 _selectedTour.Status = "Started";
                 _selectedTour = _repository.Update(_selectedTour);
-                MessageBox.Show("Tura je zapoceta.");
+                MessageBox.Show("Tour Started.");
             }
+
+
+            Tours.Items.Refresh();
         }
 
         private void EndTour(object sender, RoutedEventArgs e)
         {
             _selectedTour.Status = "Ended";
             _selectedTour = _repository.Update(_selectedTour);
-            MessageBox.Show("Tura je zavrsena.");
+            MessageBox.Show("Tour ended.");
 
             foreach (KeyPoint kp in KeyPoints.Items)
             {
@@ -146,6 +174,7 @@ namespace InitialProject.View
                     _keyPointRepository.Update(kp);
                 }
             }
+            KeyPoints.Items.Refresh();
 
         }
     }

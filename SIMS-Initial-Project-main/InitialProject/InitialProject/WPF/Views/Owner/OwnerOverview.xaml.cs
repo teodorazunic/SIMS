@@ -175,7 +175,7 @@ namespace InitialProject.View
 
         private void SuperOwnerLabel_Loaded(object sender, RoutedEventArgs e)
         {
-            SuperOwnerLabel.Content = gradeOwnerRepository.SuperOwner(LoggedInUser.Username);
+            SuperOwnerLabel.Content = gradeOwnerRepository.SuperOwner();
         }
 
         private void GradeGuest(object sender, RoutedEventArgs e)

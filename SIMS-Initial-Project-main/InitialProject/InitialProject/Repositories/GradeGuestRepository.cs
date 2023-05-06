@@ -36,7 +36,6 @@ namespace InitialProject.Repository
             }
             else return null;
         }
-
         public void FindAndDeleteExpiredReservation(int i)
         {
             List<Reservation> reservations = new List<Reservation>();
