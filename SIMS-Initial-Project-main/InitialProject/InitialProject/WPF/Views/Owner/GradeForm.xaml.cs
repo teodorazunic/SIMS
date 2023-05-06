@@ -113,7 +113,7 @@ namespace InitialProject.View
                 {
                     MessageBox.Show(gradeGuestRepository.ShowMessageForGrade(i));
                 }
-                gradeGuestRepository.FindAndLogicalDeleteExpiredReservation(i);
+                gradeGuestRepository.FindAndDeleteExpiredReservation(i);
             }
         }
 

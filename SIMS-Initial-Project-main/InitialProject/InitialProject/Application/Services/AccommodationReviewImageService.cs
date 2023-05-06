@@ -1,15 +1,15 @@
 ﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Domain.ServiceInterfaces;
-using InitialProject.Repository;
 using System.Collections.Generic;
 
 namespace InitialProject.Application.Services
 {
     public class AccommodationReviewImageService: IAccommodationReviewImageService
     {
-        private readonly AccommodationReviewImageRepository _accommodationReviewImageRepository;
+        private readonly IAccommodationReviewImageRepository _accommodationReviewImageRepository;
 
-        public AccommodationReviewImageService(AccommodationReviewImageRepository accommodationReviewImageRepository)
+        public AccommodationReviewImageService(IAccommodationReviewImageRepository accommodationReviewImageRepository)
         {
             _accommodationReviewImageRepository = accommodationReviewImageRepository;
         }

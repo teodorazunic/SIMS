@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
@@ -16,6 +13,7 @@ namespace InitialProject.Repository
 
         private readonly Serializer<GuestGrade> _serializer;
         private readonly ReservationRepository reservationRepository;
+        private readonly AccommodationReviewRepository _accommodationReviewRepository;
 
         private List<GuestGrade> _grades;
 
@@ -23,10 +21,9 @@ namespace InitialProject.Repository
         {
             _serializer = new Serializer<GuestGrade>();
             reservationRepository = new ReservationRepository();
-
+            _accommodationReviewRepository = new AccommodationReviewRepository();
             _grades = _serializer.FromCSV(FilePath);
         }
-
 
         public string FindGuestsForGrade(int i)
         {
@@ -40,9 +37,7 @@ namespace InitialProject.Repository
             else return null;
         }
 
-
-
-        public void FindAndLogicalDeleteExpiredReservation(int i)
+        public void FindAndDeleteExpiredReservation(int i)
         {
             List<Reservation> reservations = new List<Reservation>();
             reservations = reservationRepository.GetAll();
@@ -75,15 +70,31 @@ namespace InitialProject.Repository
             return message;
         }
 
-
-
-
         public GuestGrade Save(GuestGrade grade)
         {
             _grades = _serializer.FromCSV(FilePath);
             _grades.Add(grade);
             _serializer.ToCSV(FilePath, _grades);
             return grade;
+        }
+
+        public List<GuestGrade> GetAllGradesForGuest(string guestUsername)
+        {
+            List<GuestGrade> guestGrades = _grades.FindAll(g => g.GuestUserName == guestUsername);
+            List<GuestGrade> filteredGrades = new List<GuestGrade>();
+
+            foreach (GuestGrade grade in guestGrades)
+            {
+                Reservation reservation = reservationRepository.GetReservationById(grade.ReservationId);
+                AccommodationReview accommodationReview = _accommodationReviewRepository.GetReviewByReservationId(grade.ReservationId);
+
+                if (reservation != null && accommodationReview != null && reservation.GradeStatus == "Graded")
+                {
+                    filteredGrades.Add(grade);
+                }
+            }
+
+            return filteredGrades;
         }
     }
 

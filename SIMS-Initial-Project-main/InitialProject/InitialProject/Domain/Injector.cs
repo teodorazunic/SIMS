@@ -1,4 +1,6 @@
-﻿using InitialProject.Domain.RepositoryInterfaces;
+﻿using InitialProject.Application.Services;
+using InitialProject.Domain.RepositoryInterfaces;
+using InitialProject.Domain.ServiceInterfaces;
 using InitialProject.Repositories;
 using InitialProject.Repository;
 using System;
@@ -16,6 +18,13 @@ namespace InitialProject.Domain
            { typeof(IAccommodationReviewImageRepository), new AccommodationReviewImageRepository() },
             { typeof(IReservationRepository), new ReservationRepository() },
             { typeof(IReservationMovingRepository), new ReservationMovingRepository() },
+
+            { typeof(INotificationService), new NotificationService(Injector.CreateInstance<INotificationRepository>()) },
+             { typeof(IAccommodationService), new AccommodationService(Injector.CreateInstance<IAccommodationRepository>()) },
+             { typeof(IAccommodationReviewService), new AccommodationReviewService(Injector.CreateInstance<IAccommodationReviewRepository>()) },
+             { typeof(IAccommodationReviewImageService), new AccommodationReviewImageService(Injector.CreateInstance<IAccommodationReviewImageRepository>()) },
+             { typeof(IReservationService), new ReservationService(Injector.CreateInstance<IReservationRepository>()) },
+             { typeof(IReservationMovingService), new ReservationMovingService(Injector.CreateInstance<IReservationMovingRepository>()) }
 
     };
 
