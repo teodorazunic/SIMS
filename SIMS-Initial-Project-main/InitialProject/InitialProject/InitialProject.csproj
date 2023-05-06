@@ -30,10 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="WPF\ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="WPF\Views\Owner\ReservationMovingRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

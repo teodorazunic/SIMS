@@ -25,7 +25,7 @@ namespace InitialProject.Domain.Model
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), GuestId.ToString(), AccommodationId.ToString(), Cleanliness.ToString(), Staff.ToString(), Comment, ReservationId.ToString()};
+            string[] csvValues = { Id.ToString(), GuestId.ToString(), AccommodationId.ToString(), Cleanliness.ToString(), Staff.ToString(), Comment, ReservationId.ToString() };
             return csvValues;
         }
 

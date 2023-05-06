@@ -1,16 +1,16 @@
 ﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Domain.ServiceInterfaces;
-using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
 
 namespace InitialProject.Application.Services
 {
-    public class ReservationService: IReservationService
+    public class ReservationService : IReservationService
     {
-        private readonly ReservationRepository _reservationRepository;
+        private readonly IReservationRepository _reservationRepository;
 
-        public ReservationService(ReservationRepository reservationRepository)
+        public ReservationService(IReservationRepository reservationRepository)
         {
             _reservationRepository = reservationRepository;
         }

@@ -1,5 +1,7 @@
 ﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
+using InitialProject.Repositories;
 using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,8 @@ namespace InitialProject.Repository
 
         private ReservationRepository _reservationRepository;
 
+        private RenovationRecommendationRepository _recommendationRepository;
+
         private List<AccommodationReview> _accommodationReviews;
 
         public AccommodationReviewRepository()
@@ -25,6 +29,7 @@ namespace InitialProject.Repository
             _accommodationReviews = _serializer.FromCSV(FilePath);
             _imageRepository = new AccommodationReviewImageRepository();
             _reservationRepository = new ReservationRepository();
+            _recommendationRepository = new RenovationRecommendationRepository();
         }
 
         public List<AccommodationReview> GetAll()
@@ -53,7 +58,7 @@ namespace InitialProject.Repository
             return false;
         }
 
-        public string SaveReview(AccommodationReview accommodationReview, List<AccommodationReviewImage> images)
+        public string SaveReview(AccommodationReview accommodationReview, List<AccommodationReviewImage> images, RenovationRecommendation renovationRecommendation)
         {
 
             List<Reservation> allReservations = _reservationRepository.GetAll();
@@ -97,7 +102,18 @@ namespace InitialProject.Repository
             _accommodationReviews.Add(accommodationReview);
             _serializer.ToCSV(FilePath, _accommodationReviews);
 
+            if (renovationRecommendation != null)
+            {
+                renovationRecommendation.AccommodationReviewId = accommodationReviewId;
+                _recommendationRepository.Save(renovationRecommendation);
+            }
+
             return "Uspesno sacuvana recenzija!";
+        }
+
+        public AccommodationReview GetReviewByReservationId(int reservationId)
+        {
+            return _accommodationReviews.Find(ar => ar.ReservationId == reservationId);
         }
     }
 }
