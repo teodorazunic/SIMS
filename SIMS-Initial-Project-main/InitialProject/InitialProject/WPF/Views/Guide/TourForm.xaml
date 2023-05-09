@@ -24,25 +24,36 @@
         <TextBox x:Name="txtCity" HorizontalAlignment="Left" Margin="265,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="267,529,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="40" FontSize="18"/>
         <TextBox x:Name="txtLanguage" HorizontalAlignment="Left" Margin="265,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
-        <TextBox x:Name="txtMaxGuests" HorizontalAlignment="Left" Margin="500,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40"/>
+        <TextBox x:Name="txtMaxGuests" HorizontalAlignment="Left" Margin="500,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <TextBox x:Name="txtKeyPoint" HorizontalAlignment="Left" Margin="713,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="40" FontSize="18"/>
         <TextBox x:Name="txtDuration" HorizontalAlignment="Left" Margin="501,411,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <Button Content="SAVE TOUR" HorizontalAlignment="Center" Margin="0,602,0,0" VerticalAlignment="Top" Height="43" Width="154" RenderTransformOrigin="1.187,0.918" Click="Button_Click" FontSize="20"/>
-        <TextBox x:Name="txtCountry" HorizontalAlignment="Left" Margin="494,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40"/>
+        <TextBox x:Name="txtCountry" HorizontalAlignment="Left" Margin="494,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <Label Content="Image:" HorizontalAlignment="Left" Margin="265,372,0,0" VerticalAlignment="Top" Height="38" Width="107" FontSize="18"/>
         <TextBox x:Name="txtImage" HorizontalAlignment="Left" Margin="265,411,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <DatePicker x:Name="datePicker1" HorizontalAlignment="Left" Margin="713,411,0,0" VerticalAlignment="Top" Height="40" Width="230" FontSize="20"/>
         <Button Content="Add key point" HorizontalAlignment="Left" Margin="999,122,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="40" Width="140" FontSize="18"/>
 
         <Label Content="CREATE NEW TOUR" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="70" Width="332" FontSize="36"/>
-        <Image Source ="/Resources/Images/logo1.png" HorizontalAlignment="Left" Height="72" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.6"/>
-        <Rectangle HorizontalAlignment="Left" Height="627" Margin="0,77,0,0" Stroke="Black" VerticalAlignment="Top" Width="208"/>
+        <Image Source ="/Resources/Images/logo1.png" HorizontalAlignment="Left" Height="72" Margin="6,10,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.6"/>
+        <Rectangle HorizontalAlignment="Left" Height="627" Margin="-2,77,0,0" Stroke="Black" VerticalAlignment="Top" Width="208"/>
         <Label Content="Country:" HorizontalAlignment="Left" Margin="494,181,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ListBox Name="KeyPointsList" Margin="719,220,295,339" FontSize="18" />
         <Label Content="Added key points:" HorizontalAlignment="Left" Margin="713,181,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ListBox x:Name="KeyPointsList_Copy" Margin="717,509,297,133" FontSize="18" />
         <Label Content="Dates you added:" HorizontalAlignment="Left" Margin="717,467,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label x:Name="SuccessfulTour" HorizontalAlignment="Left" Margin="837,589,0,80" FontSize="16" Width="272"/>
-        <!--<Rectangle HorizontalAlignment="Left" Height="627" Margin="241,77,0,0" Stroke="Black" VerticalAlignment="Top" Width="942"/>-->
+        <TextBlock x:Name = "TourSuccessfully" HorizontalAlignment="Center" Margin="0,650,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF1BE81B"/>
+        <Rectangle HorizontalAlignment="Left" Height="627" Margin="241,77,0,0" Stroke="Black" VerticalAlignment="Top" Width="942"/>
+        <Button Content="Create tour" HorizontalAlignment="Left" Margin="13,96,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Live tour" HorizontalAlignment="Left" Margin="13,153,0,0" VerticalAlignment="Top" Height="36" Width="178" FontSize="18"/>
+        <Button Content="Requests" HorizontalAlignment="Left" Margin="13,205,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Dissmisal" HorizontalAlignment="Left" Margin="16,640,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Report" HorizontalAlignment="Left" Margin="13,582,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Create by statistics" HorizontalAlignment="Left" Margin="16,525,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Request statistics" HorizontalAlignment="Left" Margin="16,471,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Complex tour" HorizontalAlignment="Left" Margin="16,422,0,0" VerticalAlignment="Top" Height="36" Width="178" FontSize="18"/>
+        <Button Content="Reviews" HorizontalAlignment="Left" Margin="16,366,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Tour statistics" HorizontalAlignment="Left" Margin="13,310,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="14,257,0,0" VerticalAlignment="Top" Height="37" Width="180" FontSize="18"/>
     </Grid>
 </Window>

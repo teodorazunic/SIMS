@@ -50,7 +50,7 @@ namespace InitialProject.View
 
             Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status );
             Tour saveTour = repository.Save(tour);
-            SuccessfulTour.Content = "Successfully added tour!";
+            TourSuccessfully.Text = "Successfully added tour!";
         }
 
        
