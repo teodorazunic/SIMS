@@ -23,21 +23,24 @@ namespace InitialProject.Domain.Models
 
         public int Age { get; set; }
 
+        public string Voucher { get; set; }
 
-        
 
-        public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint)
+
+        public GuestOnTour(int id, int guestId, string guestName,int age, int numberOfGuests, KeyPoint startingKeyPoint, string voucher)
         {
             Id = id;
             GuestId = guestId;
             GuestName = guestName;
+            Age = age;
             NumberOfGuests = numberOfGuests;
             StartingKeyPoint = startingKeyPoint;
+            Voucher = voucher;
         }
         public GuestOnTour() { }
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.TourId.ToString(), StartingKeyPoint.Status };
+            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,Age.ToString(),NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.TourId.ToString(), StartingKeyPoint.Status, Voucher};
             return csvValues;
         }
 
@@ -46,9 +49,10 @@ namespace InitialProject.Domain.Models
             Id = Convert.ToInt32(values[0]); 
             GuestId = Convert.ToInt32(values[1]);
             GuestName = values[2];
-            NumberOfGuests = Convert.ToInt32(values[3]);
-            StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(values[4]), Name = values[5], TourId = Convert.ToInt32(values[6]), Status = values[7] };
-
+            Age = Convert.ToInt32(values[3]);
+            NumberOfGuests = Convert.ToInt32(values[4]);
+            StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(values[5]), Name = values[6], TourId = Convert.ToInt32(values[7]), Status = values[8] };
+            Voucher  = values[9];
         }
     }
 }

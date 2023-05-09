@@ -55,6 +55,7 @@ namespace InitialProject.WPF.Views.Guide
             ComboBox.Items.Add("2023");
             ComboBox.Items.Add("2022");
             ComboBox.Items.Add("2021");
+            ComboBox.Items.Add("2020");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
