@@ -50,8 +50,10 @@ namespace InitialProject.View
 
             Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status );
             Tour saveTour = repository.Save(tour);
-            MessageBox.Show("Succesfully added tour!");
+            SuccessfulTour.Content = "Successfully added tour!";
         }
+
+       
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -64,6 +66,8 @@ namespace InitialProject.View
             keyPoints.Add(keypoint);
             KeyPoint saveKeyPoint = keyPointRepository.SaveKeyPoint(keypoint);
             txtKeyPoint.Text = "";
+
+            KeyPointsList.Items.Add(name);
 
         }
     }
