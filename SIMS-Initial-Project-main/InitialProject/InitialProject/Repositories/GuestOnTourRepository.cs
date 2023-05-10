@@ -78,5 +78,24 @@ namespace InitialProject.Repositories
             }
             return sameIdGuests;
         }
+        
+         public GuestOnTour Save(GuestOnTour guest)
+        {
+            guest.Id = NextId();
+            _guestsOnTour = _serializer.FromCSV(FilePath);
+            _guestsOnTour.Add(guest);
+            _serializer.ToCSV(FilePath, _guestsOnTour);
+            return guest;
+        }
+
+        public int NextId()
+        {
+            _guestsOnTour = _serializer.FromCSV(FilePath);
+            if (_guestsOnTour.Count < 1)
+            {
+                return 1;
+            }
+            return _guestsOnTour.Max(t => t.Id) + 1;
+        }
     }
 }
