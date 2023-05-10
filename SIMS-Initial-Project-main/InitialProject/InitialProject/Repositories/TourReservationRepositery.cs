@@ -162,6 +162,31 @@ namespace InitialProject.Repositories
 
             return tourReservation;
         }
+        
+         public List<TourReservations> ReadFromTourReservationsCsv(string filename)
+        {
+            List<TourReservations> tourReservations = new List<TourReservations>();
+
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+
+                    string[] fields = line.Split('|');
+                    TourReservations tourReservation = new TourReservations();
+                    tourReservation.TourReservationId = Convert.ToInt32(fields[0]);
+                    tourReservation.TourId = Convert.ToInt32(fields[1]);
+                    tourReservation.GuestId = Convert.ToInt32(fields[2]);
+                    tourReservation.NumberOfGuests = Convert.ToInt32(fields[3]);
+                    tourReservation.UsedVoucher = Convert.ToBoolean(fields[4]);
+                    tourReservations.Add(tourReservation);
+
+
+                }
+            }
+            return tourReservations;
+        }
 
         
     }
