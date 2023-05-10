@@ -22,10 +22,13 @@ namespace InitialProject.View
     public partial class TourForm : Window
     {
         public User LoggedInUser { get; set; }
+
+
         
         public TourForm()
         {
             InitializeComponent();
+            
         }
 
         TourRepository repository = new TourRepository();
@@ -70,5 +73,21 @@ namespace InitialProject.View
             KeyPointsList.Items.Add(name);
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //myFrame.Source = new Uri("CancelTourPagw.xaml", UriKind.Relative);
+        }
+        private void NavigateToPage(string pageName)
+        {
+            mainFrame.Source = new Uri("CreateTourPage.xaml", UriKind.Relative);
+        }
+
+        private void Button_Click3(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage("CreateTourPage");
+        }
+
+        
     }
 }

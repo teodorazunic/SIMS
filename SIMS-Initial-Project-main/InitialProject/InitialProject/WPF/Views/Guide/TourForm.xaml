@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Create new tour" Height="720" Width="1280">
     <Grid RenderTransformOrigin="0.455,0.513">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="627*"/>
             <ColumnDefinition/>
@@ -54,6 +55,6 @@
         <Button Content="Complex tour" HorizontalAlignment="Left" Margin="16,422,0,0" VerticalAlignment="Top" Height="36" Width="178" FontSize="18"/>
         <Button Content="Reviews" HorizontalAlignment="Left" Margin="16,366,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
         <Button Content="Tour statistics" HorizontalAlignment="Left" Margin="13,310,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="14,257,0,0" VerticalAlignment="Top" Height="37" Width="180" FontSize="18"/>
+        <Button Content="Cancel Tour" HorizontalAlignment="Left" Margin="14,257,0,0" VerticalAlignment="Top" Height="37" Width="180" FontSize="18"/>
     </Grid>
 </Window>
