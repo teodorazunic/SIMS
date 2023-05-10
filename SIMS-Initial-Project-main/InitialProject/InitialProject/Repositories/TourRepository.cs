@@ -76,6 +76,21 @@ namespace InitialProject.Repository
             }
             return tours;
         }
+        
+        public Tour GetStartedTour(List<Tour> tours)
+        {
+            _tours = _serializer.FromCSV(FilePath);
+            Tour startedTour = new Tour();
+
+            foreach (Tour tour in tours)
+            {
+                if (tour.Status == "Started")
+                {
+                    startedTour = tour;
+                }
+            }
+            return startedTour;
+        }
 
         public string CancelTour(Tour tour)
         {

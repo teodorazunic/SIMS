@@ -131,6 +131,22 @@ namespace InitialProject.Repository
             }
             return keyPoints;
         }
+        
+        public KeyPoint GetLastActiveKeyPoint(List<KeyPoint> keyPoints) 
+        {
+            _keyPoints = _serializer.FromCSV(FilePath);
+            KeyPoint lastActive = new KeyPoint();
+            
+            foreach(KeyPoint keypoint in keyPoints)
+            {
+                if(keypoint.Status == "Active")
+                {
+                    lastActive = keypoint;
+                }
+            }
+
+            return lastActive;
+        }
 
     }
 }
