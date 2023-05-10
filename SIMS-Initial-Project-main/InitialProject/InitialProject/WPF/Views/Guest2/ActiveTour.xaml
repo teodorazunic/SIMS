@@ -1,0 +1,27 @@
+﻿<Window x:Class="InitialProject.WPF.Views.ActiveTour"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views"
+        mc:Ignorable="d"
+        Title="ActiveTour" Height="450" Width="800">
+    <Grid>
+        <Label Content="City" HorizontalAlignment="Left" Margin="45,40,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="cityTextBlock"  Margin="88,40,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Text="{Binding Path=startedTour.Location.City}"/>
+        <DataGrid x:Name="KeyPoints"  IsReadOnly="True" SelectionMode="Single" 
+                  ItemsSource="{Binding KeyPoints}"
+                  
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="427,10,74,142" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Tour Id" Binding="{Binding TourId}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+       
+        <Button Name="JoinButton" Content="Join" Click="JoinTour" HorizontalAlignment="Left" Margin="282,0,0,0" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
