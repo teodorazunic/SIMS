@@ -11,6 +11,7 @@
     <None Remove="Resources\Images\add.png" />
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
+    <None Remove="Resources\Images\velikilogo.png" />
     <None Remove="Resources\Images\view.png" />
   </ItemGroup>
 
@@ -36,6 +37,14 @@
     <Compile Update="WPF\Views\Owner\ReviewFromGuests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="WPF\ViewModels\GuideHCI\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\velikilogo.png" />
   </ItemGroup>
 
 </Project>
