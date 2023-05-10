@@ -120,6 +120,48 @@ namespace InitialProject.Repositories
             }
             return _tourreservations.Max(t=> t.TourReservationId) + 1;
         }
+        
+        public TourReservations FindMostAttendantTourByYear(string filename, string year)
+        {
+            TourReservations tourReservation = new TourReservations();
+            List<TourReservations> tourReservations = ReadFromTourReservationsCsv(filename);
+            List<Tour> tours = _tourRepository.GetAllTours();
+            int maxGuests = 0;
+            for (int i = 0; i < tours.Count; i++)
+            {
+                for (int j = 0; j < tourReservations.Count; j++)
+                {
+                    if (tours[i].Id == tourReservations[j].TourId && tourReservations[j].NumberOfGuests > maxGuests && tours[i].Start.Year == Convert.ToInt32(year))
+                    {
+                        maxGuests = tourReservations[j].NumberOfGuests;
+                        tourReservation = tourReservations[j];
+
+                    }
+                }
+            }
+
+            return tourReservation;
+
+        }
+
+        public TourReservations FindMostAttendantTour(string filename)
+        {
+            TourReservations tourReservation = new TourReservations();
+            List<TourReservations> tourReservations = ReadFromTourReservationsCsv(filename);
+            int maxGuests = 0;
+
+            for(int i =0; i < tourReservations.Count; i++)
+            {
+                if (tourReservations[i].NumberOfGuests > maxGuests)
+                {
+                    maxGuests = tourReservations[i].NumberOfGuests;
+                    tourReservation = tourReservations[i];
+
+                }
+            }
+
+            return tourReservation;
+        }
 
         
     }
