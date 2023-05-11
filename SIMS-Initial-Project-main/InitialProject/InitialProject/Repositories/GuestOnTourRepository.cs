@@ -44,6 +44,22 @@ namespace InitialProject.Repositories
             _guestsOnTour = _serializer.FromCSV(FilePath);
             return _guestsOnTour.Find(t => t.Id == id);
         }
+        
+         public string GetGuestStatusByTourId(int id)
+        {
+            _guestsOnTour = _serializer.FromCSV(FilePath);
+            GuestOnTour sameIdGuests = new GuestOnTour();
+
+            foreach (GuestOnTour gt in _guestsOnTour)
+            {
+                if (id == gt.StartingKeyPoint.TourId)
+                {
+                    sameIdGuests = gt;
+                }
+
+            }
+            return sameIdGuests.Status;
+        }
 
         public List<GuestOnTour> GetGuestByKeyPointId(int id)
         {
