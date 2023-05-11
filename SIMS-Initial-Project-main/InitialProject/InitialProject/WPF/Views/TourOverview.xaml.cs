@@ -182,5 +182,11 @@ namespace InitialProject
             ActiveTour activeTour = new ActiveTour(LoggedInUser);
             activeTour.Show();
         }
+        
+         private void Requests(object sender, RoutedEventArgs e)
+        {
+            CreateTourRequest createTourRequest = new CreateTourRequest(LoggedInUser);
+            createTourRequest.Show();
+        }
     }
 }
