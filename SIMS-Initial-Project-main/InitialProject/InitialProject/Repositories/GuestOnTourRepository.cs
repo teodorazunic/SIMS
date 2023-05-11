@@ -62,6 +62,19 @@ namespace InitialProject.Repositories
             return sameIdGuests;
         }
 
+       
+
+        public GuestOnTour Update(GuestOnTour guestOnTour)
+        {
+            _guestsOnTour = _serializer.FromCSV(FilePath);
+            GuestOnTour current = _guestsOnTour.Find(c => c.Id == guestOnTour.Id);
+            int index = _guestsOnTour.IndexOf(current);
+            _guestsOnTour.Remove(current);
+            _guestsOnTour.Insert(index, guestOnTour);
+            _serializer.ToCSV(FilePath, _guestsOnTour);
+            return guestOnTour;
+        }
+
         public List<GuestOnTour> GetGuestByTourId(int id)
         {
             Tour tour = _tourRepository.GetTourById(id);

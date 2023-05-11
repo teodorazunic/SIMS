@@ -45,7 +45,7 @@
 
         </DataGrid>
         <Button  Content="Activate" HorizontalAlignment="Left" Margin="539,157,0,0" VerticalAlignment="Top" Click="Activate"/>
-        <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
+        <DataGrid x:Name="GuestsOnTour"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GuestsOnTour}"
             SelectedItem="{Binding SelectedGuest}"
             AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="427,198,103,110" >
@@ -54,11 +54,12 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding GuestName}" Width="*" />
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
-
+            
 
         </DataGrid>
         <Button  Content="Start Tour" HorizontalAlignment="Left" Margin="70,375,0,0" VerticalAlignment="Top" Width="69" Click="StartTour"/>
         <Button  Content="End Tour" HorizontalAlignment="Left" Margin="168,375,0,0" VerticalAlignment="Top" Width="68" Click="EndTour"/>
+        <Button Content="Accept" HorizontalAlignment="Left" Height="39" Margin="539,361,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 </Window>

@@ -42,6 +42,7 @@ namespace InitialProject.View
         {
             TourForm tourForm = new TourForm();
             tourForm.Show();
+            Close();
         }
 
         private void OpenGuideTours(object sender, RoutedEventArgs e)

@@ -61,7 +61,21 @@ namespace InitialProject.View
 
         }
 
-        
+        public GuestOnTour SelectedGuest
+        {
+            get => _selectedGuest;
+            set
+            {
+                if (value != _selectedGuest)
+                {
+                    _selectedGuest = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
+
+
 
 
         private readonly TourRepository _repository = new TourRepository();
@@ -84,6 +98,7 @@ namespace InitialProject.View
             LoggedInUser = user;
             _repository = new TourRepository();
             _keyPointRepository = new KeyPointRepository();
+            _guestOnTourRepository = new GuestOnTourRepository();
             Tours.ItemsSource = _repository.GetTodaysTours(FilePath);
         }
 
@@ -102,9 +117,10 @@ namespace InitialProject.View
             SelectedKeyPoint = _keyPointRepository.GetKeyPointById(SelectedKeyPoint.Id);
             List<GuestOnTour> guestsOnTour = new List<GuestOnTour>();
             guestsOnTour = _guestOnTourRepository.GetGuestByKeyPointId(SelectedKeyPoint.Id);
-            Guests.ItemsSource = guestsOnTour;
+            GuestsOnTour.ItemsSource = guestsOnTour;
 
         }
+        
 
         private void Activate(object sender, RoutedEventArgs e)
         {
@@ -126,7 +142,7 @@ namespace InitialProject.View
 
             if (numOfActiveKeyPoints == KeyPoints.Items.Count)
             {
-                _selectedTour.Status = "Finished";
+                _selectedTour.Status = "Ended";
                 _selectedTour = _repository.Update(_selectedTour);
                 _selectedTour = null;
                 foreach (KeyPoint kp in KeyPoints.Items)
@@ -176,6 +192,13 @@ namespace InitialProject.View
             }
             KeyPoints.Items.Refresh();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _selectedGuest.Status = "Here";
+            _selectedGuest = _guestOnTourRepository.Update(_selectedGuest);
+            GuestsOnTour.Items.Refresh();
         }
     }
 }
