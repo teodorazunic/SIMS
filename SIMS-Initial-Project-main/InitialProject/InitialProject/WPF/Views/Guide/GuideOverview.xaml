@@ -56,6 +56,7 @@
             </Button>
             <Separator/>
         </ToolBar>
+        <Button Content="Open Requests" HorizontalAlignment="Left" Margin="272,217,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>

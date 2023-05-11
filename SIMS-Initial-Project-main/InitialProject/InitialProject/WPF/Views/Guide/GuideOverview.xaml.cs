@@ -80,6 +80,13 @@ namespace InitialProject.View
             signInForm.Show();
             Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Requests requests = new Requests(LoggedInUser);
+            requests.Show();
+            Close();
+        }
     }
 }
 
