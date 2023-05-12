@@ -2,6 +2,7 @@
 using InitialProject.Forms;
 using InitialProject.Repository;
 using InitialProject.View;
+using InitialProject.WPF.Views.Guide;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -71,7 +72,7 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guide)
                     {
-                        GuideOverview guideOverview = new GuideOverview(user);
+                        MainWindow guideOverview = new MainWindow(user);
                         guideOverview.Show();
                         Close();
 

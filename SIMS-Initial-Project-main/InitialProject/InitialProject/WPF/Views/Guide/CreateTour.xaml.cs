@@ -12,33 +12,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InitialProject.View
+namespace InitialProject.WPF.Views.Guide
 {
     /// <summary>
-    /// Interaction logic for TourForm.xaml
+    /// Interaction logic for CreateTour.xaml
     /// </summary>
-    public partial class TourForm : Window
+    public partial class CreateTour : Page
     {
-        public User LoggedInUser { get; set; }
-
-
-        
-        public TourForm()
+        public CreateTour()
         {
             InitializeComponent();
-            
         }
+
+        
 
         TourRepository repository = new TourRepository();
         KeyPointRepository keyPointRepository = new KeyPointRepository();
         List<KeyPoint> keyPoints = new List<KeyPoint>();
 
-       
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
 
             int id = repository.NextId();
             String name = txtName.Text;
@@ -51,19 +49,19 @@ namespace InitialProject.View
             string image = txtImage.Text;
             string status = "Pending";
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status );
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
             Tour saveTour = repository.Save(tour);
             TourSuccessfully.Text = "Successfully added tour!";
         }
 
-       
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             int id = keyPointRepository.NextId();
             string name = txtKeyPoint.Text;
             int tourId = repository.NextId();
-            
+
 
             KeyPoint keypoint = new KeyPoint(name, id, tourId);
             keyPoints.Add(keypoint);
@@ -73,12 +71,5 @@ namespace InitialProject.View
             KeyPointsList.Items.Add(name);
 
         }
-
-        
-        
-
-       
-
-        
     }
 }
