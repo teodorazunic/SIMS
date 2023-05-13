@@ -72,7 +72,7 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guide)
                     {
-                        GuideOverview guideOverview = new GuideOverview(user);
+                        MainWindow guideOverview = new MainWindow(user);
                         guideOverview.Show();
                         Close();
 
