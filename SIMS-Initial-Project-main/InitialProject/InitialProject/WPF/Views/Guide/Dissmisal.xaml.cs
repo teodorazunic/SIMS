@@ -1,6 +1,7 @@
 ﻿using InitialProject.Domain.Models;
-using InitialProject.Repositories;
+using InitialProject.Forms;
 using InitialProject.Repository;
+using InitialProject.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,60 +22,72 @@ using System.Windows.Shapes;
 namespace InitialProject.WPF.Views.Guide
 {
     /// <summary>
-    /// Interaction logic for Cancel.xaml
+    /// Interaction logic for Dissmisal.xaml
     /// </summary>
-    public partial class Cancel : Page
+    public partial class Dissmisal : Page
     {
-        public Cancel(User user)
+        public Dissmisal()
         {
             InitializeComponent();
             DataContext = this;
-            LoggedInUser = user;
-            _repository = new TourRepository();
-            _voucherRepository = new VoucherRepository();
-            Tours.ItemsSource = _repository.GetPendingTours(FilePath);
+            _repository = new UserRepository();
         }
-        private const string FilePath = "../../../Resources/Data/tour.csv";
 
-        public User LoggedInUser { get; set; }
+        private readonly UserRepository _repository;
 
-        private Tour _selectedTour;
-
-        public Tour SelectedTour
+        private string _username;
+        public string Username
         {
-            get => _selectedTour;
+            get => _username;
             set
             {
-                if (value != _selectedTour)
+                if (value != _username)
                 {
-                    _selectedTour = value;
+                    _username = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private readonly TourRepository _repository;
-
-        private readonly VoucherRepository _voucherRepository;
-
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-       
 
+        
+
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (_selectedTour != null)
-            {
-                string message = _repository.CancelTour(_selectedTour);
-                _voucherRepository.SendVouchers(_selectedTour.Id);
-                txtBlock.Text = message;
 
+            User user = _repository.GetByUsername(Username);
+            if (user != null)
+            {
+                if (user.Password == txtPassword.Password)
+                {
+
+                    if (user.Role == UserRole.guide)
+                    {
+                        Window parentWindow = Window.GetWindow(this);
+                        SignInForm signIn = new SignInForm();
+                       
+                        signIn.Show();
+                        parentWindow.Close();
+
+                    }
+                }
+                else
+                {
+                    txtBlock.Text= "Wrong password!";
+                }
             }
-            Tours.Items.Refresh();
+            else
+            {
+                txtBlock.Text = "Wrong username!";
+            }
         }
     }
 }

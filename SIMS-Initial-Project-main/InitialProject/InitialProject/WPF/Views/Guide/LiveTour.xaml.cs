@@ -126,7 +126,7 @@ namespace InitialProject.WPF.Views.Guide
 
             if (numOfActiveKeyPoints == KeyPoints.Items.Count)
             {
-                _selectedTour.Status = "Finished";
+                _selectedTour.Status = "Ended";
                 _selectedTour = _repository.Update(_selectedTour);
                 _selectedTour = null;
                 foreach (KeyPoint kp in KeyPoints.Items)

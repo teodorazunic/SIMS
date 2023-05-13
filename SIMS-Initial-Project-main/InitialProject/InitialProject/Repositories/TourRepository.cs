@@ -81,7 +81,7 @@ namespace InitialProject.Repository
         {
             DateTime currentDate = DateTime.Now;
             
-            if ((currentDate - tour.Start ).TotalHours < 48)
+            if (( currentDate -tour.Start).TotalHours < 48)
             {
                 return "Unable to cancel tour";
             }

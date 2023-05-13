@@ -69,7 +69,7 @@
         <Rectangle HorizontalAlignment="Left" Height="31" Margin="60,562,0,0" Stroke="Black" VerticalAlignment="Top" Width="314"/>
         <Rectangle HorizontalAlignment="Left" Height="31" Margin="450,562,0,0" Stroke="Black" VerticalAlignment="Top" Width="315"/>
         <Label Content="LIVE TOUR" HorizontalAlignment="Left" Margin="365,6,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
-        <Rectangle HorizontalAlignment="Left" Height="597" Margin="12,56,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+        <Rectangle HorizontalAlignment="Left" Height="600" Margin="12,56,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 
     </Grid>
 </Page>

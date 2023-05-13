@@ -54,6 +54,18 @@ namespace InitialProject.WPF.Views.Guide
             page.Content = liveTour;
 
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Dissmisal dissmisal = new Dissmisal();
+            page.Content = dissmisal;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Review review = new Review(LoggedInUser);
+            page.Content = review;
+        }
     }
 }
 
