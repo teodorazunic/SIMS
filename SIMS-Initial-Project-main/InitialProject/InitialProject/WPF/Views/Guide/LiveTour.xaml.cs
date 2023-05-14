@@ -137,7 +137,9 @@ namespace InitialProject.WPF.Views.Guide
                         _keyPointRepository.Update(kp);
                     }
                 }
-                MessageBox.Show("Tour finished.");
+                txtBlock.Text = "Tour finished.";
+                //MessageBox.Show("Tour finished.");
+                Tours.Items.Refresh();
                 KeyPoints.Items.Refresh();
             }
 
@@ -148,13 +150,17 @@ namespace InitialProject.WPF.Views.Guide
             bool isTourStarted = _repository.IsStarted();
             if (isTourStarted == true)
             {
-                MessageBox.Show("It is not possible to start the tour.");
+                txtBlock.Text = "It is not possible to start the tour.";
+                //MessageBox.Show("It is not possible to start the tour.");
             }
             else
             {
                 _selectedTour.Status = "Started";
                 _selectedTour = _repository.Update(_selectedTour);
-                MessageBox.Show("Tour Started.");
+                txtBlock.Text = "Tour started.";
+                
+
+                //MessageBox.Show("Tour Started.");
             }
 
 
@@ -165,7 +171,9 @@ namespace InitialProject.WPF.Views.Guide
         {
             _selectedTour.Status = "Ended";
             _selectedTour = _repository.Update(_selectedTour);
-            MessageBox.Show("Tour ended.");
+            txtBlock.Text = "Tour ended.";
+            Tours.Items.Refresh();
+            //MessageBox.Show("Tour ended.");
 
             foreach (KeyPoint kp in KeyPoints.Items)
             {

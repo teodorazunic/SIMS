@@ -38,7 +38,7 @@ namespace InitialProject.Repository
 
             for (int i = 0; i < allTours.Count; i++)
             {
-                if (allTours[i].Start == dateTime)
+                if (allTours[i].Start == dateTime )
                 {
                     Tour tour = allTours[i];
                     tours.Add(tour);

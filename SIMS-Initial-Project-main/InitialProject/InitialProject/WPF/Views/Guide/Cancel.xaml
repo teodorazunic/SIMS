@@ -13,17 +13,59 @@
         <DataGrid  x:Name="Tours" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}" IsReadOnly="True" SelectionMode="Single" 
             AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="50,108,51,261">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tour name" Binding="{Binding Name}" Width="*" />
-                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
-                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" />
+                <DataGridTextColumn Header="Tour name" Binding="{Binding Name}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <!--<DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />-->
                 <!--<DataGridTextColumn Header="Language" Binding="{Binding Language.Name}" Width="*" />
                 <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />-->
-                <DataGridTextColumn Header="Date" Binding="{Binding Start}" Width="*" />
-                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Start}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <!--<DataGridTextColumn Header="Image" Binding="{Binding Image}" Width="*" />-->
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
         </DataGrid>
         <Label Content="Select the tour you want to cancel:" HorizontalAlignment="Left" Margin="45,71,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Rectangle HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>

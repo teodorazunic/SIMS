@@ -30,6 +30,12 @@
                     <EventSetter Event="Control.MouseDoubleClick" Handler="OnRowClick"/>
                 </Style>
             </DataGrid.ItemContainerStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
         </DataGrid>
         <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GuestsOnTour}"
@@ -47,6 +53,12 @@
                     <EventSetter Event="Control.MouseDoubleClick" Handler="OnRowClick1"/>
                 </Style>
             </DataGrid.ItemContainerStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
         </DataGrid>
         <DataGrid x:Name="Grades"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GradeGuides}"
@@ -60,7 +72,12 @@
                 <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*" />
                 <DataGridTextColumn Header="Review" Binding="{Binding Validation}" Width="*" />
             </DataGrid.Columns>
-
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
 
 
         </DataGrid>
