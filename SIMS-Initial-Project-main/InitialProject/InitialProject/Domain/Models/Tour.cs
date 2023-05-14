@@ -34,6 +34,8 @@ namespace InitialProject.Domain.Models
 
         public string Status { get; set; }
 
+        
+
         public Tour( int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, string status)
         {
             Id = id;
@@ -48,7 +50,7 @@ namespace InitialProject.Domain.Models
             Status = status;
         }
 
-        public Tour(int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, List<KeyPoint> keyPoints, int guideId)
+        public Tour(int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, string status, int guideId)
         {
             Id = id;
             Name = name;
@@ -59,7 +61,7 @@ namespace InitialProject.Domain.Models
             Start = start;
             Duration = duration;
             Image = image;
-            KeyPoints = keyPoints;
+            Status = status;
             GuideId = guideId;
         }
 
@@ -67,7 +69,7 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = {Id.ToString(), Name, Location.City, Location.Country, Description, Language.Name, MaxGuests.ToString(), Start.ToString("dd-MMM-y HH:mm:ss tt"), Duration.ToString(), Image, Status};
+            string[] csvValues = {Id.ToString(), Name, Location.City, Location.Country, Description, Language.Name, MaxGuests.ToString(), Start.ToString("dd-MMM-y HH:mm:ss tt"), Duration.ToString(), Image, Status, GuideId.ToString()};
             return csvValues;
         }
 
@@ -85,6 +87,7 @@ namespace InitialProject.Domain.Models
             Duration = Convert.ToInt32(values[8]);
             Image = values[9];
             Status = values[10];
+            GuideId = Convert.ToInt32(values[11]);
         }
 
     }

@@ -40,7 +40,7 @@ namespace InitialProject.View
 
         private void OpenTourForm(object sender, RoutedEventArgs e)
         {
-            TourForm tourForm = new TourForm();
+            TourForm tourForm = new TourForm(LoggedInUser);
             tourForm.Show();
             Close();
         }
@@ -84,6 +84,13 @@ namespace InitialProject.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Requests requests = new Requests(LoggedInUser);
+            requests.Show();
+            Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            RequestStatistics requests = new RequestStatistics(LoggedInUser);
             requests.Show();
             Close();
         }

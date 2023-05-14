@@ -27,6 +27,72 @@ namespace InitialProject.Repositories
 
         }
 
+        public int Statistic(string city, string country, string years, string language )
+        {
+
+            List<TourRequest> allRequests =GetAllTourRequests();
+            List<TourRequest> dobri = new List<TourRequest>();
+            List<TourRequest> requests = new List<TourRequest>();
+
+            
+
+            if (years != null || years != "All years")
+            {
+                for (int i = 0; i < allRequests.Count; i++)
+                {
+                    if (allRequests[i].StartDate.Year.ToString() == years)
+                    {
+                        requests.Add(allRequests[i]);
+                    }
+                }
+            }
+            requests = allRequests;
+
+            if (city != null || city != "")
+            {
+                for (int i = 0; i < requests.Count; i++)
+                {
+                    if (requests[i].Location.City == city)
+                    {
+                        dobri.Add(requests[i]);
+                    }
+                }
+                return dobri.Count();
+
+            }
+            else if (language != null || language != "")
+            {
+                for (int i = 0; i < requests.Count; i++)
+                {
+
+                    if (requests[i].Language == language)
+                    {
+                        dobri.Add(requests[i]);
+                    }
+                }
+
+                return dobri.Count();
+
+
+            }
+            else if (country != null || country != "")
+            {
+                for (int i = 0; i < requests.Count; i++)
+                {
+
+                    if (requests[i].Location.Country == country)
+                    {
+                        dobri.Add(requests[i]);
+                    }
+                }
+
+                return dobri.Count();
+            }
+
+            return dobri.Count();
+
+        }
+
         public List<TourRequest> GetAllTourRequests()
         {
             _requests = _serializer.FromCSV(FilePath);

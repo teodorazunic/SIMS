@@ -29,5 +29,7 @@
         <TextBox x:Name="txtLanguage" HorizontalAlignment="Left" Margin="359,88,0,0" TextWrapping="Wrap" Text="{Binding Path=RequestLanguage, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <Button Content="Filter" HorizontalAlignment="Left" Margin="610,79,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <TextBox x:Name="txtCountry" HorizontalAlignment="Left" Margin="68,111,0,0" TextWrapping="Wrap" Text="{Binding Path=RequestCountry, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="startDate" HorizontalAlignment="Left" Margin="510,47,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="endDate" HorizontalAlignment="Left" Margin="625,47,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
