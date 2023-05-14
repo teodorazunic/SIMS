@@ -32,9 +32,11 @@ namespace InitialProject.WPF.Views.Guide
             LoggedInUser = user;
             _repository = new TourRepository();
             _keyPointRepository = new KeyPointRepository();
+            _guestOnTourRepository = new GuestOnTourRepository();
             Tours.ItemsSource = _repository.GetTodaysTours(FilePath);
         }
         private const string FilePath = "../../../Resources/Data/tour.csv";
+        private const string FilePath1 = "../../../Resources/Data/guestontour.csv";
 
         public User LoggedInUser { get; set; }
 
@@ -69,6 +71,8 @@ namespace InitialProject.WPF.Views.Guide
             }
 
         }
+
+      
 
 
 
@@ -184,6 +188,13 @@ namespace InitialProject.WPF.Views.Guide
                 }
             }
             KeyPoints.Items.Refresh();
+
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            _selectedGuest.Status = true;
+            _selectedGuest = _guestOnTourRepository.Update(_selectedGuest);
 
         }
     }

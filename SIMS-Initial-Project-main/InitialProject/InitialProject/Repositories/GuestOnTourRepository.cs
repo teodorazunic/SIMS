@@ -33,6 +33,26 @@ namespace InitialProject.Repositories
 
         }
 
+        public string Here(GuestOnTour guestOnTour)
+        {
+
+            guestOnTour.Status = true;
+            Update(guestOnTour);
+            _serializer.ToCSV(FilePath, _guestsOnTour);
+            return "Succesfully activated!";
+        }
+
+        public GuestOnTour Update(GuestOnTour guestOnTour)
+        {
+            _guestsOnTour = _serializer.FromCSV(FilePath);
+            GuestOnTour current = _guestsOnTour.Find(c => c.Id == guestOnTour.Id);
+            int index = _guestsOnTour.IndexOf(current);
+            _guestsOnTour.Remove(current);
+            _guestsOnTour.Insert(index, guestOnTour);
+            _serializer.ToCSV(FilePath, _guestsOnTour);
+            return guestOnTour;
+        }
+
         public List<GuestOnTour> GetAllGuestsOnTour()
         {
             _guestsOnTour = _serializer.FromCSV(FilePath);
