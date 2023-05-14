@@ -21,14 +21,14 @@ namespace InitialProject.Domain.Models
 
         public KeyPoint StartingKeyPoint { get; set; }
 
-        public Boolean Status { get; set; }
+        public bool Status { get; set; }
 
         public int Age { get; set; }
 
 
         
 
-        public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint, Boolean status)
+        public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint, bool status)
         {
             Id = id;
             GuestId = guestId;

@@ -195,14 +195,37 @@ namespace InitialProject.WPF.Views.Guide
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-           CheckBox cb = sender as CheckBox;
-           GuestOnTour guestOnTour = new GuestOnTour();
-            guestOnTour = _selectedGuest;
-           if (cb.IsChecked == true)
-                guestOnTour.Status = true;
-            else
-                guestOnTour.Status = false;
-      
+            //var checkBox = sender as CheckBox;
+            //var dataContext = checkBox.DataContext;
+            //if (dataContext != null)
+            //{
+
+            //    bool isChecked = checkBox.IsChecked ?? false;
+
+            //    // Get the ID of the record that corresponds to the clicked row
+            //    int recordId = ((GuestOnTour)dataContext).GuestId; // Replace "Guest" with the name of your model class and "Id" with the name of your record ID property
+            //    GuestOnTour guestOnTour = new GuestOnTour();
+            //    guestOnTour = _guestOnTourRepository.GetGuestById(recordId);
+
+            //    // Update the status of the record in the database
+            //    if (checkBox.IsChecked == true)
+            //    {
+            //        _guestOnTourRepository.Update(guestOnTour); // Replace UpdateRecordStatus with your own method that updates the status of the record in the database
+            //    }
+            //}
+
+            CheckBox cb = sender as CheckBox;
+            GuestOnTour guestOnTour = new GuestOnTour();
+
+
+
+            {
+                if (cb.IsChecked == true)
+                    guestOnTour.Status = true;
+                else
+                    guestOnTour.Status = false;
+
+            }
         }
     }
 }
