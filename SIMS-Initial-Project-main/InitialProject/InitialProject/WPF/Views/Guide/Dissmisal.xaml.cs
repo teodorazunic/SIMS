@@ -4,6 +4,7 @@ using InitialProject.Repository;
 using InitialProject.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -26,14 +27,19 @@ namespace InitialProject.WPF.Views.Guide
     /// </summary>
     public partial class Dissmisal : Page
     {
-        public Dissmisal()
+        public Dissmisal(User user)
         {
             InitializeComponent();
+            LoggedInUser = user;
             DataContext = this;
             _repository = new UserRepository();
         }
+        private const string FilePath = "../../../Resources/Data/users.csv";
+
+        public static ObservableCollection<User> Users { get; set; }
 
         private readonly UserRepository _repository;
+        public User LoggedInUser { get; set; }
 
         private string _username;
         public string Username
@@ -64,6 +70,9 @@ namespace InitialProject.WPF.Views.Guide
         {
 
             User user = _repository.GetByUsername(Username);
+
+
+            
             if (user != null)
             {
                 if (user.Password == txtPassword.Password)
@@ -71,9 +80,12 @@ namespace InitialProject.WPF.Views.Guide
 
                     if (user.Role == UserRole.guide)
                     {
+                        
                         Window parentWindow = Window.GetWindow(this);
                         SignInForm signIn = new SignInForm();
-                       
+                        _repository.Delete(user);
+
+
                         signIn.Show();
                         parentWindow.Close();
 

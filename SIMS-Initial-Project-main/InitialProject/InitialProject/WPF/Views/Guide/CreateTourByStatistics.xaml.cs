@@ -37,5 +37,12 @@ namespace InitialProject.WPF.Views.Guide
             txtLanguage.Text = "Srpski";
         }
 
+       
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            CreateTour createTour = new CreateTour();
+            NavigationService.Navigate(createTour);
+        }
     }
 }

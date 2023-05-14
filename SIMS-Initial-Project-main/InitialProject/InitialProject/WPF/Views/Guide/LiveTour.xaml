@@ -76,6 +76,7 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>
+        
         <DataGrid x:Name="KeyPoints"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding KeyPoints}"
             SelectedItem="{Binding SelectedKeyPoint}"
@@ -125,10 +126,11 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn Header="Status">
+                <DataGridTemplateColumn Header="Status" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Click="CheckBox_Click" IsChecked="{Binding Status, UpdateSourceTrigger=PropertyChanged}"   VerticalAlignment="Center" VerticalContentAlignment="Center" Width="100" />
+                            <CheckBox Click="CheckBox_Click" IsChecked="{Binding Status, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"  HorizontalContentAlignment="Center" 
+                         HorizontalAlignment="Center"  />
                         </DataTemplate>
                         
                     </DataGridTemplateColumn.CellTemplate>
@@ -137,8 +139,13 @@
                 
 
             </DataGrid.Columns>
-            
-            
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
 
         </DataGrid>
         <Button  Content="Start Tour" HorizontalAlignment="Left" Margin="152,588,0,0" VerticalAlignment="Top" Width="110" Click="StartTour" Height="37" FontSize="18"/>

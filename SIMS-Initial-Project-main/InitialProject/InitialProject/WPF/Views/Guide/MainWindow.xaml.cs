@@ -57,7 +57,7 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Dissmisal dissmisal = new Dissmisal();
+            Dissmisal dissmisal = new Dissmisal(LoggedInUser);
             page.Content = dissmisal;
         }
 
