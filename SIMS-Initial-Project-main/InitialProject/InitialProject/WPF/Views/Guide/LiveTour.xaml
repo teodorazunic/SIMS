@@ -113,7 +113,7 @@
         </DataGrid>
         <Button  Content="Activate" HorizontalAlignment="Left" Margin="148,446,0,0" VerticalAlignment="Top" Click="Activate" Height="37" Width="110" FontSize="18"/>
         <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
-            ItemsSource="{Binding GuestsOnTour}"
+            ItemsSource="{Binding Guests}"
             SelectedItem="{Binding SelectedGuest}"
             AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="436,336,202,259" >
             <DataGrid.Columns>
@@ -133,6 +133,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
+            
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>

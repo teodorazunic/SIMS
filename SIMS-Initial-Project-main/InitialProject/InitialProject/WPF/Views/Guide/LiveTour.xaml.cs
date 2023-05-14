@@ -72,7 +72,7 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-      
+        
 
 
 
@@ -109,6 +109,8 @@ namespace InitialProject.WPF.Views.Guide
             Guests.ItemsSource = guestsOnTour;
 
         }
+
+        
 
         private void Activate(object sender, RoutedEventArgs e)
         {
@@ -193,9 +195,14 @@ namespace InitialProject.WPF.Views.Guide
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            _selectedGuest.Status = true;
-            _selectedGuest = _guestOnTourRepository.Update(_selectedGuest);
-
+           CheckBox cb = sender as CheckBox;
+           GuestOnTour guestOnTour = new GuestOnTour();
+            guestOnTour = _selectedGuest;
+           if (cb.IsChecked == true)
+                guestOnTour.Status = true;
+            else
+                guestOnTour.Status = false;
+      
         }
     }
 }

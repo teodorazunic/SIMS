@@ -61,7 +61,7 @@ namespace InitialProject.View
 
         }
 
-        
+     
 
 
         private readonly TourRepository _repository = new TourRepository();
