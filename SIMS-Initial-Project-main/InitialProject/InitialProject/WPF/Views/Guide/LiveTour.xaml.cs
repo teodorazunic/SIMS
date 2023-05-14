@@ -112,7 +112,7 @@ namespace InitialProject.WPF.Views.Guide
             {
                 string message = _keyPointRepository.Activate(_selectedKeyPoint);
 
-                MessageBox.Show(message);
+                txtBlock.Text = message;
             }
             KeyPoints.Items.Refresh();
 

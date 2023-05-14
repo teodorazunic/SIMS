@@ -32,13 +32,13 @@ namespace InitialProject.Repository
         {
             if (keyPoint.Status == "Active")
             {
-                return "Kljucna tacka je vec aktivna";
+                return "Key Point already active.";
             }
 
             keyPoint.Status = "Active";
             Update(keyPoint);
             _serializer.ToCSV(FilePath, _keyPoints);
-            return "Uspesno aktivirana kljucna tacka!";
+            return "Succesfully activated!";
         }
 
         public KeyPoint Update(KeyPoint keyPoint)

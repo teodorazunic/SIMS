@@ -9,15 +9,16 @@
       Title="Review">
 
     <Grid Background="White">
-        <Rectangle HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+        <Rectangle HorizontalAlignment="Left" Height="242" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+        <Rectangle HorizontalAlignment="Left" Height="323" Margin="16,322,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 
         <Label Content="REVIEWS" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
-        <TextBlock x:Name="txtBlock"  HorizontalAlignment="Left" Height="35" Margin="360,599,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" FontSize="16"/>
-        <Button Content="Repport" HorizontalAlignment="Left" Margin="404,553,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="6.222,-0.739" Width="111" Height="28"/>
+        <TextBlock x:Name="txtBlock"  HorizontalAlignment="Left" Height="35" Margin="342,612,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" FontSize="16"/>
+        <Button Content="Repport" HorizontalAlignment="Left" Margin="386,566,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="6.222,-0.739" Width="111" Height="28" FontSize="18"/>
         <DataGrid x:Name="Tours"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding Tours}"
             SelectedItem="{Binding SelectedTour}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="54,101,503,421" >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="18" Margin="37,108,517,414" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
                 <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
@@ -33,7 +34,7 @@
         <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GuestsOnTour}"
             SelectedItem="{Binding SelectedGuest}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="515,101,62,421" >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="18" Margin="501,108,76,414" >
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />-->
                 <DataGridTextColumn Header="Guest name" Binding="{Binding GuestName}" Width="*" />
@@ -50,20 +51,22 @@
         <DataGrid x:Name="Grades"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GradeGuides}"
             SelectedItem="{Binding SelectedReview}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="54,346,62,166"   >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="18" Margin="37,359,80,153"   >
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="Guest Id" Binding="{Binding GuestId}" Width="*" />-->
                 <DataGridTextColumn Header="Knowledge" Binding="{Binding GuideKnowledge}" Width="*" />
                 <DataGridTextColumn Header="Language" Binding="{Binding GuideLanguage}" Width="*" />
                 <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="*" />
                 <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*" />
-                <DataGridTextColumn Header="Validation" Binding="{Binding Validation}" Width="*" />
+                <DataGridTextColumn Header="Review" Binding="{Binding Validation}" Width="*" />
             </DataGrid.Columns>
 
 
 
         </DataGrid>
-        <TextBlock x:Name="txtBlock1" HorizontalAlignment="Left" Margin="404,616,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Width="111"/>
+        <Label Content="Select the tour to see key points:" HorizontalAlignment="Left" Margin="32,71,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Select key point to see guest reviews:" HorizontalAlignment="Left" Margin="496,71,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Guest reviews:" HorizontalAlignment="Left" Margin="32,327,0,0" VerticalAlignment="Top" FontSize="18"/>
 
     </Grid>
 </Page>

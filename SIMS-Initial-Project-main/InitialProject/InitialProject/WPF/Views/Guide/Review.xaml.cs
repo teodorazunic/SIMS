@@ -102,7 +102,7 @@ namespace InitialProject.WPF.Views.Guide
             {
                 _selectedGradeGuide.Validation = "Invalid";
                 _gradeGuideRepository.Update(_selectedGradeGuide);
-                txtBlock.Text = "Uspesno prijavljena recenzija.";
+                txtBlock.Text = "Succesfully reported review.";
             }
             Grades.Items.Refresh();
         }

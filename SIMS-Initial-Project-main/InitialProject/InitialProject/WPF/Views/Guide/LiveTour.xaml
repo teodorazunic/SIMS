@@ -12,13 +12,13 @@
         <DataGrid x:Name="Tours"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding Tours}"
             SelectedItem="{Binding SelectedTour}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="60,104,188,388" >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="46,104,202,388" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Tour name" Binding="{Binding Name}" Width="*" />
                 <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
                 <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" />
                 <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />
-                <DataGridTextColumn Header="Start Time" Binding="{Binding Start}" Width="*" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Start}" Width="*" />
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
@@ -31,11 +31,11 @@
         <DataGrid x:Name="KeyPoints"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding KeyPoints}"
             SelectedItem="{Binding SelectedKeyPoint}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="60,336,579,259" >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="46,336,593,259" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
+                <!--<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />-->
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
-                <DataGridTextColumn Header="Tour Id" Binding="{Binding TourId}" Width="*" />
+                <!--<DataGridTextColumn Header="Tour Id" Binding="{Binding TourId}" Width="*" />-->
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
@@ -46,30 +46,33 @@
 
 
         </DataGrid>
-        <Button  Content="Activate" HorizontalAlignment="Left" Margin="162,446,0,0" VerticalAlignment="Top" Click="Activate" Height="37" Width="110" FontSize="18"/>
+        <Button  Content="Activate" HorizontalAlignment="Left" Margin="148,446,0,0" VerticalAlignment="Top" Click="Activate" Height="37" Width="110" FontSize="18"/>
         <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GuestsOnTour}"
             SelectedItem="{Binding SelectedGuest}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="450,336,188,259" >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="436,336,202,259" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
+                <!--<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />-->
                 <DataGridTextColumn Header="Name" Binding="{Binding GuestName}" Width="*" />
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
 
 
         </DataGrid>
-        <Button  Content="Start Tour" HorizontalAlignment="Left" Margin="162,602,0,0" VerticalAlignment="Top" Width="110" Click="StartTour" Height="37" FontSize="18"/>
-        <Button  Content="End Tour" HorizontalAlignment="Left" Margin="568,602,0,0" VerticalAlignment="Top" Width="107" Click="EndTour" Height="37" FontSize="18"/>
-        <Label Content="Todays tours:" HorizontalAlignment="Left" Margin="55,65,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Key Points" HorizontalAlignment="Left" Margin="55,305,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Guests:" HorizontalAlignment="Left" Margin="445,305,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Click on the button to start the tour!" HorizontalAlignment="Left" Margin="84,560,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Click on the button to end the tour!" HorizontalAlignment="Left" Margin="479,560,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Rectangle HorizontalAlignment="Left" Height="31" Margin="60,562,0,0" Stroke="Black" VerticalAlignment="Top" Width="314"/>
-        <Rectangle HorizontalAlignment="Left" Height="31" Margin="450,562,0,0" Stroke="Black" VerticalAlignment="Top" Width="315"/>
+        <Button  Content="Start Tour" HorizontalAlignment="Left" Margin="148,602,0,0" VerticalAlignment="Top" Width="110" Click="StartTour" Height="37" FontSize="18"/>
+        <Button  Content="End Tour" HorizontalAlignment="Left" Margin="554,602,0,0" VerticalAlignment="Top" Width="107" Click="EndTour" Height="37" FontSize="18"/>
+        <Label Content="Todays tours:" HorizontalAlignment="Left" Margin="41,65,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Key Points:" HorizontalAlignment="Left" Margin="41,305,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Guests:" HorizontalAlignment="Left" Margin="431,305,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Click on the button to start the tour!" HorizontalAlignment="Left" Margin="70,560,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Click on the button to end the tour!" HorizontalAlignment="Left" Margin="465,560,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Rectangle HorizontalAlignment="Left" Height="31" Margin="46,562,0,0" Stroke="Black" VerticalAlignment="Top" Width="314"/>
+        <Rectangle HorizontalAlignment="Left" Height="31" Margin="436,562,0,0" Stroke="Black" VerticalAlignment="Top" Width="315"/>
         <Label Content="LIVE TOUR" HorizontalAlignment="Left" Margin="365,6,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
         <Rectangle HorizontalAlignment="Left" Height="600" Margin="12,56,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+        <TextBlock HorizontalAlignment="Left" Margin="779,109,0,0" Text="Double click on tour to see tours key points!" VerticalAlignment="Top" Height="73" FontSize="16" Width="150" TextAlignment="Center" TextWrapping="Wrap"/>
+        <Rectangle HorizontalAlignment="Left" Height="77" Margin="779,104,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <TextBlock x:Name="txtBlock" HorizontalAlignment="Left" Margin="133,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Height="29" Width="188"/>
 
     </Grid>
 </Page>
