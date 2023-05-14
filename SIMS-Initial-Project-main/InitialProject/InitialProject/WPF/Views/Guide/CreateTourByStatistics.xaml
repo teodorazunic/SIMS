@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide"
       mc:Ignorable="d" 
       d:DesignHeight="684" d:DesignWidth="953"
-      Title="CreateTourByStatistics" Background="White" Foreground="White">
+      Title="CreateTourByStatistics" Background="White" >
 
     <Grid Background="Snow">
         <Label Content="CREATE TOUR BY STATISTICS" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" Height="70" Width="440" FontSize="30" FontWeight="Bold"/>
@@ -20,6 +20,7 @@
         <Rectangle HorizontalAlignment="Left" Height="266" Margin="18,369,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
         <TextBlock x:Name="txtLocation" Loaded="Fill" HorizontalAlignment="Left" Margin="424,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Foreground="Black"/>
         <TextBlock x:Name="txtLanguage" Loaded="Fill1" HorizontalAlignment="Left" Margin="424,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Foreground="Black"/>
+        <Rectangle HorizontalAlignment="Left" Height="266" Margin="18,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 
     </Grid>
 </Page>
