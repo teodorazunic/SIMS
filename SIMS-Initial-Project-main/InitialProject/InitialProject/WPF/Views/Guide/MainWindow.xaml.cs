@@ -66,6 +66,12 @@ namespace InitialProject.WPF.Views.Guide
             Review review = new Review(LoggedInUser);
             page.Content = review;
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            CreateTourByStatistics createTourByStatistics = new CreateTourByStatistics();
+            page.Content =createTourByStatistics;
+        }
     }
 }
 

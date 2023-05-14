@@ -128,18 +128,17 @@
                 <DataGridTemplateColumn Header="Status">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Click="CheckBox_Click" IsChecked="{Binding Status, UpdateSourceTrigger=PropertyChanged}" />
+                            <CheckBox Click="CheckBox_Click" IsChecked="{Binding Status, UpdateSourceTrigger=PropertyChanged}"   VerticalAlignment="Center" VerticalContentAlignment="Center" Width="100" />
                         </DataTemplate>
+                        
                     </DataGridTemplateColumn.CellTemplate>
+                    
                 </DataGridTemplateColumn>
+                
+
             </DataGrid.Columns>
             
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="FontWeight" Value="Bold" />
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
+            
 
         </DataGrid>
         <Button  Content="Start Tour" HorizontalAlignment="Left" Margin="152,588,0,0" VerticalAlignment="Top" Width="110" Click="StartTour" Height="37" FontSize="18"/>

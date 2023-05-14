@@ -14,7 +14,7 @@
         <Button Content="Requests" HorizontalAlignment="Left" Margin="13,190,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
         <Button Content="Dissmisal" HorizontalAlignment="Left" Margin="13,630,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_3"/>
         <Button Content="Report" HorizontalAlignment="Left" Margin="13,575,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
-        <Button Content="Create by statistics" HorizontalAlignment="Left" Margin="13,520,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Create by statistics" HorizontalAlignment="Left" Margin="13,520,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_5"/>
         <Button Content="Request statistics" HorizontalAlignment="Left" Margin="13,465,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
         <Button Content="Complex tour" HorizontalAlignment="Left" Margin="13,410,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
         <Button Content="Reviews" HorizontalAlignment="Left" Margin="13,355,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_4"/>

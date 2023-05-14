@@ -35,7 +35,7 @@ namespace InitialProject.Domain.Models
             GuestName = guestName;
             NumberOfGuests = numberOfGuests;
             StartingKeyPoint = startingKeyPoint;
-            Status = status;
+            Status = false;
         }
         public GuestOnTour() { }
         public string[] ToCSV()

@@ -47,10 +47,10 @@ namespace InitialProject.Repositories
             _guestsOnTour = _serializer.FromCSV(FilePath);
             GuestOnTour current = GetGuestById(guestOnTour.Id);
             current.Status = true;
-            //int index = _guestsOnTour.IndexOf(current);
-            //_guestsOnTour.Remove(current);
-            //_guestsOnTour.Insert(index, guestOnTour);
-            //_serializer.ToCSV(FilePath, _guestsOnTour);
+            int index = _guestsOnTour.IndexOf(current);
+            _guestsOnTour.Remove(current);
+            _guestsOnTour.Insert(index, guestOnTour);
+            _serializer.ToCSV(FilePath, _guestsOnTour);
             return guestOnTour;
         }
 
