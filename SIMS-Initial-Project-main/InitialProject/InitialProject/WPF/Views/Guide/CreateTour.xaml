@@ -14,8 +14,8 @@
         <Label Content="Description:" HorizontalAlignment="Left" Margin="60,466,0,0" VerticalAlignment="Top" Height="40" Width="203" FontSize="18"/>
         <Label Content="Language:" HorizontalAlignment="Left" Margin="60,254,0,0" VerticalAlignment="Top" Height="40" Width="143" FontSize="18"/>
         <Label Content="Max guests:" HorizontalAlignment="Left" Margin="290,254,0,0" VerticalAlignment="Top" Height="40" Width="136" FontSize="18"/>
-        <Label Content="Key points:" HorizontalAlignment="Left" Margin="510,65,0,0" VerticalAlignment="Top" Height="40" Width="113" FontSize="18" RenderTransformOrigin="0.474,0.131"/>
-        <Label Content="Date:" HorizontalAlignment="Left" Margin="512,349,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18"/>
+        <Label Content="Key points:" HorizontalAlignment="Left" Margin="505,65,0,0" VerticalAlignment="Top" Height="40" Width="113" FontSize="18" RenderTransformOrigin="0.474,0.131"/>
+        <Label Content="Date:" HorizontalAlignment="Left" Margin="505,349,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18"/>
         <Label Content="Duration:" HorizontalAlignment="Left" Margin="290,354,0,0" VerticalAlignment="Top" Height="40" Width="169" FontSize="18"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="60,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="40" FontSize="18"/>
         <TextBox x:Name="txtCity" HorizontalAlignment="Left" Margin="60,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
@@ -34,9 +34,9 @@
         <Label Content="CREATE NEW TOUR" HorizontalAlignment="Left" Margin="309,10,0,0" VerticalAlignment="Top" Height="70" Width="332" FontSize="30" FontWeight="Bold"/>
         <Label Content="Country:" HorizontalAlignment="Left" Margin="290,163,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ListBox x:Name="KeyPointsList" Margin="510,199,312,356" FontSize="18" />
-        <Label Content="Added key points:" HorizontalAlignment="Left" Margin="510,160,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ListBox x:Name="KeyPointsList_Copy" Margin="510,488,314,122" FontSize="18" />
-        <Label Content="Dates you added:" HorizontalAlignment="Left" Margin="510,446,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Added key points:" HorizontalAlignment="Left" Margin="505,160,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <!--<ListBox x:Name="KeyPointsList_Copy" Margin="510,488,314,122" FontSize="18" />-->
+        <!--<Label Content="Dates you added:" HorizontalAlignment="Left" Margin="510,446,0,0" VerticalAlignment="Top" FontSize="18"/>-->
         <Rectangle HorizontalAlignment="Left" Height="610" Margin="40,53,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 
         <TextBlock x:Name = "TourSuccessfully" HorizontalAlignment="Left" Margin="427,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF1BE81B"/>
