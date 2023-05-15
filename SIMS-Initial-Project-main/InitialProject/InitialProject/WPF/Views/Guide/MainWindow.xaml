@@ -21,7 +21,7 @@
         <Button Content="Tour statistics" HorizontalAlignment="Left" Margin="13,300,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
         <Button Content="Cancel Tour" HorizontalAlignment="Left" Margin="13,245,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_1"/>
         <Frame Name="page" NavigationUIVisibility="Hidden" Margin="221,10,71,0"/>
-        <Label Content="Log out" Margin="1174,5,-16,622" FontSize="18" MouseDoubleClick="Logout" />
+        <Label Content="Log out" Margin="1184,-1,-26,628" FontSize="18" MouseDoubleClick="Logout" />
 
     </Grid>
 </Window>
