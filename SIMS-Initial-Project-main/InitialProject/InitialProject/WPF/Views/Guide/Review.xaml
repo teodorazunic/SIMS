@@ -18,12 +18,37 @@
         <DataGrid x:Name="Tours"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding Tours}"
             SelectedItem="{Binding SelectedTour}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="18" Margin="37,108,517,414" >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="37,108,517,414" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
-                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
-                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" />
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="{x:Type DataGridRow}">
@@ -40,11 +65,23 @@
         <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GuestsOnTour}"
             SelectedItem="{Binding SelectedGuest}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="18" Margin="501,108,76,414" >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="501,108,76,414" >
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />-->
-                <DataGridTextColumn Header="Guest name" Binding="{Binding GuestName}" Width="*" />
-                <DataGridTextColumn Header="Key Point" Binding="{Binding StartingKeyPoint.Name}" Width="*" />
+                <DataGridTextColumn Header="Guest name" Binding="{Binding GuestName}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Key Point" Binding="{Binding StartingKeyPoint.Name}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
             </DataGrid.Columns>
 
@@ -63,14 +100,44 @@
         <DataGrid x:Name="Grades"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding GradeGuides}"
             SelectedItem="{Binding SelectedReview}"
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="18" Margin="37,359,80,153"   >
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="37,359,80,153"   >
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="Guest Id" Binding="{Binding GuestId}" Width="*" />-->
-                <DataGridTextColumn Header="Knowledge" Binding="{Binding GuideKnowledge}" Width="*" />
-                <DataGridTextColumn Header="Language" Binding="{Binding GuideLanguage}" Width="*" />
-                <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="*" />
-                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*" />
-                <DataGridTextColumn Header="Review" Binding="{Binding Validation}" Width="*" />
+                <DataGridTextColumn Header="Knowledge" Binding="{Binding GuideKnowledge}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Language" Binding="{Binding GuideLanguage}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Review" Binding="{Binding Validation}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">

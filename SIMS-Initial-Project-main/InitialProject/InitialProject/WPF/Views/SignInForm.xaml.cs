@@ -6,6 +6,8 @@ using InitialProject.WPF.Views.Guide;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace InitialProject
 {
@@ -72,8 +74,14 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guide)
                     {
-                        MainWindow guideOverview = new MainWindow(user);
-                        guideOverview.Show();
+                        MainWindow mainWindow = new MainWindow(user);
+                        mainWindow.Show();
+                       
+                            
+                            CreateTour page1 = new CreateTour();
+                            Frame mainFrame = mainWindow.FindName("page") as Frame;
+                            mainFrame.NavigationService.Navigate(page1);
+                        
                         Close();
 
                     }
@@ -86,12 +94,14 @@ namespace InitialProject
                 } 
                 else
                 {
-                    MessageBox.Show("Wrong password!");
+                    txtBlock.Text = "Wrong password!";
+                    //MessageBox.Show("Wrong password!");
                 }
             }
             else
             {
-                MessageBox.Show("Wrong username!");
+                txtBlock.Text = "Wrong username!";
+                //MessageBox.Show("Wrong username!");
             }
             
         }

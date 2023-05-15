@@ -11,7 +11,7 @@
     <Grid Background="White">
         <Button Content="Cancel tour" HorizontalAlignment="Center" Margin="0,476,0,0" VerticalAlignment="Top" Click="Button_Click" Height="34" Width="136" FontSize="20"/>
         <DataGrid  x:Name="Tours" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}" IsReadOnly="True" SelectionMode="Single" 
-            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="50,108,51,261">
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="50,108,51,261">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tour name" Binding="{Binding Name}" Width="*" >
                     <DataGridTextColumn.ElementStyle>
@@ -37,7 +37,7 @@
                 <!--<DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />-->
                 <!--<DataGridTextColumn Header="Language" Binding="{Binding Language.Name}" Width="*" />
                 <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />-->
-                <DataGridTextColumn Header="Date" Binding="{Binding Start}" Width="*" >
+                <DataGridTextColumn Header="Date" Binding="{Binding Start}" Width="200" >
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -70,7 +70,7 @@
         <Label Content="Select the tour you want to cancel:" HorizontalAlignment="Left" Margin="45,71,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Rectangle HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
         <Label Content="CANCEL TOUR" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
-        <TextBlock x:Name="txtBlock"  HorizontalAlignment="Left" Height="35" Margin="404,529,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" FontSize="16"/>
+        <TextBlock x:Name="txtBlock"  HorizontalAlignment="Left" Height="35" Margin="412,529,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" FontSize="16"/>
 
     </Grid>
 </Page>

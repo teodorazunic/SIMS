@@ -44,5 +44,12 @@ namespace InitialProject.WPF.Views.Guide
             CreateTour createTour = new CreateTour();
             NavigationService.Navigate(createTour);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateTour createTour = new CreateTour();
+            NavigationService.Navigate(createTour);
+
+        }
     }
 }

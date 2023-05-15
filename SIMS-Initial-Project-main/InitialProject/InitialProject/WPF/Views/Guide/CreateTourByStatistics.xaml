@@ -8,18 +8,18 @@
       d:DesignHeight="684" d:DesignWidth="953"
       Title="CreateTourByStatistics" Background="White" >
 
-    <Grid Background="Snow">
+    <Grid Background="White">
         <Label Content="CREATE TOUR BY STATISTICS" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" Height="70" Width="440" FontSize="30" FontWeight="Bold"/>
 
         <Label Content="Most wanted LOCATION by statistics is: " HorizontalAlignment="Left" Margin="65,100,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Would you like to create a tour with this location?" HorizontalAlignment="Left" Margin="65,180,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Button Content="YES" HorizontalAlignment="Left" Margin="234,240,0,0" VerticalAlignment="Top" FontSize="20" Width="79" Click="Button_Click_1"/>
-        <Button Content="YES" HorizontalAlignment="Left" Margin="234,560,0,0" VerticalAlignment="Top" FontSize="20" Width="79"/>
+        <Button Content="YES" HorizontalAlignment="Left" Margin="234,560,0,0" VerticalAlignment="Top" FontSize="20" Width="79" Click="Button_Click"/>
         <Label Content="Most wanted LANGUAGE by statistics is: " HorizontalAlignment="Left" Margin="65,420,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Would you like to create a tour with this language?" HorizontalAlignment="Left" Margin="65,500,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Rectangle HorizontalAlignment="Left" Height="266" Margin="18,369,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
-        <TextBlock x:Name="txtLocation" Loaded="Fill" HorizontalAlignment="Left" Margin="424,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Foreground="Black"/>
-        <TextBlock x:Name="txtLanguage" Loaded="Fill1" HorizontalAlignment="Left" Margin="424,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Foreground="Black"/>
+        <TextBox x:Name="txtLocation" Loaded="Fill" HorizontalAlignment="Left" Margin="424,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Background ="AliceBlue" Foreground="Black" IsReadOnly="True"/>
+        <TextBox x:Name="txtLanguage" Loaded="Fill1" HorizontalAlignment="Left" Margin="424,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Background ="AliceBlue" Foreground="Black" IsReadOnly="True"/>
         <Rectangle HorizontalAlignment="Left" Height="266" Margin="18,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 
     </Grid>

@@ -12,6 +12,7 @@
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
     <None Remove="Resources\Images\logo1.png" />
+    <None Remove="Resources\Images\velikilogo.png" />
     <None Remove="Resources\Images\view.png" />
   </ItemGroup>
 
@@ -32,6 +33,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\logo1.png" />
+    <Resource Include="Resources\Images\velikilogo.png" />
   </ItemGroup>
 
   <ItemGroup>

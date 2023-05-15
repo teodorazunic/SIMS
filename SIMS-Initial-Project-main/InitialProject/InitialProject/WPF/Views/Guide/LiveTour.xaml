@@ -76,7 +76,7 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>
-        
+
         <DataGrid x:Name="KeyPoints"  IsReadOnly="True" SelectionMode="Single" 
             ItemsSource="{Binding KeyPoints}"
             SelectedItem="{Binding SelectedKeyPoint}"
@@ -132,11 +132,11 @@
                             <CheckBox Click="CheckBox_Click" IsChecked="{Binding Status, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"  HorizontalContentAlignment="Center" 
                          HorizontalAlignment="Center"  />
                         </DataTemplate>
-                        
+
                     </DataGridTemplateColumn.CellTemplate>
-                    
+
                 </DataGridTemplateColumn>
-                
+
 
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle>
@@ -160,7 +160,8 @@
         <Label Content="LIVE TOUR" HorizontalAlignment="Left" Margin="365,6,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="779,109,0,0" Text="Double click on tour to see tours key points!" VerticalAlignment="Top" Height="73" FontSize="16" Width="150" TextAlignment="Center" TextWrapping="Wrap"/>
         <Rectangle HorizontalAlignment="Left" Height="77" Margin="779,104,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-        <TextBlock x:Name="txtBlock" HorizontalAlignment="Left" Margin="280,491,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Height="30" Width="264"/>
+        <TextBlock x:Name="txtBlockKP" HorizontalAlignment="Left" Margin="118,490,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Height="30" Width="200"/>
+        <TextBlock x:Name ="txtBlockTour" HorizontalAlignment="Left" Margin="558,490,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="16" Height="30" Width="200"/>
         <Rectangle HorizontalAlignment="Center" Height="600" Margin="0,56,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 
     </Grid>
