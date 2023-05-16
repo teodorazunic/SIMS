@@ -5,13 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject.View"
         mc:Ignorable="d"
-        Title="TourReservation" Height="450" Width="800">
+        Title="TourReservation" Height="712" Width="1024" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="City" HorizontalAlignment="Left" Margin="45,40,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="cityTextBlock"  Margin="88,40,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Text="{Binding Path=SelectedTour.Location.City}"/>
-        <Label Content="Number of attendees:" HorizontalAlignment="Left" Margin="45,166,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="attendeesTextBox"  Text="{Binding Path=GuestsNumber, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="192,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Reserve" Click="CheckGuests" HorizontalAlignment="Center" Margin="0,171,0,0" VerticalAlignment="Top" Width="76" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="950"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Width="100" Height="40" Click="LogOut" HorizontalAlignment="Right" >LOGOUT ></Button >
+        <Image Grid.Column="1" HorizontalAlignment="Left" Source="/Resources/Images/tekst.jpeg" Width="100" Height="80" />
+
+        <TextBlock x:Name="nameTextBlock" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Path=SelectedTour.Name}" FontSize="32"/>
+        <Image Grid.Column="1" Source="/Resources/Images/NoviSad.jpg" HorizontalAlignment="Left" Margin="5,44,0,162" Grid.Row="1" Width="382"/>
+
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Content="City:" Margin="412,51,475,0" FontSize="18" />
+        <TextBlock x:Name="locationTB" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="25" Width="100" Text="{Binding Path = SelectedTour.Location.City}" Margin="466,56,0,0"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Content="Country:" Margin="412,90,442,0" FontSize="18" />
+        <TextBlock x:Name="location2TB" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="25" Width="100" Text="{Binding Path = SelectedTour.Location.Country}" Margin="496,96,0,0"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Content="Description:" Margin="412,129,424,0" FontSize="18" />
+        <TextBlock x:Name="descriptionTB" Grid.Column="1" Grid.Row="1" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="60" Width="400" Text="{Binding Path = SelectedTour.Description}" Margin="525,134,0,0"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Content="Language:" Margin="411,197,443,0" FontSize="18" />
+        <TextBlock x:Name="languageTB" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="25" Width="100" Text="{Binding Path = SelectedTour.Language}" Margin="513,202,0,0"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Content="Key Points:" Margin="410,238,444,0" FontSize="18" />
+        <TextBlock x:Name="keypointsTB" Grid.Column="1" Grid.Row="1" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="60" Width="400" Text="{Binding Path = SelectedTour.Description}" Margin="513,0,0,0"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Content="Start time:" Margin="412,306,442,0" FontSize="18" />
+        <TextBlock x:Name="timeTB" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="25" Width="200" Text="{Binding Path = SelectedTour.Start}" Margin="510,311,0,0"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Content="Duration:" Margin="412,346,442,0" FontSize="18" />
+        <TextBlock x:Name="durationTB" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="25" Width="100" Text="{Binding Path = SelectedTour.Duration}" Margin="503,352,0,0"/>
+
+        <Label Grid.Row="1" Grid.Column="1" Content="Number of people attending:" HorizontalAlignment="Left" Margin="5,385,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="attendeesTextBox" FontSize="18" Text="{Binding Path=GuestsNumber, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="26" Margin="264,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="BookButton" Grid.Row="1" Grid.Column="1" Content="Book" Click="CheckGuests" HorizontalAlignment="Left" Margin="735,471,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="32" />
+        <Button Grid.Row="1" Grid.Column="1" Content="Cancel" Click="Cancel" HorizontalAlignment="Left" Margin="5,471,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="32" />
+        <TextBlock x:Name="finalTB" Grid.Row="1" Grid.Column="1" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,479,0,0" Height="40" Width="300" FontSize="18" Foreground="Maroon" />
+
+
+        <ToolBar Grid.Row="3" Grid.ColumnSpan="3" FontSize="18">
+            <Button Grid.Column="1" Click="ShowVouchers" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center">
+                <Image Source="/Resources/Images/coupon.png" Width="120" Height="55" />
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+                <Image Source="/Resources/Images/statistic.png" Width="130" Height="50" />
+            </Button>
+            <Button Grid.Column="1" Click="Requests" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+                <Image Source="/Resources/Images/plus.png" Width="140" Height="46" />
+            </Button>
+            <Button Grid.Column="1" Click="Home" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+                <Image Source="/Resources/Images/home.png" Width="140" Height="60" />
+            </Button>
+            <Button Grid.Column="1" Click="Active" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+                <Image Source="/Resources/Images/map.png" Width="140" Height="50" />
+            </Button>
+            <Button Grid.Column="1" Click="Ratings" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+                <Image Source="/Resources/Images/star.png" Width="140" Height="55" />
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center">
+                <Image Source="/Resources/Images/notification.png" Width="120" Height="50" />
+            </Button>
+        </ToolBar>
+        <ComboBox x:Name="ComboBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="783,391,0,0" VerticalAlignment="Top" Width="150" Height="45" ItemsSource="{Binding Path=voucherTitles}" FontSize="24" Text="Vouchers" IsEditable="True" IsReadOnly="True"/>
+
 
     </Grid>
 </Window>
