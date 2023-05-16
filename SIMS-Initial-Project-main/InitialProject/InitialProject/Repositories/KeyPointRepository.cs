@@ -1,5 +1,6 @@
 ﻿using InitialProject.Domain.Models;
 using InitialProject.Serializer;
+using InitialProject.Domain.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Repository
 {
-    class KeyPointRepository
+    public class KeyPointRepository : IKeyPointRepository
     {
         private const string FilePath = "../../../Resources/Data/keypoints.csv";
 
