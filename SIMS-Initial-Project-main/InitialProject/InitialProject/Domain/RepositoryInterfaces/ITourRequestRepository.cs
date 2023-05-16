@@ -26,6 +26,8 @@ namespace InitialProject.Domain.RepositoryInterfaces
         public List<TourRequest> findByMaxGuests(List<TourRequest> tourRequests, int maxGuests);
 
         public List<TourRequest> SearchRequests(TourRequest tourRequest);
+        
+        public void CancelRequest();
 
 
     }
