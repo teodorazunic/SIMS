@@ -3,6 +3,7 @@ using InitialProject.Model;
 using InitialProject.Repository;
 using InitialProject.Serializer;
 using InitialProject.WPF.Views.Guest2;
+using InitialProject.Domain.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ using System.Xml.Linq;
 
 namespace InitialProject.Repositories
 {
-    internal class GradeGuideRepository
+    public class GradeGuideRepository : IGradeGuideRepository
     {
         private const string FilePath = "../../../Resources/Data/guidegrades.csv";
 
