@@ -11,8 +11,9 @@ namespace InitialProject.Domain.Models
     {
         public int TourReservationId { get; set; }
         
-        public int TourId { get; set; }
+        //public int TourId { get; set; }
 
+        public Tour Tour { get; set; }
         public int GuestId { get; set; }
 
         public int NumberOfGuests { get; set; }
@@ -23,10 +24,10 @@ namespace InitialProject.Domain.Models
 
         public TourReservations() { }
 
-        public TourReservations(int tourReservationId, int tourId, int guestId, int numberOfGuests, bool usedVoucher, string status)
+        public TourReservations(int tourReservationId, Tour tour, int guestId, int numberOfGuests, bool usedVoucher, string status)
         {
             TourReservationId = tourReservationId;
-            TourId = tourId;
+            Tour = tour;
             GuestId = guestId;
             NumberOfGuests = numberOfGuests;
             UsedVoucher = usedVoucher;
@@ -36,7 +37,7 @@ namespace InitialProject.Domain.Models
         public void FromCSV(string[] values)
         {
             TourReservationId = Convert.ToInt32(values[0]);
-            TourId = Convert.ToInt32(values[1]);
+            Tour.Id = Convert.ToInt32(values[1]);
             GuestId = Convert.ToInt32(values[2]);
             NumberOfGuests = Convert.ToInt32(values[3]);
             UsedVoucher = Convert.ToBoolean(values[4]);
@@ -45,7 +46,7 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = { TourReservationId.ToString(),TourId.ToString(), GuestId.ToString(), NumberOfGuests.ToString(), UsedVoucher.ToString(), Status };
+            string[] csvValues = { TourReservationId.ToString(),Tour.Id.ToString(), GuestId.ToString(), NumberOfGuests.ToString(), UsedVoucher.ToString(), Status };
             return csvValues;
         }
     }
