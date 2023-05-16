@@ -48,7 +48,7 @@ namespace InitialProject.Repositories
             List<TourReservations> allReservations = _serializer.FromCSV(FilePath);
 
             List<TourReservations> reservationsByTour = allReservations
-                .Where(reservation => reservation.TourId == TourId)
+                .Where(reservation => reservation.Tour.Id == TourId)
                 .ToList();
 
             return reservationsByTour;
@@ -57,7 +57,7 @@ namespace InitialProject.Repositories
         public TourReservations GetTourReservationByTourId(int TourId)
         {
             _tourreservations = _serializer.FromCSV(FilePath);
-            return _tourreservations.Find(t => t.TourId == TourId);
+            return _tourreservations.Find(t => t.Tour.Id == TourId);
         }
 
         public List<TourReservations> CheckReservedTourStatus()
@@ -66,7 +66,7 @@ namespace InitialProject.Repositories
             Tour tours = new Tour();
             foreach (var tour in endedTours)
             {
-                tours = _tourRepository.GetTourById(tour.TourId);
+                tours = _tourRepository.GetTourById(tour.Tour.Id);
                 if (tours.Status == "Ended")
                 {
                     endedTours.Add(tour);
@@ -83,7 +83,7 @@ namespace InitialProject.Repositories
             {
                 if (endedTour[i].GuestId == GuestId)
                 {
-                    Tour tour = _tourRepository.GetTourById(endedTour[i].TourId);
+                    Tour tour = _tourRepository.GetTourById(endedTour[i].Tour.Id);
                     selectedTour.Add(tour);
                 }
             }
@@ -132,7 +132,7 @@ namespace InitialProject.Repositories
             {
                 for (int j = 0; j < tourReservations.Count; j++)
                 {
-                    if (tours[i].Id == tourReservations[j].TourId && tourReservations[j].NumberOfGuests > maxGuests && tours[i].Start.Year == Convert.ToInt32(year))
+                    if (tours[i].Id == tourReservations[j].Tour.Id && tourReservations[j].NumberOfGuests > maxGuests && tours[i].Start.Year == Convert.ToInt32(year))
                     {
                         maxGuests = tourReservations[j].NumberOfGuests;
                         tourReservation = tourReservations[j];
@@ -177,7 +177,7 @@ namespace InitialProject.Repositories
                     string[] fields = line.Split('|');
                     TourReservations tourReservation = new TourReservations();
                     tourReservation.TourReservationId = Convert.ToInt32(fields[0]);
-                    tourReservation.TourId = Convert.ToInt32(fields[1]);
+                    tourReservation.Tour.Id = Convert.ToInt32(fields[1]);
                     tourReservation.GuestId = Convert.ToInt32(fields[2]);
                     tourReservation.NumberOfGuests = Convert.ToInt32(fields[3]);
                     tourReservation.UsedVoucher = Convert.ToBoolean(fields[4]);

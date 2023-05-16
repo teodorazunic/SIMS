@@ -188,7 +188,8 @@ namespace InitialProject.View
             else if (SelectedTour.MaxGuests > 0 && SelectedTour.MaxGuests >= GuestsNumber)
             {
                 TourReservations tourReservations = new TourReservations();
-                tourReservations.TourId = SelectedTour.Id;
+              
+                tourReservations.Tour.Id = SelectedTour.Id;
                 tourReservations.GuestId = LoggedInUser.Id;
                 tourReservations.NumberOfGuests = GuestsNumber;
                 tourReservations.UsedVoucher = false;

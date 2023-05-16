@@ -13,7 +13,7 @@ namespace InitialProject.Domain.Models
         
         //public int TourId { get; set; }
 
-        public Tour Tour { get; set; }
+        public Tour Tour = new Tour();
         public int GuestId { get; set; }
 
         public int NumberOfGuests { get; set; }
@@ -37,7 +37,7 @@ namespace InitialProject.Domain.Models
         public void FromCSV(string[] values)
         {
             TourReservationId = Convert.ToInt32(values[0]);
-            Tour.Id = Convert.ToInt32(values[1]);
+            Tour = new Tour() { Id = Convert.ToInt32(values[1]) };
             GuestId = Convert.ToInt32(values[2]);
             NumberOfGuests = Convert.ToInt32(values[3]);
             UsedVoucher = Convert.ToBoolean(values[4]);
