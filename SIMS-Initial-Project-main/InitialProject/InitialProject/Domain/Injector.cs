@@ -18,6 +18,13 @@ namespace InitialProject.Domain
            { typeof(IAccommodationReviewImageRepository), new AccommodationReviewImageRepository() },
             { typeof(IReservationRepository), new ReservationRepository() },
             { typeof(IReservationMovingRepository), new ReservationMovingRepository() },
+            { typeof(IGradeGuideRepository), new GradeGuideRepository() },
+            { typeof(IGuestOnTourRepository), new GuestOnTourRepository() },
+            { typeof(ITourRepository), new TourRepository() },
+            { typeof(IKeyPointRepository), new KeyPointRepository() },
+            { typeof(IVoucherRepository), new VoucherRepository() },
+            { typeof(ITourReservationRepository), new TourReservationRepositery() },
+            { typeof(ITourRequestRepository), new TourRequestRepository() },
 
            /* { typeof(INotificationService), new NotificationService(Injector.CreateInstance<INotificationRepository>()) },
              { typeof(IAccommodationService), new AccommodationService(Injector.CreateInstance<IAccommodationRepository>()) },
