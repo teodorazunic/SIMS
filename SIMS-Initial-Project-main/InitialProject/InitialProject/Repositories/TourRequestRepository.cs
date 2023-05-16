@@ -169,5 +169,19 @@ namespace InitialProject.Repositories
             _serializer.ToCSV(FilePath, _requests);
             return request;
         }
+        
+         public void CancelRequest()
+        {
+            DateTime currentDate = DateTime.Now;
+            _requests = _serializer.FromCSV(FilePath);
+            foreach(var request in _requests)
+            {
+                if ((request.StartDate - currentDate).TotalHours < 48)
+                {
+                    request.Status = "Denied";
+                }
+            }
+            _serializer.ToCSV(FilePath, _requests);
+        }
     }
 }
