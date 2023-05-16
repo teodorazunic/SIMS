@@ -93,7 +93,7 @@ namespace InitialProject.View
             locationTB.Text = SelectedTour.Location.City;
             location2TB.Text = SelectedTour.Location.Country;
             descriptionTB.Text = SelectedTour.Description;
-            languageTB.Text = SelectedTour.Language.Name;
+            languageTB.Text = SelectedTour.Language;
             timeTB.Text = SelectedTour.Start.ToString();
             durationTB.Text = SelectedTour.Duration.ToString();
             keypointsTB.Text = keyPointsOnTour.KeyPoints;
@@ -166,7 +166,7 @@ namespace InitialProject.View
                             locationTB.Text = SelectedTour.Location.City;
                             location2TB.Text = SelectedTour.Location.Country;
                             descriptionTB.Text = SelectedTour.Description;
-                            languageTB.Text = SelectedTour.Language.Name;
+                            languageTB.Text = SelectedTour.Language;
                             timeTB.Text = SelectedTour.Start.ToString();
                             durationTB.Text = SelectedTour.Duration.ToString();
                             break;

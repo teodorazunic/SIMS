@@ -122,7 +122,7 @@ namespace InitialProject.Repository
                     tour.Name = fields[1];
                     tour.Location = new Location() { City = fields[2], Country = fields[3] };
                     tour.Description = fields[4];
-                    tour.Language = new Language() { Name = fields[5] };
+                    tour.Language = fields[5];
                     tour.MaxGuests = Convert.ToInt32(fields[6]);
                     tour.Start = Convert.ToDateTime(fields[7]);
                     tour.Duration = Convert.ToInt32(fields[8]);
@@ -216,7 +216,7 @@ namespace InitialProject.Repository
 
             if (language != null && language != "")
             {
-                filteredTours = filteredTours.FindAll(t => t.Language.Name == language);
+                filteredTours = filteredTours.FindAll(t => t.Language == language);
             }
 
             if (numberOfPeople > 0)
