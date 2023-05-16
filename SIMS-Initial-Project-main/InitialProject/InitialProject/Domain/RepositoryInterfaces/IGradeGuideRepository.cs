@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InitialProject.Domain.Models;
+using InitialProject.Serializer;
 
 namespace InitialProject.Domain.RepositoryInterfaces
 {

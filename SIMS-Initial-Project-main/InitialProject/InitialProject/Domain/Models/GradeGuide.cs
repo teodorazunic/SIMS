@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Domain.Models
 {
-    internal class GradeGuide : ISerializable
+    public class GradeGuide : ISerializable
     {
         public int Id { get; set; }
 
