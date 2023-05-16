@@ -29,8 +29,10 @@ namespace InitialProject.Domain.Models
         public DateTime EndDate { get; set; }
 
         public string Status { get; set; }
+        
+        public string Type { get; set; }
 
-        public TourRequest(int id, int guestId, Location location, string description, string language, int maxGuests, DateTime startDate, DateTime endDate, string status)
+        public TourRequest(int id, int guestId, Location location, string description, string language, int maxGuests, DateTime startDate, DateTime endDate, string status, string type)
         {
             Id = id;
             GuestId = guestId;
@@ -41,6 +43,7 @@ namespace InitialProject.Domain.Models
             StartDate = startDate;
             EndDate = endDate;
             Status = "Pending";
+            Type = type;
         }
 
         public TourRequest(){ }
@@ -56,11 +59,12 @@ namespace InitialProject.Domain.Models
             StartDate = Convert.ToDateTime(values[7]);
             EndDate = Convert.ToDateTime(values[8]);
             Status = values[9];
+            Type = values[10];
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), GuestId.ToString(), Location.City, Location.Country, Description, Language, MaxGuests.ToString(), StartDate.ToString("dd-MMM-y HH:mm:ss tt"), EndDate.ToString("dd-MMM-y HH:mm:ss tt"), Status };
+            string[] csvValues = { Id.ToString(), GuestId.ToString(), Location.City, Location.Country, Description, Language, MaxGuests.ToString(), StartDate.ToString("dd-MMM-y HH:mm:ss tt"), EndDate.ToString("dd-MMM-y HH:mm:ss tt"), Status, Type };
             return csvValues;
         }
     }
