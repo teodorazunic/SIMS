@@ -48,9 +48,9 @@ namespace InitialProject.View
             int duration = Convert.ToInt32(txtDuration.Text);
             string image = txtImage.Text;
             string status = "Pending";
-            int guideId = LoggedInUser.Id;
+            
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status, guideId );
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status );
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
         }

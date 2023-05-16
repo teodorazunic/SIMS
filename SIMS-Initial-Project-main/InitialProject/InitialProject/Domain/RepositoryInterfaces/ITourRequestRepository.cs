@@ -27,6 +27,8 @@ namespace InitialProject.Domain.RepositoryInterfaces
 
         public List<TourRequest> SearchRequests(TourRequest tourRequest);
 
+        public List<DateTime> AvailableDates(DateTime start, DateTime end);
+
 
     }
 }

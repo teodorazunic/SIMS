@@ -27,6 +27,48 @@ namespace InitialProject.Repositories
 
         }
 
+        public List<DateTime> AvailableDates(DateTime start, DateTime end)
+        {
+            _requests = _serializer.FromCSV(FilePath);
+            DateTime finalStart = new DateTime();
+            DateTime finalEnd = new DateTime();
+            List<DateTime> availabledates = new List<DateTime>();
+            foreach (var request in _requests)
+            {
+                if(request.StartDate ==  start && request.EndDate == end) { 
+                    finalEnd = request.EndDate;
+                    finalStart = request.StartDate;
+                }
+                else if (request.StartDate < start && request.EndDate < end)
+                {
+                    finalEnd = request.EndDate;
+                    finalStart = start;
+
+                }
+                else if(request.StartDate > start && request.EndDate > end)
+                {
+                    finalEnd = end;
+                    finalStart = request.StartDate;
+                }
+                else if(request.StartDate < start && request.EndDate > end)
+                {
+                    finalStart = start;
+                    finalEnd = end;
+                }
+                else if(request.StartDate > start && request.EndDate < end)
+                {
+                    finalEnd =request.EndDate;
+                    finalStart= request.StartDate;
+                }
+            }
+
+           
+            availabledates.Add(finalEnd);
+            availabledates.Add(finalStart);
+            return availabledates;
+
+        }
+
         public int Statistic(string city, string country, string years, string language )
         {
 
@@ -107,6 +149,13 @@ namespace InitialProject.Repositories
             }
 
             return tourRequests;
+        }
+
+        public List<TourRequest> findByDate(List<TourRequest> tourRequests, DateTime start, DateTime end)
+        {
+
+            return tourRequests;
+
         }
         public List<TourRequest> findByCity(List<TourRequest> tourRequests, string city)
         {

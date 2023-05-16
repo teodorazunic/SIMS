@@ -134,5 +134,15 @@ namespace InitialProject.WPF.Views.Guide
             TourRequests.Clear();
             foreach (var request in tourRequests) TourRequests.Add(request);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            List<DateTime> availableDates = new List<DateTime>();
+            DateTime start = Convert.ToDateTime(startDate.Text);
+            DateTime end = Convert.ToDateTime(endDate.Text);
+
+            availableDates = _tourRequestsRepository.AvailableDates(start, end);
+            Dates.ItemsSource = availableDates;
+        }
     }
 }
