@@ -32,7 +32,7 @@ namespace InitialProject.WPF.Views
     {
         public User LoggedInUser { get; set; }
 
-        public static ObservableCollection<TourRequest> TourRequests { get; set; }
+        private ObservableCollection<TourRequest> _tourRequests;
         private readonly TourRequestRepository _repository;
 
 
@@ -40,6 +40,19 @@ namespace InitialProject.WPF.Views
         private string _status = "";
         private string _type = "";
         private DateTime _startDate = DateTime.MinValue;
+        
+         public ObservableCollection<TourRequest> TourRequests
+        {
+            get => _tourRequests;
+            set
+            {
+                if (value != _tourRequests)
+                {
+                    _tourRequests = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string City
         {
@@ -105,6 +118,8 @@ namespace InitialProject.WPF.Views
             DataContext = this;
             LoggedInUser = user;
             _repository = new TourRequestRepository();
+            TourRequests = new ObservableCollection<TourRequest>(_repository.GetAllTourRequests());
+            _repository.CancelRequest();
             TourRequests = new ObservableCollection<TourRequest>(_repository.GetAllTourRequests());
         }
 
