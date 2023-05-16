@@ -15,7 +15,7 @@ using System.Xml.Linq;
 
 namespace InitialProject.Repository
 {
-    public class TourRepository
+    public class TourRepository : ITourRepository
     {
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
