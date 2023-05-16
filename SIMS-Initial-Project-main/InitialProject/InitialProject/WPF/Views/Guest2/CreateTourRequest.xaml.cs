@@ -1,4 +1,4 @@
-﻿using InitialProject.Domain.Models;
+using InitialProject.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +18,7 @@ using InitialProject.Repositories;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections;
+using InitialProject.WPF.Views.Guest2;
 
 namespace InitialProject.WPF.Views
 {
@@ -36,6 +37,47 @@ namespace InitialProject.WPF.Views
             LoggedInUser = user;
         }
 
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            Close();
+        }
+        private void Home(object sender, RoutedEventArgs e)
+        {
+            TourOverview tourOverview = new TourOverview(LoggedInUser);
+            tourOverview.Show();
+            Close();
+        }
+
+        private void ShowVouchers(object sender, RoutedEventArgs e)
+        {
+            Vouchers vouchers = new Vouchers(LoggedInUser);
+            vouchers.Show();
+            Close();
+        }
+
+        private void Ratings(object sender, RoutedEventArgs e)
+        {
+            ShowPastTours ratings = new ShowPastTours(LoggedInUser);
+            ratings.Show();
+            Close();
+        }
+
+        private void Active(object sender, RoutedEventArgs e)
+        {
+            ActiveTour activeTour = new ActiveTour(LoggedInUser);
+            activeTour.Show();
+            Close();
+        }
+
+        private void Requests(object sender, RoutedEventArgs e)
+        {
+            TourRequestOverview tourRequestOverview = new TourRequestOverview(LoggedInUser);
+            tourRequestOverview.Show();
+            Close();
+        }
+
         private void SaveRequest(object sender, RoutedEventArgs e)
         {
 
@@ -50,17 +92,27 @@ namespace InitialProject.WPF.Views
             finalRequest.EndDate = Convert.ToDateTime(datePicker2.Text);*/
             int id = repository.NextId();
             int guestId = LoggedInUser.Id;
-            Location location = new Location(txtCountry.Text, txtCity.Text);
+            Location location = new Location(txtCity.Text, txtCountry.Text);
             string description = txtDescription.Text;
             string language = txtLanguage.Text;
             int maxGuests = Convert.ToInt32(txtMaxGuests.Text);
             DateTime startDate = Convert.ToDateTime(datePicker1.Text);
             DateTime endDate = Convert.ToDateTime(datePicker2.Text);
             string status = "Pending";
+            string type = "regular";
 
-            TourRequest tourRequest = new TourRequest(id, guestId, location, description, language, maxGuests, startDate, endDate, status);
+            TourRequest tourRequest = new TourRequest(id, guestId, location, description, language, maxGuests, startDate, endDate, status, type);
             TourRequest saveRequest = repository.Save(tourRequest);
-            MessageBox.Show("Succesfully added tour!");
+            //MessageBox.Show("Succesfully added tour!");
+            finalTB.Text = "Your request has been sent.";
+            SendButton.IsEnabled = false;
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            TourRequestOverview tourRequestOverview = new TourRequestOverview(LoggedInUser);
+            tourRequestOverview.Show();
+            Close();
         }
     }
 }
