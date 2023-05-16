@@ -47,12 +47,12 @@ namespace InitialProject.Repositories
             List<GuestOnTour> guests = _guestOnTourRepository.GetAllGuestsOnTour();
             for(int i = 0; i < guests.Count; i++)
             {
-                if (guests[i].StartingKeyPoint.TourId == id)
+                if (guests[i].StartingKeyPoint.Tour.Id == id)
                 {
                     Voucher voucher = new Voucher();
                     DateTime voucherDate = voucher.ValidUntil;
                     voucher.Title = "Vaucer za otkazanu turu.";
-                    voucher.GuestId = guests[i].GuestId;
+                    voucher.GuestId.Id = guests[i].GuestId;
                     voucher.ValidUntil = voucherDate.AddYears(1) ;
                     Save(voucher);
                 }
@@ -73,13 +73,13 @@ namespace InitialProject.Repositories
         {
 
             _vouchers = _serializer.FromCSV(FilePath);
-            return _vouchers.FindAll(v => v.GuestId == guestId);
+            return _vouchers.FindAll(v => v.GuestId.Id == guestId);
         }
 
         public Voucher GetVoucherByGuideId(int guideId)
         {
             _vouchers = _serializer.FromCSV(FilePath);
-            return _vouchers.Find(v => v.GuideId == guideId);
+            return _vouchers.Find(v => v.GuideId.Id == guideId);
         }
 
         public Voucher GetVoucherById(int voucherId)

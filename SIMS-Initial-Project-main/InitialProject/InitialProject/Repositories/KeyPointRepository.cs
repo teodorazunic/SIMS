@@ -78,7 +78,7 @@ namespace InitialProject.Repository
             List<KeyPoint> sameIdKeyPoint = new List<KeyPoint>();
             
             foreach(KeyPoint kp in _keyPoints) {
-                if (id == kp.TourId)
+                if (id == kp.Tour.Id)
                 {
                     sameIdKeyPoint.Add(kp);
                 }
@@ -125,7 +125,7 @@ namespace InitialProject.Repository
                     KeyPoint keyPoint = new KeyPoint();
                     keyPoint.Id = Convert.ToInt32(fields[0]);
                     keyPoint.Name = fields[1];
-                    keyPoint.TourId = Convert.ToInt32(fields[2]);                       
+                    keyPoint.Tour.Id = Convert.ToInt32(fields[2]);                       
                     keyPoints.Add(keyPoint);
 
                 }

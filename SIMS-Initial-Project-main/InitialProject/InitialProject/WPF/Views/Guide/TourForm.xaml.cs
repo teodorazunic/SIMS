@@ -41,7 +41,7 @@ namespace InitialProject.View
             String name = txtName.Text;
             Location location = new Location(txtCountry.Text, txtCity.Text);
             String description = txtDescription.Text;
-            Language language = new Language(txtLanguage.Text);
+            string language = txtLanguage.Text;
             int maxGuests = Convert.ToInt32(txtMaxGuests.Text);
             DateTime start = Convert.ToDateTime(datePicker1.Text);
             int duration = Convert.ToInt32(txtDuration.Text);
@@ -57,7 +57,8 @@ namespace InitialProject.View
         {
             int id = keyPointRepository.NextId();
             string name = txtKeyPoint.Text;
-            int tourId = repository.NextId();
+            Tour tourId = new Tour();
+            tourId.Id= repository.NextId();
             
 
             KeyPoint keypoint = new KeyPoint(name, id, tourId);

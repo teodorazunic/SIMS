@@ -10,7 +10,7 @@
         <DataGrid x:Name="dgTours" ItemsSource="{Binding PastTours}" SelectedItem="{Binding SelectedTour}" IsReadOnly="True" SelectionMode="Single" 
                   AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tour Id" Binding="{Binding TourId}" Width="*"/>
+                <DataGridTextColumn Header="Tour Id" Binding="{Binding Tour}" Width="*"/>
                 <DataGridTextColumn Header="Number of guests" Binding="{Binding NumberOfGuests}" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>

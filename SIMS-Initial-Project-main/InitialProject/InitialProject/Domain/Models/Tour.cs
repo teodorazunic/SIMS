@@ -18,7 +18,7 @@ namespace InitialProject.Domain.Models
 
         public string Description { get; set; }
 
-        public Language Language { get; set; }
+        public string Language { get; set; }
 
         public int MaxGuests { get; set; }
 
@@ -30,11 +30,13 @@ namespace InitialProject.Domain.Models
 
         public List <KeyPoint> KeyPoints { get; set; }
 
-        public int GuideId { get; set; }
+        //public int GuideId { get; set; }
+
+        public User GuideId = new User();
 
         public string Status { get; set; }
 
-        public Tour( int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, string status)
+        public Tour( int id, string name, Location location, string description, string language, int maxGuests, DateTime start, int duration, string image, string status)
         {
             Id = id;
             Name = name;
@@ -48,26 +50,13 @@ namespace InitialProject.Domain.Models
             Status = status;
         }
 
-        public Tour(int id, string name, Location location, string description, Language language, int maxGuests, DateTime start, int duration, string image, List<KeyPoint> keyPoints, int guideId)
-        {
-            Id = id;
-            Name = name;
-            Location = location;
-            Description = description;
-            Language = language;
-            MaxGuests = maxGuests;
-            Start = start;
-            Duration = duration;
-            Image = image;
-            KeyPoints = keyPoints;
-            GuideId = guideId;
-        }
+        
 
         public Tour(){}
 
         public string[] ToCSV()
         {
-            string[] csvValues = {Id.ToString(), Name, Location.City, Location.Country, Description, Language.Name, MaxGuests.ToString(), Start.ToString("dd-MMM-y HH:mm:ss tt"), Duration.ToString(), Image, Status};
+            string[] csvValues = {Id.ToString(), Name, Location.City, Location.Country, Description, Language, MaxGuests.ToString(), Start.ToString("dd-MMM-y HH:mm:ss tt"), Duration.ToString(), Image, Status};
             return csvValues;
         }
 
@@ -79,7 +68,7 @@ namespace InitialProject.Domain.Models
             Name = values[1];
             Location = new Location() { City = values[2], Country = values[3] };
             Description = values[4];
-            Language = new Language() { Name = values[5] };
+            Language =  values[5] ;
             MaxGuests = Convert.ToInt32(values[6]);
             Start = Convert.ToDateTime(values[7]);
             Duration = Convert.ToInt32(values[8]);

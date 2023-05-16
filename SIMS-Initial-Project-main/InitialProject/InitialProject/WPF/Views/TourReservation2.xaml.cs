@@ -93,7 +93,7 @@ namespace InitialProject.View
             locationTB.Text = SelectedTour.Location.City;
             location2TB.Text = SelectedTour.Location.Country;
             descriptionTB.Text = SelectedTour.Description;
-            languageTB.Text = SelectedTour.Language.Name;
+            languageTB.Text = SelectedTour.Language;
             timeTB.Text = SelectedTour.Start.ToString();
             durationTB.Text = SelectedTour.Duration.ToString();
             keypointsTB.Text = keyPointsOnTour.KeyPoints;
@@ -166,7 +166,7 @@ namespace InitialProject.View
                             locationTB.Text = SelectedTour.Location.City;
                             location2TB.Text = SelectedTour.Location.Country;
                             descriptionTB.Text = SelectedTour.Description;
-                            languageTB.Text = SelectedTour.Language.Name;
+                            languageTB.Text = SelectedTour.Language;
                             timeTB.Text = SelectedTour.Start.ToString();
                             durationTB.Text = SelectedTour.Duration.ToString();
                             break;
@@ -188,8 +188,9 @@ namespace InitialProject.View
             else if (SelectedTour.MaxGuests > 0 && SelectedTour.MaxGuests >= GuestsNumber)
             {
                 TourReservations tourReservations = new TourReservations();
-                tourReservations.TourId = SelectedTour.Id;
-                tourReservations.GuestId = LoggedInUser.Id;
+              
+                tourReservations.Tour.Id = SelectedTour.Id;
+                tourReservations.GuestId.Id = LoggedInUser.Id;
                 tourReservations.NumberOfGuests = GuestsNumber;
                 tourReservations.UsedVoucher = false;
                 tourReservations.Status = "Not";

@@ -53,7 +53,7 @@ namespace InitialProject.Repositories
 
             foreach (GuestOnTour gt in _guestsOnTour)
             {
-                if (id == gt.StartingKeyPoint.TourId)
+                if (id == gt.StartingKeyPoint.Tour.Id)
                 {
                     sameIdGuests = gt;
                 }
@@ -100,7 +100,7 @@ namespace InitialProject.Repositories
 
             foreach (GuestOnTour gt in _guestsOnTour)
             {
-                if (id == gt.StartingKeyPoint.TourId)
+                if (id == gt.StartingKeyPoint.Tour.Id)
                 {
                     sameIdGuests.Add(gt);
                 }

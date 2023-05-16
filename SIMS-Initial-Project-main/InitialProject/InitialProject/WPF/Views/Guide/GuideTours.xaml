@@ -33,7 +33,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
-                <DataGridTextColumn Header="Tour Id" Binding="{Binding TourId}" Width="*" />
+                
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>

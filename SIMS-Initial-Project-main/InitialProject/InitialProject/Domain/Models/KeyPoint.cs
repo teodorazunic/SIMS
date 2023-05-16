@@ -14,24 +14,26 @@ namespace InitialProject.Domain.Models
 
         public int Id { get; set; }
 
-        public int TourId { get; set; }
+        //public int TourId { get; set; }
+
+        public Tour Tour = new Tour();
 
         public string Status { get; set; }
         
         public KeyPoint() { }
 
 
-        public KeyPoint(string name, int id, int tourId)
+        public KeyPoint(string name, int id, Tour tourId)
         {
             Name = name;
             Id = id;
-            TourId = tourId;
+            Tour = tourId;
             Status = "Inactive";
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Name, TourId.ToString(), Status};
+            string[] csvValues = { Id.ToString(), Name, Tour.Id.ToString(), Status};
             return csvValues;
         }
 
@@ -41,7 +43,7 @@ namespace InitialProject.Domain.Models
         {
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
-            TourId = Convert.ToInt32(values[2]);
+            Tour = new Tour() { Id = Convert.ToInt32(values[2]) };
             Status = values[3];
         }
     }

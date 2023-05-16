@@ -133,7 +133,7 @@ namespace InitialProject.WPF.Views
             List<Tour> tours = new List<Tour>();
             foreach (TourReservations tourReservation in guestsTours)
             {
-                Tour tour = _repository.GetTourById(tourReservation.TourId);
+                Tour tour = _repository.GetTourById(tourReservation.Tour.Id);
 
                 tours.Add(tour);
             }

@@ -49,7 +49,7 @@ namespace InitialProject.Repositories
 
             for (int i = 0; i < grades.Count; i++)
             {
-                if (id == grades[i].GuestId)
+                if (id == grades[i].GuestId.Id)
                 {
                     sameIdGrade.Add(grades[i]);
                 }
@@ -99,22 +99,6 @@ namespace InitialProject.Repositories
             
         }
 
-
-        //public bool UpdateCheck(GradeGuide gradeGuide)
-        //{
-        //    int id = gradeGuide.GuestId;
-        //    List<GuestOnTour> guests = _guestOnTourRepository.GetAllGuestsOnTour();
-        //    Tour tour = new Tour();
-        //    for(int i = 0; i<guests.Count; i++)
-        //    {
-        //        if (guests[i].GuestId == id)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
-
         public List<GradeGuide> GetAll()
         {
             List<GradeGuide> grades = new List<GradeGuide>();
@@ -127,7 +111,7 @@ namespace InitialProject.Repositories
                     string[] fields = line.Split('|');
                     GradeGuide grade = new GradeGuide();
                     grade.Id = Convert.ToInt32(fields[0]);
-                    grade.GuestId = Convert.ToInt32(fields[1]);
+                    grade.GuestId.Id= Convert.ToInt32(fields[1]);
                     grade.GuideKnowledge = Convert.ToInt32(fields[2]);
                     grade.GuideLanguage = Convert.ToInt32(fields[3]);
                     grade.Overall = Convert.ToInt32(fields[4]);
