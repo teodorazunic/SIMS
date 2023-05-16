@@ -79,7 +79,7 @@
            
             <Label Grid.Row="0" Grid.Column="0" Height="40"  >City:</Label>
             <TextBox x:Name="City" Grid.Column="1" Grid.RowSpan="2" Width="120"  Height="40" TextWrapping="Wrap"
-                     Text="{Binding Path=TourCity, UpdateSourceTrigger=PropertyChanged}" TextChanged="City_TextChanged"></TextBox>
+                     Text="{Binding Path=TourCity, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label Grid.Row="0" Grid.Column="0" Height="40">Country:</Label>
             <TextBox x:Name="Country" Grid.Column="1" Grid.RowSpan="2" Width="120"  Height="40" TextWrapping="Wrap"
                      Text="{Binding Path=TourCountry, UpdateSourceTrigger=PropertyChanged}"></TextBox>
@@ -107,10 +107,10 @@
             <Button Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
                 <Image Source="/Resources/Images/statistic.png" Width="130" Height="50" />
             </Button>
-            <Button Grid.Column="1"  Click="Requests" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+            <Button Grid.Column="1" Click="Requests" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
                 <Image Source="/Resources/Images/plus.png" Width="140" Height="46" />
             </Button>
-            <Button Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+            <Button Grid.Column="1" Click="Home" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
                 <Image Source="/Resources/Images/home.png" Width="140" Height="60" />
             </Button>
             <Button Grid.Column="1" Click="Active" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">

@@ -1,6 +1,8 @@
-﻿using InitialProject.Domain.Models;
+using InitialProject.Domain.Models;
 using InitialProject.Repositories;
 using InitialProject.Repository;
+using InitialProject.WPF.Views.Guest2;
+using InitialProject.WPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Runtime.InteropServices;
 
 namespace InitialProject.View
 {
@@ -26,16 +29,33 @@ namespace InitialProject.View
     public partial class TourReservation2 : Window
     {
         public static ObservableCollection<Tour> Tours { get; set; }
-        
+
+        public ObservableCollection<Voucher> Vouchers { get; set; }
+        //public Voucher SelectedVoucher { get; set; }
+
         public static ObservableCollection<TourReservations> TourReservations{ get; set; }
 
         private readonly TourRepository _repository;
         
         private readonly TourReservationRepositery _reservationRepository;
 
+        private readonly KeyPointsOnTourRepository _keyPointsOnTourRepository;
+
+        //private readonly VoucherRepository _voucherRepository;
+
+        List<string> voucherTitles = new List<string>()
+        {
+            "Free tour",
+            "Free tour",
+            "Free tour",
+   
+        };
+
         public static Tour SelectedTour { get; set; }
         public User LoggedInUser { get; set; }
         private int _guestsNumber = 0;
+        private MessageBoxResult result;
+        //private Voucher selectedVoucher;
 
         public int GuestsNumber
         {
@@ -49,7 +69,6 @@ namespace InitialProject.View
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -62,45 +81,132 @@ namespace InitialProject.View
             InitializeComponent();
             _repository = new TourRepository();
             _reservationRepository = new TourReservationRepositery();
+            _keyPointsOnTourRepository = new KeyPointsOnTourRepository();
+            //_voucherRepository = new VoucherRepository();
+            ComboBox.ItemsSource = voucherTitles;
             Tours = new ObservableCollection<Tour>(_repository.GetAllTours());
             SelectedTour = _repository.GetTourById(id);
             LoggedInUser = LoggedUser;
-            cityTextBlock.Text = SelectedTour.Location.City;
+            KeyPointsOnTour keyPointsOnTour = new KeyPointsOnTour();
+            keyPointsOnTour = _keyPointsOnTourRepository.GetKeyPointById(SelectedTour.Id);
+            nameTextBlock.Text = SelectedTour.Name;
+            locationTB.Text = SelectedTour.Location.City;
+            location2TB.Text = SelectedTour.Location.Country;
+            descriptionTB.Text = SelectedTour.Description;
+            languageTB.Text = SelectedTour.Language.Name;
+            timeTB.Text = SelectedTour.Start.ToString();
+            durationTB.Text = SelectedTour.Duration.ToString();
+            keypointsTB.Text = keyPointsOnTour.KeyPoints;
 
         }
 
-       private void CheckGuests(object sender, RoutedEventArgs e)
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            Close();
+        }
+        private void Home(object sender, RoutedEventArgs e)
+        {
+            TourOverview tourOverview = new TourOverview(LoggedInUser);
+            tourOverview.Show();
+            Close();
+        }
+
+        private void ShowVouchers(object sender, RoutedEventArgs e)
+        {
+            Vouchers vouchers = new Vouchers(LoggedInUser);
+            vouchers.Show();
+            Close();
+        }
+
+        private void Ratings(object sender, RoutedEventArgs e)
+        {
+            ShowPastTours ratings = new ShowPastTours(LoggedInUser);
+            ratings.Show();
+            Close();
+        }
+
+        private void Active(object sender, RoutedEventArgs e)
+        {
+            ActiveTour activeTour = new ActiveTour(LoggedInUser);
+            activeTour.Show();
+            Close();
+        }
+
+        private void Requests(object sender, RoutedEventArgs e)
+        {
+            TourRequestOverview tourRequestOverview = new TourRequestOverview(LoggedInUser);
+            tourRequestOverview.Show();
+            Close();
+        }
+
+        private void CheckGuests(object sender, RoutedEventArgs e)
         {
             string message = _repository.CheckMaxGuests(SelectedTour.Id, GuestsNumber);
-
+            if(message != "You were added to the tour." && SelectedTour.MaxGuests != 0)
+            {
+                MessageBox.Show(message);
+            }
+            
             if (SelectedTour.MaxGuests == 0)
             {
                 Tour newTour = _repository.GetTourByCity(SelectedTour.Location.City, SelectedTour.Id);
                 if (newTour != null && newTour.MaxGuests > 0)
                 {
-                    SelectedTour = newTour;
-                    cityTextBlock.Text = SelectedTour.Location.City;
-                    string suggestion = "This tour has no available slots left. You might want to check out " + SelectedTour.Name + "!";
-                    MessageBox.Show(suggestion);
+                    
+                    string suggestion = "This tour has no available slots remaining. Would you like to see another tour on the same location?";
+                    string title = "Alert";
+                    result = MessageBox.Show(suggestion, title, MessageBoxButton.YesNo);
+                    switch (result)
+                    {
+                        case(MessageBoxResult.Yes):
+                            SelectedTour = newTour;
+                            nameTextBlock.Text = SelectedTour.Name;
+                            locationTB.Text = SelectedTour.Location.City;
+                            location2TB.Text = SelectedTour.Location.Country;
+                            descriptionTB.Text = SelectedTour.Description;
+                            languageTB.Text = SelectedTour.Language.Name;
+                            timeTB.Text = SelectedTour.Start.ToString();
+                            durationTB.Text = SelectedTour.Duration.ToString();
+                            break;
+                        case (MessageBoxResult.No):
+                            TourOverview tourOverview = new TourOverview(LoggedInUser);
+                            tourOverview.Show();
+                            Close();
+                            break;
+                    }
+                    //MessageBox.Show(suggestion);
                 }
                 else
                 {
                     string suggestion = "This tour has no available slots left and there are no other tours available in this location.";
-                    MessageBox.Show(suggestion);
+                    string title = "Alert";
+                    MessageBox.Show(suggestion, title);
                 }
             }
-            else
+            else if (SelectedTour.MaxGuests > 0 && SelectedTour.MaxGuests >= GuestsNumber)
             {
                 TourReservations tourReservations = new TourReservations();
                 tourReservations.TourId = SelectedTour.Id;
                 tourReservations.GuestId = LoggedInUser.Id;
                 tourReservations.NumberOfGuests = GuestsNumber;
                 tourReservations.UsedVoucher = false;
+                tourReservations.Status = "Not";
                 _reservationRepository.SaveReservation(tourReservations);
                 _repository.UpdateMaxGuests(SelectedTour.Id, GuestsNumber);
-                MessageBox.Show(message);
+                //MessageBox.Show(message);
+                finalTB.Text = "You successfully booked this tour!";
+                BookButton.IsEnabled = false;
             }
             
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            TourOverview tourOverview = new TourOverview(LoggedInUser);
+            tourOverview.Show();
+            Close();
         }
     }
 }

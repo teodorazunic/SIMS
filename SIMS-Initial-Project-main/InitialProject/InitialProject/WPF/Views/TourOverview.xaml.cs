@@ -150,7 +150,7 @@ namespace InitialProject
         {
             TourReservation2 tourReservation = new TourReservation2(SelectedTour.Id, LoggedInUser);
             tourReservation.Show();
-            //Close();
+            Close();
         }
         
         private void LogOut(object sender, RoutedEventArgs e)
@@ -160,33 +160,40 @@ namespace InitialProject
             Close();
         }
 
-        private void City_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
         
          private void ShowVouchers(object sender, RoutedEventArgs e)
         {
             Vouchers vouchers = new Vouchers(LoggedInUser);
             vouchers.Show();
+            Close();
         }
 
         private void Ratings(object sender, RoutedEventArgs e)
         {
             ShowPastTours ratings = new ShowPastTours(LoggedInUser);
             ratings.Show();
+            Close();
         }
 
         private void Active(object sender, RoutedEventArgs e)
         {
             ActiveTour activeTour = new ActiveTour(LoggedInUser);
             activeTour.Show();
+            Close();
         }
-        
-         private void Requests(object sender, RoutedEventArgs e)
+
+        private void Requests(object sender, RoutedEventArgs e)
         {
-            CreateTourRequest createTourRequest = new CreateTourRequest(LoggedInUser);
-            createTourRequest.Show();
+            TourRequestOverview tourRequestOverview = new TourRequestOverview(LoggedInUser);
+            tourRequestOverview.Show();
+            Close();
+        }
+
+        private void Home(object sender, RoutedEventArgs e)
+        {
+            TourOverview tourOverview = new TourOverview(LoggedInUser);
+            tourOverview.Show();
+            Close();
         }
     }
 }
