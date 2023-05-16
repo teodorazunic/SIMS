@@ -74,6 +74,7 @@ namespace InitialProject.Domain.Models
             Duration = Convert.ToInt32(values[8]);
             Image = values[9];
             Status = values[10];
+            GuideId = Convert.ToInt32(values[11]);
         }
 
     }

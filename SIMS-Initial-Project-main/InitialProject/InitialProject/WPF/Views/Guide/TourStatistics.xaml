@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide"
         mc:Ignorable="d"
-        Title="TourStatistics" Height="450" Width="800">
+        Title="TouStatistics" Height="450" Width="800">
     <Grid>
         <DataGrid Name="MostVisitedTour" Margin="77,72,59,251"/>
         <RadioButton Content="All years" HorizontalAlignment="Left" Margin="141,36,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>

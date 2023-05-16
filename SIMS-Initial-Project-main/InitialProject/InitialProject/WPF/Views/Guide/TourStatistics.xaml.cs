@@ -67,5 +67,10 @@ namespace InitialProject.WPF.Views.Guide
             MostVisitedTour.ItemsSource = tourReservations;
 
         }
+
+        private void cbCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
