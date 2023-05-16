@@ -99,7 +99,9 @@ namespace InitialProject.WPF.Views
 
             if (knowledge >= 1 && knowledge <= 5 && language >= 1 && language <= 5 && overall >= 1 && overall <= 5)
             {
-                GradeGuide gradeGuide = new GradeGuide(gradeId, LoggedInUser.Id, knowledge, language, overall, comment, "Valid", url);
+                User user = new User();
+                user.Id = LoggedInUser.Id;
+                GradeGuide gradeGuide = new GradeGuide(gradeId, user, knowledge, language, overall, comment, "Valid", url);
                 GradeGuide saveGrade = _repository.SaveGrade(gradeGuide);
                 MessageBox.Show("You have rated this tour.");
                 Close();

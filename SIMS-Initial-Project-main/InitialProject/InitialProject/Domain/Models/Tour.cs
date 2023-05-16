@@ -30,7 +30,9 @@ namespace InitialProject.Domain.Models
 
         public List <KeyPoint> KeyPoints { get; set; }
 
-        public int GuideId { get; set; }
+        //public int GuideId { get; set; }
+
+        public User GuideId = new User();
 
         public string Status { get; set; }
 
@@ -48,20 +50,7 @@ namespace InitialProject.Domain.Models
             Status = status;
         }
 
-        public Tour(int id, string name, Location location, string description, string language, int maxGuests, DateTime start, int duration, string image, List<KeyPoint> keyPoints, int guideId)
-        {
-            Id = id;
-            Name = name;
-            Location = location;
-            Description = description;
-            Language = language;
-            MaxGuests = maxGuests;
-            Start = start;
-            Duration = duration;
-            Image = image;
-            KeyPoints = keyPoints;
-            GuideId = guideId;
-        }
+        
 
         public Tour(){}
 

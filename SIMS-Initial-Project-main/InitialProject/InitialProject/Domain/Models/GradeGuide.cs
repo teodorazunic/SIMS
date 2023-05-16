@@ -11,7 +11,9 @@ namespace InitialProject.Domain.Models
     internal class GradeGuide : ISerializable
     {
         public int Id { get; set; }
-        public int GuestId { get; set; }
+
+        public User GuestId = new User();
+        //public int GuestId { get; set; }
 
         public int GuideKnowledge { get; set; }
 
@@ -25,7 +27,7 @@ namespace InitialProject.Domain.Models
 
         public string PictureUrl { get; set; }
 
-        public GradeGuide(int id,int guestId, int guideKnowledge, int guideLanguage, int overall, string comment, string validation, string pictureUrl)
+        public GradeGuide(int id,User guestId, int guideKnowledge, int guideLanguage, int overall, string comment, string validation, string pictureUrl)
         {
             Id = id;
             GuestId = guestId;
@@ -44,14 +46,14 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(),GuestId.ToString(), GuideKnowledge.ToString(), GuideLanguage.ToString(), Overall.ToString(), Comment, Validation, PictureUrl };
+            string[] csvValues = { Id.ToString(),GuestId.Id.ToString(), GuideKnowledge.ToString(), GuideLanguage.ToString(), Overall.ToString(), Comment, Validation, PictureUrl };
             return csvValues;
         }
 
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            GuestId = Convert.ToInt32(values[1]);
+            GuestId = new User() {Id =  Convert.ToInt32(values[1]) };
             GuideKnowledge = Convert.ToInt32(values[2]);
             GuideLanguage = Convert.ToInt32(values[3]);
             Overall = Convert.ToInt32(values[4]);
