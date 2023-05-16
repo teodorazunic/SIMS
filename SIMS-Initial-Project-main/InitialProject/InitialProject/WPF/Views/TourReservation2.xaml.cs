@@ -190,7 +190,7 @@ namespace InitialProject.View
                 TourReservations tourReservations = new TourReservations();
               
                 tourReservations.Tour.Id = SelectedTour.Id;
-                tourReservations.GuestId = LoggedInUser.Id;
+                tourReservations.GuestId.Id = LoggedInUser.Id;
                 tourReservations.NumberOfGuests = GuestsNumber;
                 tourReservations.UsedVoucher = false;
                 tourReservations.Status = "Not";

@@ -36,7 +36,7 @@ namespace InitialProject.Repositories
             List<TourReservations> allReservations = _serializer.FromCSV(FilePath);
 
             List<TourReservations> reservationsByGuest = allReservations
-                .Where(reservation => reservation.GuestId == GuestId)
+                .Where(reservation => reservation.GuestId.Id == GuestId)
                 .ToList();
 
             return reservationsByGuest;
@@ -81,7 +81,7 @@ namespace InitialProject.Repositories
             List<TourReservations> endedTour = CheckReservedTourStatus();
             for(int i = 0; i < endedTour.Count(); i++)
             {
-                if (endedTour[i].GuestId == GuestId)
+                if (endedTour[i].GuestId.Id == GuestId)
                 {
                     Tour tour = _tourRepository.GetTourById(endedTour[i].Tour.Id);
                     selectedTour.Add(tour);
@@ -178,7 +178,7 @@ namespace InitialProject.Repositories
                     TourReservations tourReservation = new TourReservations();
                     tourReservation.TourReservationId = Convert.ToInt32(fields[0]);
                     tourReservation.Tour.Id = Convert.ToInt32(fields[1]);
-                    tourReservation.GuestId = Convert.ToInt32(fields[2]);
+                    tourReservation.GuestId.Id = Convert.ToInt32(fields[2]);
                     tourReservation.NumberOfGuests = Convert.ToInt32(fields[3]);
                     tourReservation.UsedVoucher = Convert.ToBoolean(fields[4]);
                     tourReservations.Add(tourReservation);

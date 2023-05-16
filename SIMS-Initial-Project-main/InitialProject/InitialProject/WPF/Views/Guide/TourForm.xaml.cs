@@ -57,7 +57,8 @@ namespace InitialProject.View
         {
             int id = keyPointRepository.NextId();
             string name = txtKeyPoint.Text;
-            int tourId = repository.NextId();
+            Tour tourId = new Tour();
+            tourId.Id= repository.NextId();
             
 
             KeyPoint keypoint = new KeyPoint(name, id, tourId);
