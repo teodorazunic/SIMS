@@ -25,6 +25,7 @@ namespace InitialProject.Domain
             { typeof(IVoucherRepository), new VoucherRepository() },
             { typeof(ITourReservationRepository), new TourReservationRepositery() },
             { typeof(ITourRequestRepository), new TourRequestRepository() },
+            { typeof(ITourNotificationsRepository), new TourNotificatinsRepository() },
 
            /* { typeof(INotificationService), new NotificationService(Injector.CreateInstance<INotificationRepository>()) },
              { typeof(IAccommodationService), new AccommodationService(Injector.CreateInstance<IAccommodationRepository>()) },
