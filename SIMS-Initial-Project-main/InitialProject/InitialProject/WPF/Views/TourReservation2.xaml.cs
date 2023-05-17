@@ -30,7 +30,7 @@ namespace InitialProject.View
     {
         public static ObservableCollection<Tour> Tours { get; set; }
 
-        public ObservableCollection<Voucher> Vouchers { get; set; }
+        public ObservableCollection<TourVoucher> Vouchers { get; set; }
         //public Voucher SelectedVoucher { get; set; }
 
         public static ObservableCollection<TourReservations> TourReservations{ get; set; }
@@ -41,15 +41,20 @@ namespace InitialProject.View
 
         private readonly KeyPointsOnTourRepository _keyPointsOnTourRepository;
 
-        //private readonly VoucherRepository _voucherRepository;
+        private readonly VoucherRepository _voucherRepository;
 
-        List<string> voucherTitles = new List<string>()
+        private void Vouchers_Loaded(object sender, RoutedEventArgs e)
         {
-            "Free tour",
-            "Free tour",
-            "Free tour",
-   
-        };
+            List<TourVoucher> vouchers = _voucherRepository.GetVoucherByGuestId(LoggedInUser.Id);
+            for (int i = 0; i < vouchers.Count; i++)
+            {
+                //ComboBox.Items.Add(vouchers[i].Title);
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = vouchers[i].Title;
+                item.Tag = vouchers[i].VoucherId;
+                ComboBox.Items.Add(item);
+            }
+        }
 
         public static Tour SelectedTour { get; set; }
         public User LoggedInUser { get; set; }
@@ -82,8 +87,8 @@ namespace InitialProject.View
             _repository = new TourRepository();
             _reservationRepository = new TourReservationRepositery();
             _keyPointsOnTourRepository = new KeyPointsOnTourRepository();
-            //_voucherRepository = new VoucherRepository();
-            ComboBox.ItemsSource = voucherTitles;
+            _voucherRepository = new VoucherRepository();
+            //ComboBox.ItemsSource = voucherTitles;
             Tours = new ObservableCollection<Tour>(_repository.GetAllTours());
             SelectedTour = _repository.GetTourById(id);
             LoggedInUser = LoggedUser;
@@ -192,7 +197,17 @@ namespace InitialProject.View
                 tourReservations.Tour.Id = SelectedTour.Id;
                 tourReservations.GuestId.Id = LoggedInUser.Id;
                 tourReservations.NumberOfGuests = GuestsNumber;
-                tourReservations.UsedVoucher = false;
+                 if (ComboBox.SelectedItem != null)
+                {
+                    tourReservations.UsedVoucher = true;
+                    ComboBoxItem selectedItem = ComboBox.SelectedItem as ComboBoxItem;
+                    int voucherId = (int)selectedItem.Tag;
+                    _voucherRepository.DeleteUsedVoucher(voucherId);
+                }
+                else 
+                {
+                    tourReservations.UsedVoucher = false;
+                }
                 tourReservations.Status = "Not";
                 _reservationRepository.SaveReservation(tourReservations);
                 _repository.UpdateMaxGuests(SelectedTour.Id, GuestsNumber);

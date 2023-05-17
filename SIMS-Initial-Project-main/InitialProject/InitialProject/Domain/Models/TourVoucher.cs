@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Domain.Models
 {
-    public class Voucher : ISerializable
+    public class TourVoucher : ISerializable
     {
         public int VoucherId { get; set; }
         
@@ -22,9 +22,9 @@ namespace InitialProject.Domain.Models
         public User GuideId = new User();
         public User GuestId = new User();
 
-        public Voucher() { }
+        public TourVoucher() { }
 
-        public Voucher(int voucherId, string title, DateTime validUntil, User guideId, User guestId)
+        public TourVoucher(int voucherId, string title, DateTime validUntil, User guideId, User guestId)
         {
             VoucherId = voucherId;
             Title = title;

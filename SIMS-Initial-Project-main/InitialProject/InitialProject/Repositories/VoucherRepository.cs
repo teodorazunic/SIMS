@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using InitialProject.Domain.Model;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Serializer;
@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using InitialProject.Domain.Models;
 using InitialProject.Repository;
+using System.Xml.Linq;
+using InitialProject.WPF.Views.Guest2;
 
 namespace InitialProject.Repositories
 {
@@ -15,31 +17,48 @@ namespace InitialProject.Repositories
     {
         private const string FilePath = "../../../Resources/Data/vouchers.csv";
 
-        private readonly Serializer<Voucher> _serializer;
+        private readonly Serializer<TourVoucher> _serializer;
 
-        private List<Voucher> _vouchers;
+        private List<TourVoucher> _vouchers;
 
         private readonly GuestOnTourRepository _guestOnTourRepository;
 
         public VoucherRepository()
         {
-            _serializer = new Serializer<Voucher>();
+            _serializer = new Serializer<TourVoucher>();
             _vouchers = _serializer.FromCSV(FilePath);
             _guestOnTourRepository = new GuestOnTourRepository();
 
         }
 
-        public void DeleteVoucher()
+        public void DeleteExpiredVoucher()
         {
             _vouchers = _serializer.FromCSV(FilePath);
-            List<Voucher> Vouchers = _vouchers;
-            foreach (Voucher voucher in Vouchers)
+            List<TourVoucher> vouchers = new List<TourVoucher>(_vouchers); 
+            List<TourVoucher> toDelete = new List<TourVoucher>(); 
+
+            foreach (TourVoucher voucher in vouchers)
             {
-                if (voucher.ValidUntil == DateTime.Now)
+                if (voucher.ValidUntil <= DateTime.Now)
                 {
-                    ;
+                    toDelete.Add(voucher); 
                 }
             }
+
+            foreach (TourVoucher voucher in toDelete)
+            {
+                _vouchers.Remove(voucher); 
+            }
+
+            _serializer.ToCSV(FilePath, _vouchers);
+        }
+
+        public void DeleteUsedVoucher(int voucherId)
+        {
+            _vouchers = _serializer.FromCSV(FilePath);
+            TourVoucher used = _vouchers.Find(v => v.VoucherId == voucherId);
+            _vouchers.Remove(used);
+            _serializer.ToCSV(FilePath, _vouchers);
         }
 
         public void SendVouchers(int id)
@@ -49,7 +68,7 @@ namespace InitialProject.Repositories
             {
                 if (guests[i].StartingKeyPoint.Tour.Id == id)
                 {
-                    Voucher voucher = new Voucher();
+                    TourVoucher voucher = new TourVoucher();
                     DateTime voucherDate = voucher.ValidUntil;
                     voucher.Title = "Vaucer za otkazanu turu.";
                     voucher.GuestId.Id = guests[i].GuestId;
@@ -60,7 +79,7 @@ namespace InitialProject.Repositories
             
         }
 
-        public Voucher Save(Voucher voucher)
+        public TourVoucher Save(TourVoucher voucher)
         {
             voucher.VoucherId = NextId();
             _vouchers = _serializer.FromCSV(FilePath);
@@ -69,26 +88,26 @@ namespace InitialProject.Repositories
             return voucher;
         }
 
-        public List<Voucher> GetVoucherByGuestId(int guestId)
+        public List<TourVoucher> GetVoucherByGuestId(int guestId)
         {
 
             _vouchers = _serializer.FromCSV(FilePath);
             return _vouchers.FindAll(v => v.GuestId.Id == guestId);
         }
 
-        public Voucher GetVoucherByGuideId(int guideId)
+        public TourVoucher GetVoucherByGuideId(int guideId)
         {
             _vouchers = _serializer.FromCSV(FilePath);
             return _vouchers.Find(v => v.GuideId.Id == guideId);
         }
 
-        public Voucher GetVoucherById(int voucherId)
+        public TourVoucher GetVoucherById(int voucherId)
         {
             _vouchers = _serializer.FromCSV(FilePath);
             return _vouchers.Find(v => v.VoucherId == voucherId);
         }
         
-          public List<Voucher> GetAllVouchers()
+          public List<TourVoucher> GetAllVouchers()
         {
             _vouchers = _serializer.FromCSV(FilePath);
             return _vouchers;

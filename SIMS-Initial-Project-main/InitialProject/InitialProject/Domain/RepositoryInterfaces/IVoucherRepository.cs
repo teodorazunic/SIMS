@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,16 +10,18 @@ namespace InitialProject.Domain.RepositoryInterfaces
 {
     public interface IVoucherRepository
     {
-        public Voucher GetVoucherById(int voucherId);
+        public TourVoucher GetVoucherById(int voucherId);
 
-        public List<Voucher> GetVoucherByGuestId(int guestId);
+        public List<TourVoucher> GetVoucherByGuestId(int guestId);
 
-        public Voucher GetVoucherByGuideId(int guideId);
+        public TourVoucher GetVoucherByGuideId(int guideId);
 
-        public void DeleteVoucher();
+        public void DeleteExpiredVoucher();
+
+        public void DeleteUsedVoucher(int voucherId);
 
         public int NextId();
         
-        public List<Voucher> GetAllVouchers();
+        public List<TourVoucher> GetAllVouchers();
     }
 }
