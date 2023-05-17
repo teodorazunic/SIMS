@@ -94,6 +94,15 @@ namespace InitialProject.View
             requests.Show();
             Close();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            CreateByStatistics requests = new CreateByStatistics();
+            requests.Show();
+            Close();
+
+        }
     }
 }
 

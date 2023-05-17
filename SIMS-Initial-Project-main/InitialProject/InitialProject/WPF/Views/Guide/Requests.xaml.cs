@@ -1,6 +1,7 @@
 ﻿using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Repositories;
+using InitialProject.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,6 +39,8 @@ namespace InitialProject.WPF.Views.Guide
         private string _city = "";
         private string _country = "";
         private int _maxGuests = 0;
+        private DateTime _startDate = DateTime.Now;
+        private DateTime _endDate = DateTime.Now;
 
         private TourRequest _selectedTourRequest;
 
@@ -61,6 +64,32 @@ namespace InitialProject.WPF.Views.Guide
                 if (value != _language)
                 {
                     _language = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public DateTime RequestStart
+        {
+            get => _startDate;
+            set
+            {
+                if (value != _startDate)
+                {
+                    _startDate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public DateTime RequestEnd
+        {
+            get => _endDate;
+            set
+            {
+                if (value != _endDate)
+                {
+                    _endDate = value;
                     OnPropertyChanged();
                 }
             }
@@ -137,18 +166,40 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            List<DateTime> availableDates = new List<DateTime>();
-            DateTime start = Convert.ToDateTime(startDate.Text);
-            DateTime end = Convert.ToDateTime(endDate.Text);
+            //List<DateTime> availableDates = new List<DateTime>();
+            RequestStart = Convert.ToDateTime(startDate.Text);
+            RequestEnd = Convert.ToDateTime(endDate.Text);
 
-            availableDates = _tourRequestsRepository.AvailableDates(start, end);
-            Dates.ItemsSource = availableDates;
+            //availableDates = _tourRequestsRepository.AvailableDates(start, end);
+            //Dates.ItemsSource = availableDates;
+            TourRequest requestToSearch = new TourRequest();
+            requestToSearch.StartDate = RequestStart;
+            requestToSearch.EndDate = RequestEnd;
+
+            ObservableCollection<TourRequest> tourRequests = new ObservableCollection<TourRequest>(_tourRequestsRepository.SearchByDate(requestToSearch));
+            TourRequests.Clear();
+            foreach (var request in tourRequests) TourRequests.Add(request);
+
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             DateTime choosenDate =Convert.ToDateTime(tourDate.Text);
 
+            TourForm tourForm = new TourForm(LoggedInUser);
+            tourForm.Show();
+            this.Close();
+
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            DateTime choosenDate = Convert.ToDateTime(tourDate.Text);
+            CreateByRequest create = new CreateByRequest(choosenDate, SelectedTourRequest.Location, SelectedTourRequest.Description, SelectedTourRequest.Language, SelectedTourRequest.MaxGuests) ;
+            create.Show();
+            this.Close();
         }
     }
 }
