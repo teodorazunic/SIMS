@@ -144,5 +144,11 @@ namespace InitialProject.WPF.Views.Guide
             availableDates = _tourRequestsRepository.AvailableDates(start, end);
             Dates.ItemsSource = availableDates;
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            DateTime choosenDate =Convert.ToDateTime(tourDate.Text);
+
+        }
     }
 }
