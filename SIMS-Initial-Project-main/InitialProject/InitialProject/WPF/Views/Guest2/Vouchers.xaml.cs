@@ -74,6 +74,8 @@ namespace InitialProject.WPF.Views.Guest2
             _repository = new VoucherRepository();
             AvailableVouchers = new ObservableCollection<Voucher>(_repository.GetVoucherByGuestId(LoggedInUser.Id));
             //dbVouchers.ItemsSource = _repository.GetVoucherByGuestId(LoggedInUser.Id);
+            _repository.DeleteExpiredVoucher();
+            AvailableVouchers = new ObservableCollection<TourVoucher>(_repository.GetVoucherByGuestId(LoggedInUser.Id));
            
         }
     }
