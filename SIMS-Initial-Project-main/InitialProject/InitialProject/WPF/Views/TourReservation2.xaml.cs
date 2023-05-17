@@ -30,7 +30,7 @@ namespace InitialProject.View
     {
         public static ObservableCollection<Tour> Tours { get; set; }
 
-        public ObservableCollection<Voucher> Vouchers { get; set; }
+        public ObservableCollection<TourVoucher> Vouchers { get; set; }
         //public Voucher SelectedVoucher { get; set; }
 
         public static ObservableCollection<TourReservations> TourReservations{ get; set; }
