@@ -25,7 +25,7 @@ namespace InitialProject.WPF.Views.Guest2
     /// </summary>
     public partial class Vouchers : Window
     {
-        public ObservableCollection<Voucher> AvailableVouchers { get; set; }
+        public ObservableCollection<TourVoucher> AvailableVouchers { get; set; }
         private readonly VoucherRepository _repository;
 
         public User LoggedInUser { get; set; }
@@ -72,7 +72,7 @@ namespace InitialProject.WPF.Views.Guest2
             DataContext = this;
             LoggedInUser = user;
             _repository = new VoucherRepository();
-            AvailableVouchers = new ObservableCollection<Voucher>(_repository.GetVoucherByGuestId(LoggedInUser.Id));
+            AvailableVouchers = new ObservableCollection<TourVoucher>(_repository.GetVoucherByGuestId(LoggedInUser.Id));
             //dbVouchers.ItemsSource = _repository.GetVoucherByGuestId(LoggedInUser.Id);
             _repository.DeleteExpiredVoucher();
             AvailableVouchers = new ObservableCollection<TourVoucher>(_repository.GetVoucherByGuestId(LoggedInUser.Id));
