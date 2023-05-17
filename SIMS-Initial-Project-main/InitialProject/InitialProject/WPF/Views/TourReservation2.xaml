@@ -69,7 +69,7 @@
                 <Image Source="/Resources/Images/notification.png" Width="120" Height="50" />
             </Button>
         </ToolBar>
-        <ComboBox x:Name="ComboBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="783,391,0,0" VerticalAlignment="Top" Width="150" Height="45" ItemsSource="{Binding Path=voucherTitles}" FontSize="24" Text="Vouchers" IsEditable="True" IsReadOnly="True"/>
+        <ComboBox x:Name="ComboBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="783,391,0,0" VerticalAlignment="Top" Width="150" Height="45" Loaded="Vouchers_Loaded" FontSize="24"/>
 
 
     </Grid>
