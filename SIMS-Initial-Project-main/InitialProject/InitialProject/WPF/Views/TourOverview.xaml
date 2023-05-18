@@ -104,7 +104,7 @@
             <Button Grid.Column="1" Click="ShowVouchers" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center">
                 <Image Source="/Resources/Images/coupon.png" Width="120" Height="55" />
             </Button>
-            <Button Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
+            <Button Grid.Column="1" Click="Statistics" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
                 <Image Source="/Resources/Images/statistic.png" Width="130" Height="50" />
             </Button>
             <Button Grid.Column="1" Click="Requests" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
@@ -119,7 +119,7 @@
             <Button Grid.Column="1" Click="Ratings" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center">
                 <Image Source="/Resources/Images/star.png" Width="140" Height="55" />
             </Button>
-            <Button Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center">
+            <Button Grid.Column="1" Click="ShowNotifications" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center">
                 <Image Source="/Resources/Images/notification.png" Width="120" Height="50" />
             </Button>
         </ToolBar>
