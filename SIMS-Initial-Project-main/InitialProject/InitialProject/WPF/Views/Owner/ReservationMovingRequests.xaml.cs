@@ -51,7 +51,7 @@ namespace InitialProject.View.Owner
 
         private void DeclineMoveReservation(object sender, RoutedEventArgs e)
         {
-            if (SelectedReservation != null)
+            if (this.SelectedReservation != null)
             {
                 SelectedReservation = (ReservationMoving)DataPanel.SelectedItem;
                 reservationMovingRepository.Delete(SelectedReservation);

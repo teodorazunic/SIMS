@@ -14,6 +14,10 @@ namespace InitialProject.Domain.Model
         public int DaysNumber { get; set; }
         public int GuestsNumber { get; set; }
         public string GradeStatus { get; set; }
+        public string AccommodationName { get; set; }
+
+
+
 
         public Reservation(int guestId, int accommodationId, DateTime dateFrom, DateTime dateTo, int daysNumber, int guestsNumber)
         {

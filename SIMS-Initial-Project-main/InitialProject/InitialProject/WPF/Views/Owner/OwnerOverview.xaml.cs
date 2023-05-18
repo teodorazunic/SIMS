@@ -20,6 +20,7 @@ using InitialProject.Domain.Models;
 using InitialProject.Model;
 using InitialProject.Repository;
 using InitialProject.View.Owner;
+using InitialProject.WPF.Views.Owner;
 
 namespace InitialProject.View
 {
@@ -188,6 +189,12 @@ namespace InitialProject.View
         {
             ReservationMovingRequests createMoveReservation = new ReservationMovingRequests();
             createMoveReservation.Show();
+        }
+
+        private void OpenRenovation(object sender, RoutedEventArgs e)
+        {
+            RenovationRequest createRenovationRequest = new RenovationRequest(LoggedInUser);
+            createRenovationRequest.Show();
         }
     }
 }

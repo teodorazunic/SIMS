@@ -26,8 +26,13 @@ namespace InitialProject.Domain.Model
         public string PictureUrl { get; set; }
 
         public int OwnerId { get; set; }
+        public string RenovationStatus { get; set; }
 
         public Accommodation() { }
+
+
+
+
 
         public Accommodation(string name, Location location, AccommodationType type, int guestsNumber, int reservationDays, int cancellationDeadlineDays, string picture, int ownerId)
 
@@ -40,6 +45,8 @@ namespace InitialProject.Domain.Model
             CancellationDeadlineDays = cancellationDeadlineDays;
             PictureUrl = picture;
             OwnerId = ownerId;
+            RenovationStatus = "NotRenovated";
+
         }
 
         public Accommodation(string name, Location location, AccommodationType type, int max, int min, int cancelDays)
@@ -54,7 +61,7 @@ namespace InitialProject.Domain.Model
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Name, Location.City, Location.Country, Type.ToString(), GuestsNumber.ToString(), ReservationDays.ToString(), CancellationDeadlineDays.ToString(), PictureUrl };
+            string[] csvValues = { Id.ToString(), Name, Location.City, Location.Country, Type.ToString(), GuestsNumber.ToString(), ReservationDays.ToString(), CancellationDeadlineDays.ToString(), PictureUrl, RenovationStatus };
             return csvValues;
         }
 
@@ -68,6 +75,7 @@ namespace InitialProject.Domain.Model
             ReservationDays = Convert.ToInt32(values[6]);
             CancellationDeadlineDays = Convert.ToInt32(values[7]);
             OwnerId = Convert.ToInt32(values[8]);
+            RenovationStatus = values[9];
             //PictureUrl = values[9];
         }
     }

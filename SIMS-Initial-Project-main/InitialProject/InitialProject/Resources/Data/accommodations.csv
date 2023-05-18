@@ -1,9 +1,9 @@
-1|Hotel Sajam|Novi Sad|Srbija|apartment|4|7|15|1
-2|Hotel Patrija|Subotica|Srbija|apartment|2|10|10|1
-3|Koliba kod Mike|Novi Knezevac|Srbija|cottage|9|2|7|1
-4|Lux Apartmani|Trebinje|Bosna i Hercegovina|apartment|3|5|10|1
-5|Plavsic House|Petrovaradin|Srbija|house|20|1|15|1
-6|Drvena Kuca Ruza|Kopaonik|Srbija|house|4|5|7|1
-10|Hotel Novi Sad|Novi Sad|Srbija|apartment|10|2|3|1
-12|Hotel Hotel|Beograd|Srbija|apartment|12|3|2|1
-13|Hotel Srbija|Beograd|Srbija|apartment|15|1|2|1
+1|Hotel Sajam|Novi Sad|Srbija|apartment|4|7|15|1|NotRenovated
+2|Hotel Patrija|Subotica|Srbija|apartment|2|10|10|1|NotRenovated
+3|Koliba kod Mike|Novi Knezevac|Srbija|cottage|9|2|7|1|NotRenovated
+4|Lux Apartmani|Trebinje|Bosna i Hercegovina|apartment|3|5|10|1|NotRenovated
+5|Plavsic House|Petrovaradin|Srbija|house|20|1|15|1|NotRenovated
+6|Drvena Kuca Ruza|Kopaonik|Srbija|house|4|5|7|1|NotRenovated
+10|Hotel Novi Sad|Novi Sad|Srbija|apartment|10|2|3|1|NotRenovated
+12|Hotel Hotel|Beograd|Srbija|apartment|12|3|2|1|NotRenovated
+13|Hotel Srbija|Beograd|Srbija|apartment|15|1|2|1|NotRenovated

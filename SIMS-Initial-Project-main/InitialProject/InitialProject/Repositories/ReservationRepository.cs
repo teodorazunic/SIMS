@@ -3,10 +3,13 @@ using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repositories;
 using InitialProject.Serializer;
+using InitialProject.WPF.Views.Owner;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace InitialProject.Repository
 {
@@ -19,6 +22,8 @@ namespace InitialProject.Repository
         private AccommodationRepository _accommodationRepository;
 
         private readonly NotificationRepository _notificationRepository;
+        private RenovationRepository renovationRepository;
+
 
         private List<Reservation> _reservations;
 
@@ -72,6 +77,58 @@ namespace InitialProject.Repository
             _reservations = _serializer.FromCSV(FilePath);
             return _reservations.Find(r => r.Id == id);
         }
+
+
+        public void ReserveRenovation(ComboBox comboBox, DateTime startDate, DateTime endDate)
+        {
+            int selectedAccommodationId = 0; // Default value or handle the case when no value is selected
+
+            if (comboBox.SelectedValue is int accommodationId)
+            {
+                selectedAccommodationId = accommodationId;
+            }
+            else if (comboBox.Tag is int tagAccommodationId)
+            {
+                selectedAccommodationId = tagAccommodationId;
+            }
+
+            List<Reservation> reservations = GetAll();
+
+            if (!(startDate > endDate))
+            {
+                if (IsAccommodationAvailable(reservations, selectedAccommodationId, startDate, endDate))
+                {
+                    Renovation renovation = new Renovation(
+                        renovationRepository.NextId(),
+                        _accommodationRepository.GetAccommodationById(selectedAccommodationId),
+                        startDate,
+                        endDate);
+
+                    renovationRepository.Save(renovation);
+                    MessageBox.Show("Success");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        public bool IsAccommodationAvailable(List<Reservation> reservations, int accommodationId, DateTime startDate, DateTime endDate)
+        {
+            Accommodation accommodation = _accommodationRepository.GetAccommodationById(accommodationId);
+
+            foreach (Reservation reservation in reservations)
+            {
+                if (reservation.AccommodationId == accommodationId && reservation.DateFrom < endDate && startDate < reservation.DateTo)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
 
 
         public List<ReservationAccommodation> GetAllByGuestId(int GuestId)
@@ -134,6 +191,80 @@ namespace InitialProject.Repository
 
             return availableDates;
         }
+
+
+        public List<DateTime> FindAlternativeDates(int accommodationId, DateTime checkInDate, DateTime checkOutDate, int numberOfDays)
+        {
+            List<DateTime> alternativeDates = new List<DateTime>();
+            List<Reservation> reservations = GetAll();
+            DateTime startDate = checkInDate.AddDays(1);
+            DateTime endDate = checkOutDate.AddDays(30);
+            while (startDate < endDate)
+            {
+                if (IsAccommodationAvailable(reservations, accommodationId, startDate, startDate.AddDays(numberOfDays)))
+                {
+                    alternativeDates.Add(startDate);
+                    if (alternativeDates.Count == 5)
+                    {
+                        break;
+                    }
+                }
+                startDate = startDate.AddDays(1);
+            }
+
+            return alternativeDates;
+        }
+
+
+        public List<Accommodation> IsAccommodationRenovated()
+        {
+            DateTime dateTime = DateTime.Now;
+            List<Accommodation> accommodations = _accommodationRepository.GetAllAccomodations();
+            List<Accommodation> changedHotels = new List<Accommodation>();
+            List<Renovation> renovations = renovationRepository.GetAll();
+            foreach (Accommodation accommodation in accommodations)
+            {
+                foreach (Renovation renovation in renovations)
+                {
+                    if (accommodation.Id == renovation.Accommodation.Id)
+                    {
+                        if (renovation.StartDate <= dateTime && dateTime <= renovation.EndDate)
+                        {
+                            accommodation.RenovationStatus = "IsRenovationg";
+                            changedHotels.Add(accommodation);
+                        }
+                        else if (dateTime >= renovation.EndDate && dateTime.Year - renovation.EndDate.Year < 1)
+                        {
+                            accommodation.RenovationStatus = "Renovated";
+                            changedHotels.Add(accommodation);
+                        }
+                        else if (dateTime < renovation.EndDate && dateTime.Year - renovation.EndDate.Year == 0)
+                        {
+                            accommodation.RenovationStatus = "NotRenovated";
+                            changedHotels.Add(accommodation);
+                        }
+                        else
+                        {
+                            accommodation.RenovationStatus = "NotRenovated";
+                            changedHotels.Add(accommodation);
+                            renovationRepository.Delete(renovation);
+                        }
+
+                    }
+                    if (renovations.Count == 0) break;
+                }
+            }
+            return changedHotels;
+        }
+        public void ChangeAllRenovatedStatus()
+        {
+            List<Accommodation> accommodations = IsAccommodationRenovated();
+            foreach (Accommodation accommodation in accommodations)
+            {
+                _accommodationRepository.Update(accommodation);
+            }
+        }
+
 
         public string CheckGuests(Reservation reservation, int guestsNumber)
         {

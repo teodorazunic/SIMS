@@ -1,10 +1,12 @@
 using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace InitialProject.Repository
 {
@@ -21,6 +23,15 @@ namespace InitialProject.Repository
             _serializer = new Serializer<Accommodation>();
             _accommodations = _serializer.FromCSV(FilePath);
         }
+
+
+
+
+
+
+
+
+
 
         public List<Accommodation> GetAllAccomodations()
         {
@@ -146,6 +157,33 @@ namespace InitialProject.Repository
             Accommodation founded = _accommodations.Find(a => a.Id == accommodation.Id);
             _accommodations.Remove(founded);
             _serializer.ToCSV(FilePath, _accommodations);
+        }
+
+        public List<ComboBoxItem> FillForComboBoxHotels(User user)
+        {
+            List<ComboBoxItem> accommodationsCB = new List<ComboBoxItem>();
+            List<Accommodation> accommodations= GetHotelByOwner(user.Id);
+            foreach (Accommodation accommodation in accommodations)
+            {
+                ComboBoxItem cbItem = new ComboBoxItem();
+                cbItem.Tag = accommodation.Id.ToString();
+                cbItem.Content = accommodation.Name;
+                accommodationsCB.Add(cbItem);
+            }
+            return accommodationsCB;
+        }
+
+
+        public List<Accommodation> GetHotelByOwner(int id)
+        {
+            List<Accommodation> accommodations= GetAllAccomodations();
+            List<Accommodation> findedHotels = new List<Accommodation>();
+            foreach (Accommodation accommodation in accommodations)
+            {
+                if (accommodation.OwnerId == id)
+                    findedHotels.Add(accommodation);
+            }
+            return findedHotels;
         }
 
         public Accommodation Update(Accommodation accommodation)
