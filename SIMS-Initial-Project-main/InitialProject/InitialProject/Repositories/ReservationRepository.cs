@@ -22,11 +22,11 @@ namespace InitialProject.Repository
         private AccommodationRepository _accommodationRepository;
 
         private readonly NotificationRepository _notificationRepository;
-        
+
         private RenovationRepository renovationRepository;
 
         private List<Reservation> _reservations;
-        
+
         private UserRepository _userRepository;
 
         public ReservationRepository()
@@ -341,6 +341,7 @@ namespace InitialProject.Repository
 
         public void SetSuperGuest(User user)
         {
+            user.DateSuperGuest = DateTime.Now;
             user.IsSuperGuest = true;
             user.Points = 5;
             _userRepository.UpdateUser(user);
