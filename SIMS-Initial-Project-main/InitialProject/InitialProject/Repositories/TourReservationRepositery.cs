@@ -145,6 +145,30 @@ namespace InitialProject.Repositories
 
         }
 
+        public List<int> GetVoucherStatistics(List<TourReservations> tourReservations)
+        {
+            tourReservations = _serializer.FromCSV(FilePath);
+            List<int> vouchers = new List<int>();
+            int usedVoucher = 0;
+            int unusedVoucher = 0;
+            foreach (var reservation in tourReservations)
+            {
+                if (reservation.UsedVoucher == true)
+                {
+                    usedVoucher++;
+                }
+                else
+                {
+                    unusedVoucher++;
+                }
+            }
+
+            vouchers.Add(usedVoucher);
+            vouchers.Add(unusedVoucher);
+            return vouchers;
+
+        }
+
         public TourReservations FindMostAttendantTour(string filename)
         {
             TourReservations tourReservation = new TourReservations();

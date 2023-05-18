@@ -37,23 +37,25 @@ namespace InitialProject.WPF.Views.Guide
         {
             cbCity.Items.Add("Novi Sad");
             cbCity.Items.Add("Ruma");
+            cbCity.Items.Add("Beograd");
             cbCity.Items.Add("");
 
 
         }
 
-        private void FillCountry(object sender, RoutedEventArgs e)
-        {
-            cbCountry.Items.Add("Srbija");
-            cbCountry.Items.Add("Makedonija");
-            cbCountry.Items.Add("");
+        //private void FillCountry(object sender, RoutedEventArgs e)
+        //{
+        //    cbCountry.Items.Add("Srbija");
+        //    cbCountry.Items.Add("Makedonija");
+        //    cbCountry.Items.Add("");
 
-        }
+        //}
 
         private void FillLanguage(object sender, RoutedEventArgs e)
         {
             cbLanguage.Items.Add("srpski");
             cbLanguage.Items.Add("engleski");
+            cbLanguage.Items.Add("spanski");
             cbLanguage.Items.Add("");
 
         }
@@ -73,11 +75,11 @@ namespace InitialProject.WPF.Views.Guide
         {
 
             string city = cbCity.Text;
-            string country = cbCountry.Text;
+           
             string years = cbYears.Text;
             string language = cbLanguage.Text;
 
-            int broj = _tourRequestRepository.Statistic(city, country, years, language);
+            int broj = _tourRequestRepository.Statistic(city, years, language);
 
             txtNumber.Text = broj.ToString();
 

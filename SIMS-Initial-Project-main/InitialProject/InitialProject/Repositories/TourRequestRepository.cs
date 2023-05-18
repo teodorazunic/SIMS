@@ -189,10 +189,10 @@ namespace InitialProject.Repositories
 
         }
 
-        public int Statistic(string city, string country, string years, string language )
+        public int Statistic(string city, string years, string language )
         {
 
-            List<TourRequest> allRequests =GetAllTourRequests();
+            List<TourRequest> allRequests = _serializer.FromCSV(FilePath);
             List<TourRequest> dobri = new List<TourRequest>();
             List<TourRequest> requests = new List<TourRequest>();
 
@@ -207,8 +207,9 @@ namespace InitialProject.Repositories
                         requests.Add(allRequests[i]);
                     }
                 }
+                
             }
-            requests = allRequests;
+            
 
             if (city != null || city != "")
             {
@@ -236,19 +237,6 @@ namespace InitialProject.Repositories
                 return dobri.Count();
 
 
-            }
-            else if (country != null || country != "")
-            {
-                for (int i = 0; i < requests.Count; i++)
-                {
-
-                    if (requests[i].Location.Country == country)
-                    {
-                        dobri.Add(requests[i]);
-                    }
-                }
-
-                return dobri.Count();
             }
 
             return dobri.Count();

@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide" 
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="TouStatistics" Height="450" Width="800">
     <Grid>
@@ -17,8 +18,20 @@
         <Label Content="18" HorizontalAlignment="Left" Margin="113,296,0,0" VerticalAlignment="Top"/>
         <Label Content="18-50" HorizontalAlignment="Left" Margin="109,339,0,0" VerticalAlignment="Top"/>
         <Label Content="50+" HorizontalAlignment="Left" Margin="109,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.804,3.565"/>
-        <TextBox HorizontalAlignment="Left" Margin="648,296,0,0" TextWrapping="Wrap" Text="Yes" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Voucher" HorizontalAlignment="Left" Margin="567,292,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="581,221,0,0" TextWrapping="Wrap" Text="Yes" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Voucher" HorizontalAlignment="Left" Margin="500,217,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUsed" HorizontalAlignment="Left" Margin="597,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtUnused" HorizontalAlignment="Left" Margin="597,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
+        <!--<lvc:PieChart Margin="472,255,28,10" Loaded="PieChart_Loaded">
+            <lvc:PieChart.Series>
+                <lvc:PieSeries Title="Used Voucher" Values="3" DataLabels="True"
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Unused Voucher" Values="4" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+             
+            </lvc:PieChart.Series>
+            
+        </lvc:PieChart>-->
     </Grid>
 </Window>

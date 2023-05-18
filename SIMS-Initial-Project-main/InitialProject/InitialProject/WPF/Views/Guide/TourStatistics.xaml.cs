@@ -14,6 +14,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
+using LiveCharts.Wpf.Charts.Base;
 
 namespace InitialProject.WPF.Views.Guide
 {
@@ -26,6 +29,10 @@ namespace InitialProject.WPF.Views.Guide
 
         private const string FilePath = "../../../Resources/Data/tourreservations.csv";
 
+        public List<TourReservations> reservations = new List<TourReservations>();
+
+        TourReservationRepositery reservationRepositery = new TourReservationRepositery();
+
         public User LoggedInUser { get; set; }
 
         
@@ -35,10 +42,16 @@ namespace InitialProject.WPF.Views.Guide
             DataContext = this;
             LoggedInUser = user;
             _tourReservationRepositery = new TourReservationRepositery();
+            List<int> vouchers = new List<int>();
+            vouchers = reservationRepositery.GetVoucherStatistics(reservations);
+            txtUsed.Text = vouchers[0].ToString();
+            txtUnused.Text = vouchers[1].ToString();
+
+           
 
         }
+     
 
-       
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -68,9 +81,6 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-        private void cbCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
