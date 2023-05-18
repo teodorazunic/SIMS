@@ -205,9 +205,9 @@ namespace InitialProject
 
         private void Statistics(object sender, RoutedEventArgs e)
         {
-            GuestRequestStatistics guestRequestStatistics = new GuestRequestStatistics(LoggedInUser);
-            guestRequestStatistics.Show();
-            Close();
+            //GuestRequestStatistics guestRequestStatistics = new GuestRequestStatistics(LoggedInUser);
+            //guestRequestStatistics.Show();
+            //Close();
         }
     }
 }
