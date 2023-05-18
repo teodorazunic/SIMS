@@ -18,6 +18,8 @@ namespace InitialProject.Repositories
     {
         private const string FilePath = "../../../Resources/Data/tourreservations.csv";
 
+        private const string FilePath1 = "../../../Resources/Data/guestontour.csv";
+
         private readonly Serializer<TourReservations> _serializer;
 
         private TourRepository _tourRepository;
@@ -168,7 +170,68 @@ namespace InitialProject.Repositories
             return vouchers;
 
         }
+        public int[] ShowStatistic(int id)
+        {
+            int[] statistic = new int[3];
+            statistic[0] = 0;
+            statistic[1] = 0;
+            statistic[2] = 0;
 
+            List<GuestOnTour> guestOnTour = ReadFromGuestOnTour(FilePath1);
+
+            for (int i = 0; i < guestOnTour.Count(); i++)
+            {
+                if (guestOnTour[i].StartingKeyPoint.Tour.Id == id)
+                {
+                    if (guestOnTour[i].Age < 18)
+                    {
+                        statistic[0] ++;
+                    }
+                    else if (guestOnTour[i].Age > 18 && guestOnTour[i].Age < 50)
+                    {
+                        statistic[1] ++;
+                    }
+                    else if (guestOnTour[i].Age > 50)
+                    {
+                        statistic[2]++;
+                    }
+
+                   
+                }
+            }
+            return statistic;
+        }
+
+        public List<GuestOnTour> ReadFromGuestOnTour(string FileName)
+        {
+            List<GuestOnTour> guestsOnTour = new List<GuestOnTour>();
+
+            using (StreamReader sr = new StreamReader(FileName))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+
+                    string[] fields = line.Split('|');
+                    GuestOnTour guest = new GuestOnTour();
+
+
+                    guest.Id = Convert.ToInt32(fields[0]);
+                    guest.GuestId = Convert.ToInt32(fields[1]);
+                    guest.GuestName = fields[2];
+                    guest.NumberOfGuests = Convert.ToInt32(fields[3]);
+                    guest.StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(fields[4]), Name = fields[5], Tour = new Tour() { Id = Convert.ToInt32(fields[6]) }, Status = fields[7] };
+                    guest.Status = fields[8];
+                    guest.Age = Convert.ToInt32(fields[9]);
+                    guestsOnTour.Add(guest);
+
+
+                }
+                return guestsOnTour;
+            }
+        }
+
+       
         public TourReservations FindMostAttendantTour(string filename)
         {
             TourReservations tourReservation = new TourReservations();

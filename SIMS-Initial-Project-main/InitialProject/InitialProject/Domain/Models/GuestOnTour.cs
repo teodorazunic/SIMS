@@ -23,10 +23,10 @@ namespace InitialProject.Domain.Models
 
         public string Status { get; set; }
 
-        //public int Age { get; set; }
+        public int Age { get; set; }
 
 
-        public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint, string status)
+        public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint, string status, int age)
         {
             Id = id;
             GuestId = guestId;
@@ -34,11 +34,12 @@ namespace InitialProject.Domain.Models
             NumberOfGuests = numberOfGuests;
             StartingKeyPoint = startingKeyPoint;
             Status = "Not here";
-         }
+            Age = age;
+        }
         public GuestOnTour() { }
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.Tour.Id.ToString(), StartingKeyPoint.Status, Status };
+            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.Tour.Id.ToString(), StartingKeyPoint.Status, Status, Age.ToString() };
             return csvValues;
         }
 
@@ -50,6 +51,7 @@ namespace InitialProject.Domain.Models
             NumberOfGuests = Convert.ToInt32(values[3]);
             StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(values[4]), Name = values[5], Tour = new Tour() { Id = Convert.ToInt32(values[6]) }, Status = values[7] };
             Status = values[8];
+            Age = Convert.ToInt32(values[9]);
         }
     }
 }

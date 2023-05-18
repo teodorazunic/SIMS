@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
 using LiveCharts.Wpf.Charts.Base;
+using InitialProject.Domain.RepositoryInterfaces;
 
 namespace InitialProject.WPF.Views.Guide
 {
@@ -35,6 +36,8 @@ namespace InitialProject.WPF.Views.Guide
 
         public User LoggedInUser { get; set; }
 
+        public TourReservations selectedTour;
+
         
         public TourStatistics(User user)
         {
@@ -46,8 +49,6 @@ namespace InitialProject.WPF.Views.Guide
             vouchers = reservationRepositery.GetVoucherStatistics(reservations);
             txtUsed.Text = vouchers[0].ToString();
             txtUnused.Text = vouchers[1].ToString();
-
-           
 
         }
      
@@ -81,6 +82,15 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-        
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            selectedTour = (TourReservations)MostVisitedTour.SelectedItem;
+            int[] Info = new int[3];
+            Info = _tourReservationRepositery.ShowStatistic(selectedTour.Tour.Id);
+            txt1.Text = Info[0].ToString();
+            txt2.Text = Info[1].ToString();
+            txt3.Text = Info[2].ToString();
+            
+        }
     }
 }
