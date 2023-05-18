@@ -333,7 +333,7 @@ namespace InitialProject.Repository
         public void CheckIfGainedSuperGuest(User user)
         {
             List<Reservation> userReservations = _reservations.FindAll(r => r.GuestId == user.Id && r.DateFrom > DateTime.Now.AddYears(-1) && r.DateTo < DateTime.Now);
-            if (userReservations.Count >= 1)
+            if (userReservations.Count >= 10)
             {
                 this.SetSuperGuest(user);
             }
