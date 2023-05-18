@@ -17,6 +17,7 @@ namespace InitialProject.Domain
           { typeof(IAccommodationReviewRepository), new AccommodationReviewRepository() },
            { typeof(IAccommodationReviewImageRepository), new AccommodationReviewImageRepository() },
             { typeof(IReservationRepository), new ReservationRepository() },
+            { typeof(IGradeGuestRepository ), new GradeGuestRepository() },
             { typeof(IReservationMovingRepository), new ReservationMovingRepository() },
             { typeof(IGradeGuideRepository), new GradeGuideRepository() },
             { typeof(IGuestOnTourRepository), new GuestOnTourRepository() },

@@ -7,18 +7,28 @@
         mc:Ignorable="d"
         Title="Accommodation" Height="727" Width="974" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen">
+
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    </Window.Resources>
+
     <Grid Margin="0,32,10,-57">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="760"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="15"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock FontWeight="ExtraBold" Text="{Binding LoggedInUser.Username}" Margin="20,0,0,0" />
+            <TextBlock Visibility="{Binding LoggedInUser.IsSuperGuest, Converter={StaticResource BooleanToVisibility}}" FontWeight="DemiBold" Text=" - SUPER GUEST -" Margin="20,0,0,0" />
+            <TextBlock Visibility="{Binding LoggedInUser.IsSuperGuest, Converter={StaticResource BooleanToVisibility}}" Text="Points:" Margin="20,0,0,0" />
+            <TextBlock Visibility="{Binding LoggedInUser.IsSuperGuest, Converter={StaticResource BooleanToVisibility}}" Text="{Binding LoggedInUser.Points}" Margin="5,0,0,0" />
+        </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="51,10,51,239" >
 
@@ -33,6 +43,7 @@
                     <DataGridTextColumn Header="Appartment Type" Binding="{Binding Type}" Width="*"/>
                     <DataGridTextColumn Header="Number of Guests" Binding="{Binding GuestsNumber}" Width="*"/>
                     <DataGridTextColumn Header="Nights stay" Binding="{Binding ReservationDays}" Width="*"/>
+                    <DataGridTextColumn Header="Renovated" Binding="{Binding RenovationStatus}" Width="*"/>
 
                 </DataGrid.Columns>
 
@@ -47,10 +58,11 @@
             <Button Click="ShowReservations" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My reservations"/>
             <Button Click="ShowNotifications" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My notifications"/>
             <Button Click="ShowRequests" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My requests"/>
+            <Button Click="MyReviews" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My reviews"/>
             <Button Click="Logout" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Log out"/>
         </StackPanel>
 
-        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="3">
             <Label Grid.Row="0" Grid.Column="0" Height="30">Name:</Label>
             <TextBox x:Name="Name" Grid.Column="1" Grid.RowSpan="2" Width="50"  Height="20" TextWrapping="Wrap"
                      Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
