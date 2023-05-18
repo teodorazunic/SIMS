@@ -44,23 +44,31 @@ namespace InitialProject
             _repository = new UserRepository();
         }
 
+        private User CheckSuperGuest(User user)
+        {
+            return _repository.CheckIfSuperGuest(user);
+        }
+
         private void SignIn(object sender, RoutedEventArgs e)
         {
-                User user = _repository.GetByUsername(Username);
+            User user = _repository.GetByUsername(Username);
             if (user != null)
             {
-                if(user.Password == txtPassword.Password)
+                if (user.Password == txtPassword.Password)
                 {
-                    if (user.Role == UserRole.guest1) {
+                    if (user.Role == UserRole.guest1)
+                    {
+                        user = this.CheckSuperGuest(user);
                         AccommodationOverview accommodationOverview = new AccommodationOverview(user);
                         accommodationOverview.Show();
                         Close();
-                    } else if (user.Role == UserRole.guest2)
+                    }
+                    else if (user.Role == UserRole.guest2)
                     {
                         TourOverview tourOverview = new TourOverview(user);
                         tourOverview.Show();
                         Close();
-                        
+
                     }
                     else if (user.Role == UserRole.owner)
                     {
@@ -82,7 +90,7 @@ namespace InitialProject
                         commentsOverview.Show();
                         Close();
                     }
-                } 
+                }
                 else
                 {
                     MessageBox.Show("Wrong password!");
@@ -92,7 +100,7 @@ namespace InitialProject
             {
                 MessageBox.Show("Wrong username!");
             }
-            
+
         }
     }
 }
