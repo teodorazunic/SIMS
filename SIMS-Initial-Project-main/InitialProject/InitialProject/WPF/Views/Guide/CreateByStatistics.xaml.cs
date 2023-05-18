@@ -43,6 +43,9 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            CreateByCity createByCity = new CreateByCity(txtLocation.Text);
+            createByCity.Show();
+            this.Close();
 
         }
     }

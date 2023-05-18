@@ -21,13 +21,14 @@ namespace InitialProject.WPF.Views.Guide
     /// </summary>
     public partial class CreateByCity : Window
     {
-        public CreateByCity(Location location)
+        public CreateByCity(string location)
         {
             InitializeComponent();
-            PopularCity.City= location.City;
+            PopularCity= location;
+            txtCity.Text = location;
         }
 
-        public Location PopularCity { get; set; }
+        public string PopularCity { get; set; }
 
 
 
@@ -43,7 +44,7 @@ namespace InitialProject.WPF.Views.Guide
 
             int id = repository.NextId();
             String name = txtName.Text;
-            Location location = new Location(PopularCity.City, txtCountry.Text);
+            Location location = new Location(PopularCity, txtCountry.Text);
             String description = txtDescription.Text;
             string language = txtLanguage.Text;
             int maxGuests = Convert.ToInt32(txtMaxGuests);
