@@ -196,5 +196,12 @@ namespace InitialProject.View
             RenovationRequest createRenovationRequest = new RenovationRequest(LoggedInUser);
             createRenovationRequest.Show();
         }
+
+        private void OpenStatistics(object sender, RoutedEventArgs e)
+        {
+            AccommodationStatistics createStatistics = new AccommodationStatistics(LoggedInUser);
+            createStatistics.Show();
+
+        }
     }
 }

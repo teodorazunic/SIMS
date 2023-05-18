@@ -167,7 +167,7 @@ namespace InitialProject.Repository
             {
                 ComboBoxItem cbItem = new ComboBoxItem();
                 cbItem.Tag = accommodation.Id.ToString();
-                cbItem.Content = accommodation.Name;
+                cbItem.Content = accommodation.Id;
                 accommodationsCB.Add(cbItem);
             }
             return accommodationsCB;

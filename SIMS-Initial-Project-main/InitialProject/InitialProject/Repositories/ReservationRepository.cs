@@ -10,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows;
+using LiveCharts.Wpf;
+using LiveCharts;
 
 namespace InitialProject.Repository
 {
@@ -81,6 +83,51 @@ namespace InitialProject.Repository
             _reservations = _serializer.FromCSV(FilePath);
             return _reservations.Find(r => r.Id == id);
         }
+
+
+        public ColumnSeries ShowHotelDataInChart(int accommodationId)
+        {
+            DateTime dateTime = DateTime.Now;
+            List<int> yValues = new List<int>();
+            List<Reservation> reservations = GetAll();
+            for (int i = 0; i < 5; i++)
+            {
+                int tempCount = 0;
+                foreach (Reservation reservation in reservations)
+                {
+                    if (reservation.AccommodationId == accommodationId && reservation.DateFrom.Year == dateTime.Year - 4 + i)
+                    {
+                        tempCount++;
+                    }
+                }
+                yValues.Add(tempCount);
+            }
+            ColumnSeries columnSeries = new ColumnSeries();
+            columnSeries.Title = accommodationId.ToString();
+            columnSeries.Values = new ChartValues<int>(yValues);
+
+            return columnSeries;
+        }
+
+        public List<int> ShowHotelDataPerMonth(int accommodationId, int year)
+        {
+            List<int> yValues = new List<int>();
+            List<Reservation> reservations = GetAll();
+            for (int i = 1; i <= 12; i++)
+            {
+                int tempCount = 0;
+                foreach (Reservation reservation in reservations)
+                {
+                    if (reservation.AccommodationId == accommodationId&& reservation.DateFrom.Month == i && year == reservation.DateFrom.Year)
+                    {
+                        tempCount++;
+                    }
+                }
+                yValues.Add(tempCount);
+            }
+            return yValues;
+        }
+
 
 
         public void ReserveRenovation(ComboBox comboBox, DateTime startDate, DateTime endDate)
