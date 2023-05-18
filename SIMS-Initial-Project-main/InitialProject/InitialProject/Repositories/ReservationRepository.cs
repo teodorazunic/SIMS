@@ -36,6 +36,7 @@ namespace InitialProject.Repository
             _reservations = _serializer.FromCSV(FilePath);
             _userRepository = new UserRepository();
             _notificationRepository = new NotificationRepository();
+            renovationRepository = new RenovationRepository();
         }
 
         public Reservation Update(Reservation reservation)
@@ -110,7 +111,7 @@ namespace InitialProject.Repository
                     renovationRepository.Save(renovation);
                     MessageBox.Show("Success");
                 }
-            }
+            }   
             else
             {
                 MessageBox.Show("Error");

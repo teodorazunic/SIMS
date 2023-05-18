@@ -69,7 +69,29 @@ namespace InitialProject.Repositories
         }
 
 
+        public List<Renovation> ReadFromReservationsCsv(string FileName)
+        {
+            List<Renovation> reservations = new List<Renovation>();
 
+            using (StreamReader sr = new StreamReader(FileName))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+
+                    string[] fields = line.Split('|');
+                    Renovation renovation= new Renovation();
+                    renovation.Id = Convert.ToInt32(fields[0]);
+                    renovation.Accommodation.Id = Convert.ToInt32(fields[1]);
+                    renovation.Accommodation.Name = fields[3];
+                    renovation.StartDate = Convert.ToDateTime(fields[4]);
+                    renovation.EndDate = Convert.ToDateTime(fields[5]);
+                    reservations.Add(renovation);
+
+                }
+            }
+            return reservations;
+        }
 
 
 
