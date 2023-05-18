@@ -42,22 +42,21 @@ namespace InitialProject.Repository
             return _users.FirstOrDefault(u => u.Username == username);
         }
 
-        public User CheckIfSuperGuest(User user)
-        {
+        public User CheckIfSuperGuest(User user) {
 
             bool expired = false;
 
-            if (user.DateSuperGuest.AddYears(1) < DateTime.Now) { expired = true; }
+            if(user.DateSuperGuest.AddYears(1) < DateTime.Now) { expired = true; }
 
-            if (expired)
+            if(expired)
             {
                 user.IsSuperGuest = false;
                 user.Points = 0;
                 this.UpdateUser(user);
             }
-
+            
             return user;
-
+        
         }
 
 

@@ -1,4 +1,6 @@
-﻿using InitialProject.Domain.Models;
+﻿using InitialProject.Domain;
+using InitialProject.Domain.Models;
+using InitialProject.Domain.ServiceInterfaces;
 using InitialProject.Forms;
 using InitialProject.Repository;
 using InitialProject.View;
@@ -14,7 +16,7 @@ namespace InitialProject
     public partial class SignInForm : Window
     {
 
-        private readonly UserRepository _repository;
+        private readonly IUserService _userService;
 
         private string _username;
         public string Username
@@ -41,24 +43,18 @@ namespace InitialProject
         {
             InitializeComponent();
             DataContext = this;
-            _repository = new UserRepository();
-        }
-
-        private User CheckSuperGuest(User user)
-        {
-            return _repository.CheckIfSuperGuest(user);
+            _userService = Injector.CreateInstance<IUserService>();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
         {
-            User user = _repository.GetByUsername(Username);
+            User user = _userService.GetByUsername(Username);
             if (user != null)
             {
                 if (user.Password == txtPassword.Password)
                 {
                     if (user.Role == UserRole.guest1)
                     {
-                        user = this.CheckSuperGuest(user);
                         AccommodationOverview accommodationOverview = new AccommodationOverview(user);
                         accommodationOverview.Show();
                         Close();
