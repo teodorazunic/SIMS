@@ -22,6 +22,8 @@ namespace InitialProject.Domain.Models
 
         public int Points { get; set; }
 
+        public DateTime DateSuperGuest { get; set; }
+
         public User() { }
 
         public User(string username, string password, UserRole role)
@@ -33,7 +35,7 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Username, Password, Role.ToString(), IsSuperGuest.ToString(), Points.ToString() };
+            string[] csvValues = { Id.ToString(), Username, Password, Role.ToString(), IsSuperGuest.ToString(), Points.ToString(), DateSuperGuest.ToString() };
             return csvValues;
         }
 
@@ -45,6 +47,7 @@ namespace InitialProject.Domain.Models
             Role = (UserRole)Enum.Parse(typeof(UserRole), values[3], false);
             IsSuperGuest = Convert.ToBoolean(values[4]);
             Points = Convert.ToInt32(values[5]);
+            DateSuperGuest = Convert.ToDateTime(values[6]);
         }
     }
 }

@@ -22,11 +22,11 @@ namespace InitialProject.Repository
         private AccommodationRepository _accommodationRepository;
 
         private readonly NotificationRepository _notificationRepository;
-        
+
         private RenovationRepository renovationRepository;
 
         private List<Reservation> _reservations;
-        
+
         private UserRepository _userRepository;
 
         public ReservationRepository()
@@ -333,7 +333,7 @@ namespace InitialProject.Repository
         public void CheckIfGainedSuperGuest(User user)
         {
             List<Reservation> userReservations = _reservations.FindAll(r => r.GuestId == user.Id && r.DateFrom > DateTime.Now.AddYears(-1) && r.DateTo < DateTime.Now);
-            if (userReservations.Count >= 10)
+            if (userReservations.Count >= 1)
             {
                 this.SetSuperGuest(user);
             }
@@ -341,6 +341,7 @@ namespace InitialProject.Repository
 
         public void SetSuperGuest(User user)
         {
+            user.DateSuperGuest = DateTime.Now;
             user.IsSuperGuest = true;
             user.Points = 5;
             _userRepository.UpdateUser(user);
