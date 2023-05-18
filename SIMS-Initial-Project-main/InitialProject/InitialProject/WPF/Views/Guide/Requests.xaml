@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Requests" Height="450" Width="800">
     <Grid>
-        <DataGrid  ItemsSource="{Binding TourRequests}" SelectedItem="{Binding SelectedTour}" IsReadOnly="True" SelectionMode="Single" 
+        <DataGrid  ItemsSource="{Binding TourRequests}" SelectedItem="{Binding SelectedTourRequest}" IsReadOnly="True" SelectionMode="Single" 
             AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="68,129,34,129">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
@@ -29,11 +29,11 @@
         <TextBox x:Name="txtLanguage" HorizontalAlignment="Left" Margin="359,88,0,0" TextWrapping="Wrap" Text="{Binding Path=RequestLanguage, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <Button Content="Filter" HorizontalAlignment="Left" Margin="449,44,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <TextBox x:Name="txtCountry" HorizontalAlignment="Left" Margin="68,111,0,0" TextWrapping="Wrap" Text="{Binding Path=RequestCountry, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="startDate" HorizontalAlignment="Left" Margin="26,329,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="endDate" HorizontalAlignment="Left" Margin="141,329,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="startDate" HorizontalAlignment="Left" Margin="26,329,0,0"  Text="{Binding Path=RequestStart, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <DatePicker x:Name="endDate" HorizontalAlignment="Left" Margin="141,329,0,0" Text="{Binding Path=RequestEnd, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <Button Content="Date" HorizontalAlignment="Left" Margin="128,388,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
         <ListBox x:Name="Dates" Margin="253,310,400,58"/>
-        <DatePicker HorizontalAlignment="Left" Margin="449,331,0,0" VerticalAlignment="Top"/>
-        <Button Content="Accept request" HorizontalAlignment="Left" Margin="635,353,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="tourDate" HorizontalAlignment="Left" Margin="449,331,0,0" VerticalAlignment="Top"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="658,355,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
     </Grid>
 </Window>

@@ -27,6 +27,72 @@ namespace InitialProject.Repositories
 
         }
 
+        public string FindBestLocation()
+        {
+            DateTime lastYear = DateTime.Now.AddYears(1);
+            List<TourRequest> tourRequests = new List<TourRequest>();
+            tourRequests = GetAllTourRequests().Where(t => t.StartDate >= lastYear).ToList();
+            //int locationId = tourRequests.GroupBy(t => t.Location).Count();
+            Dictionary<string, int> locationCounts = new Dictionary<string, int>();
+
+            foreach (var tourRequest in tourRequests)
+            {
+                var location = tourRequest.Location.City;
+
+                if (locationCounts.ContainsKey(location))
+                {
+                    locationCounts[location]++;
+                }
+                else
+                {
+                    locationCounts[location] = 1;
+                }
+            }
+
+            string mostFrequentLocation = null;
+            int maxCount = 0;
+
+            foreach (var kvp in locationCounts)
+            {
+                if (kvp.Value > maxCount)
+                {
+                    mostFrequentLocation = kvp.Key;
+                    maxCount = kvp.Value;
+                }
+            }
+
+            return mostFrequentLocation;
+
+            
+
+        }
+
+        public string FindMostWantedCity()
+        {
+            DateTime lastYear = DateTime.Now.AddYears(-1);
+            List<TourRequest> tourRequests = new List<TourRequest>();
+            tourRequests = GetAllTourRequests().Where(t => t.StartDate >= lastYear).ToList();
+            string bestCity = tourRequests.GroupBy(l => l.Location.City).OrderByDescending(g => g.Count())
+                                  .Select(g =>  g.Key).FirstOrDefault();
+
+            return bestCity;
+          
+
+        }
+
+        public string FindMostWantedLanguage()
+        {
+            DateTime lastYear = DateTime.Now.AddYears(-1);
+            List<TourRequest> tourRequests = new List<TourRequest>();
+            tourRequests = GetAllTourRequests().Where(t => t.StartDate >= lastYear).ToList();
+            string bestLanguage = tourRequests.GroupBy(l => l.Language).OrderByDescending(g => g.Count())
+                                  .Select(g => g.Key).FirstOrDefault();
+
+            return bestLanguage;
+
+
+        }
+
         public List<DateTime> AvailableDates(DateTime start, DateTime end)
         {
             _requests = _serializer.FromCSV(FilePath);
@@ -153,7 +219,15 @@ namespace InitialProject.Repositories
 
         public List<TourRequest> findByDate(List<TourRequest> tourRequests, DateTime start, DateTime end)
         {
+            if (start != DateTime.MinValue)
+            {
+                tourRequests = tourRequests.FindAll(a => a.StartDate >= start);
+            }
 
+            if (end != DateTime.MaxValue)
+            {
+                tourRequests = tourRequests.FindAll(a => a.EndDate <=  end);
+            }
             return tourRequests;
 
         }
@@ -197,6 +271,16 @@ namespace InitialProject.Repositories
             filteredRequests = this.findByCity(filteredRequests, tourRequest.Location.City);
             filteredRequests = this.findByCountry(filteredRequests, tourRequest.Location.Country);
             filteredRequests = this.findByMaxGuests(filteredRequests, tourRequest.MaxGuests);
+            return filteredRequests;
+        }
+
+        public List<TourRequest> SearchByDate(TourRequest tourRequest)
+        {
+            _requests = _serializer.FromCSV(FilePath);
+
+            List<TourRequest> filteredRequests = _requests;
+
+            filteredRequests = this.findByDate(filteredRequests, tourRequest.StartDate, tourRequest.EndDate);
             return filteredRequests;
         }
 
