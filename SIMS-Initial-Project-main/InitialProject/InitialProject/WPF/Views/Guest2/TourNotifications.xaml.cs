@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -91,6 +91,17 @@ namespace InitialProject.WPF.Views.Guest2
             TourOverview tourOverview = new TourOverview(LoggedInUser);
             tourOverview.Show();
             Close();
+        }
+
+        private void NotificationList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (NotificationList.SelectedItem != null)
+            {
+                //var selectedItem = (ListItem)NotificationList.SelectedItem;
+                TourOverview tourOverview = new TourOverview(LoggedInUser);
+                tourOverview.Show();
+                Close();
+            }
         }
     }
 }

@@ -27,15 +27,16 @@ namespace InitialProject.Domain
             { typeof(ITourReservationRepository), new TourReservationRepositery() },
             { typeof(ITourRequestRepository), new TourRequestRepository() },
             { typeof(ITourNotificationsRepository), new TourNotificatinsRepository() },
+            { typeof(IUserRepository), new UserRepository() },
 
-           /* { typeof(INotificationService), new NotificationService(Injector.CreateInstance<INotificationRepository>()) },
-             { typeof(IAccommodationService), new AccommodationService(Injector.CreateInstance<IAccommodationRepository>()) },
-             { typeof(IAccommodationReviewService), new AccommodationReviewService(Injector.CreateInstance<IAccommodationReviewRepository>()) },
-             { typeof(IAccommodationReviewImageService), new AccommodationReviewImageService(Injector.CreateInstance<IAccommodationReviewImageRepository>()) },
-             { typeof(IReservationService), new ReservationService(Injector.CreateInstance<IReservationRepository>()) },
-             { typeof(IReservationMovingService), new ReservationMovingService(Injector.CreateInstance<IReservationMovingRepository>()) }
-           */
+
+            { typeof(IUserService), null }
     };
+
+        static Injector()
+        {
+            _implementations[typeof(IUserService)] = new UserService(CreateInstance<IUserRepository>());
+        }
 
         public static T CreateInstance<T>()
         {
