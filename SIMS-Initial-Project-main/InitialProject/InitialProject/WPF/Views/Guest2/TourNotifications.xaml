@@ -44,7 +44,7 @@
                 <Image Source="/Resources/Images/notification.png" Width="120" Height="50" />
             </Button>
         </ToolBar>
-        <ListBox Grid.Column="1" Grid.Row="1" Width="800" x:Name="NotificationList" Margin="50,0,100,386"/>
+        <ListBox Grid.Column="1" Grid.Row="1" Width="800" x:Name="NotificationList" SelectionChanged="NotificationList_SelectionChanged" Margin="50,0,100,386"/>
 
     </Grid>
 </Window>

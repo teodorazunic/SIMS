@@ -195,5 +195,19 @@ namespace InitialProject
             tourOverview.Show();
             Close();
         }
+
+        private void ShowNotifications(object sender, RoutedEventArgs e)
+        {
+            TourNotifications tourNotifications = new TourNotifications(LoggedInUser);
+            tourNotifications.Show();
+            Close();
+        }
+
+        private void Statistics(object sender, RoutedEventArgs e)
+        {
+            //GuestRequestStatistics guestRequestStatistics = new GuestRequestStatistics(LoggedInUser);
+            //guestRequestStatistics.Show();
+            //Close();
+        }
     }
 }
