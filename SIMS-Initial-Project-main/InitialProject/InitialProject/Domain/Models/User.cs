@@ -18,6 +18,10 @@ namespace InitialProject.Domain.Models
 
         public UserRole Role { get; set; }
 
+        public bool IsSuperGuest { get; set; }
+
+        public int Points { get; set; }
+
         public User() { }
 
         public User(string username, string password, UserRole role)
@@ -29,7 +33,7 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Username, Password, Role.ToString() };
+            string[] csvValues = { Id.ToString(), Username, Password, Role.ToString(), IsSuperGuest.ToString(), Points.ToString() };
             return csvValues;
         }
 
@@ -39,6 +43,8 @@ namespace InitialProject.Domain.Models
             Username = values[1];
             Password = values[2];
             Role = (UserRole)Enum.Parse(typeof(UserRole), values[3], false);
+            IsSuperGuest = Convert.ToBoolean(values[4]);
+            Points = Convert.ToInt32(values[5]);
         }
     }
 }

@@ -22,16 +22,19 @@ namespace InitialProject.Repository
         private AccommodationRepository _accommodationRepository;
 
         private readonly NotificationRepository _notificationRepository;
+        
         private RenovationRepository renovationRepository;
 
-
         private List<Reservation> _reservations;
+        
+        private UserRepository _userRepository;
 
         public ReservationRepository()
         {
             _serializer = new Serializer<Reservation>();
             _accommodationRepository = new AccommodationRepository();
             _reservations = _serializer.FromCSV(FilePath);
+            _userRepository = new UserRepository();
             _notificationRepository = new NotificationRepository();
         }
 
@@ -230,7 +233,7 @@ namespace InitialProject.Repository
                     {
                         if (renovation.StartDate <= dateTime && dateTime <= renovation.EndDate)
                         {
-                            accommodation.RenovationStatus = "IsRenovationg";
+                            accommodation.RenovationStatus = "IsRenovating";
                             changedHotels.Add(accommodation);
                         }
                         else if (dateTime >= renovation.EndDate && dateTime.Year - renovation.EndDate.Year < 1)
@@ -307,8 +310,50 @@ namespace InitialProject.Repository
             return "Uspesno obrisana rezervacija!";
         }
 
+        public void CheckIfSuperGuest(int GuestId)
+        {
+
+            User user = _userRepository.GetById(GuestId);
+            if (user != null && user.IsSuperGuest && user.Points > 0)
+            {
+                this.DecrementPoints(user);
+            }
+            else if (user != null && !user.IsSuperGuest)
+            {
+                this.CheckIfGainedSuperGuest(user);
+            }
+        }
+
+        public void DecrementPoints(User user)
+        {
+            user.Points--;
+            _userRepository.UpdateUser(user);
+        }
+
+        public void CheckIfGainedSuperGuest(User user)
+        {
+            List<Reservation> userReservations = _reservations.FindAll(r => r.GuestId == user.Id && r.DateFrom > DateTime.Now.AddYears(-1) && r.DateTo < DateTime.Now);
+            if (userReservations.Count >= 10)
+            {
+                this.SetSuperGuest(user);
+            }
+        }
+
+        public void SetSuperGuest(User user)
+        {
+            user.IsSuperGuest = true;
+            user.Points = 5;
+            _userRepository.UpdateUser(user);
+        }
+
         public String SaveReservation(Reservation reservation)
         {
+
+            bool renovationInProcess = this.CheckRenovationInProcess(reservation.AccommodationId);
+
+            if (renovationInProcess) { return "Smestaj je u procesu renoviranja"; }
+
+            this.CheckIfSuperGuest(reservation.GuestId);
 
             int reservationId = this.GetLastId();
             reservation.Id = reservationId + 1;
@@ -318,8 +363,15 @@ namespace InitialProject.Repository
 
             return "Rezervacija je uspesno sacuvana!";
         }
-
-
+        private bool CheckRenovationInProcess(int accommodationId)
+        {
+            Accommodation accommodation = _accommodationRepository.GetAccommodationById(accommodationId);
+            if (accommodation != null && accommodation.RenovationStatus == "IsRenovating")
+            {
+                return true;
+            }
+            return false;
+        }
 
         public List<Reservation> ReadFromReservationsCsv(string FileName)
         {

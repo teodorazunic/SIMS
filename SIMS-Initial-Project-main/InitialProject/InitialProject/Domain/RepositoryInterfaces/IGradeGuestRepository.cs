@@ -16,10 +16,7 @@ namespace InitialProject.Domain.RepositoryInterfaces
 
         public string ShowMessageForGrade(int i);
 
-       
-
-
-
+        public List<GuestGrade> GetAllGradesForGuest(string guestUsername);
 
     }
 }

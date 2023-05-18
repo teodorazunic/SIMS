@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Domain.Models
 {
-    internal class GuestGrade : Serializer.ISerializable
+    public class GuestGrade : Serializer.ISerializable
     {
 
         public string GuestUserName { get; set; }

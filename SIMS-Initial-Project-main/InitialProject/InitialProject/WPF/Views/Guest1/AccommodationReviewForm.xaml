@@ -5,41 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject.Forms"
         mc:Ignorable="d"
-        Title="Create new comment" Height="550" Width="700" WindowStartupLocation="CenterScreen">
+        Title="Create new comment" Height="740" Width="700" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="400"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="1" Width="500" Margin="50,0,50,0" Grid.RowSpan="2">
+        <Grid Grid.Row="0" Grid.Column="1"  Margin="15,0,15,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="80"></RowDefinition>
-                <RowDefinition Height="80"></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Height="30">Cleanliness (1-5):</Label>
-            <TextBox Width="100" Grid.Row="0" Text="{Binding Path=Cleanliness, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Margin="20,0,0,0" Width="100" Grid.Row="0" Text="{Binding Path=Cleanliness, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
             <Label Grid.Row="1" Grid.Column="0" Height="30">Staff (1-5):</Label>
-            <TextBox Width="100" Grid.Row="1" Text="{Binding Path=Staff, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Margin="20,0,0,0" Width="100" Grid.Row="1" Text="{Binding Path=Staff, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
             <Label Grid.Row="2" Grid.Column="0" Height="30">Comment:</Label>
-            <TextBox x:Name="ReviewComment" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap"
+            <TextBox Margin="20,0,0,0" x:Name="ReviewComment" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap"
                      Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}"  Height="60"/>
 
             <Label Grid.Row="3" Grid.Column="0" Height="30">Images:</Label>
-            <TextBox Width="251" Grid.Row="3" Text="{Binding Path=Image, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="24" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <Button Click="SetImage" Grid.Row="3" Grid.Column="1" Margin="251,0,126,0" Height="24" VerticalAlignment="Center" RenderTransformOrigin="5.522,0.627">+</Button>
+            <TextBox Margin="20,0,0,0" Width="526" Grid.Row="3" Text="{Binding Path=Image, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="24" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Button Click="SetImage" Grid.Row="3" Grid.Column="1"  Height="24" Width="24" VerticalAlignment="Center" HorizontalAlignment="Right">+</Button>
 
-            <ListView  Grid.Row="4" Grid.Column="1" Margin="5,5,0,53" Name="ReviewImages">
+            <ListView Height="100"  Grid.Row="4" Grid.Column="1" Margin="10,0,0,0" Name="ReviewImages">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -50,8 +53,27 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <Label Grid.Row="5" Grid.Column="0" Height="30">What was bad:</Label>
+            <TextBox Margin="20,0,0,0" x:Name="BadComment" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap"
+                     Text="{Binding Path=WhatWasBadComment, UpdateSourceTrigger=PropertyChanged}"  Height="60"/>
+
+            <Label Grid.Row="6" Grid.Column="0" Height="30">What to renovate:</Label>
+            <TextBox Margin="20,0,0,0" x:Name="RenovateComment" Grid.Column="1" Grid.Row="6" TextWrapping="Wrap"
+                     Text="{Binding Path=WhatToRenovateComment, UpdateSourceTrigger=PropertyChanged}"  Height="60"/>
+
+
+            <Label Grid.Row="7" Grid.Column="0" Height="30">Level of urgency:</Label>
+            <ComboBox Grid.Row="7" Grid.Column="1"  SelectedIndex="{Binding UrgencyRenovationLevel}"  Height="20" HorizontalAlignment="Left"  Margin="20,0,0,0" >
+                <ComboBoxItem Tag="1" Content="bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga" />
+                <ComboBoxItem Tag="2" Content="male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim" />
+                <ComboBoxItem Tag="3" Content="nekoliko stvari koje su baš zasmetale bi trebalo renovirati" />
+                <ComboBoxItem Tag="4" Content="ima dosta loših stvari i renoviranje je stvarno neophodno" />
+                <ComboBoxItem Tag="5" Content="smeštaj je u jako lošem stanju i ne vredi ga uopšte iznajmljivati ukoliko se ne
+renovira" />
+            </ComboBox>
+
         </Grid>
-        <WrapPanel Grid.Row="1" FlowDirection="RightToLeft" Margin="0,99,0,0">
+        <WrapPanel Grid.Row="1" FlowDirection="RightToLeft" Height="30" VerticalAlignment="Bottom">
             <Button Click="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="20, 5, 20, 5" Height="20" Width="60"/>
             <Button Name="btnSave"  Click="SaveReview"  Content="Save" HorizontalAlignment="Left"  Margin="20, 5, 20, 5" Height="20" Width="60"/>
         </WrapPanel>

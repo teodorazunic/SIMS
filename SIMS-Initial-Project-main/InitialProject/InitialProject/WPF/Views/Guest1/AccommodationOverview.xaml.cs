@@ -3,6 +3,8 @@ using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repository;
+using InitialProject.View.Guest1;
+using InitialProject.View.Owner;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -183,6 +185,14 @@ namespace InitialProject.Forms
         {
             ReservationRequests myReservationRequests = new ReservationRequests(LoggedInUser);
             myReservationRequests.Show();
+            Close();
+        }
+
+
+        public void MyReviews(object sender, RoutedEventArgs e)
+        {
+            MyReviews reviews = new MyReviews(LoggedInUser);
+            reviews.Show();
             Close();
         }
 
