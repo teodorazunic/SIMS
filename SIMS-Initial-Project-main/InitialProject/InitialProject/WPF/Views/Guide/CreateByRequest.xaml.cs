@@ -1,4 +1,5 @@
 ﻿using InitialProject.Domain.Models;
+using InitialProject.Repositories;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
@@ -38,12 +39,14 @@ namespace InitialProject.WPF.Views.Guide
             RequestDescription = description;
             RequestLanguage = language;
             RequestGuests = maxGuests;
+            notificatinsRepository = new TourNotificatinsRepository();
             
         }
 
         TourRepository repository = new TourRepository();
         KeyPointRepository keyPointRepository = new KeyPointRepository();
         List<KeyPoint> keyPoints = new List<KeyPoint>();
+        TourNotificatinsRepository notificatinsRepository = new TourNotificatinsRepository();
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -65,6 +68,9 @@ namespace InitialProject.WPF.Views.Guide
             Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
+
+
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

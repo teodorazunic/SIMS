@@ -30,6 +30,7 @@ namespace InitialProject.WPF.Views.Guide
         private const string FilePath = "../../../Resources/Data/tourrequests.csv";
 
         private readonly TourRequestRepository _tourRequestsRepository;
+        TourNotificatinsRepository tourNotificatinsRepository = new TourNotificatinsRepository();
 
         public static ObservableCollection<TourRequest> TourRequests { get; set; }
 
@@ -146,6 +147,7 @@ namespace InitialProject.WPF.Views.Guide
             LoggedInUser = user;
             _tourRequestsRepository = new TourRequestRepository();
             TourRequests = new ObservableCollection<TourRequest>(_tourRequestsRepository.GetAllTourRequests());
+            tourNotificatinsRepository = new TourNotificatinsRepository();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -200,6 +202,14 @@ namespace InitialProject.WPF.Views.Guide
             CreateByRequest create = new CreateByRequest(choosenDate, SelectedTourRequest.Location, SelectedTourRequest.Description, SelectedTourRequest.Language, SelectedTourRequest.MaxGuests) ;
             create.Show();
             this.Close();
+
+
+            TourNotification sending = new TourNotification();
+            string text = "We have created a tour by your request.";
+            sending.Text = text;
+
+            sending.GuestId.Id = SelectedTourRequest.GuestId;
+            tourNotificatinsRepository.Save(sending);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using InitialProject.Repositories;
+﻿using InitialProject.Domain.Models;
+using InitialProject.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,10 @@ namespace InitialProject.WPF.Views.Guide
     public partial class CreateByStatistics : Window
     {
         private readonly TourRequestRepository tourRequestRepository;
-        public CreateByStatistics()
+        public CreateByStatistics(User user)
         {
             InitializeComponent();
+            LoggedInUser = user;
             tourRequestRepository = new TourRequestRepository();
             string mostWantedCity = tourRequestRepository.FindMostWantedCity();
             txtLocation.Text = mostWantedCity;
@@ -33,9 +35,11 @@ namespace InitialProject.WPF.Views.Guide
            
         }
 
+        public User LoggedInUser { get; set; }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CreateByLanguage createByLanguage = new CreateByLanguage(txtLanguage.Text);
+            CreateByLanguage createByLanguage = new CreateByLanguage(txtLanguage.Text, LoggedInUser);
             createByLanguage.Show();
             this.Close();
 
@@ -43,7 +47,7 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            CreateByCity createByCity = new CreateByCity(txtLocation.Text);
+            CreateByCity createByCity = new CreateByCity(txtLocation.Text, LoggedInUser);
             createByCity.Show();
             this.Close();
 

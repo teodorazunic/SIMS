@@ -1,4 +1,6 @@
 ﻿using InitialProject.Domain.Models;
+using InitialProject.Forms;
+using InitialProject.Repositories;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
@@ -21,22 +23,28 @@ namespace InitialProject.WPF.Views.Guide
     /// </summary>
     public partial class CreateByCity : Window
     {
-        public CreateByCity(string location)
+        public CreateByCity(string location, User user)
         {
             InitializeComponent();
-            PopularCity= location;
+            PopularCity = location;
             txtCity.Text = location;
+            LoggedInUser = user;
+
+            notificatinsRepository = new TourNotificatinsRepository();
+            requestRepository = new TourRequestRepository();
+
         }
 
         public string PopularCity { get; set; }
 
-
+        public User LoggedInUser { get; set; }
 
 
         TourRepository repository = new TourRepository();
         KeyPointRepository keyPointRepository = new KeyPointRepository();
         List<KeyPoint> keyPoints = new List<KeyPoint>();
-
+        TourNotificatinsRepository notificatinsRepository = new TourNotificatinsRepository();
+        TourRequestRepository requestRepository = new TourRequestRepository();
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -57,6 +65,29 @@ namespace InitialProject.WPF.Views.Guide
             Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
+
+
+            TourNotification sending = new TourNotification();
+            string text = "We have created a tour with your requested location:" + PopularCity;
+            sending.Text = text;
+
+            List<TourNotification> notifications = new List<TourNotification>();
+            List<TourRequest> tourRequests = requestRepository.CheckNeverUsedCity(language);
+            if (tourRequests != null)
+            {
+                for (int i = 0; i < tourRequests.Count(); i++)
+                {
+                    int guestId = tourRequests[i].GuestId;
+                    sending.GuestId.Id = guestId;
+                    notifications.Add(sending);
+                }
+
+                foreach (var notification in notifications)
+                {
+                    notificatinsRepository.Save(notification);
+                }
+
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -67,6 +67,60 @@ namespace InitialProject.Repositories
 
         }
 
+        public List<TourRequest> CheckNeverUsedLanguage(string language)
+        {
+            List<TourRequest> tourRequests = _serializer.FromCSV(FilePath);
+            List<TourRequest> deniedAndPending = new List<TourRequest>();
+            List<TourRequest> finalRequests = new List<TourRequest>();
+
+            foreach(var tourRequest in tourRequests)
+            {
+                if(tourRequest.Status == "Pending" || tourRequest.Status == "Denied")
+                {
+                    deniedAndPending.Add(tourRequest);
+                }
+
+                    
+            }
+
+            foreach(var tourRequest in deniedAndPending)
+            {
+                if(tourRequest.Language == language)
+                {
+                    finalRequests.Add(tourRequest);
+                }
+            }
+
+            return finalRequests;
+        }
+
+        public List<TourRequest> CheckNeverUsedCity(string city)
+        {
+            List<TourRequest> tourRequests = _serializer.FromCSV(FilePath);
+            List<TourRequest> deniedAndPending = new List<TourRequest>();
+            List<TourRequest> finalRequests = new List<TourRequest>();
+
+            foreach (var tourRequest in tourRequests)
+            {
+                if (tourRequest.Status == "Pending" || tourRequest.Status == "Denied")
+                {
+                    deniedAndPending.Add(tourRequest);
+                }
+
+
+            }
+
+            foreach (var tourRequest in deniedAndPending)
+            {
+                if (tourRequest.Location.City == city)
+                {
+                    finalRequests.Add(tourRequest);
+                }
+            }
+
+            return finalRequests;
+        }
+
         public string FindMostWantedCity()
         {
             DateTime lastYear = DateTime.Now.AddYears(-1);
