@@ -191,7 +191,7 @@ namespace InitialProject.WPF.Views.Guide
 
             TourForm tourForm = new TourForm(LoggedInUser);
             tourForm.Show();
-            this.Close();
+            //this.Close();
 
 
         }

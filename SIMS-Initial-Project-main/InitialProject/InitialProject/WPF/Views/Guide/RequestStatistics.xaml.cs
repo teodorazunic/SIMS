@@ -64,7 +64,7 @@ namespace InitialProject.WPF.Views.Guide
         {
             cbYears.Items.Add("2023");
             cbYears.Items.Add("2022");
-            cbYears.Items.Add("All years");
+            //cbYears.Items.Add("All years");
 
 
         }

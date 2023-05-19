@@ -40,6 +40,14 @@ namespace InitialProject.WPF.Views.Guide
             RequestLanguage = language;
             RequestGuests = maxGuests;
             notificatinsRepository = new TourNotificatinsRepository();
+
+            txtCity.Text = location.City;
+            txtCountry.Text = location.Country;
+            txtDescription.Text = description;
+            txtLanguage.Text = language;
+            txtMaxGuests.Text = maxGuests.ToString();
+            datePicker1.Text = date.ToString();
+
             
         }
 
