@@ -71,7 +71,7 @@ namespace InitialProject.View
         {
             TourStatistics tourStatistics = new TourStatistics(LoggedInUser);
             tourStatistics.Show();
-            Close();
+            //Close();
         }
 
         private void LogOut(object sender, RoutedEventArgs e)
@@ -85,14 +85,14 @@ namespace InitialProject.View
         {
             Requests requests = new Requests(LoggedInUser);
             requests.Show();
-            Close();
+            //Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             RequestStatistics requests = new RequestStatistics(LoggedInUser);
             requests.Show();
-            Close();
+            //Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -100,7 +100,7 @@ namespace InitialProject.View
 
             CreateByStatistics requests = new CreateByStatistics(LoggedInUser);
             requests.Show();
-            Close();
+            //Close();
 
         }
     }

@@ -185,24 +185,23 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            DateTime choosenDate =Convert.ToDateTime(tourDate.Text);
-
-            TourForm tourForm = new TourForm(LoggedInUser);
-            tourForm.Show();
-            //this.Close();
-
-
-        }
+        
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            RequestStart = Convert.ToDateTime(startDate.Text);
+            RequestEnd = Convert.ToDateTime(endDate.Text);
             DateTime choosenDate = Convert.ToDateTime(tourDate.Text);
-            CreateByRequest create = new CreateByRequest(choosenDate, SelectedTourRequest.Location, SelectedTourRequest.Description, SelectedTourRequest.Language, SelectedTourRequest.MaxGuests) ;
-            create.Show();
-            this.Close();
-
+            if (choosenDate < RequestStart || choosenDate > RequestEnd)
+            {
+                MessageBox.Show("Datum mora biti iz opsega.");
+            }
+            else
+            {
+                CreateByRequest create = new CreateByRequest(choosenDate, SelectedTourRequest.Location, SelectedTourRequest.Description, SelectedTourRequest.Language, SelectedTourRequest.MaxGuests);
+                create.Show();
+                this.Close();
+            }
 
             TourNotification sending = new TourNotification();
             string text = "We have created a tour by your request.";

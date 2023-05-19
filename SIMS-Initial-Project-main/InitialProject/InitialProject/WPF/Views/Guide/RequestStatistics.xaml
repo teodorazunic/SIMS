@@ -8,9 +8,9 @@
         Title="RequestStatistics" Height="450" Width="800">
     <Grid>
         <ComboBox x:Name="cbCity" HorizontalAlignment="Left" Margin="48,73,0,0" VerticalAlignment="Top" Width="120" Loaded="FillCity"/>
-        <ComboBox x:Name="cbLanguage" HorizontalAlignment="Left" Margin="400,73,0,0" VerticalAlignment="Top" Width="120" Loaded="FillLanguage"/>
+        <ComboBox x:Name="cbLanguage" HorizontalAlignment="Left" Margin="209,73,0,0" VerticalAlignment="Top" Width="120" Loaded="FillLanguage"/>
         <Button Content="Show Statistics" HorizontalAlignment="Left" Margin="168,161,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <ComboBox x:Name="cbYears" HorizontalAlignment="Left" Margin="588,73,0,0" VerticalAlignment="Top" Width="120" Loaded="Fill"/>
+        <ComboBox x:Name="cbYears" HorizontalAlignment="Left" Margin="366,73,0,0" VerticalAlignment="Top" Width="120" Loaded="Fill"/>
         <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="110" Margin="91,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252"/>
 
     </Grid>
