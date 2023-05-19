@@ -9,22 +9,19 @@
         mc:Ignorable="d"
         Title="AccommodationStatistics" Height="768" Width="1024">
     <Grid Background ="White" Margin="0,0,0,-254">
-        <Label Content="Choose accommodation" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Height="34" Width="226" FontSize="20"/>
-        <Label x:Name="Label1" Visibility="Hidden" Content="Detect when the accommodation was the buisiest" HorizontalAlignment="Left" Margin="588,13,0,0" VerticalAlignment="Top" Width="352" FontSize="15"/>
-        <Label Content="Choose method for statistic" HorizontalAlignment="Left" Margin="20,668,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="Label2" Visibility="Hidden" Content="Choose Year" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" FontSize="17"/>
+        <Label Content="accommodation" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Height="34" Width="226" FontSize="20"/>
+        <Label x:Name="Label1" Visibility="Hidden" Content="The busiest" HorizontalAlignment="Left" Margin="588,13,0,0" VerticalAlignment="Top" Width="352" FontSize="15"/>
+        <Label x:Name="Label2" Visibility="Hidden" Content="Year" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" FontSize="17"/>
 
-        <ComboBox x:Name="HotelCB" Text="{Binding Path=AccommodationId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="241,19,0,0" VerticalAlignment="Top" Width="155" FontSize="20" Loaded="OnLoad"/>
+        <ComboBox x:Name="HotelCB" Text="{Binding Path=AccommodationId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="183,21,0,0" VerticalAlignment="Top" Width="155" FontSize="20" Loaded="OnLoad"/>
         <ComboBox Visibility="Hidden" x:Name="YearCB" Text="{Binding Path=YearForStatistic, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="123,69,0,0" VerticalAlignment="Top" Width="120" Loaded="OnLoadYear"/>
 
-        <Button x:Name="ShowButton" IsEnabled="False" Content="Show" HorizontalAlignment="Left" Margin="396,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,-0.585" Height="33" Width="38" Click="ShowStatisticForHotel"/>
-        <Button IsEnabled="False" x:Name="HideButton" Content="Hide" HorizontalAlignment="Left" Margin="434,19,0,0" VerticalAlignment="Top" Height="33" Width="37" Click="HideStatisticForHotel"/>
-        <Button IsEnabled="False" x:Name="ShowAllButton" Content="Chose all" HorizontalAlignment="Left" Margin="471,19,0,0" VerticalAlignment="Top" Height="33" Width="55" Click="ShowAllStatistic"/>
+        <Button x:Name="ShowButton" IsEnabled="False" Content="Show" HorizontalAlignment="Left" Margin="396,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,-0.585" Height="33" Width="116" Click="ShowStatisticForHotel"/>
         <Button Visibility="Hidden" x:Name="ResultButton" Content="Show" HorizontalAlignment="Left" Margin="595,46,0,0" VerticalAlignment="Top" FontSize="20" Width="325" Height="39" Click="Detect"/>
-        <RadioButton Content="Per Year" HorizontalAlignment="Left" Margin="345,679,0,0" VerticalAlignment="Top" FontSize="20" IsChecked="False" Checked="YearStatistic"/>
-        <RadioButton Content="Per Month" HorizontalAlignment="Left" Margin="512,684,0,0" VerticalAlignment="Top" FontSize="20" Checked="MounthStatistic"/>
+        <RadioButton Content="Year" HorizontalAlignment="Left" Margin="832,238,0,0" VerticalAlignment="Top" FontSize="20" IsChecked="False" Checked="YearStatistic"/>
+        <RadioButton Content="Month" HorizontalAlignment="Left" Margin="832,358,0,0" VerticalAlignment="Top" FontSize="20" Checked="MounthStatistic"/>
 
-        <lvc:CartesianChart Margin="20,150,0,408" Series="{Binding Path=DataChart}" LegendLocation="Right" AutomationProperties.IsOffscreenBehavior="Onscreen" DisableAnimations="True">
+        <lvc:CartesianChart Margin="20,119,298,450" Series="{Binding Path=DataChart}" LegendLocation="Right" AutomationProperties.IsOffscreenBehavior="Onscreen" DisableAnimations="True">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="{Binding Path=XTitle,UpdateSourceTrigger=PropertyChanged}" Labels="{Binding Path=XLabels}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>

@@ -57,8 +57,6 @@ namespace InitialProject.WPF.Views.Owner
             {
                 labels.Add((dateTime.Year - 4 + i).ToString());
             }
-            HideButton.IsEnabled = true;
-            ShowAllButton.IsEnabled = true;
             ShowButton.IsEnabled = true;
             ResultButton.Visibility = Visibility.Hidden;
             Label1.Visibility = Visibility.Hidden;
@@ -72,8 +70,6 @@ namespace InitialProject.WPF.Views.Owner
         {
             DataChart.Clear();
             List<string> months = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
-            HideButton.IsEnabled = true;
-            ShowAllButton.IsEnabled = false;
             ShowButton.IsEnabled = true;
             ResultButton.Visibility = Visibility.Visible;
             Label1.Visibility = Visibility.Visible;

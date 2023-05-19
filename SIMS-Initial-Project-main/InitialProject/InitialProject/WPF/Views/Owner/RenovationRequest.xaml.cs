@@ -43,7 +43,32 @@ namespace InitialProject.WPF.Views.Owner
             AccommodationCB.ItemsSource = accommodationRepository.FillForComboBoxHotels(LogedUser);
         }
 
+
+
         private void ShowDates(object sender, RoutedEventArgs e)
+        {
+            if (AccommodationCB.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string accommodationIdString = selectedItem.Content.ToString();
+                if (int.TryParse(accommodationIdString, out int accommodationId))
+                {
+                    List<DateTime> alternativeDates = reservationRepository.FindAlternativeDates(accommodationId, Convert.ToDateTime(StartDate.Text), Convert.ToDateTime(EndDate.Text), Convert.ToInt32(NumberOfDays.Text));
+                    List<string> alternatives = new List<string>();
+                    foreach (DateTime date in alternativeDates)
+                    {
+                        alternatives.Add(date.ToShortDateString() + " to " + date.AddDays(Convert.ToInt32(NumberOfDays.Text)).ToShortDateString());
+                    }
+                    ListDates.ItemsSource = alternatives;
+                }
+                else
+                {
+                    // Handle the case where accommodationIdString cannot be parsed as an integer
+                }
+            }
+        }
+
+
+ /*       private void ShowDates(object sender, RoutedEventArgs e)
         {
             ComboBoxItem comboBoxItem = AccommodationCB.SelectedItem as ComboBoxItem;
             int selectedAccommodationId = 0;
@@ -61,7 +86,7 @@ namespace InitialProject.WPF.Views.Owner
                 alternatives.Add(date.ToShortDateString() + " to " + (date.AddDays(Convert.ToInt32(NumberOfDays.Text))).ToShortDateString());
             }
             ListDates.ItemsSource = alternatives;
-        }
+        }*/
 
         private void Accept(object sender, RoutedEventArgs e)
         {

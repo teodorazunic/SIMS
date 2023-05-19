@@ -2,10 +2,12 @@
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Serializer;
+using InitialProject.WPF.Views.Owner;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace InitialProject.Repositories
 {
@@ -83,9 +85,8 @@ namespace InitialProject.Repositories
                     Renovation renovation= new Renovation();
                     renovation.Id = Convert.ToInt32(fields[0]);
                     renovation.Accommodation.Id = Convert.ToInt32(fields[1]);
-                    renovation.Accommodation.Name = fields[3];
-                    renovation.StartDate = Convert.ToDateTime(fields[4]);
-                    renovation.EndDate = Convert.ToDateTime(fields[5]);
+                    renovation.StartDate = Convert.ToDateTime(fields[2]);
+                    renovation.EndDate = Convert.ToDateTime(fields[3]);
                     reservations.Add(renovation);
 
                 }

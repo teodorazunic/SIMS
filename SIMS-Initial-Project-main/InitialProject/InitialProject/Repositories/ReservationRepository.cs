@@ -179,8 +179,28 @@ namespace InitialProject.Repository
             return true;
         }
 
+        public List<Renovation> ShowAllRenovation()
+        {
+            List<Renovation> renovations = renovationRepository.GetAll();
+            return renovations;
+        }
 
 
+        public void CancelRenovation(Renovation renovation)
+        {
+            if (renovation != null)
+            {
+                DateTime dateTime = DateTime.Now;
+                if (renovation.StartDate.Day - dateTime.Day > 5)
+                {
+                    renovationRepository.Delete(renovation);
+                }
+                else
+                {
+                    MessageBox.Show("You can't cancel renovation.");
+                }
+            }
+        }
 
         public List<ReservationAccommodation> GetAllByGuestId(int GuestId)
         {

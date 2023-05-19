@@ -8,21 +8,22 @@
         Title="RenovationRequest" Height="768" Width="1024">
 
     <Grid Background="White">
-        <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="378,126,0,0" VerticalAlignment="Top" Height="54" Width="314" FontSize="20"/>
-        <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="378,193,0,0" VerticalAlignment="Top" Height="57" Width="314" FontSize="20"/>
-        <ComboBox x:Name="AccommodationCB" HorizontalAlignment="Left" Margin="378,65,0,0" VerticalAlignment="Top" Width="314" Height="48" Loaded="OnLoad"/>
-        <TextBox x:Name="NumberOfDays" HorizontalAlignment="Left" Margin="378,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="314" Height="53"/>
-        <TextBox x:Name="RenovationDescription" HorizontalAlignment="Left" Margin="378,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519" Height="64"/>
+        <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="155,236,0,0" VerticalAlignment="Top" Height="54" Width="154" FontSize="20"/>
+        <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="398,233,0,0" VerticalAlignment="Top" Height="57" Width="153" FontSize="20"/>
+        <ComboBox x:Name="AccommodationCB" HorizontalAlignment="Left" Margin="19,124,0,0" VerticalAlignment="Top" Width="314" Height="48" Loaded="OnLoad"/>
+        <TextBox x:Name="NumberOfDays" HorizontalAlignment="Left" Margin="176,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Height="53"/>
 
-        <Button Content="Show Date" HorizontalAlignment="Center" Margin="0,475,0,0" VerticalAlignment="Top" Height="50" Width="128" Click="ShowDates"/>
-        <Button Content="Reserve" HorizontalAlignment="Left" Margin="574,672,0,0" VerticalAlignment="Top" Height="47" Width="251" Click="Reserve"/>
-        <Label Content="Accommodation:" HorizontalAlignment="Left" Margin="213,71,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Start Date:" HorizontalAlignment="Left" Margin="271,135,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="End Date:" HorizontalAlignment="Left" Margin="278,203,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Number of days:" HorizontalAlignment="Left" Margin="217,273,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button Content="Available dates&#xD;&#xA;" HorizontalAlignment="Left" Margin="102,518,0,0" VerticalAlignment="Top" Height="50" Width="128" Click="ShowDates"/>
+        <Button Content="Confirm" HorizontalAlignment="Left" Margin="540,522,0,0" VerticalAlignment="Top" Height="46" Width="152" Click="Reserve"/>
+        <Label Content="From" HorizontalAlignment="Left" Margin="74,238,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="To" HorizontalAlignment="Left" Margin="355,245,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Duration" HorizontalAlignment="Left" Margin="76,330,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="76,401,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox  HorizontalAlignment="Left" Margin="200,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="53"/>
 
-        <ListBox x:Name="ListDates" Margin="34,562,34,115"/>
-        <Button Content="Accept" HorizontalAlignment="Left" Margin="271,672,0,0" VerticalAlignment="Top" Height="47" Width="198" Click="Accept"/>
+
+        <ListBox x:Name="ListDates" Margin="592,233,164,295"/>
+        <Button Content="Accept" HorizontalAlignment="Left" Margin="286,521,0,0" VerticalAlignment="Top" Height="47" Width="198" Click="Accept"/>
     </Grid>
 
 </Window>
