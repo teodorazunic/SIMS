@@ -55,11 +55,15 @@
 
             </DataGrid>
 
-            <Button Click="ShowReservations" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My reservations"/>
-            <Button Click="ShowNotifications" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My notifications"/>
-            <Button Click="ShowRequests" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My requests"/>
-            <Button Click="MyReviews" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="My reviews"/>
-            <Button Click="Logout" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Log out"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
+                <Button Click="ShowReservations"  Content="My reservations"/>
+                <Button Click="ShowNotifications" Margin="5,0,0,0"  Content="My notifications"/>
+                <Button Click="ShowRequests"  Content="My requests" Margin="5,0,0,0"/>
+                <Button Click="MyReviews"  Content="My reviews" Margin="5,0,0,0"/>
+                <Button Click="Forum"  Content="Forum" Margin="5,0,0,0"/>
+                <Button Click="AnywhereAnytime" Content="Anywhere / Anytime" Margin="5,0,0,0"/>
+                <Button Click="Logout" Content="Log out" Margin="5,0,0,0"/>
+            </StackPanel>
         </StackPanel>
 
         <ToolBar Grid.Row="1" Grid.ColumnSpan="3">

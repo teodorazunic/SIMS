@@ -104,7 +104,7 @@ namespace InitialProject.Forms
             else
             {
                 List<ReservationDate> reservationDates = _reservationRepository.GetReservationsForGuest(LoggedInUser.Id, SelectedAccommodation.Id, ReservationDateFrom, ReservationDateTo, DaysNumber);
-                SaveReservation saveReservation = new SaveReservation(reservationDates, SelectedAccommodation.Id, LoggedInUser, DaysNumber);
+                SaveReservation saveReservation = new SaveReservation(reservationDates, SelectedAccommodation.Id, LoggedInUser, DaysNumber, 1);
                 saveReservation.Show();
                 Close();
 

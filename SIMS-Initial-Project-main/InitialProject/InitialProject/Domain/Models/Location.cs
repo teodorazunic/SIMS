@@ -21,5 +21,8 @@ namespace InitialProject.Domain.Models
             Country = country;
         }
 
+        public string StringFormat => $"{City} , {Country}";
+
+
     }
 }

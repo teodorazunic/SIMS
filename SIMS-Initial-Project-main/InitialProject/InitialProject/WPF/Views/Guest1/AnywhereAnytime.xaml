@@ -1,0 +1,64 @@
+﻿<Window x:Class="InitialProject.WPF.Views.Guest1.AnywhereAnytime"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Views.Guest1"
+        mc:Ignorable="d"
+        Title="AnywhereAnytime" Height="750" Width="800">
+
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="260"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+
+            <Label Grid.Row="0" Grid.Column="0" Height="30">Date from:</Label>
+            <DatePicker Width="100" Grid.Row="0" Grid.Column="1" x:Name="DateFrom" SelectedDate="{Binding ReservationDateFrom}" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Height="30">Date to:</Label>
+            <DatePicker Width="100" Grid.Row="1" Grid.Column="1" x:Name="DateTo" SelectedDate="{Binding ReservationDateTo}" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Height="30">Days number:</Label>
+            <TextBox Width="100" Grid.Row="2" Text="{Binding DaysNumber}" Grid.Column="1" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Height="30">Guests number:</Label>
+            <TextBox Width="100" Grid.Row="3" Text="{Binding GuestsNumber}" Grid.Column="1" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+            <Button Margin="0,0,10,0" Grid.Row="4" Grid.Column="1" Width="80" Height="40" Content="Search" Click="OnSearch" HorizontalAlignment="Right" />
+        </Grid>
+
+        <DataGrid AutoGenerateColumns="False" SelectionMode="Single" SelectedItem="{Binding Selected}" MouseDoubleClick="OnAccommodationClick" Grid.Row="1"  Margin="10,10,10,10" x:Name="FilteredAccommodations" Loaded="OnLoad">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*"/>
+                <DataGridTextColumn Header="Appartment Type" Binding="{Binding Type}" Width="*"/>
+              
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+
+</Window>

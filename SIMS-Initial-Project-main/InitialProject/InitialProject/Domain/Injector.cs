@@ -29,13 +29,24 @@ namespace InitialProject.Domain
             { typeof(ITourNotificationsRepository), new TourNotificatinsRepository() },
             { typeof(IUserRepository), new UserRepository() },
 
+            { typeof(IForumCommentRepositoryInterface), new ForumCommentRepository() },
+            { typeof(IForumRepositoryInterface), new ForumRepository() },
 
-            { typeof(IUserService), null }
-    };
+            { typeof(IUserService), null },
+            { typeof(IForumService), null },
+            { typeof(IForumCommentService), null },
+            { typeof(IAccommodationService), null }
+
+};
 
         static Injector()
         {
             _implementations[typeof(IUserService)] = new UserService(CreateInstance<IUserRepository>());
+            _implementations[typeof(IForumService)] = new ForumService(CreateInstance<IForumRepositoryInterface>());
+            _implementations[typeof(IForumCommentService)] = new ForumCommentService(CreateInstance<IForumCommentRepositoryInterface>());
+            _implementations[typeof(IAccommodationService)] = new AccommodationService(CreateInstance<IAccommodationRepository>(), CreateInstance<IReservationRepository>());
+
+
         }
 
         public static T CreateInstance<T>()

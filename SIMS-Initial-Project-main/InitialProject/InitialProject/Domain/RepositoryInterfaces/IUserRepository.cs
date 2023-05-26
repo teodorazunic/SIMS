@@ -8,5 +8,6 @@ namespace InitialProject.Domain.RepositoryInterfaces
         public User GetByUsername(string username);
 
         public User CheckIfSuperGuest(User user);
+        public User GetById(int Id);
     }
 }
