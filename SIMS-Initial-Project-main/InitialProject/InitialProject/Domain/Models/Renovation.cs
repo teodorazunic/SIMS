@@ -35,7 +35,7 @@ namespace InitialProject.Domain.Models
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Accommodation.Id.ToString(), Accommodation.Name, StartDate.ToString(), EndDate.ToString()};
+            string[] csvValues = { Id.ToString(), Accommodation.Id.ToString(), StartDate.ToString(), EndDate.ToString()};
             return csvValues;
         }
 
@@ -43,9 +43,8 @@ namespace InitialProject.Domain.Models
         {
             Id = Convert.ToInt32(values[0]);
             Accommodation.Id = Convert.ToInt32(values[1]);
-            Accommodation.Name = values[2];
-            StartDate = Convert.ToDateTime(values[3]);
-            EndDate = Convert.ToDateTime(values[4]);
+            StartDate = Convert.ToDateTime(values[2]);
+            EndDate = Convert.ToDateTime(values[3]);
         }  
 
     }

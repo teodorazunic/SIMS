@@ -203,5 +203,11 @@ namespace InitialProject.View
             createStatistics.Show();
 
         }
+
+        private void OpenRenovationList(object sender, RoutedEventArgs e)
+        {
+            RenovationList createRenovationList = new RenovationList();
+            createRenovationList.Show();
+        }
     }
 }

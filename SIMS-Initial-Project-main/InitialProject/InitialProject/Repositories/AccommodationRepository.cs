@@ -159,18 +159,32 @@ namespace InitialProject.Repository
             _serializer.ToCSV(FilePath, _accommodations);
         }
 
-        public List<ComboBoxItem> FillForComboBoxHotels(User user)
+  /*      public List<ComboBoxItem> FillForComboBoxHotels(User user)
         {
             List<ComboBoxItem> accommodationsCB = new List<ComboBoxItem>();
             List<Accommodation> accommodations= GetHotelByOwner(user.Id);
             foreach (Accommodation accommodation in accommodations)
             {
                 ComboBoxItem cbItem = new ComboBoxItem();
-                cbItem.Tag = accommodation.Id.ToString();
-                cbItem.Content = accommodation.Id;
+                cbItem.Tag = accommodation.Id;
+                cbItem.Content = accommodation.Name;
                 accommodationsCB.Add(cbItem);
             }
             return accommodationsCB;
+        }*/
+
+        public List<ComboBoxItem> FillForComboBoxHotels(User user)
+        {
+            List<ComboBoxItem> accommodationCB = new List<ComboBoxItem>();
+            List<Accommodation> hotels = GetHotelByOwner(user.Id);
+            foreach (Accommodation hotel in hotels)
+            {
+                ComboBoxItem cbItem = new ComboBoxItem();
+                cbItem.Tag = hotel.Id.ToString();
+                cbItem.Content = hotel.Id;
+                accommodationCB.Add(cbItem);
+            }
+            return accommodationCB;
         }
 
 
