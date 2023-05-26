@@ -1,4 +1,6 @@
 ﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
+using System;
 using System.Collections.Generic;
 
 namespace InitialProject.Domain.ServiceInterfaces
@@ -16,5 +18,8 @@ namespace InitialProject.Domain.ServiceInterfaces
         public void Delete(Accommodation accommodation);
 
         public Accommodation Update(Accommodation accommodation);
+
+        public List<AccommodationDateRange> AnywhereAnytime(int numberOfGuests, DateTime? dateFrom, DateTime? dateTo, int numberOfDays);
+
     }
 }

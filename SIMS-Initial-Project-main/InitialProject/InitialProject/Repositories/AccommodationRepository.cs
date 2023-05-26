@@ -1,8 +1,11 @@
+using InitialProject.Domain;
 using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
+using InitialProject.Forms;
 using InitialProject.Serializer;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +13,7 @@ using System.Windows.Controls;
 
 namespace InitialProject.Repository
 {
-    public class AccommodationRepository: IAccommodationRepository
+    public class AccommodationRepository : IAccommodationRepository
     {
         private const string FilePath = "../../../Resources/Data/accommodations.csv";
 
@@ -22,16 +25,13 @@ namespace InitialProject.Repository
         {
             _serializer = new Serializer<Accommodation>();
             _accommodations = _serializer.FromCSV(FilePath);
+            
         }
 
-
-
-
-
-
-
-
-
+        public List<Accommodation> FindAllByLocation(Location location)
+        {
+            return _accommodations.FindAll(a => a.Location.City == location.City && a.Location.Country == location.Country);
+        }
 
         public List<Accommodation> GetAllAccomodations()
         {
@@ -159,19 +159,19 @@ namespace InitialProject.Repository
             _serializer.ToCSV(FilePath, _accommodations);
         }
 
-  /*      public List<ComboBoxItem> FillForComboBoxHotels(User user)
-        {
-            List<ComboBoxItem> accommodationsCB = new List<ComboBoxItem>();
-            List<Accommodation> accommodations= GetHotelByOwner(user.Id);
-            foreach (Accommodation accommodation in accommodations)
-            {
-                ComboBoxItem cbItem = new ComboBoxItem();
-                cbItem.Tag = accommodation.Id;
-                cbItem.Content = accommodation.Name;
-                accommodationsCB.Add(cbItem);
-            }
-            return accommodationsCB;
-        }*/
+        /*      public List<ComboBoxItem> FillForComboBoxHotels(User user)
+              {
+                  List<ComboBoxItem> accommodationsCB = new List<ComboBoxItem>();
+                  List<Accommodation> accommodations= GetHotelByOwner(user.Id);
+                  foreach (Accommodation accommodation in accommodations)
+                  {
+                      ComboBoxItem cbItem = new ComboBoxItem();
+                      cbItem.Tag = accommodation.Id;
+                      cbItem.Content = accommodation.Name;
+                      accommodationsCB.Add(cbItem);
+                  }
+                  return accommodationsCB;
+              }*/
 
         public List<ComboBoxItem> FillForComboBoxHotels(User user)
         {
@@ -190,7 +190,7 @@ namespace InitialProject.Repository
 
         public List<Accommodation> GetHotelByOwner(int id)
         {
-            List<Accommodation> accommodations= GetAllAccomodations();
+            List<Accommodation> accommodations = GetAllAccomodations();
             List<Accommodation> findedHotels = new List<Accommodation>();
             foreach (Accommodation accommodation in accommodations)
             {
@@ -209,6 +209,29 @@ namespace InitialProject.Repository
             _accommodations.Insert(index, accommodation);
             _serializer.ToCSV(FilePath, _accommodations);
             return accommodation;
+        }
+
+        public List<Accommodation> AnywhereAnytime(int numberOfGuests, int numberOfDays)
+        {
+            List<Accommodation> filterredAcommodations = this.findByGuestsNumber(_accommodations, numberOfGuests);
+
+            filterredAcommodations = this.findByReservationDays(filterredAcommodations, numberOfDays);
+
+            return filterredAcommodations;
+        }
+
+        public List<Location> GetAllLocations()
+        {
+            List<Location> locations = new List<Location>();
+
+            foreach(Accommodation a in _accommodations)
+            {
+                locations.Add(a.Location);
+            }
+
+            List<Location> locationsUnique =  locations.DistinctBy(l => l.City).ToList();
+
+            return locationsUnique;
         }
     }
 }
