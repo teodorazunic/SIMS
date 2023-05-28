@@ -44,6 +44,8 @@ namespace InitialProject.WPF.ViewModels.Guest1
 
         public void CloseForum()
         {
+            Forum.IsDeleted = true;
+            OnPropertyChanged("Forum");
             ForumService.CloseForum(Forum.Id);
         }
 
