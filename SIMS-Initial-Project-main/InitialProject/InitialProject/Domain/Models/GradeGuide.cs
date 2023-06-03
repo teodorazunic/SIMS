@@ -13,7 +13,7 @@ namespace InitialProject.Domain.Models
         public int Id { get; set; }
 
         public User GuestId = new User();
-        //public int GuestId { get; set; }
+        
 
         public int GuideKnowledge { get; set; }
 
