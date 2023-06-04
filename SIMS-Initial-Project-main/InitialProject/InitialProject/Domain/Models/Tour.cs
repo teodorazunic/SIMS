@@ -30,7 +30,6 @@ namespace InitialProject.Domain.Models
 
         public List <KeyPoint> KeyPoints { get; set; }
 
-        //public int GuideId { get; set; }
 
         public User GuideId = new User();
 

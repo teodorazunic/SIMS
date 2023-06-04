@@ -23,7 +23,6 @@ namespace InitialProject.Domain.Models
 
         public string Status { get; set; }
 
-        //public int Age { get; set; }
 
 
         public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint, string status)
