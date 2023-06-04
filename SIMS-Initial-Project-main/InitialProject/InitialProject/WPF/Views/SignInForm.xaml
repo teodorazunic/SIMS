@@ -5,18 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject"
         mc:Ignorable="d"
-        Title="Sign in" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
-        <TextBox Text="{Binding Path=Username, UpdateSourceTrigger=PropertyChanged}" Width="230" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Margin="505,265,0,0" HorizontalAlignment="Left" FontSize="18"/>
-        <PasswordBox Name="txtPassword"  Width="230" Height="30" VerticalAlignment="Top" Margin="505,345,0,0" HorizontalAlignment="Left" FontSize="18"/>
-        <Button Click="SignIn" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="120" Margin="560,412,0,0" FontSize="20"/>
-        <!--<Label Content="USERNAME:" Height="30" Margin="0,228,640,446" FontSize="18" HorizontalAlignment="Right" Width="141"/>
-        <Label Content="PASSWORD" Height="30" FontSize="18" Margin="0,309,660,365" HorizontalAlignment="Right" Width="121"/>-->
-        <Rectangle HorizontalAlignment="Left" Height="314" Margin="434,189,0,0" Stroke="Black" VerticalAlignment="Top" Width="362"/>
-        <Label Content="USERNAME:" HorizontalAlignment="Left" Margin="502,230,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="PASSWORD:" HorizontalAlignment="Left" Margin="502,310,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Image Source ="/Resources/Images/velikilogo.png" HorizontalAlignment="Left" Height="161" Margin="543,24,0,0" VerticalAlignment="Top" Width="150"/>
-        <TextBlock x:Name="txtBlock" HorizontalAlignment="Left" Margin="543,568,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="18" Width="175"/>
+        Title="Sign in" Height="720" Width="1280"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="AliceBlue" >
 
-    </Grid>
+    <StackPanel Width="400"
+                Grid.Row="2"
+                Orientation="Vertical"
+                Margin="0,40,0,0">
+        <Image Source ="/Resources/Images/velikilogo.png" Width="200" Height="200"></Image>
+        <TextBlock Text="USERNAME" 
+                   Foreground="Black"
+                   FontSize="20"
+                   FontFamily="Montserrat"
+                   Margin="0,40,0,0"
+                   HorizontalAlignment="Center"
+                   />
+        <TextBox Text="{Binding Path=Username, UpdateSourceTrigger=PropertyChanged}" 
+                 FontSize="18"
+                 FontFamily="Montserrat"
+                 Background="Transparent"
+                 Foreground="Black"
+                 BorderBrush="LightBlue"
+                 CaretBrush="Black"
+                 BorderThickness="2,2,2,2"
+                 Height="35"
+                 Width=" 250"
+                 Margin="0,5,0,0"
+                 VerticalContentAlignment="Center"/>
+        <TextBlock Text="PASSWORD" 
+                   Foreground="Black"
+                   FontSize="20"
+                   FontFamily="Montserrat"
+                   Margin="0,40,0,0"
+                   HorizontalAlignment="Center"
+                   />
+        <PasswordBox Name ="txtPassword" 
+                 FontSize="18"
+                 FontFamily="Montserrat"
+                 Background="Transparent"
+                 Foreground="Black"
+                 BorderBrush="LightBlue"
+                 CaretBrush="Black"
+                 BorderThickness="2,2,2,2"
+                 Height="35"
+                 Width="250"
+                 Margin="0,5,0,0"
+                 VerticalContentAlignment="Center"/>
+
+        <Button Click="SignIn" 
+                Content="Login"
+                Height="30"
+                Width=" 80"
+                FontSize="20"
+                Margin="0 ,20,0 ,0"/>
+
+        <TextBlock Name="txtBlock"
+                   FontSize=" 18"
+                   Width=" 150"
+                   
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Margin=" 0,30,0,0"/>
+
+    </StackPanel>
+        
 </Window>
