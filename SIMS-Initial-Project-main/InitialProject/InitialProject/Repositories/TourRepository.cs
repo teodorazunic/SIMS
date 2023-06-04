@@ -2,6 +2,7 @@
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Forms;
+using InitialProject.Repositories;
 using InitialProject.Serializer;
 using System;
 using System.Collections;
@@ -23,10 +24,13 @@ namespace InitialProject.Repository
 
         private List<Tour> _tours;
 
+        //private readonly VoucherRepository _voucherRepository;
+
         public TourRepository()
         {
             _serializer = new Serializer<Tour>();
             _tours = _serializer.FromCSV(FilePath);
+            //_voucherRepository = new VoucherRepository();
 
         }
 
@@ -75,6 +79,24 @@ namespace InitialProject.Repository
                 }
             }
             return tours;
+        }
+
+        public List<Tour> CancelFutureTours()
+        {
+            DateTime now = DateTime.Now;
+            List<Tour> allTours = GetAllTours();
+            List<Tour> cancelled = new List<Tour>();
+            for(int i = 0; i < allTours.Count; i++)
+            {
+                if (allTours[i].Start > now)
+                {
+                    allTours[i].Status = "Ended";
+                    Update(allTours[i]);
+                    cancelled.Add(allTours[i]);
+                }
+            }
+            return cancelled;
+
         }
 
         public string CancelTour(Tour tour)

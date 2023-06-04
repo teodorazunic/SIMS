@@ -18,10 +18,13 @@ namespace InitialProject.Repository
 
         private List<User> _users;
 
+        private readonly TourRepository _tourRepository;
+
         public UserRepository()
         {
             _serializer = new Serializer<User>();
             _users = _serializer.FromCSV(FilePath);
+            _tourRepository = new TourRepository();
         }
 
         public User GetByUsername(string username)
@@ -37,6 +40,8 @@ namespace InitialProject.Repository
             _users.Remove(founded);
             _serializer.ToCSV(FilePath, _users);
         }
+
+       
 
         public List<User> ReadFromUsersCsv(string filename)
         {

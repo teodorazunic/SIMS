@@ -50,14 +50,35 @@ namespace InitialProject.Repositories
                 if (guests[i].StartingKeyPoint.TourId == id)
                 {
                     Voucher voucher = new Voucher();
-                    DateTime voucherDate = voucher.ValidUntil;
+                    DateTime now = DateTime.Today;
                     voucher.Title = "Vaucer za otkazanu turu.";
                     voucher.GuestId = guests[i].GuestId;
-                    voucher.ValidUntil = voucherDate.AddYears(1) ;
+                    voucher.ValidUntil = now.AddYears(2) ;
                     Save(voucher);
                 }
             }
             
+        }
+
+        public void SendVouchersForDissmisal(List<Tour> tours)
+        {
+            List<GuestOnTour> guests = _guestOnTourRepository.GetAllGuestsOnTour();
+            for (int i = 0; i < guests.Count; i++)
+            {
+                foreach (Tour tour in tours)
+                {
+                    if (guests[i].StartingKeyPoint.TourId == tour.Id)
+                    {
+                        Voucher voucher = new Voucher();
+                        DateTime now = DateTime.Today;
+                        voucher.Title = "Vaucer za otkazanu turu.";
+                        voucher.GuestId = guests[i].GuestId;
+                        voucher.ValidUntil = now.AddYears(2);
+                        Save(voucher);
+                    }
+                }
+            }
+
         }
 
         public Voucher Save(Voucher voucher)

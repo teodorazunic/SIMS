@@ -1,5 +1,6 @@
 ﻿using InitialProject.Domain.Models;
 using InitialProject.Forms;
+using InitialProject.Repositories;
 using InitialProject.Repository;
 using InitialProject.View;
 using System;
@@ -33,12 +34,18 @@ namespace InitialProject.WPF.Views.Guide
             LoggedInUser = user;
             DataContext = this;
             _repository = new UserRepository();
+            tourRepository = new TourRepository();
+            voucherRepository = new VoucherRepository();
         }
         private const string FilePath = "../../../Resources/Data/users.csv";
 
         public static ObservableCollection<User> Users { get; set; }
 
         private readonly UserRepository _repository;
+
+        private readonly TourRepository tourRepository;
+
+        private readonly VoucherRepository voucherRepository;
         public User LoggedInUser { get; set; }
 
         private string _username;
@@ -83,7 +90,9 @@ namespace InitialProject.WPF.Views.Guide
                         
                         Window parentWindow = Window.GetWindow(this);
                         SignInForm signIn = new SignInForm();
-                        _repository.Delete(user);
+                        //tourRepository.CancelFutureTours();
+                        voucherRepository.SendVouchersForDissmisal(tourRepository.CancelFutureTours());
+
 
 
                         signIn.Show();
