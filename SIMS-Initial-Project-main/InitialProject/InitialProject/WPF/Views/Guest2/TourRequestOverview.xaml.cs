@@ -173,6 +173,13 @@ namespace InitialProject.WPF.Views
             createTourRequest.Show();
             Close();
         }
+        
+        private void CompoundRequest(object sender, RoutedEventArgs e)
+        {
+            CreateCompoundRequest createCompoundRequest = new CreateCompoundRequest(LoggedInUser);
+            createCompoundRequest.Show();
+            Close();
+        }
     }
 
 }
