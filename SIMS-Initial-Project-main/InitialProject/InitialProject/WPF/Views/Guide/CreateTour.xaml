@@ -13,15 +13,15 @@
         <Label Content="City:" HorizontalAlignment="Left" Margin="60,163,0,0" VerticalAlignment="Top" Height="40" Width="105" FontSize="18"/>
         <Label Content="Description:" HorizontalAlignment="Left" Margin="60,466,0,0" VerticalAlignment="Top" Height="40" Width="203" FontSize="18"/>
         <Label Content="Language:" HorizontalAlignment="Left" Margin="60,254,0,0" VerticalAlignment="Top" Height="40" Width="143" FontSize="18"/>
-        <Label Content="Max guests:" HorizontalAlignment="Left" Margin="290,254,0,0" VerticalAlignment="Top" Height="40" Width="136" FontSize="18"/>
-        <Label Content="Key points:" HorizontalAlignment="Left" Margin="505,65,0,0" VerticalAlignment="Top" Height="40" Width="113" FontSize="18" RenderTransformOrigin="0.474,0.131"/>
+        <Label Content="Max guests:" HorizontalAlignment="Left" Margin="290,254,0,0" VerticalAlignment="Top" Height="40" Width="136" FontSize="18" />
+        <Label Content="Key points:" HorizontalAlignment="Left" Margin="505,65,0,0" VerticalAlignment="Top" Height="40" Width="113" FontSize="18" RenderTransformOrigin="0.474,0.131" />
         <Label Content="Date:" HorizontalAlignment="Left" Margin="505,349,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18"/>
         <Label Content="Duration:" HorizontalAlignment="Left" Margin="290,354,0,0" VerticalAlignment="Top" Height="40" Width="169" FontSize="18"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="60,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="40" FontSize="18"/>
         <TextBox x:Name="txtCity" HorizontalAlignment="Left" Margin="60,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="60,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="40" FontSize="18"/>
         <TextBox x:Name="txtLanguage" HorizontalAlignment="Left" Margin="60,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
-        <TextBox x:Name="txtMaxGuests" HorizontalAlignment="Left" Margin="290,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
+        <TextBox x:Name="txtMaxGuests" PreviewTextInput="NumbersOnly" HorizontalAlignment="Left" Margin="290,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18" />
         <TextBox x:Name="txtKeyPoint" HorizontalAlignment="Left" Margin="510,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="40" FontSize="18"/>
         <TextBox x:Name="txtDuration" HorizontalAlignment="Left" Margin="290,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <Button Content="SAVE TOUR" HorizontalAlignment="Left" Margin="350,581,0,0" VerticalAlignment="Top" Height="43" Width="154" RenderTransformOrigin="1.187,0.918" Click="Button_Click" FontSize="20"/>

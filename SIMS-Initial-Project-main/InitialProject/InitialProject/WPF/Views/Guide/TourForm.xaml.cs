@@ -2,6 +2,7 @@
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,36 @@ namespace InitialProject.View
     {
         public User LoggedInUser { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private double _test1;
+
+        public double Test1
+        {
+            get
+            {
+                return _test1;
+            }
+            set
+            {
+                if (value != _test1)
+                {
+                    _test1 = value;
+                    OnPropertyChanged("Test1");
+                }
+            }
+        }
+
+
+
         public TourForm()
         {
             InitializeComponent();

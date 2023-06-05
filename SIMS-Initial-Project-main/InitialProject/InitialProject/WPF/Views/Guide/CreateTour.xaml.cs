@@ -2,8 +2,10 @@
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,14 +22,59 @@ namespace InitialProject.WPF.Views.Guide
     /// <summary>
     /// Interaction logic for CreateTour.xaml
     /// </summary>
-    public partial class CreateTour : Page
+    public partial class CreateTour : Page, INotifyPropertyChanged
     {
         public CreateTour()
         {
             InitializeComponent();
         }
 
-        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private int _test1;
+
+        public int Test1
+        {
+            get
+            {
+                return _test1;
+            }
+            set
+            {
+                if (value != _test1)
+                {
+                    _test1 = value;
+                    OnPropertyChanged("Test1");
+                }
+            }
+        }
+
+        public void NumbersOnly(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+"); 
+
+            if (regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
+                txtMaxGuests.Background = Brushes.Red;
+                
+            }
+            else
+            {
+               txtMaxGuests.ClearValue(TextBox.BackgroundProperty);
+               
+            }
+        }
+
+
 
         TourRepository repository = new TourRepository();
         KeyPointRepository keyPointRepository = new KeyPointRepository();
