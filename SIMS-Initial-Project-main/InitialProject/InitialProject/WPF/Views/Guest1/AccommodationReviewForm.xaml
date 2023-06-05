@@ -64,7 +64,8 @@
 
             <Label Grid.Row="7" Grid.Column="0" Height="30">Level of urgency:</Label>
             <ComboBox Grid.Row="7" Grid.Column="1"  SelectedIndex="{Binding UrgencyRenovationLevel}"  Height="20" HorizontalAlignment="Left"  Margin="20,0,0,0" >
-                <ComboBoxItem Tag="1" Content="bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga" />
+                <ComboBoxItem Tag="1" Content="bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga
+" />
                 <ComboBoxItem Tag="2" Content="male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim" />
                 <ComboBoxItem Tag="3" Content="nekoliko stvari koje su baš zasmetale bi trebalo renovirati" />
                 <ComboBoxItem Tag="4" Content="ima dosta loših stvari i renoviranje je stvarno neophodno" />

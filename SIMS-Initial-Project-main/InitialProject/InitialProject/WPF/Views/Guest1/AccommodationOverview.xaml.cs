@@ -5,6 +5,7 @@ using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repository;
 using InitialProject.View.Guest1;
 using InitialProject.View.Owner;
+using InitialProject.WPF.Views.Guest1;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -193,6 +194,20 @@ namespace InitialProject.Forms
         {
             MyReviews reviews = new MyReviews(LoggedInUser);
             reviews.Show();
+            Close();
+        }
+
+        public void AnywhereAnytime(object sender, RoutedEventArgs e)
+        {
+            AnywhereAnytime view = new AnywhereAnytime(LoggedInUser);
+            view.Show();
+            Close();
+        }
+
+        public void Forum(object sender, RoutedEventArgs e)
+        {
+            AllForums view = new AllForums(LoggedInUser);
+            view.Show();
             Close();
         }
 

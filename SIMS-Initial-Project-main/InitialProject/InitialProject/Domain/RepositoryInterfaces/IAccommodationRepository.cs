@@ -1,4 +1,6 @@
 ﻿using InitialProject.Domain.Model;
+using InitialProject.Domain.Models;
+using System;
 using System.Collections.Generic;
 
 namespace InitialProject.Domain.RepositoryInterfaces
@@ -17,5 +19,12 @@ namespace InitialProject.Domain.RepositoryInterfaces
         public void Delete(Accommodation accommodation);
 
         public Accommodation Update(Accommodation accommodation);
+
+        public List<Accommodation> FindAllByLocation(Location location);
+
+        public List<Accommodation> AnywhereAnytime(int numberOfGuests, int numberOfDays);
+
+        public List<Location> GetAllLocations();
+
     }
 }

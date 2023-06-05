@@ -26,7 +26,7 @@ namespace InitialProject.Forms
         public User LoggedInUser { get; set; }
         public int DaysNumber { get; set; }
 
-        private int _guestsNumber = 0;
+        private int _guestsNumber = 1;
         private int _reservationDateIndex;
 
         public int GuestsNumber
@@ -54,7 +54,7 @@ namespace InitialProject.Forms
             }
         }
 
-        public SaveReservation(List<ReservationDate> reservationDates,int accommodationId, User LoggedUser, int daysNumber)
+        public SaveReservation(List<ReservationDate> reservationDates,int accommodationId, User LoggedUser, int daysNumber, int guestNumber)
         {
             InitializeComponent();
             DataContext = this;
@@ -64,6 +64,7 @@ namespace InitialProject.Forms
             SelectedAccommodation = _repository.GetAccommodationById(accommodationId);
             DaysNumber = daysNumber;
             LoggedInUser = LoggedUser;
+            GuestsNumber = guestNumber;
             ReservationDates.ItemsSource = _reservationDates;
         }
 
