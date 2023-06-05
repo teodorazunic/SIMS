@@ -103,6 +103,13 @@ namespace InitialProject.View
             Close();
 
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            CompoundTour compoundTour = new CompoundTour(LoggedInUser);
+            compoundTour.Show();
+            Close();
+        }
     }
 }
 

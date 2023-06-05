@@ -261,6 +261,19 @@ namespace InitialProject.Repositories
             return _requests;
         }
 
+        public List<TourRequest> GetCompoundTourRequests()
+        {
+            List<TourRequest> allRequests = GetAllTourRequests();
+            List<TourRequest> compoundRequests = new List<TourRequest>();
+            for(int i = 0; i < allRequests.Count; i++)
+            {
+               if (allRequests[i].Type == "compound"){
+                compoundRequests.Add(_requests[i]);
+            }
+            }
+            return compoundRequests;
+        }
+
         public List<TourRequest> findByLanguage(List<TourRequest> tourRequests, string language)
         {
             if (language != null && language != "")
