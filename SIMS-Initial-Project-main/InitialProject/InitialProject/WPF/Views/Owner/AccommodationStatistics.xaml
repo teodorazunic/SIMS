@@ -17,7 +17,7 @@
         <ComboBox Visibility="Hidden" x:Name="YearCB" Text="{Binding Path=YearForStatistic, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="123,69,0,0" VerticalAlignment="Top" Width="120" Loaded="OnLoadYear"/>
 
         <Button x:Name="ShowButton" IsEnabled="False" Content="Show" HorizontalAlignment="Left" Margin="396,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,-0.585" Height="33" Width="116" Click="ShowStatisticForHotel"/>
-        <Button Visibility="Hidden" x:Name="ResultButton" Content="Show" HorizontalAlignment="Left" Margin="595,46,0,0" VerticalAlignment="Top" FontSize="20" Width="325" Height="39" Click="Detect"/>
+        <Button Visibility="Hidden" x:Name="ResultButton" Content="Show" HorizontalAlignment="Left" Margin="595,46,0,0" VerticalAlignment="Top" FontSize="20" Height="33" Width="116" Click="Detect"/>
         <RadioButton Content="Year" HorizontalAlignment="Left" Margin="832,238,0,0" VerticalAlignment="Top" FontSize="20" IsChecked="False" Checked="YearStatistic"/>
         <RadioButton Content="Month" HorizontalAlignment="Left" Margin="832,358,0,0" VerticalAlignment="Top" FontSize="20" Checked="MounthStatistic"/>
 
