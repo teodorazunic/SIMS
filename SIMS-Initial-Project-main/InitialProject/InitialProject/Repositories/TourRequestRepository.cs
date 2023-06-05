@@ -371,19 +371,7 @@ namespace InitialProject.Repositories
             _serializer.ToCSV(FilePath, _requests);
         }
 
-        public List<int> CalculateTourRequestStatusCounts(int guestId)
-        {
-            List<TourRequest> requests = GetTourRequestsByGuestId(guestId);
-            List<int> counts = new List<int>();
-            int AcceptedCount = 0;
-            int DeniedCount = 0;
-            AcceptedCount = requests.Count(r => r.Status == "Accepted");
-            DeniedCount = requests.Count(r => r.Status == "Denied");
-            counts.Add(AcceptedCount);
-            counts.Add(DeniedCount);
-            return counts;
-        }
-
+        
         public List<TourRequest> GetTourRequestsByGuestId(int guestId)
         {
             _requests = _serializer.FromCSV(FilePath);
