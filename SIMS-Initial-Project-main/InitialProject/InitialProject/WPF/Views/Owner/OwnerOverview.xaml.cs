@@ -215,5 +215,11 @@ namespace InitialProject.View
             ForumPage createForumPage = new ForumPage(LoggedInUser);
             createForumPage.Show();
         }
+
+        private void ShowNotifications(object sender, RoutedEventArgs e)
+        {
+            MyNotifications myNotifications = new MyNotifications(LoggedInUser);
+            myNotifications.Show();
+        }
     }
 }
