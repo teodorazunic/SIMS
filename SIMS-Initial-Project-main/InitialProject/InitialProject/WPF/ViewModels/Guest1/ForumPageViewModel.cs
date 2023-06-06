@@ -65,6 +65,22 @@ namespace InitialProject.WPF.ViewModels.Guest1
             this.GetAllForumComments();
         }
 
+        public void AddComment1()
+        {
+            ForumComment forumComment = new ForumComment();
+            forumComment.CommentText = Comment;
+            forumComment.ForumId = Forum.Id;
+            forumComment.DateCreated = DateTime.Now;
+            forumComment.UserId = User.Id;
+            forumComment.Username = User.Username;
+            forumComment.IsSpecialGuestComment = false;
+            forumComment.IsSpecialOwnerComment = false;
+
+            ForumCommentService.AddOwnerComment(forumComment);
+
+            this.GetAllForumComments();
+        }
+
         public List<ForumComment> GetAllForumComments()
         {
             ForumComments = ForumCommentService.GetAllForumComments(Forum.Id);

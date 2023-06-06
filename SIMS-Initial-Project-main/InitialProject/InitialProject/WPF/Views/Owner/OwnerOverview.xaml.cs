@@ -209,5 +209,11 @@ namespace InitialProject.View
             RenovationList createRenovationList = new RenovationList();
             createRenovationList.Show();
         }
+
+        private void OpenForumList(object sender, RoutedEventArgs e)
+        {
+            ForumPage createForumPage = new ForumPage(LoggedInUser);
+            createForumPage.Show();
+        }
     }
 }

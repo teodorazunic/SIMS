@@ -16,6 +16,10 @@ namespace InitialProject.Application.Services
         {
             return _repository.AddGuestComment(comment);
         }
+        public string AddOwnerComment(ForumComment comment)
+        {
+            return _repository.AddOwnerComment(comment);
+        }
 
         public List<ForumComment> GetAllForumComments(int forumId)
         {

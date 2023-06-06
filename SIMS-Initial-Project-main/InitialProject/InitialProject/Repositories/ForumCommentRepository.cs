@@ -55,6 +55,24 @@ namespace InitialProject.Repositories
 
             return "Successfully created comment!";
         }
+
+        public string AddOwnerComment(ForumComment comment)
+        {
+            comment.Id = this.GetLastId() + 1;
+
+
+            User user = _userRepository.GetById(comment.UserId);
+
+            comment.IsSpecialOwnerComment = true;
+
+            _forumComments.Add(comment);
+            _serializer.ToCSV(FilePath, _forumComments);
+
+
+            return "Successfully created comment!";
+        }
+
+
         public int GetLastId()
         {
             if (_forumComments != null && _forumComments.Count > 0)
