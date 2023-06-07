@@ -51,7 +51,7 @@
             <TextBlock Text="Comments:" FontSize="16" />
 
 
-            <DataGrid CanUserAddRows="false" Margin="0,10,0,0" Grid.Row="5" Grid.ColumnSpan="2"  x:Name="Comments" HeadersVisibility="None" Loaded="OnLoad" AutoGenerateColumns="False" >
+            <DataGrid CanUserAddRows="false" Margin="0,10,0,0" Grid.Row="5" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedComment}" x:Name="Comments" HeadersVisibility="None" Loaded="OnLoad" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="*" Header="">
                         <DataGridTemplateColumn.CellTemplate>
@@ -63,6 +63,11 @@
                                     </StackPanel>
                                     <TextBlock HorizontalAlignment="Center" FontSize="16" FontWeight="DemiBold" Text="{Binding CommentText}" />
                                     <TextBlock HorizontalAlignment="Right" Text="***OWNER'S COMMENT***" FontWeight="DemiBold" Visibility="{Binding IsSpecialOwnerComment,  Converter={StaticResource BooleanToVisibility}}" />
+                                    <TextBlock HorizontalAlignment="Center"  FontWeight="DemiBold" Text="Number of reports as INVALID:" />
+                                    <TextBlock HorizontalAlignment="Center"  FontWeight="DemiBold" Text="{Binding NumberOfReport}" />
+                                   
+
+
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

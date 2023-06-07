@@ -7,7 +7,8 @@ namespace InitialProject.Domain.ServiceInterfaces
     {
         public string AddOwnerComment(ForumComment comment);
         public string AddGuestComment(ForumComment comment);
-        
+
+        public void ReportComment(ForumComment selectedComment);
 
 
         public List<ForumComment> GetAllForumComments(int forumId);

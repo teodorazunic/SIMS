@@ -36,7 +36,9 @@ namespace InitialProject.WPF.Views.Owner
 
         public void OnLoad(object sender, RoutedEventArgs e)
         {
-            viewModel.OnLoad();
+            ForumsList.ItemsSource = viewModel.ShowAllForums();
+
+           // viewModel.OnLoad();
         }
 
         public void OnForumClick(object sender, RoutedEventArgs e)
@@ -45,10 +47,7 @@ namespace InitialProject.WPF.Views.Owner
             view.Show();
         }
 
-        public void ShowAllForums(object sender, RoutedEventArgs e)
-        {
-            ForumsList.ItemsSource = viewModel.ShowAllForums();
-        }
+
     }
 
 }

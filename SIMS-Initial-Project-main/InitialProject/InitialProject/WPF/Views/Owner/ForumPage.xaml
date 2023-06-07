@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:InitialProject.WPF.Views.Owner"
         mc:Ignorable="d"
         Title="ForumPage" Height="450" Width="800">
-    <Grid>
-        <Button Click="ShowAllForums" Content="Show Forums" Height="30" Margin="154,332,154,72"  />
+    <Grid Margin="0,0,0,-58">
 
-        <DataGrid AutoGenerateColumns="False" SelectionMode="Single" SelectedItem="{Binding Selected}" MouseDoubleClick="OnForumClick"  Margin="10,10,10,129" x:Name="ForumsList" Loaded="OnLoad" >
+        <DataGrid AutoGenerateColumns="False" SelectionMode="Single" SelectedItem="{Binding Selected}" MouseDoubleClick="OnForumClick"  Margin="10,10,10,223" x:Name="ForumsList" Loaded="OnLoad" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Question" Binding="{Binding Question}" Width="200"/>
                 <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*"/>

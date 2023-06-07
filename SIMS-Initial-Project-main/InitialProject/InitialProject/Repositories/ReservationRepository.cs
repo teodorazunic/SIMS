@@ -1,4 +1,4 @@
-﻿using InitialProject.Domain.Model;
+﻿ using InitialProject.Domain.Model;
 using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Repositories;
@@ -91,13 +91,11 @@ namespace InitialProject.Repository
         {
             List<string> locations = GetAllOwnerLocation(user.Id);
             List<Reservation> reservations = GetAll();
-            //grupise ih po lokacijama - (hes mapa lokacija - rezervacije)
             Dictionary<string, int> ReservationPerLocation = new Dictionary<string, int>();
             foreach (string location in locations)
             {
                 ReservationPerLocation.Add(location, 0);
             }
-            //treba da uzme sve hotele od vlasnika i proveri im broj rezervacija
             foreach (Reservation reservation in reservations)
             {
                 Accommodation hotel = _accommodationRepository.GetAccommodationById(reservation.AccommodationId);
@@ -115,7 +113,7 @@ namespace InitialProject.Repository
             string[] fields = mostPopularLocation.Split("|");
             string country = fields[0];
             string city = fields[1];
-            DialogResult result = (DialogResult)MessageBox.Show($"Do you want to create new accommodation on location: {country} {city}", "Proposal for the cration of a new accommodation", MessageBoxButton.YesNo);
+            DialogResult result = (DialogResult)MessageBox.Show($"Most popular location is: {country} {city}; create new accommodation?", "Suggestion for creating new accommodation", MessageBoxButton.YesNo);
             if (result == DialogResult.Yes)
             {
                 OwnerForm1 ownerForm = new OwnerForm1();
@@ -148,7 +146,7 @@ namespace InitialProject.Repository
             int mostNonePopularHotel = ReservationPerHotel.Keys.Min();
 
 
-            DialogResult result = (DialogResult)MessageBox.Show($"Do you want to close accommodation: {mostNonePopularHotel}", "Proposal to close an unpopular accommodation", MessageBoxButton.YesNo);
+            DialogResult result = (DialogResult)MessageBox.Show($"Most unpopular accommodation is {mostNonePopularHotel}, want to close it?", "Suggestion for closing accommodation", MessageBoxButton.YesNo);
             if (result == DialogResult.Yes)
             {
                 _accommodationRepository.Delete(_accommodationRepository.GetAccommodationById(mostNonePopularHotel));

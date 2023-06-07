@@ -4,6 +4,7 @@ using InitialProject.Domain.ServiceInterfaces;
 using InitialProject.Repositories;
 using System.Collections.Generic;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace InitialProject.Application.Services
 {
@@ -26,6 +27,20 @@ namespace InitialProject.Application.Services
         public List<ForumComment> GetAllForumComments(int forumId)
         {
             return _repository.GetAllForumComments(forumId);
+        }
+
+        public void ReportComment(ForumComment selectedComment)
+        {
+            List<ForumComment> comments = GetAllForumComments(selectedComment.ForumId);
+            foreach (ForumComment comment in comments)
+            {
+                if (comment.ForumId == selectedComment.ForumId)
+                {
+                    selectedComment.NumberOfReport++;
+                    MessageBox.Show("Comment successfully reported");
+                }
+            }
+            _repository.Update(selectedComment);
         }
 
         public ForumComment Update(ForumComment comment)

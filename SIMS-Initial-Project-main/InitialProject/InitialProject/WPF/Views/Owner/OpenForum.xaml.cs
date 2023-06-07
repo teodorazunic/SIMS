@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InitialProject.Application.Services;
+using InitialProject.Domain;
 using InitialProject.Domain.Models;
+using InitialProject.Domain.RepositoryInterfaces;
+using InitialProject.Domain.ServiceInterfaces;
 using InitialProject.WPF.ViewModels.Guest1;
 
 namespace InitialProject.WPF.Views.Owner
@@ -25,7 +28,7 @@ namespace InitialProject.WPF.Views.Owner
         private ForumPageViewModel viewModel;
         public ForumComment SelectedComment { get; set; }
 
-        public ForumService forumService { get; set; }
+        private IForumCommentService ForumCommentService { get; set; }
 
 
         public OpenForum(User user, Forum selectedForum)
@@ -33,9 +36,9 @@ namespace InitialProject.WPF.Views.Owner
             InitializeComponent();
             viewModel = new ForumPageViewModel(user, selectedForum);
             DataContext = viewModel;
-                        DataContext = this;
+            DataContext = this;
 
-            forumService = new ForumService();
+            ForumCommentService = Injector.CreateInstance<IForumCommentService>();
 
         }
 
@@ -54,6 +57,7 @@ namespace InitialProject.WPF.Views.Owner
 
         private void ReportComment(object sender, RoutedEventArgs e)
         {
+            ForumCommentService.ReportComment(SelectedComment);
 
         }
     }

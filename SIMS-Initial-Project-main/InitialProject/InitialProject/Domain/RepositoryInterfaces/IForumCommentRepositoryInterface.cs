@@ -9,9 +9,9 @@ namespace InitialProject.Domain.RepositoryInterfaces
         public string AddOwnerComment(ForumComment comment);
         public ForumComment Update(ForumComment comment);
 
+        public List<ForumComment> GetAll();
 
 
         public List<ForumComment> GetAllForumComments(int forumId);
-
     }
 }
