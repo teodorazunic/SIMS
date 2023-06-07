@@ -86,5 +86,7 @@ namespace InitialProject.WPF.ViewModels.Guest1
             ForumComments = ForumCommentService.GetAllForumComments(Forum.Id);
             return ForumComments;
         }
+
+
     }
 }

@@ -12,6 +12,9 @@ using System.Windows.Controls;
 using System.Windows;
 using LiveCharts.Wpf;
 using LiveCharts;
+using DevExpress.Utils.CommonDialogs.Internal;
+
+using InitialProject.View;
 
 namespace InitialProject.Repository
 {
@@ -84,6 +87,85 @@ namespace InitialProject.Repository
             return _reservations.Find(r => r.Id == id);
         }
 
+        public Dictionary<string, int> GetReservationPerLocation(User user)
+        {
+            List<string> locations = GetAllOwnerLocation(user.Id);
+            List<Reservation> reservations = GetAll();
+            //grupise ih po lokacijama - (hes mapa lokacija - rezervacije)
+            Dictionary<string, int> ReservationPerLocation = new Dictionary<string, int>();
+            foreach (string location in locations)
+            {
+                ReservationPerLocation.Add(location, 0);
+            }
+            //treba da uzme sve hotele od vlasnika i proveri im broj rezervacija
+            foreach (Reservation reservation in reservations)
+            {
+                Accommodation hotel = _accommodationRepository.GetAccommodationById(reservation.AccommodationId);
+                if (locations.Contains(hotel.Location.Country + hotel.Location.City))
+                {
+                    ReservationPerLocation[hotel.Location.Country + hotel.Location.City]++;
+                }
+            }
+            return ReservationPerLocation;
+        }
+        public void FindLocationForInvest(User user)
+        {
+            Dictionary<string, int> locations = GetReservationPerLocation(user);
+            string mostPopularLocation = locations.Keys.Max();
+            string[] fields = mostPopularLocation.Split("|");
+            string country = fields[0];
+            string city = fields[1];
+            DialogResult result = (DialogResult)MessageBox.Show($"Do you want to create new accommodation on location: {country} {city}", "Proposal for the cration of a new accommodation", MessageBoxButton.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                OwnerForm1 ownerForm = new OwnerForm1();
+                ownerForm.txtCountry.Text = country;
+                ownerForm.txtCity.Text = city;
+                ownerForm.Show();
+            }
+            else { }
+        }
+
+        public void FindHotelToClose(User user)
+        {
+            List<Accommodation> hotels = _accommodationRepository.GetHotelByOwner(user.Id);
+            Dictionary<int, int> ReservationPerHotel = new Dictionary<int, int>();
+            foreach (Accommodation hotel in hotels)
+            {
+                ReservationPerHotel.Add(hotel.Id, 0);
+            }
+            List<Reservation> reservations = GetAll();
+            foreach (Accommodation hotel in hotels)
+            {
+                foreach (Reservation reservation in reservations)
+                {
+                    if (hotel.Id == reservation.AccommodationId)
+                    {
+                        ReservationPerHotel[hotel.Id]++;
+                    }
+                }
+            }
+            int mostNonePopularHotel = ReservationPerHotel.Keys.Min();
+
+
+            DialogResult result = (DialogResult)MessageBox.Show($"Do you want to close accommodation: {mostNonePopularHotel}", "Proposal to close an unpopular accommodation", MessageBoxButton.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                _accommodationRepository.Delete(_accommodationRepository.GetAccommodationById(mostNonePopularHotel));
+            }
+            else { }
+        }
+
+        public List<string> GetAllOwnerLocation(int id)
+        {
+            List<Accommodation> hotels = _accommodationRepository.GetHotelByOwner(id);
+            List<string> locations = new List<string>();
+            foreach (Accommodation hotel in hotels)
+            {
+                locations.Add(hotel.Location.Country + "|" + hotel.Location.City);
+            }
+            return locations.Distinct().ToList();
+        }
 
         public ColumnSeries ShowHotelDataInChart(int accommodationId)
         {

@@ -7,6 +7,8 @@ namespace InitialProject.Domain.RepositoryInterfaces
     {
         public string AddGuestComment(ForumComment comment);
         public string AddOwnerComment(ForumComment comment);
+        public ForumComment Update(ForumComment comment);
+
 
 
         public List<ForumComment> GetAllForumComments(int forumId);

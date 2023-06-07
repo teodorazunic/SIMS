@@ -1,7 +1,9 @@
 ﻿using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Domain.ServiceInterfaces;
+using InitialProject.Repositories;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace InitialProject.Application.Services
 {
@@ -12,6 +14,10 @@ namespace InitialProject.Application.Services
         public ForumService(IForumRepositoryInterface forumRepositoryInterface)
         {
             _forumRepositoryInterface = forumRepositoryInterface;
+        }
+
+        public ForumService()
+        {
         }
 
         public string CloseForum(int forumId)
@@ -43,5 +49,7 @@ namespace InitialProject.Application.Services
         {
             return _forumRepositoryInterface.CreateForum(forum);
         }
+
+
     }
 }

@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using LiveCharts;
 using LiveCharts.Wpf;
 using InitialProject.Domain.Model;
+using InitialProject.Domain.ServiceInterfaces;
 
 namespace InitialProject.WPF.Views.Owner
 {
@@ -46,6 +47,14 @@ namespace InitialProject.WPF.Views.Owner
             accommodationRepository = new AccommodationRepository();
             LogedUser = user;
             DataChart = new SeriesCollection();
+        }
+
+        private void OnPageLoad(object sender, RoutedEventArgs e)
+        {
+            //kada vidi gde ima najvise rezervacija po lokaciji predlozi kreiranje novog hotela
+            reservationRepository.FindLocationForInvest(LogedUser);
+            //kada vidi da ima premalo rezervacija po lokaciji predlozi zatvaranje hotela
+            reservationRepository.FindHotelToClose(LogedUser);
         }
 
         private void YearStatistic(object sender, RoutedEventArgs e)

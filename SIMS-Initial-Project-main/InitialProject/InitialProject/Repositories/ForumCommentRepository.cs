@@ -6,6 +6,7 @@ using InitialProject.Repository;
 using InitialProject.Serializer;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace InitialProject.Repositories
 {
@@ -33,6 +34,49 @@ namespace InitialProject.Repositories
         {
             return _forumComments.FindAll(fc => fc.ForumId == forumId);
         }
+
+        public ForumComment Save(ForumComment comment)
+        {
+            comment.Id = NextId();
+            _forumComments = _serializer.FromCSV(FilePath);
+            _forumComments.Add(comment);
+            _serializer.ToCSV(FilePath, _forumComments);
+            return comment;
+        }
+
+        public int NextId()
+        {
+            _forumComments = _serializer.FromCSV(FilePath);
+            if (_forumComments.Count < 1)
+            {
+                return 1;
+            }
+            return _forumComments.Max(c => c.Id) + 1;
+        }
+        public void Delete(ForumComment comment)
+        {
+            _forumComments = _serializer.FromCSV(FilePath);
+            ForumComment founded = _forumComments.Find(c => c.Id == comment.Id);
+            _forumComments.Remove(founded);
+            _serializer.ToCSV(FilePath, _forumComments);
+        }
+
+        public List<ForumComment> GetAll()
+        {
+            return _serializer.FromCSV(FilePath);
+        }
+
+        public ForumComment Update(ForumComment comment)
+        {
+            _forumComments = _serializer.FromCSV(FilePath);
+            ForumComment current = _forumComments.Find(c => c.Id == comment.Id);
+            int index = _forumComments.IndexOf(current);
+            _forumComments.Remove(current);
+            _forumComments.Insert(index, comment);       // keep ascending order of ids in file 
+            _serializer.ToCSV(FilePath, _forumComments);
+            return comment;
+        }
+
 
         public string AddGuestComment(ForumComment comment)
         {

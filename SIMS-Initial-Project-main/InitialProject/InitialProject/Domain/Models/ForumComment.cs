@@ -14,6 +14,9 @@ namespace InitialProject.Domain.Models
         public bool IsSpecialGuestComment { get; set; }
         public bool IsSpecialOwnerComment { get; set; }
 
+        public int NumberOfReport { get; set; }
+
+
         public ForumComment(int userId, string username, int forumId, string commentText, DateTime dateCreated, bool isSpecialGuestComment, bool isSpecialOwnerComment)
         {
             UserId = userId;
@@ -23,13 +26,16 @@ namespace InitialProject.Domain.Models
             DateCreated = dateCreated;
             IsSpecialGuestComment = isSpecialGuestComment;
             IsSpecialOwnerComment = isSpecialOwnerComment;
+            NumberOfReport = 0;
+
+
         }
 
         public ForumComment() { }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), UserId.ToString(), Username, ForumId.ToString(), CommentText, DateCreated.ToString(), IsSpecialGuestComment.ToString(), IsSpecialOwnerComment.ToString() };
+            string[] csvValues = { Id.ToString(), UserId.ToString(), Username, ForumId.ToString(), CommentText, DateCreated.ToString(), IsSpecialGuestComment.ToString(), IsSpecialOwnerComment.ToString(), NumberOfReport.ToString() };
             return csvValues;
         }
 
@@ -43,6 +49,8 @@ namespace InitialProject.Domain.Models
             DateCreated = Convert.ToDateTime(values[5]);
             IsSpecialGuestComment = Convert.ToBoolean(values[6]);
             IsSpecialOwnerComment = Convert.ToBoolean(values[7]);
+            NumberOfReport = Convert.ToInt32(values[8]);
+
         }
     }
 }

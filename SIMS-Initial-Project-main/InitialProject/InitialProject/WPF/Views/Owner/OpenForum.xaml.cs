@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InitialProject.Application.Services;
 using InitialProject.Domain.Models;
 using InitialProject.WPF.ViewModels.Guest1;
 
@@ -22,11 +23,20 @@ namespace InitialProject.WPF.Views.Owner
     public partial class OpenForum : Window
     {
         private ForumPageViewModel viewModel;
+        public ForumComment SelectedComment { get; set; }
+
+        public ForumService forumService { get; set; }
+
+
         public OpenForum(User user, Forum selectedForum)
         {
             InitializeComponent();
             viewModel = new ForumPageViewModel(user, selectedForum);
             DataContext = viewModel;
+                        DataContext = this;
+
+            forumService = new ForumService();
+
         }
 
         public void AddComment(object sender, RoutedEventArgs e)
@@ -40,6 +50,11 @@ namespace InitialProject.WPF.Views.Owner
         public void OnLoad(object sender, RoutedEventArgs e)
         {
             Comments.ItemsSource = viewModel.GetAllForumComments();
+        }
+
+        private void ReportComment(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

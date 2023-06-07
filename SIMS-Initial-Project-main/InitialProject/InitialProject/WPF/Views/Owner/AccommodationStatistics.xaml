@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:InitialProject.WPF.Views.Owner"
         mc:Ignorable="d"
         Title="AccommodationStatistics" Height="768" Width="1024">
-    <Grid Background ="White" Margin="0,0,0,-254">
+    <Grid Background ="White" Margin="0,0,0,-254" Loaded="OnPageLoad">
         <Label Content="accommodation" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Height="34" Width="226" FontSize="20"/>
         <Label x:Name="Label1" Visibility="Hidden" Content="The busiest" HorizontalAlignment="Left" Margin="588,13,0,0" VerticalAlignment="Top" Width="352" FontSize="15"/>
         <Label x:Name="Label2" Visibility="Hidden" Content="Year" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" FontSize="17"/>

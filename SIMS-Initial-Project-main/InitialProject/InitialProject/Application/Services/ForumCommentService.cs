@@ -1,7 +1,9 @@
 ﻿using InitialProject.Domain.Models;
 using InitialProject.Domain.RepositoryInterfaces;
 using InitialProject.Domain.ServiceInterfaces;
+using InitialProject.Repositories;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace InitialProject.Application.Services
 {
@@ -25,5 +27,15 @@ namespace InitialProject.Application.Services
         {
             return _repository.GetAllForumComments(forumId);
         }
+
+        public ForumComment Update(ForumComment comment)
+        {
+            return _repository.Update(comment);
+        }
+
+
+
+        }
+
     }
-}
+
