@@ -85,6 +85,15 @@ namespace InitialProject.WPF.Views.Guide
             KeyPoint saveKeyPoint = keyPointRepository.SaveKeyPoint(keypoint);
             txtKeyPoint.Text = "";
 
+            KeyPointsList.Items.Add(name);
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            string datum = datePicker1.Text;
+            datePicker1.Text = "";
+            DatesList.Items.Add(datum);
         }
     }
 }
