@@ -148,7 +148,7 @@ namespace InitialProject.WPF.Views
             KeyPointsShowing = _keyPointRepository.GetKeyPointbyTourId(startedTour.Id);
             KeyPoints.ItemsSource = KeyPointsShowing;
             AllKeyPoints = KeyPointsShowing;
-            if(_guestOnTourRepository.GetGuestStatusByTourId(startedTour.Id) == "Here")
+            if(_guestOnTourRepository.GetGuestStatusByTourId(startedTour.Id) == true)
             {
                 AddedTextBlock.Text = "The guide has added you to this tour.";
                 JoinButton.IsEnabled = false;
@@ -163,7 +163,7 @@ namespace InitialProject.WPF.Views
             addGuest.GuestName = LoggedInUser.Username;
             addGuest.NumberOfGuests = Reservation.NumberOfGuests;
             addGuest.StartingKeyPoint = _keyPointRepository.GetLastActiveKeyPoint(AllKeyPoints);
-            addGuest.Status = "Not here";
+            addGuest.Status = false;
             _guestOnTourRepository.Save(addGuest);
             JoinButton.IsEnabled = false;
 

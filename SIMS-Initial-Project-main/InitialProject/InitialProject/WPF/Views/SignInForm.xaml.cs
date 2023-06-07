@@ -4,6 +4,7 @@ using InitialProject.Domain.ServiceInterfaces;
 using InitialProject.Forms;
 using InitialProject.Repository;
 using InitialProject.View;
+using InitialProject.WPF.Guide;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -61,7 +62,7 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guest2)
                     {
-                        TourOverview tourOverview = new TourOverview(user);
+                        MainWindow tourOverview = new MainWindow(user);
                         tourOverview.Show();
                         Close();
 
@@ -75,7 +76,7 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guide)
                     {
-                        GuideOverview guideOverview = new GuideOverview(user);
+                        MainWindow guideOverview = new MainWindow(user);
                         guideOverview.Show();
                         Close();
 

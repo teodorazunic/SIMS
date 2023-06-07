@@ -2,8 +2,10 @@
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,32 +14,47 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InitialProject.View
+namespace InitialProject.WPF.Views.Guide
 {
     /// <summary>
-    /// Interaction logic for TourForm.xaml
+    /// Interaction logic for CreateTour.xaml
     /// </summary>
-    public partial class TourForm : Window
+    public partial class CreateTour : Page
     {
-        public User LoggedInUser { get; set; }
-        
-        public TourForm(User user)
+        public CreateTour()
         {
             InitializeComponent();
-            LoggedInUser = user;
         }
+        
+
+        public void NumbersOnly(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+
+            if (regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
+                txtMaxGuests.Background = Brushes.Red;
+
+            }
+            else
+            {
+                txtMaxGuests.ClearValue(TextBox.BackgroundProperty);
+
+            }
+        }
+
 
         TourRepository repository = new TourRepository();
         KeyPointRepository keyPointRepository = new KeyPointRepository();
         List<KeyPoint> keyPoints = new List<KeyPoint>();
 
-       
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-
             int id = repository.NextId();
             String name = txtName.Text;
             Location location = new Location(txtCountry.Text, txtCity.Text);
@@ -48,9 +65,9 @@ namespace InitialProject.View
             int duration = Convert.ToInt32(txtDuration.Text);
             string image = txtImage.Text;
             string status = "Pending";
-            
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status );
+
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
         }
@@ -60,8 +77,8 @@ namespace InitialProject.View
             int id = keyPointRepository.NextId();
             string name = txtKeyPoint.Text;
             Tour tourId = new Tour();
-            tourId.Id= repository.NextId();
-            
+            tourId.Id = repository.NextId();
+
 
             KeyPoint keypoint = new KeyPoint(name, id, tourId);
             keyPoints.Add(keypoint);

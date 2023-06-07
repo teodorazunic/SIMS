@@ -11,6 +11,7 @@
     <None Remove="Resources\Images\add.png" />
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
+    <None Remove="Resources\Images\logo1.png" />
     <None Remove="Resources\Images\view.png" />
   </ItemGroup>
 
@@ -31,6 +32,10 @@
 
   <ItemGroup>
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo1.png" />
   </ItemGroup>
 
   <ItemGroup>
