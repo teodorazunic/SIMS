@@ -1,4 +1,5 @@
 ﻿using InitialProject.Domain.Models;
+using InitialProject.Repositories;
 using InitialProject.WPF.Views.Guide;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,16 @@ namespace InitialProject.WPF.Guide
         {
             InitializeComponent();
             LoggedInUser = user;
+            guideRepository = new GuideRepository();
         }
         public User LoggedInUser { get; set; }
+
+        private readonly GuideRepository guideRepository;
+
+        private void SuperGuide(object sender, RoutedEventArgs e)
+        {
+            superGuide.Content = guideRepository.SuperGuide();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
