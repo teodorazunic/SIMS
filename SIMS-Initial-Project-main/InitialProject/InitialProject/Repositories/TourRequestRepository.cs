@@ -261,6 +261,19 @@ namespace InitialProject.Repositories
             return _requests;
         }
 
+        public List<TourRequest> GetCompoundTourRequests()
+        {
+            List<TourRequest> allRequests = GetAllTourRequests();
+            List<TourRequest> compoundRequests = new List<TourRequest>();
+            for(int i = 0; i < allRequests.Count; i++)
+            {
+               if (allRequests[i].Type == "compound"){
+                compoundRequests.Add(_requests[i]);
+            }
+            }
+            return compoundRequests;
+        }
+
         public List<TourRequest> findByLanguage(List<TourRequest> tourRequests, string language)
         {
             if (language != null && language != "")
@@ -350,7 +363,7 @@ namespace InitialProject.Repositories
 
         public TourRequest Save(TourRequest request)
         {
-            request.Id = NextId();
+            //request.Id = NextId();
             _requests = _serializer.FromCSV(FilePath);
             _requests.Add(request);
             _serializer.ToCSV(FilePath, _requests);
@@ -371,6 +384,13 @@ namespace InitialProject.Repositories
             _serializer.ToCSV(FilePath, _requests);
         }
 
+        
+        public List<TourRequest> GetTourRequestsByGuestId(int guestId)
+        {
+            _requests = _serializer.FromCSV(FilePath);
+            return _requests.FindAll(v => v.GuestId == guestId);
+        }
+        
         public List<int> CalculateTourRequestStatusCounts(int guestId)
         {
             List<TourRequest> requests = GetTourRequestsByGuestId(guestId);
@@ -384,10 +404,70 @@ namespace InitialProject.Repositories
             return counts;
         }
 
-        public List<TourRequest> GetTourRequestsByGuestId(int guestId)
+        public List<int> CalculateTourRequestStatusByYear(int guestId, int year)
+        {
+            List<TourRequest> requests = GetTourRequestsByGuestId(guestId);
+            List<int> counts = new List<int>();
+            int AcceptedCount = 0;
+            int DeniedCount = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.StartDate.Year == year)
+                {
+                    if (request.Status == "Accepted")
+                    {
+                        AcceptedCount++;
+                    }
+                    else if (request.Status == "Denied")
+                    {
+                        DeniedCount++;
+                    }
+                }
+            }
+            counts.Add(AcceptedCount);
+            counts.Add(DeniedCount);
+            return counts;
+
+        }
+
+        public int CalculateTourRequestsByLanguage(int guestId, string language)
+        {
+            List<TourRequest> requests = GetTourRequestsByGuestId(guestId);
+            int counter = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Language == language)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+        public int CalculateTourRequestsByLocation(int guestId, string location)
+        {
+            List<TourRequest> requests = GetTourRequestsByGuestId(guestId);
+            int counter = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Location.Country == location)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+        
+        public int GetLastId()
         {
             _requests = _serializer.FromCSV(FilePath);
-            return _requests.FindAll(v => v.GuestId == guestId);
+            if (_requests != null && _requests.Count > 0)
+            {
+                return _requests.Max(r => r.Id);
+            }
+            return 0;
+
+
         }
     }
 }

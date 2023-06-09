@@ -60,7 +60,7 @@
 
         <Line Grid.Row="1" Grid.Column="1" Stroke="Black" StrokeThickness="4" X1="0" Y1="340" X2="1000" Y2="340"/>
 
-        <Button Grid.Row="1" Grid.Column="1" Content="+" FontSize="45" FontFamily="A" Margin="20,448,870,0" Height="60" VerticalAlignment="Top" >
+        <Button Grid.Row="1" Grid.Column="1" Content="+" FontSize="45" FontFamily="A" Margin="20,448,870,0" Height="60" VerticalAlignment="Top"  Click="CompoundRequest" >
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="28"/>

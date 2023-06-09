@@ -63,9 +63,10 @@ namespace InitialProject.WPF.Views.Guide
             int duration = Convert.ToInt32(txtDuration.Text);
             string image = txtImage.Text;
             string status = "Pending";
+            
 
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
+            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status, 3);
             Tour saveTour = repository.Save(tour);
             MessageBox.Show("Succesfully added tour!");
 
