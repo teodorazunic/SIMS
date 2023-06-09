@@ -1,0 +1,29 @@
+﻿<Window x:Class="InitialProject.WPF.Guide.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.WPF.Guide"
+        mc:Ignorable="d"
+         Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+    <Grid>
+        
+        <Image Source ="/Resources/Images/logo1.png" HorizontalAlignment="Left" Height="64" Margin="14,0,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.6"/>
+        <Rectangle HorizontalAlignment="Left" Height="617" Margin="6,65,0,0" Stroke="Black" VerticalAlignment="Top" Width="196"/>
+        <Button Content="Create tour" HorizontalAlignment="Left" Margin="13,80,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click"/>
+        <Button Content="Live tour" HorizontalAlignment="Left" Margin="13,135,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_2"/>
+        <Button Content="Requests" HorizontalAlignment="Left" Margin="13,190,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_6"/>
+        <Button Content="Dissmisal" HorizontalAlignment="Left" Margin="13,630,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_3"/>
+        <Button Content="Report" HorizontalAlignment="Left" Margin="13,575,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Create by statistics" HorizontalAlignment="Left" Margin="13,520,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_5"/>
+        <Button Content="Request statistics" HorizontalAlignment="Left" Margin="13,465,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Complex tour" HorizontalAlignment="Left" Margin="13,410,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_7"/>
+        <Button Content="Reviews" HorizontalAlignment="Left" Margin="13,355,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_4"/>
+        <Button Content="Tour statistics" HorizontalAlignment="Left" Margin="13,300,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Cancel Tour" HorizontalAlignment="Left" Margin="13,245,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_1"/>
+        <Frame Name="page" NavigationUIVisibility="Hidden" Margin="221,10,71,0"/>
+        <Label Content="Log out" Margin="1184,-1,-26,628" FontSize="18" MouseDoubleClick="Logout" />
+        <Label x:Name="superGuideLabel" Content="" Loaded="superGuide" HorizontalAlignment="Left" Margin="1183,38,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

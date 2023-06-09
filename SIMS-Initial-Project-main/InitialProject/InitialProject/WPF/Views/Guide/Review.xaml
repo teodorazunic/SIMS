@@ -1,0 +1,156 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guide.Review"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide"
+      mc:Ignorable="d" 
+      d:DesignHeight="684" d:DesignWidth="953"
+      Title="Review">
+
+    <Grid Background="White">
+        <Rectangle HorizontalAlignment="Left" Height="242" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+        <Rectangle HorizontalAlignment="Left" Height="323" Margin="16,322,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+
+        <Label Content="REVIEWS" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <TextBlock x:Name="txtBlock"  HorizontalAlignment="Left" Height="35" Margin="342,612,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" FontSize="16"/>
+        <Button Content="Repport" HorizontalAlignment="Left" Margin="386,566,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="6.222,-0.739" Width="111" Height="28" FontSize="18"/>
+        <DataGrid x:Name="Tours"  IsReadOnly="True" SelectionMode="Single" 
+            ItemsSource="{Binding Tours}"
+            SelectedItem="{Binding SelectedTour}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="37,108,517,414" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="Control.MouseDoubleClick" Handler="OnRowClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+        <DataGrid x:Name="Guests"  IsReadOnly="True" SelectionMode="Single" 
+            ItemsSource="{Binding GuestsOnTour}"
+            SelectedItem="{Binding SelectedGuest}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="501,108,76,414" >
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />-->
+                <DataGridTextColumn Header="Guest name" Binding="{Binding GuestName}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Key Point" Binding="{Binding StartingKeyPoint.Name}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="Control.MouseDoubleClick" Handler="OnRowClick1"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+        <DataGrid x:Name="Grades"  IsReadOnly="True" SelectionMode="Single" 
+            ItemsSource="{Binding GradeGuides}"
+            SelectedItem="{Binding SelectedReview}"
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="37,359,80,153"   >
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Guest Id" Binding="{Binding GuestId}" Width="*" />-->
+                <DataGridTextColumn Header="Knowledge" Binding="{Binding GuideKnowledge}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Language" Binding="{Binding GuideLanguage}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Review" Binding="{Binding Validation}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+
+        </DataGrid>
+        <Label Content="Select the tour to see key points:" HorizontalAlignment="Left" Margin="32,71,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Select key point to see guest reviews:" HorizontalAlignment="Left" Margin="496,71,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Guest reviews:" HorizontalAlignment="Left" Margin="32,327,0,0" VerticalAlignment="Top" FontSize="18"/>
+
+    </Grid>
+</Page>

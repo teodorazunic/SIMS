@@ -79,6 +79,30 @@ namespace InitialProject.Repositories
             
         }
 
+        public void SendVouchersForDissmisal(List<Tour> tours)
+        {
+            List<GuestOnTour> guests = _guestOnTourRepository.GetAllGuestsOnTour();
+            for (int i = 0; i < guests.Count; i++)
+            {
+                foreach (Tour tour in tours)
+                {
+                    if (guests[i].StartingKeyPoint.Tour.Id == tour.Id)
+                    {
+                        TourVoucher voucher = new TourVoucher();
+                        DateTime now = DateTime.Today;
+                        voucher.Title = "Vaucer za otkazanu turu";
+                        voucher.GuestId.Id = guests[i].GuestId;
+                        voucher.ValidUntil = now.AddYears(2);
+                        Save(voucher);
+                    }
+                }
+            }
+
+        }
+
+
+
+
         public TourVoucher Save(TourVoucher voucher)
         {
             voucher.VoucherId = NextId();

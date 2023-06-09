@@ -3,7 +3,6 @@ using InitialProject.Repositories;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -16,16 +15,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InitialProject.View
+namespace InitialProject.WPF.Views.Guide
 {
     /// <summary>
-    /// Interaction logic for GuideTours.xaml
+    /// Interaction logic for LiveTour.xaml
     /// </summary>
-    public partial class GuideTours : Window
+    public partial class LiveTour : Page
     {
+        public LiveTour(User user)
+        {
+            InitializeComponent();
+            DataContext = this;
+            LoggedInUser = user;
+            _repository = new TourRepository();
+            _keyPointRepository = new KeyPointRepository();
+            _guestOnTourRepository = new GuestOnTourRepository();
+            Tours.ItemsSource = _repository.GetTodaysTours(FilePath);
+        }
         private const string FilePath = "../../../Resources/Data/tour.csv";
+        private const string FilePath1 = "../../../Resources/Data/guestontour.csv";
 
         public User LoggedInUser { get; set; }
 
@@ -61,23 +72,6 @@ namespace InitialProject.View
 
         }
 
-        public GuestOnTour SelectedGuest
-        {
-            get => _selectedGuest;
-            set
-            {
-                if (value != _selectedGuest)
-                {
-                    _selectedGuest = value;
-                    OnPropertyChanged();
-                }
-            }
-
-        }
-
-
-
-
         private readonly TourRepository _repository = new TourRepository();
         private readonly KeyPointRepository _keyPointRepository = new KeyPointRepository();
         private readonly GuestOnTourRepository _guestOnTourRepository = new GuestOnTourRepository();
@@ -90,17 +84,7 @@ namespace InitialProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public GuideTours(User user)
-        {
 
-            InitializeComponent();
-            DataContext = this;
-            LoggedInUser = user;
-            _repository = new TourRepository();
-            _keyPointRepository = new KeyPointRepository();
-            _guestOnTourRepository = new GuestOnTourRepository();
-            Tours.ItemsSource = _repository.GetTodaysTours(FilePath);
-        }
 
 
         public void OnRowClick(object sender, RoutedEventArgs e)
@@ -117,10 +101,11 @@ namespace InitialProject.View
             SelectedKeyPoint = _keyPointRepository.GetKeyPointById(SelectedKeyPoint.Id);
             List<GuestOnTour> guestsOnTour = new List<GuestOnTour>();
             guestsOnTour = _guestOnTourRepository.GetGuestByKeyPointId(SelectedKeyPoint.Id);
-            GuestsOnTour.ItemsSource = guestsOnTour;
+            Guests.ItemsSource = guestsOnTour;
 
         }
-        
+
+
 
         private void Activate(object sender, RoutedEventArgs e)
         {
@@ -128,7 +113,7 @@ namespace InitialProject.View
             {
                 string message = _keyPointRepository.Activate(_selectedKeyPoint);
 
-                MessageBox.Show(message);
+                txtBlockKP.Text = message;
             }
             KeyPoints.Items.Refresh();
 
@@ -153,7 +138,8 @@ namespace InitialProject.View
                         _keyPointRepository.Update(kp);
                     }
                 }
-                MessageBox.Show("Tour finished.");
+                txtBlockTour.Text = "Tour finished.";
+                Tours.Items.Refresh();
                 KeyPoints.Items.Refresh();
             }
 
@@ -162,14 +148,15 @@ namespace InitialProject.View
         private void StartTour(object sender, RoutedEventArgs e)
         {
             bool isTourStarted = _repository.IsStarted();
-            if (isTourStarted == true) {
-                MessageBox.Show("It is not possible to start the tour.");
+            if (isTourStarted == true)
+            {
+                txtBlockTour.Text = "It is not possible to start the tour.";
             }
             else
             {
                 _selectedTour.Status = "Started";
                 _selectedTour = _repository.Update(_selectedTour);
-                MessageBox.Show("Tour Started.");
+                txtBlockTour.Text = "Tour started.";
             }
 
 
@@ -180,7 +167,8 @@ namespace InitialProject.View
         {
             _selectedTour.Status = "Ended";
             _selectedTour = _repository.Update(_selectedTour);
-            MessageBox.Show("Tour ended.");
+            txtBlockTour.Text = "Tour ended.";
+            Tours.Items.Refresh();
 
             foreach (KeyPoint kp in KeyPoints.Items)
             {
@@ -194,11 +182,35 @@ namespace InitialProject.View
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            _selectedGuest.Status = "Here";
-            _selectedGuest = _guestOnTourRepository.Update(_selectedGuest);
-            GuestsOnTour.Items.Refresh();
+            CheckBox cb = (CheckBox)sender;
+            GuestOnTour guest = new GuestOnTour();
+            if (Guests.SelectedItem != null)
+            {
+                var selectedGuest = (GuestOnTour)Guests.SelectedItem;
+                int selectedGuestId = selectedGuest.Id;
+                guest = _guestOnTourRepository.GetGuestById(selectedGuestId);
+            }
+           
+
+            foreach (GuestOnTour gt in Guests.Items)
+            {
+
+                if (cb.IsChecked == true)
+                {
+
+                    guest.Status = true;
+                    _guestOnTourRepository.Update(guest);
+                }
+                else
+                {
+                    guest.Status = false;
+                    _guestOnTourRepository.Update(guest);
+                }
+            }
+            Guests.Items.Refresh();
         }
     }
 }
+

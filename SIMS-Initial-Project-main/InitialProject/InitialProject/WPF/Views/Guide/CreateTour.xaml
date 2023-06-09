@@ -1,0 +1,44 @@
+﻿<Page x:Class="InitialProject.WPF.Views.Guide.CreateTour"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.WPF.Views.Guide"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1070"
+      Title="CreateTour">
+
+    <Grid Background="White">
+        <Label Content="Tour name:" HorizontalAlignment="Left" Margin="60,74,0,0" VerticalAlignment="Top" Height="40" Width="104" FontSize="18"/>
+        <Label Content="City:" HorizontalAlignment="Left" Margin="60,163,0,0" VerticalAlignment="Top" Height="40" Width="105" FontSize="18"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="60,466,0,0" VerticalAlignment="Top" Height="40" Width="203" FontSize="18"/>
+        <Label Content="Language:" HorizontalAlignment="Left" Margin="60,254,0,0" VerticalAlignment="Top" Height="40" Width="143" FontSize="18"/>
+        <Label Content="Max guests:" HorizontalAlignment="Left" Margin="290,254,0,0" VerticalAlignment="Top" Height="40" Width="136" FontSize="18" />
+        <Label Content="Key points:" HorizontalAlignment="Left" Margin="505,65,0,0" VerticalAlignment="Top" Height="40" Width="113" FontSize="18" RenderTransformOrigin="0.474,0.131" />
+        <Label Content="Date:" HorizontalAlignment="Left" Margin="505,349,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18"/>
+        <Label Content="Duration:" HorizontalAlignment="Left" Margin="290,354,0,0" VerticalAlignment="Top" Height="40" Width="169" FontSize="18"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="60,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="40" FontSize="18"/>
+        <TextBox x:Name="txtCity" HorizontalAlignment="Left" Margin="60,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Margin="60,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="40" FontSize="18"/>
+        <TextBox x:Name="txtLanguage" HorizontalAlignment="Left" Margin="60,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
+        <TextBox x:Name="txtMaxGuests" PreviewTextInput="NumbersOnly" HorizontalAlignment="Left" Margin="290,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18" />
+        <TextBox x:Name="txtKeyPoint" HorizontalAlignment="Left" Margin="510,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="40" FontSize="18"/>
+        <TextBox x:Name="txtDuration" HorizontalAlignment="Left" Margin="290,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
+        <Button Content="SAVE TOUR" HorizontalAlignment="Left" Margin="350,607,0,0" VerticalAlignment="Top" Height="43" Width="154" RenderTransformOrigin="1.187,0.918" Click="Button_Click" FontSize="20"/>
+        <TextBox x:Name="txtCountry" HorizontalAlignment="Left" Margin="290,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
+        <Label Content="Image:" HorizontalAlignment="Left" Margin="60,354,0,0" VerticalAlignment="Top" Height="38" Width="107" FontSize="18"/>
+        <TextBox x:Name="txtImage" HorizontalAlignment="Left" Margin="60,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
+        <DatePicker x:Name="datePicker1" HorizontalAlignment="Left" Margin="510,390,0,0" VerticalAlignment="Top" Height="40" Width="230" FontSize="20"/>
+        <Button Content="Add key point" HorizontalAlignment="Left" Margin="798,101,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="40" Width="140" FontSize="18"/>
+        <Label Content="CREATE NEW TOUR" HorizontalAlignment="Left" Margin="309,10,0,0" VerticalAlignment="Top" Height="70" Width="332" FontSize="30" FontWeight="Bold"/>
+        <Label Content="Country:" HorizontalAlignment="Left" Margin="290,163,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox x:Name="KeyPointsList" Margin="510,199,312,356" FontSize="18" />
+        <Label Content="Added key points:" HorizontalAlignment="Left" Margin="505,160,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <!--<Rectangle HorizontalAlignment="Left" Height="610" Margin="40,53,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>-->
+
+        <TextBlock x:Name = "TourSuccessfully" HorizontalAlignment="Left" Margin="427,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF1BE81B"/>
+        <Button Content="Add date" Height="40" Width="140" HorizontalAlignment="Left" Margin="798,390,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click_2"/>
+        <ListBox x:Name="DatesList" Margin="510,496,312,112" FontSize="18" />
+        <Label Content="Added dates:" HorizontalAlignment="Left" Margin="505,455,0,0" VerticalAlignment="Top" FontSize="18"/>
+    </Grid>
+</Page>

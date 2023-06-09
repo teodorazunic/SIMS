@@ -46,7 +46,7 @@ namespace InitialProject.Repositories
             return _guestsOnTour.Find(t => t.Id == id);
         }
         
-         public string GetGuestStatusByTourId(int id)
+         public bool GetGuestStatusByTourId(int id)
         {
             _guestsOnTour = _serializer.FromCSV(FilePath);
             GuestOnTour sameIdGuests = new GuestOnTour();

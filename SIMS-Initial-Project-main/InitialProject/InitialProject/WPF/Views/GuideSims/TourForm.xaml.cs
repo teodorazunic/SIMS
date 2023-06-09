@@ -1,5 +1,6 @@
 ﻿using InitialProject.Domain.Models;
 using InitialProject.Repository;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,22 @@ namespace InitialProject.View
             KeyPoint saveKeyPoint = keyPointRepository.SaveKeyPoint(keypoint);
             txtKeyPoint.Text = "";
 
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg";
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+
+                Image imageControl = new Image();
+                string imagePath = openFileDialog.FileName;
+
+                // Set the TextBox text to the image path (URL)
+                urlTextBox.Text = imagePath;
+            }
         }
     }
 }

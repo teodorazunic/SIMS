@@ -18,7 +18,7 @@ namespace InitialProject.Domain.RepositoryInterfaces
 
         public List<GuestOnTour> GetGuestByKeyPointId(int id);
 
-        public string GetGuestStatusByTourId(int id);
+        public bool GetGuestStatusByTourId(int id);
 
         public GuestOnTour Update(GuestOnTour guestOnTour);
 

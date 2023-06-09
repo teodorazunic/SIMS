@@ -53,13 +53,7 @@ namespace InitialProject.View
         }
 
 
-        private void OpenCancelTour(object sender, RoutedEventArgs e)
-        {
-            CancelTour cancelTour = new CancelTour(LoggedInUser);
-            cancelTour.Show();
-            Close();
-        }
-
+        
         private void OpenReviews(object sender, RoutedEventArgs e)
         {
             Reviews reviews = new Reviews(LoggedInUser);

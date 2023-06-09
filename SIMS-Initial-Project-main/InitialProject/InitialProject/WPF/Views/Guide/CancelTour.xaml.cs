@@ -1,11 +1,8 @@
-﻿using InitialProject.Domain.Model;
-using InitialProject.Domain.Models;
-using InitialProject.Forms;
+﻿using InitialProject.Domain.Models;
 using InitialProject.Repositories;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -18,16 +15,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InitialProject.WPF.Views
+namespace InitialProject.WPF.Views.Guide
 {
     /// <summary>
     /// Interaction logic for CancelTour.xaml
     /// </summary>
-    public partial class CancelTour : Window
+    public partial class CancelTour : Page
     {
 
+        public CancelTour(User user)
+        {
+            InitializeComponent();
+            DataContext = this;
+            LoggedInUser = user;
+            _repository = new TourRepository();
+            _voucherRepository = new VoucherRepository();
+            Tours.ItemsSource = _repository.GetPendingTours(FilePath);
+        }
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
         public User LoggedInUser { get; set; }
@@ -56,26 +63,17 @@ namespace InitialProject.WPF.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public CancelTour(User user)
-        {
-            InitializeComponent();
-            DataContext = this;
-            LoggedInUser = user;
-            _repository = new TourRepository();
-            _voucherRepository = new VoucherRepository();
-            Tours.ItemsSource = _repository.GetPendingTours(FilePath);
 
-        }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(_selectedTour != null)
+            if (_selectedTour != null)
             {
                 string message = _repository.CancelTour(_selectedTour);
                 _voucherRepository.SendVouchers(_selectedTour.Id);
-                MessageBox.Show(message);
-                
+                txtBlock.Text = message;
+
             }
             Tours.Items.Refresh();
         }

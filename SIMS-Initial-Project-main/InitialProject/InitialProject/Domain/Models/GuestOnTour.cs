@@ -21,24 +21,24 @@ namespace InitialProject.Domain.Models
 
         public KeyPoint StartingKeyPoint { get; set; }
 
-        public string Status { get; set; }
+        public bool Status { get; set; }
 
         //public int Age { get; set; }
 
 
-        public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint, string status)
+        public GuestOnTour(int id, int guestId, string guestName, int numberOfGuests, KeyPoint startingKeyPoint, bool status)
         {
             Id = id;
             GuestId = guestId;
             GuestName = guestName;
             NumberOfGuests = numberOfGuests;
             StartingKeyPoint = startingKeyPoint;
-            Status = "Not here";
+            Status = false;
          }
         public GuestOnTour() { }
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.Tour.Id.ToString(), StartingKeyPoint.Status, Status };
+            string[] csvValues = { Id.ToString(), GuestId.ToString(), GuestName,NumberOfGuests.ToString(), StartingKeyPoint.Id.ToString(), StartingKeyPoint.Name, StartingKeyPoint.Tour.Id.ToString(), StartingKeyPoint.Status, Status.ToString() };
             return csvValues;
         }
 
@@ -49,7 +49,7 @@ namespace InitialProject.Domain.Models
             GuestName = values[2];
             NumberOfGuests = Convert.ToInt32(values[3]);
             StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(values[4]), Name = values[5], Tour = new Tour() { Id = Convert.ToInt32(values[6]) }, Status = values[7] };
-            Status = values[8];
+            Status = Convert.ToBoolean(values[8]);
         }
     }
 }

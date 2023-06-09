@@ -11,6 +11,7 @@
     <None Remove="Resources\Images\add.png" />
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
+    <None Remove="Resources\Images\logo1.png" />
     <None Remove="Resources\Images\view.png" />
   </ItemGroup>
 
@@ -33,6 +34,10 @@
     <PackageReference Include="DevExpress.Data" Version="22.2.6" />
     <PackageReference Include="DX.Utils" Version="20.1.8.24" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo1.png" />
   </ItemGroup>
 
   <ItemGroup>

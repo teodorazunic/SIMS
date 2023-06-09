@@ -47,6 +47,24 @@ namespace InitialProject.Repository
             return tours;
         }
 
+        public List<Tour> CancelFutureTours()
+        {
+            DateTime now = DateTime.Now;
+            List<Tour> allTours = GetAllTours();
+            List<Tour> cancelled = new List<Tour>();
+            for (int i = 0; i < allTours.Count; i++)
+            {
+                if (allTours[i].Start > now)
+                {
+                    allTours[i].Status = "Ended";
+                    Update(allTours[i]);
+                    cancelled.Add(allTours[i]);
+                }
+            }
+            return cancelled;
+
+        }
+
         public List<Tour> GetPendingTours(string filename)
         {
             List<Tour> allTours = ReadFromToursCsv(filename);
