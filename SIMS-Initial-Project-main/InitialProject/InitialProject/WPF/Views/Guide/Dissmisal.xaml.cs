@@ -88,10 +88,7 @@ namespace InitialProject.WPF.Views.Guide
 
                         Window parentWindow = Window.GetWindow(this);
                         SignInForm signIn = new SignInForm();
-                        //tourRepository.CancelFutureTours();
                         voucherRepository.SendVouchersForDissmisal(tourRepository.CancelFutureTours());
-
-
 
                         signIn.Show();
                         parentWindow.Close();

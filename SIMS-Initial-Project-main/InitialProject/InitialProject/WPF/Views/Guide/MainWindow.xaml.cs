@@ -78,5 +78,12 @@ namespace InitialProject.WPF.Guide
             Request request = new Request(LoggedInUser);
             page.Content = request;
         }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            CompoundTour compoundTour = new CompoundTour(LoggedInUser);
+            page.Content = compoundTour;
+
+        }
     }
 }

@@ -94,6 +94,29 @@ namespace InitialProject.Repositories
             return finalRequests;
         }
 
+        public List<TourRequest> GetCompoundTourRequests()
+        {
+            List<TourRequest> allRequests = GetAllTourRequests();
+            List<TourRequest> compoundRequests = new List<TourRequest>();
+            for (int i = 0; i < allRequests.Count; i++)
+            {
+                if (allRequests[i].Type == "compound")
+                {
+                    compoundRequests.Add(_requests[i]);
+                }
+            }
+            return compoundRequests;
+        }
+
+        public TourRequest AcceptCompoundTour(TourRequest tourRequest)
+        {
+            tourRequest.Status = "Accepted";
+            Update(tourRequest);
+
+            return tourRequest;
+        }
+
+
         public List<TourRequest> CheckNeverUsedCity(string city)
         {
             List<TourRequest> tourRequests = _serializer.FromCSV(FilePath);
@@ -356,8 +379,19 @@ namespace InitialProject.Repositories
             _serializer.ToCSV(FilePath, _requests);
             return request;
         }
-        
-         public void CancelRequest()
+
+        public TourRequest Update(TourRequest request)
+        {
+            _requests = _serializer.FromCSV(FilePath);
+            TourRequest current = _requests.Find(c => c.Id == request.Id);
+            int index = _requests.IndexOf(current);
+            _requests.Remove(current);
+            _requests.Insert(index, request);
+            _serializer.ToCSV(FilePath, _requests);
+            return request;
+        }
+
+        public void CancelRequest()
         {
             DateTime currentDate = DateTime.Now;
             _requests = _serializer.FromCSV(FilePath);
