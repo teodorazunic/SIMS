@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject.WPF.Guide"
+        xmlns:materialDesign="https://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
          Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -14,7 +15,7 @@
         <Button Content="Live tour" HorizontalAlignment="Left" Margin="13,135,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_2"/>
         <Button Content="Requests" HorizontalAlignment="Left" Margin="13,190,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_6"/>
         <Button Content="Dissmisal" HorizontalAlignment="Left" Margin="13,630,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_3"/>
-        <Button Content="Report" HorizontalAlignment="Left" Margin="13,575,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
+        <Button Content="Report" HorizontalAlignment="Left" Margin="13,575,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_8"/>
         <Button Content="Create by statistics" HorizontalAlignment="Left" Margin="13,520,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_5"/>
         <Button Content="Request statistics" HorizontalAlignment="Left" Margin="13,465,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18"/>
         <Button Content="Complex tour" HorizontalAlignment="Left" Margin="13,410,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_7"/>

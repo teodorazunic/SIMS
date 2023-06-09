@@ -34,6 +34,7 @@
     <PackageReference Include="DevExpress.Data" Version="22.2.6" />
     <PackageReference Include="DX.Utils" Version="20.1.8.24" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
   </ItemGroup>
 
   <ItemGroup>

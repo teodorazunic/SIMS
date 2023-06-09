@@ -94,5 +94,11 @@ namespace InitialProject.WPF.Guide
             page.Content = compoundTour;
 
         }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            Report report = new Report();
+            page.Content = report;
+        }
     }
 }
