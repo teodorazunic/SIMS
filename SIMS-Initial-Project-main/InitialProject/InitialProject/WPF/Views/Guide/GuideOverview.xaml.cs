@@ -1,4 +1,5 @@
 ﻿using InitialProject.Domain.Models;
+using InitialProject.Repositories;
 using InitialProject.Repository;
 using InitialProject.WPF.Views;
 using InitialProject.WPF.Views.Guide;
@@ -28,13 +29,23 @@ namespace InitialProject.View
 
         private readonly TourRepository _repository;
 
+        private readonly GuideRepository _guideRepository;
+
         public GuideOverview(User user)
         {
             InitializeComponent();
             DataContext = this;
             LoggedInUser = user;
             _repository = new TourRepository();
+            guideName.Content = user.Username;
+            _guideRepository = new GuideRepository();
         }
+
+        private void SuperGuideLabel_Loaded(object sender, RoutedEventArgs e)
+        {
+            superGuide.Content = _guideRepository.SuperGuide();
+        }
+
 
 
 
