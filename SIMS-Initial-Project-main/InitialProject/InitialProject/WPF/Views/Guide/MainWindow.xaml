@@ -23,7 +23,7 @@
         <Button Content="Cancel Tour" HorizontalAlignment="Left" Margin="13,245,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_1"/>
         <Frame Name="page" NavigationUIVisibility="Hidden" Margin="221,10,71,0"/>
         <Label Content="Log out" Margin="1184,-1,-26,628" FontSize="18" MouseDoubleClick="Logout" />
-        <Label x:Name="superGuide" Content="" Loaded="superGuide" HorizontalAlignment="Left" Margin="394,98,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="superGuideLabel" Content="" Loaded="superGuide" HorizontalAlignment="Left" Margin="1183,38,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

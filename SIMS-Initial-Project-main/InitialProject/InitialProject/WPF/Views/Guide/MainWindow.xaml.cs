@@ -33,9 +33,9 @@ namespace InitialProject.WPF.Guide
 
         private readonly GuideRepository guideRepository;
 
-        private void SuperGuide(object sender, RoutedEventArgs e)
+        private void superGuide(object sender, RoutedEventArgs e)
         {
-            superGuide.Content = guideRepository.SuperGuide();
+            superGuideLabel.Content = guideRepository.SuperGuide();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
