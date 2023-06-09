@@ -90,7 +90,7 @@ namespace InitialProject.Repositories
                     {
                         TourVoucher voucher = new TourVoucher();
                         DateTime now = DateTime.Today;
-                        voucher.Title = "Vaucer za otkazanu turu.";
+                        voucher.Title = "Vaucer za otkazanu turu";
                         voucher.GuestId.Id = guests[i].GuestId;
                         voucher.ValidUntil = now.AddYears(2);
                         Save(voucher);

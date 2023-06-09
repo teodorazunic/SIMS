@@ -92,8 +92,12 @@ namespace InitialProject.WPF.Views.Guide
                     }
                     else
                     {
-                        _tourRequestsRepository.AcceptCompoundTour(SelectedTourRequest);
+                        //CreateByRequest create = new CreateByRequest(selectedDate, SelectedTourRequest.Location, SelectedTourRequest.Description, SelectedTourRequest.Language, SelectedTourRequest.MaxGuests);
+                        //create.Show();
+                        //MessageBox.Show("Accepted request.");
+                        
                         MessageBox.Show("Accepted request.");
+                        _tourRequestsRepository.AcceptCompoundTour(SelectedTourRequest);
 
                     }
                 }
