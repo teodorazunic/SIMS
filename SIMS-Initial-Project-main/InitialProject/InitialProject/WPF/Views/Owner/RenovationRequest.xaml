@@ -10,7 +10,7 @@
     <Grid Background="White">
         <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="155,236,0,0" VerticalAlignment="Top" Height="54" Width="154" FontSize="20"/>
         <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="398,233,0,0" VerticalAlignment="Top" Height="57" Width="153" FontSize="20"/>
-        <ComboBox x:Name="AccommodationCB" HorizontalAlignment="Left" Margin="19,124,0,0" VerticalAlignment="Top" Width="314" Height="48" Loaded="OnLoad"/>
+        <ComboBox x:Name="AccommodationCB"  HorizontalAlignment="Left" Margin="19,124,0,0" VerticalAlignment="Top" Width="314" Height="48" Loaded="OnLoad"/>
         <TextBox x:Name="NumberOfDays" HorizontalAlignment="Left" Margin="176,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Height="53"/>
 
         <Button Content="Available dates&#xD;&#xA;" HorizontalAlignment="Left" Margin="102,518,0,0" VerticalAlignment="Top" Height="50" Width="128" Click="ShowDates"/>

@@ -47,46 +47,59 @@ namespace InitialProject.WPF.Views.Owner
 
         private void ShowDates(object sender, RoutedEventArgs e)
         {
-            if (AccommodationCB.SelectedItem is ComboBoxItem selectedItem)
-            {
-                string accommodationIdString = selectedItem.Content.ToString();
-                if (int.TryParse(accommodationIdString, out int accommodationId))
-                {
-                    List<DateTime> alternativeDates = reservationRepository.FindAlternativeDates(accommodationId, Convert.ToDateTime(StartDate.Text), Convert.ToDateTime(EndDate.Text), Convert.ToInt32(NumberOfDays.Text));
-                    List<string> alternatives = new List<string>();
-                    foreach (DateTime date in alternativeDates)
-                    {
-                        alternatives.Add(date.ToShortDateString() + " to " + date.AddDays(Convert.ToInt32(NumberOfDays.Text)).ToShortDateString());
-                    }
-                    ListDates.ItemsSource = alternatives;
-                }
-                else
-                {
-                    // Handle the case where accommodationIdString cannot be parsed as an integer
-                }
-            }
-        }
+            ComboBoxItem selectedItem = (ComboBoxItem)AccommodationCB.SelectedItem;
+            int selectedValue = Convert.ToInt32(selectedItem.Content);
 
+            List<DateTime> alternativeDates = reservationRepository.FindAlternativeDates(selectedValue, Convert.ToDateTime(StartDate.Text), Convert.ToDateTime(EndDate.Text), Convert.ToInt32(NumberOfDays.Text));
 
- /*       private void ShowDates(object sender, RoutedEventArgs e)
-        {
-            ComboBoxItem comboBoxItem = AccommodationCB.SelectedItem as ComboBoxItem;
-            int selectedAccommodationId = 0;
-            if (comboBoxItem != null)
-            {
-                if (comboBoxItem.DataContext is Accommodation accommodation)
-                {
-                    selectedAccommodationId = accommodation.Id;
-                }
-            }
-            List<DateTime> alternativeDates = reservationRepository.FindAlternativeDates(selectedAccommodationId, Convert.ToDateTime(StartDate.Text), Convert.ToDateTime(EndDate.Text), Convert.ToInt32(NumberOfDays.Text));
             List<string> alternatives = new List<string>();
             foreach (DateTime date in alternativeDates)
             {
                 alternatives.Add(date.ToShortDateString() + " to " + (date.AddDays(Convert.ToInt32(NumberOfDays.Text))).ToShortDateString());
             }
             ListDates.ItemsSource = alternatives;
-        }*/
+        }
+
+
+        /*   private void ShowDates(object sender, RoutedEventArgs e)
+           {
+               if (AccommodationCB.SelectedItem is ComboBoxItem selectedItem)
+               {
+                   string accommodationIdString = selectedItem.Content.ToString();
+                   if (int.TryParse(accommodationIdString, out int accommodationId))
+                   {
+                       List<DateTime> alternativeDates = reservationRepository.FindAlternativeDates(accommodationId, Convert.ToDateTime(StartDate.Text), Convert.ToDateTime(EndDate.Text), Convert.ToInt32(NumberOfDays.Text));
+                       List<string> alternatives = new List<string>();
+                       foreach (DateTime date in alternativeDates)
+                       {
+                           alternatives.Add(date.ToShortDateString() + " to " + date.AddDays(Convert.ToInt32(NumberOfDays.Text)).ToShortDateString());
+                       }
+                       ListDates.ItemsSource = alternatives;
+                   }
+
+               }
+           }*/
+
+
+        /*       private void ShowDates(object sender, RoutedEventArgs e)
+               {
+                   ComboBoxItem comboBoxItem = AccommodationCB.SelectedItem as ComboBoxItem;
+                   int selectedAccommodationId = 0;
+                   if (comboBoxItem != null)
+                   {
+                       if (comboBoxItem.DataContext is Accommodation accommodation)
+                       {
+                           selectedAccommodationId = accommodation.Id;
+                       }
+                   }
+                   List<DateTime> alternativeDates = reservationRepository.FindAlternativeDates(selectedAccommodationId, Convert.ToDateTime(StartDate.Text), Convert.ToDateTime(EndDate.Text), Convert.ToInt32(NumberOfDays.Text));
+                   List<string> alternatives = new List<string>();
+                   foreach (DateTime date in alternativeDates)
+                   {
+                       alternatives.Add(date.ToShortDateString() + " to " + (date.AddDays(Convert.ToInt32(NumberOfDays.Text))).ToShortDateString());
+                   }
+                   ListDates.ItemsSource = alternatives;
+               }*/
 
         private void Accept(object sender, RoutedEventArgs e)
         {
