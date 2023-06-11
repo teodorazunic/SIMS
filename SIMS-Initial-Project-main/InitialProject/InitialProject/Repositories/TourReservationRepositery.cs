@@ -18,6 +18,8 @@ namespace InitialProject.Repositories
     {
         private const string FilePath = "../../../Resources/Data/tourreservations.csv";
 
+        private const string FilePath1 = "../../../Resources/Data/guestontour.csv";
+
         private readonly Serializer<TourReservations> _serializer;
 
         private TourRepository _tourRepository;
@@ -224,8 +226,37 @@ namespace InitialProject.Repositories
 
             return tourReservation;
         }
-        
-         public List<TourReservations> ReadFromTourReservationsCsv(string filename)
+
+        public List<GuestOnTour> ReadFromGuestOnTour(string FileName)
+        {
+            List<GuestOnTour> guestsOnTour = new List<GuestOnTour>();
+
+            using (StreamReader sr = new StreamReader(FileName))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+
+                    string[] fields = line.Split('|');
+                    GuestOnTour guest = new GuestOnTour();
+
+
+                    guest.Id = Convert.ToInt32(fields[0]);
+                    guest.GuestId = Convert.ToInt32(fields[1]);
+                    guest.GuestName = fields[2];
+                    guest.NumberOfGuests = Convert.ToInt32(fields[3]);
+                    guest.StartingKeyPoint = new KeyPoint() { Id = Convert.ToInt32(fields[4]), Name = fields[5], Tour = new Tour() { Id = Convert.ToInt32(fields[6]) }, Status = fields[7] };
+                    guest.Status = Convert.ToBoolean(fields[8]);
+                    guest.Age = Convert.ToInt32(fields[9]);
+                    guestsOnTour.Add(guest);
+
+
+                }
+                return guestsOnTour;
+            }
+        }
+
+        public List<TourReservations> ReadFromTourReservationsCsv(string filename)
         {
             List<TourReservations> tourReservations = new List<TourReservations>();
 
