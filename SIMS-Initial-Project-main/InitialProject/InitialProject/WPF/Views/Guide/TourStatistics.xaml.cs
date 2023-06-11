@@ -1,6 +1,6 @@
-﻿using InitialProject.Domain.Models;
+﻿using DevExpress.Data.Browsing;
+using InitialProject.Domain.Models;
 using InitialProject.Repositories;
-using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace InitialProject.WPF.Views.Guide
@@ -20,25 +21,35 @@ namespace InitialProject.WPF.Views.Guide
     /// <summary>
     /// Interaction logic for TourStatistics.xaml
     /// </summary>
-    public partial class TourStatistics : Window
+    public partial class TourStatistics : Page
     {
         private readonly TourReservationRepositery _tourReservationRepositery;
 
         private const string FilePath = "../../../Resources/Data/tourreservations.csv";
 
+        public List<TourReservations> reservations = new List<TourReservations>();
+
+        TourReservationRepositery reservationRepositery = new TourReservationRepositery();
+
         public User LoggedInUser { get; set; }
 
-        
+        public TourReservations selectedTour;
+
+
         public TourStatistics(User user)
         {
             InitializeComponent();
             DataContext = this;
             LoggedInUser = user;
             _tourReservationRepositery = new TourReservationRepositery();
+            List<int> vouchers = new List<int>();
+            vouchers = reservationRepositery.GetVoucherStatistics(reservations);
+            txtUsed.Text = vouchers[0].ToString();
+            txtUnused.Text = vouchers[1].ToString();
 
         }
 
-       
+
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -68,8 +79,14 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-        private void cbCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            selectedTour = (TourReservations)MostVisitedTour.SelectedItem;
+            int[] Info = new int[3];
+            Info = _tourReservationRepositery.ShowStatistic(selectedTour.Tour.Id);
+            txt1.Text = Info[0].ToString();
+            txt2.Text = Info[1].ToString();
+            txt3.Text = Info[2].ToString();
 
         }
     }
