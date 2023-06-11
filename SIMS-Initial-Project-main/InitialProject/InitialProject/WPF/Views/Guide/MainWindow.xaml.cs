@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace InitialProject.WPF.Guide
@@ -99,6 +100,12 @@ namespace InitialProject.WPF.Guide
         {
             Report report = new Report();
             page.Content = report;
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            Tutorialxaml tutorialxaml = new Tutorialxaml();
+            page.Content = tutorialxaml;
         }
     }
 }
