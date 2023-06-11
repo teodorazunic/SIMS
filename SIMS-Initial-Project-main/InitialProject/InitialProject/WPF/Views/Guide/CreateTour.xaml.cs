@@ -1,5 +1,6 @@
 ﻿using InitialProject.Domain.Models;
 using InitialProject.Repository;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,8 @@ namespace InitialProject.WPF.Views.Guide
         {
             InitializeComponent();
         }
+
+        public static string image;
         
 
         public void NumbersOnly(object sender, TextCompositionEventArgs e)
@@ -63,7 +66,7 @@ namespace InitialProject.WPF.Views.Guide
             int maxGuests = Convert.ToInt32(txtMaxGuests.Text);
             DateTime start = Convert.ToDateTime(datePicker1.Text);
             int duration = Convert.ToInt32(txtDuration.Text);
-            string image = txtImage.Text;
+           
             string status = "Pending";
 
 
@@ -87,6 +90,20 @@ namespace InitialProject.WPF.Views.Guide
 
             KeyPointsList.Items.Add(name);
 
+        }
+
+        private void AddImage(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "Image Files (.png;.jpg;.jpeg)|.png;.jpg;.jpeg";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Image imageControl = new Image();
+                string imagePath = openFileDialog.FileName;
+
+                // Set the TextBox text to the image path (URL)
+                image = imagePath;
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
