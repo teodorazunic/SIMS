@@ -9,6 +9,21 @@
       Title="TourStatistics">
 
     <Grid Background="White">
-        
+        <DataGrid Name="MostVisitedTour" Margin="77,72,59,516"/>
+        <RadioButton Content="All years" HorizontalAlignment="Left" Margin="141,36,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <ComboBox Name ="ComboBox" Width="120" Margin="411,36,422,602" Loaded="Fill" />
+        <Button Content="Select year" HorizontalAlignment="Left" Margin="536,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.416,-0.208" Click="Button_Click"/>
+        <TextBox x:Name="txt1" HorizontalAlignment="Left" Margin="204,296,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt2" HorizontalAlignment="Left" Margin="204,343,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt3" HorizontalAlignment="Left" Margin="204,389,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="18" HorizontalAlignment="Left" Margin="113,296,0,0" VerticalAlignment="Top"/>
+        <Label Content="18-50" HorizontalAlignment="Left" Margin="109,339,0,0" VerticalAlignment="Top"/>
+        <Label Content="50+" HorizontalAlignment="Left" Margin="109,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.804,3.565"/>
+        <TextBox HorizontalAlignment="Left" Margin="581,221,0,0" TextWrapping="Wrap" Text="Yes" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Voucher" HorizontalAlignment="Left" Margin="500,217,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUsed" HorizontalAlignment="Left" Margin="597,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtUnused" HorizontalAlignment="Left" Margin="597,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Show Statistics" HorizontalAlignment="Left" Margin="217,217,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+
     </Grid>
 </Page>
