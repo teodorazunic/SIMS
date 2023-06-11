@@ -65,6 +65,7 @@ namespace InitialProject.WPF.Views.Guide
             _tourRequestsRepository = new TourRequestRepository();
             TourRequests = new ObservableCollection<TourRequest>(_tourRequestsRepository.GetCompoundTourRequests());
             tourRepository = new TourRepository();
+            myRectangle.Fill = System.Windows.Media.Brushes.AliceBlue;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -91,10 +92,7 @@ namespace InitialProject.WPF.Views.Guide
                         MessageBox.Show("You are not available for this tour");
                     }
                     else
-                    {
-                        //CreateByRequest create = new CreateByRequest(selectedDate, SelectedTourRequest.Location, SelectedTourRequest.Description, SelectedTourRequest.Language, SelectedTourRequest.MaxGuests);
-                        //create.Show();
-                        //MessageBox.Show("Accepted request.");
+                    
                         
                         MessageBox.Show("Accepted request.");
                         _tourRequestsRepository.AcceptCompoundTour(SelectedTourRequest);
@@ -104,4 +102,4 @@ namespace InitialProject.WPF.Views.Guide
             }
         }
     }
-}
+

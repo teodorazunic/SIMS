@@ -9,6 +9,8 @@
       Title="CompoundTour">
 
     <Grid Background="White">
+        <Rectangle x:Name="myRectangle" HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+
         <DataGrid  ItemsSource="{Binding TourRequests}" SelectedItem="{Binding SelectedTourRequest}" IsReadOnly="True" SelectionMode="Single" 
             AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Margin="51,103,51,375">
             <DataGrid.Columns>

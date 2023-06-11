@@ -29,6 +29,7 @@ namespace InitialProject.WPF.Guide
             InitializeComponent();
             LoggedInUser = user;
             guideRepository = new GuideRepository();
+            rec.Fill = System.Windows.Media.Brushes.AliceBlue;
         }
         public User LoggedInUser { get; set; }
 

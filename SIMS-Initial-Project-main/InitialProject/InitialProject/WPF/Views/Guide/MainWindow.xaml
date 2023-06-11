@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:InitialProject.WPF.Guide"
         xmlns:materialDesign="https://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-         Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <Grid>
         
         <Image Source ="/Resources/Images/logo1.png" HorizontalAlignment="Left" Height="64" Margin="14,0,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.6"/>
-        <Rectangle HorizontalAlignment="Left" Height="617" Margin="6,65,0,0" Stroke="Black" VerticalAlignment="Top" Width="196"/>
+        <Rectangle Name="rec" HorizontalAlignment="Left" Height="617" Margin="6,65,0,0" Stroke="Black" VerticalAlignment="Top" Width="196"/>
         <Button Content="Create tour" HorizontalAlignment="Left" Margin="13,80,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click"/>
         <Button Content="Live tour" HorizontalAlignment="Left" Margin="13,135,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_2"/>
         <Button Content="Requests" HorizontalAlignment="Left" Margin="13,190,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_6"/>

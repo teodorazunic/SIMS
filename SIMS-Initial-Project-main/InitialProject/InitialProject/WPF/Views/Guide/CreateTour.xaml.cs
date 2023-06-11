@@ -93,7 +93,7 @@ namespace InitialProject.WPF.Views.Guide
         {
             string datum = datePicker1.Text;
             datePicker1.Text = "";
-            DatesList.Items.Add(datum);
+           
         }
     }
 }
