@@ -9,14 +9,24 @@
       Title="TourStatistics">
 
     <Grid Background="White">
-        <DataGrid Name="MostVisitedTour" Margin="77,72,59,516"/>
-        <RadioButton Content="All years" HorizontalAlignment="Left" Margin="141,36,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
-        <ComboBox Name ="ComboBox" Width="120" Margin="411,36,422,602" Loaded="Fill" />
-        <lvc:PieChart Name= "name" Height="200" Width="200" Series="{Binding DataChart}" Margin="29,243,724,241"/>
-        <lvc:PieChart Name= "name1" Height="200" Width="200" Series="{Binding DataChart1}" Margin="371,248,382,236"/>
+        <DataGrid Name="MostVisitedTour" Margin="300,100,50,442"/>
+        <Label Content="TOUR STATISTICS" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+
+        <!--<Rectangle HorizontalAlignment="Left" Height="346" Margin="16,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>-->
+        <Rectangle HorizontalAlignment="Left" Height="235" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+        <Rectangle HorizontalAlignment="Left" Height="346" Margin="16,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="427"/>
+        <Rectangle HorizontalAlignment="Left" Height="346" Margin="476,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="465"/>
+
+        <!--<RadioButton Content="All years" HorizontalAlignment="Left" Margin="141,36,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>-->
+        <ComboBox Name ="ComboBox" Margin="80,100,714,536" Loaded="Fill" SelectionChanged="ComboBox_SelectionChanged"/>
+        <lvc:PieChart Name= "name" Height="200" Width="200" Series="{Binding DataChart}" Margin="130,391,623,93"/>
+        <lvc:PieChart Name= "name1" Height="200" Width="200" Series="{Binding DataChart1}" Margin="608,391,145,93"/>
+        <Label Content="Choose a year:" HorizontalAlignment="Left" Margin="75,61,0,0" VerticalAlignment="Top" FontSize="18
+               "/>
+        <Label Content="Most visited tour:" HorizontalAlignment="Left" Margin="295,61,0,0" VerticalAlignment="Top" FontSize="18"/>
 
 
-        <Button Content="Select year" HorizontalAlignment="Left" Margin="536,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.416,-0.208" Click="Button_Click"/>
+        <!--<Button Content="Select year" HorizontalAlignment="Left" Margin="536,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.416,-0.208" Click="Button_Click"/>-->
         <!--<TextBox x:Name="txt1" HorizontalAlignment="Left" Margin="204,296,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txt2" HorizontalAlignment="Left" Margin="204,343,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txt3" HorizontalAlignment="Left" Margin="204,389,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -27,7 +37,7 @@
         <!--<Label Content="Voucher" HorizontalAlignment="Left" Margin="500,217,0,0" VerticalAlignment="Top"/>-->
         <!--<TextBox x:Name="txtUsed" HorizontalAlignment="Left" Margin="597,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtUnused" HorizontalAlignment="Left" Margin="597,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>-->
-        <Button Content="Show Statistics" HorizontalAlignment="Left" Margin="217,217,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <!--<Button Content="Show Statistics" HorizontalAlignment="Left" Margin="404,247,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>-->
 
     </Grid>
 </Page>

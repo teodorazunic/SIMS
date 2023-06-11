@@ -9,6 +9,10 @@
       Title="CreateTour">
 
     <Grid Background="White">
+        <Button  HorizontalAlignment="Left" Height="40" Margin="828,607,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" >
+            <Image Source="C:\Users\Korisnik\Desktop\ProjekatGIT\SIMS\SIMS-Initial-Project-main\InitialProject\InitialProject\Resources\Images\play-icon.png" Width="60" Height="40" />
+            </Button>
+
         <Label Content="Tour name:" HorizontalAlignment="Left" Margin="55,68,0,0" VerticalAlignment="Top" Height="40" Width="104" FontSize="18"/>
         <Label Content="City:" HorizontalAlignment="Left" Margin="55,165,0,0" VerticalAlignment="Top" Height="40" Width="105" FontSize="18"/>
         <Label Content="Description:" HorizontalAlignment="Left" Margin="55,470,0,0" VerticalAlignment="Top" Height="40" Width="203" FontSize="18"/>
@@ -34,7 +38,7 @@
         <Label Content="Country:" HorizontalAlignment="Left" Margin="285,163,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ListBox x:Name="KeyPointsList" Margin="510,199,231,363" FontSize="18" />
         <Label Content="Added key points:" HorizontalAlignment="Left" Margin="505,160,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Rectangle  HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
+        <!--<Rectangle  HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>-->
 
         <TextBlock x:Name = "TourSuccessfully" HorizontalAlignment="Left" Margin="427,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF1BE81B"/>
     </Grid>

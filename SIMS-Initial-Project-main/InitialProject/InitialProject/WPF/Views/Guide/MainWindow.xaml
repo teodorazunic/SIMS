@@ -25,7 +25,6 @@
         <Frame Name="page" NavigationUIVisibility="Hidden" Margin="221,10,71,0"/>
         <Label Content="Log out" Margin="1184,-1,-26,628" FontSize="18" MouseDoubleClick="Logout" />
         <Label x:Name="superGuideLabel" Content="" Loaded="superGuide" HorizontalAlignment="Left" Margin="1183,38,0,0" VerticalAlignment="Top"/>
-        <Button Content="Tutorial" HorizontalAlignment="Left" Height="37" Margin="1183,630,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_9"/>
 
     </Grid>
 </Window>

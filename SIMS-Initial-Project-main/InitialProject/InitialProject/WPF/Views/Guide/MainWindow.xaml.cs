@@ -103,11 +103,7 @@ namespace InitialProject.WPF.Guide
             page.Content = report;
         }
 
-        private void Button_Click_9(object sender, RoutedEventArgs e)
-        {
-            Tutorialxaml tutorialxaml = new Tutorialxaml();
-            page.Content = tutorialxaml;
-        }
+        
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
         {

@@ -145,6 +145,7 @@ namespace InitialProject.WPF.Views.Guide
             }
 
             };
+            
 
 
 
@@ -152,17 +153,44 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox.IsEnabled = false;
-            TourReservations tourReservation = new TourReservations();
-            List<TourReservations> tourReservations = new List<TourReservations>();
-            tourReservation = _tourReservationRepositery.FindMostAttendantTour(FilePath);
-            tourReservations.Add(tourReservation);
-            MostVisitedTour.ItemsSource = tourReservations;
+
+            ComboBox comboBox = (ComboBox)sender;
+            string selectedYear = comboBox.SelectedItem as string;
+
+            if (!string.IsNullOrEmpty(selectedYear))
+            {
+
+
+                if (ComboBox.SelectedItem.ToString() == "All years")
+                {
+
+                    TourReservations tourReservation = new TourReservations();
+                    List<TourReservations> tourReservations = new List<TourReservations>();
+                    tourReservation = _tourReservationRepositery.FindMostAttendantTour(FilePath);
+                    tourReservations.Add(tourReservation);
+                    MostVisitedTour.ItemsSource = tourReservations;
+
+
+                }
+                else
+                {
+                    TourReservations tourReservation = new TourReservations();
+                    List<TourReservations> tourReservations = new List<TourReservations>();
+                    tourReservation = _tourReservationRepositery.FindMostAttendantTourByYear(FilePath, selectedYear);
+                    tourReservations.Add(tourReservation);
+                    MostVisitedTour.ItemsSource = tourReservations;
+
+                }
+
+            }
         }
+
+
+
+
+
 
         private void Fill(object sender, RoutedEventArgs e)
         {
@@ -174,31 +202,24 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string year = ComboBox.SelectedItem.ToString();
-            TourReservations tourReservation = new TourReservations();
-            List<TourReservations> tourReservations = new List<TourReservations>();
-            tourReservation = _tourReservationRepositery.FindMostAttendantTourByYear(FilePath, year);
-            tourReservations.Add(tourReservation);
-            MostVisitedTour.ItemsSource = tourReservations;
-
-            
+        
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            selectedTour = (TourReservations)MostVisitedTour.SelectedItem;
-            int[] Info = new int[3];
-            Info = _tourReservationRepositery.ShowStatistic(selectedTour.Tour.Id);
-            //txt1.Text = Info[0].ToString();
-            //txt2.Text = Info[1].ToString();
-            //txt3.Text = Info[2].ToString();
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    selectedTour = (TourReservations)MostVisitedTour.SelectedItem;
+        //    int[] Info = new int[3];
+        //    Info = _tourReservationRepositery.ShowStatistic(selectedTour.Tour.Id);
+        //    //txt1.Text = Info[0].ToString();
+        //    //txt2.Text = Info[1].ToString();
+        //    //txt3.Text = Info[2].ToString();
 
-            Age1 = 5;
-            Age2 = 6;
-            Age3 = 2;
+        //    Age1 = 5;
+        //    Age2 = 6;
+        //    Age3 = 2;
            
 
-        }
+        //}
     }
 }
