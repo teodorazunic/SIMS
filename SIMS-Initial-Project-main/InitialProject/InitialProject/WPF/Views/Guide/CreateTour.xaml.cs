@@ -21,6 +21,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
+using Image = System.Windows.Controls.Image;
 
 namespace InitialProject.WPF.Views.Guide
 {
@@ -128,25 +129,8 @@ namespace InitialProject.WPF.Views.Guide
             }
         }
 
-        private void DatePicker_ValueChanged(object sender, EventArgs e)
-        {
-            DatePicker datePicker = (DatePicker)sender;
-
-
-            DateTime selectedDate = Convert.ToDateTime( datePicker1.Text);
-
-            
-            if (selectedDate < DateTime.Today)
-            {
-
-                dateVal.Text = "Invalid date.";
-               
-            }
-        }
         
-
-
-
+       
 
 
 
