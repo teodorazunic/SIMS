@@ -1,4 +1,6 @@
-﻿using InitialProject.Domain.Models;
+﻿using DevExpress.Data.Utils;
+using DevExpress.DirectX.Common;
+using InitialProject.Domain.Models;
 using InitialProject.Repository;
 using Microsoft.Win32;
 using System;
@@ -10,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -17,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace InitialProject.WPF.Views.Guide
 {
@@ -42,10 +46,28 @@ namespace InitialProject.WPF.Views.Guide
                 e.Handled = true;
                 txtMaxGuests.Background = Brushes.Red;
 
+
             }
             else
             {
                 txtMaxGuests.ClearValue(TextBox.BackgroundProperty);
+
+            }
+        }
+
+        public void NumbersOnly1(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+
+            if (regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
+                txtDuration.Background = Brushes.Red;
+
+            }
+            else
+            {
+                txtDuration.ClearValue(TextBox.BackgroundProperty);
 
             }
         }
@@ -106,12 +128,28 @@ namespace InitialProject.WPF.Views.Guide
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void DatePicker_ValueChanged(object sender, EventArgs e)
         {
-            string datum = datePicker1.Text;
-            datePicker1.Text = "";
-           
+            DatePicker datePicker = (DatePicker)sender;
+
+
+            DateTime selectedDate = Convert.ToDateTime( datePicker1.Text);
+
+            
+            if (selectedDate < DateTime.Today)
+            {
+
+                dateVal.Text = "Invalid date.";
+               
+            }
         }
+        
+
+
+
+
+
+
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {

@@ -9,9 +9,9 @@
       Title="CreateTour">
 
     <Grid Background="White">
-        <Button  HorizontalAlignment="Left" Height="40" Margin="828,607,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" >
+        <Button  HorizontalAlignment="Left" Height="40" Margin="785,607,0,0" VerticalAlignment="Top" Width="141" Click="Button_Click_3" >
             <Image Source="C:\Users\Korisnik\Desktop\ProjekatGIT\SIMS\SIMS-Initial-Project-main\InitialProject\InitialProject\Resources\Images\play-icon.png" Width="60" Height="40" />
-            </Button>
+        </Button>
 
         <Label Content="Tour name:" HorizontalAlignment="Left" Margin="55,68,0,0" VerticalAlignment="Top" Height="40" Width="104" FontSize="18"/>
         <Label Content="City:" HorizontalAlignment="Left" Margin="55,165,0,0" VerticalAlignment="Top" Height="40" Width="105" FontSize="18"/>
@@ -27,19 +27,22 @@
         <TextBox x:Name="txtLanguage" HorizontalAlignment="Left" Margin="60,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <TextBox x:Name="txtMaxGuests" PreviewTextInput="NumbersOnly" HorizontalAlignment="Left" Margin="290,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18" />
         <TextBox x:Name="txtKeyPoint" HorizontalAlignment="Left" Margin="510,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="40" FontSize="18"/>
-        <TextBox x:Name="txtDuration" PreviewTextInput="NumbersOnly" HorizontalAlignment="Left" Margin="290,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
+        <TextBox x:Name="txtDuration" PreviewTextInput="NumbersOnly1" HorizontalAlignment="Left" Margin="290,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <Button Content="SAVE TOUR" Background="LightGreen" HorizontalAlignment="Left" Margin="350,607,0,0" VerticalAlignment="Top" Height="43" Width="154" RenderTransformOrigin="1.187,0.918" Click="Button_Click" FontSize="20"/>
         <TextBox x:Name="txtCountry" HorizontalAlignment="Left" Margin="290,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
         <Label Content="Image:" HorizontalAlignment="Left" Margin="55,354,0,0" VerticalAlignment="Top" Height="38" Width="107" FontSize="18"/>
         <Button Content="Add image" Background="Lavender" Click="AddImage" x:Name="txtImage" HorizontalAlignment="Left" Margin="60,390,0,0"  VerticalAlignment="Top" Width="166" Height="40" FontSize="18"/>
-        <DatePicker x:Name="datePicker1" HorizontalAlignment="Left" Margin="510,390,0,0" VerticalAlignment="Top" Height="40" Width="230" FontSize="20"/>
+        <DatePicker  x:Name="datePicker1"  HorizontalAlignment="Left" Margin="510,390,0,0" VerticalAlignment="Top" Height="40" Width="230" FontSize="20"/>
         <Button Background="Lavender"  Content="Add key point" HorizontalAlignment="Left" Margin="785,101,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="40" Width="140" FontSize="18"/>
         <Label Content="CREATE NEW TOUR" HorizontalAlignment="Left" Margin="309,10,0,0" VerticalAlignment="Top" Height="70" Width="332" FontSize="30" FontWeight="Bold"/>
         <Label Content="Country:" HorizontalAlignment="Left" Margin="285,163,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ListBox x:Name="KeyPointsList" Margin="510,199,231,363" FontSize="18" />
         <Label Content="Added key points:" HorizontalAlignment="Left" Margin="505,160,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <!--<Rectangle  HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>-->
+        <Rectangle  HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 
         <TextBlock x:Name = "TourSuccessfully" HorizontalAlignment="Left" Margin="427,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF1BE81B"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="18" Margin="790,508,0,0" TextWrapping="Wrap" Text="If you need some help, play the tutorial!" VerticalAlignment="Top" Height="76" Width="136"/>
+        <Rectangle HorizontalAlignment="Left" Height="74" Margin="785,510,0,0" Stroke="Black" VerticalAlignment="Top" Width="141"/>
+        <TextBlock Name="dateVal"  HorizontalAlignment="Center" Margin="0,470,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
