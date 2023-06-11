@@ -43,6 +43,67 @@ namespace InitialProject.Repositories
 
         }
 
+
+        public List<int> GetVoucherStatistics(List<TourReservations> tourReservations)
+        {
+            tourReservations = _serializer.FromCSV(FilePath);
+            List<int> vouchers = new List<int>();
+            int usedVoucher = 0;
+            int unusedVoucher = 0;
+            foreach (var reservation in tourReservations)
+            {
+                if (reservation.UsedVoucher == true)
+                {
+                    usedVoucher++;
+                }
+                else
+                {
+                    unusedVoucher++;
+                }
+            }
+
+            vouchers.Add(usedVoucher);
+            vouchers.Add(unusedVoucher);
+            return vouchers;
+
+
+        }
+
+
+        public int[] ShowStatistic(int id)
+        {
+            int[] statistic = new int[3];
+            statistic[0] = 0;
+            statistic[1] = 0;
+            statistic[2] = 0;
+
+            List<GuestOnTour> guestOnTour = ReadFromGuestOnTour(FilePath1);
+
+            for (int i = 0; i < guestOnTour.Count(); i++)
+            {
+                if (guestOnTour[i].StartingKeyPoint.Tour.Id == id)
+                {
+                    if (guestOnTour[i].Age < 18)
+                    {
+                        statistic[0]++;
+                    }
+                    else if (guestOnTour[i].Age > 18 && guestOnTour[i].Age < 50)
+                    {
+                        statistic[1]++;
+                    }
+                    else if (guestOnTour[i].Age > 50)
+                    {
+                        statistic[2]++;
+                    }
+
+
+                }
+            }
+            return statistic;
+        }
+
+
+
         public List<TourReservations> GetAllReservationsByTourId(int TourId)
         {
             List<TourReservations> allReservations = _serializer.FromCSV(FilePath);
