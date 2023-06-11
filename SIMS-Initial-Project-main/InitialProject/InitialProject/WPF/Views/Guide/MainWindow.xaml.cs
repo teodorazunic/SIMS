@@ -108,5 +108,11 @@ namespace InitialProject.WPF.Guide
             Tutorialxaml tutorialxaml = new Tutorialxaml();
             page.Content = tutorialxaml;
         }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            TourStatistics tourStatistics = new TourStatistics(LoggedInUser);
+            page.Content = tourStatistics;
+        }
     }
 }

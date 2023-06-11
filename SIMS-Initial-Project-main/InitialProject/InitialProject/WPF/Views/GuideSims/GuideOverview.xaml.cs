@@ -63,9 +63,9 @@ namespace InitialProject.View
 
         private void OpenTourStatistics(object sender, RoutedEventArgs e)
         {
-            TourStatistics tourStatistics = new TourStatistics(LoggedInUser);
-            tourStatistics.Show();
-            Close();
+            //TourStatistics tourStatistics = new TourStatistics(LoggedInUser);
+            
+            //Close();
         }
 
         private void LogOut(object sender, RoutedEventArgs e)
