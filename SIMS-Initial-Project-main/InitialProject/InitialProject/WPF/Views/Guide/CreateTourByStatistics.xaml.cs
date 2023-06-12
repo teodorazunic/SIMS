@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InitialProject.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,15 @@ namespace InitialProject.WPF.Views.Guide
     /// </summary>
     public partial class CreateTourByStatistics : Page
     {
-        public CreateTourByStatistics()
+        public CreateTourByStatistics(User user)
         {
             InitializeComponent();
             txtLanguage.Text = "srpski";
             txtLocation.Text = "Novi Sad";
+            LoggedInUser = user;
         }
+
+        public User LoggedInUser { get; set; }
 
         private void Fill(object sender, RoutedEventArgs e)
         {
@@ -41,13 +45,13 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            CreateTour createTour = new CreateTour();
+            CreateByCity createTour = new CreateByCity(LoggedInUser, txtLocation.Text);
             NavigationService.Navigate(createTour);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CreateTour createTour = new CreateTour();
+            CreateByLanguage createTour = new CreateByLanguage(LoggedInUser, txtLanguage.Text);
             NavigationService.Navigate(createTour);
 
         }

@@ -80,7 +80,7 @@ namespace InitialProject.WPF.Guide
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            CreateTourByStatistics createTourByStatistics = new CreateTourByStatistics();
+            CreateTourByStatistics createTourByStatistics = new CreateTourByStatistics(LoggedInUser);
             page.Content = createTourByStatistics;
         }
 

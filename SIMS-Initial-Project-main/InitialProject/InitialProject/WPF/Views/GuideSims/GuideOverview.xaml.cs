@@ -92,9 +92,9 @@ namespace InitialProject.View
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
-            CreateByStatistics requests = new CreateByStatistics(LoggedInUser);
-            requests.Show();
-            Close();
+            //CreateByStatistics requests = new CreateByStatistics(LoggedInUser);
+            //requests.Show();
+            //Close();
 
         }
     }
