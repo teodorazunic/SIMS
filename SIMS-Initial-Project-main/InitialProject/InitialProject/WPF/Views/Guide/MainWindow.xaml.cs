@@ -113,8 +113,9 @@ namespace InitialProject.WPF.Guide
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            RequestsStatistics requestsStatistics = new RequestsStatistics(LoggedInUser);
-            page.Content = requestsStatistics;
+            Request request = new Request(LoggedInUser);
+            page.Content = request;
+
         }
     }
 }

@@ -190,9 +190,9 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            DateTime choosenDate = Convert.ToDateTime(tourDate.Text);
-            CreateByRequest create = new CreateByRequest(choosenDate, SelectedTourRequest.Location, SelectedTourRequest.Description, SelectedTourRequest.Language, SelectedTourRequest.MaxGuests);
-            create.Show();
+            
+            _tourRequestsRepository.AcceptRegularTour(SelectedTourRequest);
+            txtLab.Text = "Succesfully accepted request";
             
 
 

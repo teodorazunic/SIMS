@@ -116,6 +116,14 @@ namespace InitialProject.Repositories
             return tourRequest;
         }
 
+        public TourRequest AcceptRegularTour(TourRequest tourRequest)
+        {
+            tourRequest.Status = "Accepted";
+            Update(tourRequest);
+
+            return tourRequest;
+        }
+
 
         public List<TourRequest> CheckNeverUsedCity(string city)
         {
