@@ -110,5 +110,11 @@ namespace InitialProject.WPF.Guide
             TourStatistics tourStatistics = new TourStatistics(LoggedInUser);
             page.Content = tourStatistics;
         }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            RequestsStatistics requestsStatistics = new RequestsStatistics(LoggedInUser);
+            page.Content = requestsStatistics;
+        }
     }
 }
