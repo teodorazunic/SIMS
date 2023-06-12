@@ -33,21 +33,16 @@ namespace InitialProject.WPF.Views.Guide
 
         }
 
-        private void b2_Click(object sender, RoutedEventArgs e)
-        {
-            mojVideo.Pause();
-        }
+        //private void b2_Click(object sender, RoutedEventArgs e)
+        //{
+        //    mojVideo.Pause();
+        //}
 
         private void b3_Click(object sender, RoutedEventArgs e)
         {
             mojVideo.Stop();
         }
 
-        private void b4_Click(object sender, RoutedEventArgs e)
-        {
-            mojVideo.Stop();
-           
-        }
 
 
     }

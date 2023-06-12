@@ -9,7 +9,7 @@
       Title="CreateTourByStatistics" Background="White" >
 
     <Grid Background="White">
-        <Label Content="CREATE TOUR BY STATISTICS" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" Height="70" Width="440" FontSize="30" FontWeight="Bold"/>
+        <Label Foreground="MidnightBlue" Content="CREATE TOUR BY STATISTICS" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" Height="70" Width="440" FontSize="30" FontWeight="Bold"/>
 
         <Label Content="Most wanted LOCATION by statistics is: " HorizontalAlignment="Left" Margin="65,100,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Would you like to create a tour with this location?" HorizontalAlignment="Left" Margin="65,180,0,0" VerticalAlignment="Top" FontSize="18"/>

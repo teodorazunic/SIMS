@@ -37,7 +37,7 @@ namespace InitialProject.WPF.Guide
 
         private void superGuide(object sender, RoutedEventArgs e)
         {
-            superGuideLabel.Content = guideRepository.SuperGuide();
+            //superGuideLabel.Content = guideRepository.SuperGuide();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

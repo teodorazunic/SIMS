@@ -10,7 +10,7 @@
 
     <Grid Background="White">
         <DataGrid Name="MostVisitedTour" Margin="300,100,50,442"/>
-        <Label Content="TOUR STATISTICS" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <Label  Foreground="MidnightBlue" Content="TOUR STATISTICS" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
 
         <!--<Rectangle HorizontalAlignment="Left" Height="346" Margin="16,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>-->
         <Rectangle HorizontalAlignment="Left" Height="235" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
@@ -18,7 +18,7 @@
         <Rectangle HorizontalAlignment="Left" Height="346" Margin="476,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="465"/>
 
         <!--<RadioButton Content="All years" HorizontalAlignment="Left" Margin="141,36,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>-->
-        <ComboBox Name ="ComboBox" Margin="80,100,714,536" Loaded="Fill" SelectionChanged="ComboBox_SelectionChanged"/>
+        <ComboBox Name ="ComboBox" Margin="80,100,714,536" Loaded="Fill" SelectionChanged="ComboBox_SelectionChanged" FontSize="18"/>
         <lvc:PieChart Name= "name" Height="200" Width="200" Series="{Binding DataChart}" Margin="130,391,623,0" VerticalAlignment="Top"/>
         <lvc:PieChart Name= "name1" Height="200" Width="200" Series="{Binding DataChart1}" Margin="608,391,145,0" VerticalAlignment="Top"/>
         <Label Content="Choose a year:" HorizontalAlignment="Left" Margin="75,61,0,0" VerticalAlignment="Top" FontSize="18

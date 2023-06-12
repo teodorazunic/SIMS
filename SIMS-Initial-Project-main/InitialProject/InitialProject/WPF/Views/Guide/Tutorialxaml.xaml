@@ -10,18 +10,16 @@
       Title="Tutorialxaml">
 
     <Grid Background="White">
-        <Border BorderBrush="Black" BorderThickness="1" Height="507" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 150 20 80" Width="1000" Background="#FFF6F1F1">
-            <MediaElement x:Name="mojVideo" Stretch="Fill" LoadedBehavior="Manual" Source="C:\Users\Korisnik\Desktop\ProjekatGIT\SIMS\SIMS-Initial-Project-main\InitialProject\InitialProject\WPF\Views\Guide\Tutorial.mp4"  MediaEnded="b3_Click" UnloadedBehavior="Manual" />
-        </Border>
-        <Button x:Name="b1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="269 0 0 70" Width="100" Height="47" Background="LightBlue" FontWeight="Bold" FontSize="18" Click="b1_Click">
+        <MediaElement x:Name="mojVideo" Stretch="Fill" LoadedBehavior="Manual" Source="C:\Users\Korisnik\Desktop\ProjekatGIT\SIMS\SIMS-Initial-Project-main\InitialProject\InitialProject\WPF\Views\Guide\Tutorial.mp4"  MediaEnded="b3_Click" UnloadedBehavior="Manual" Margin="36,39,36,131" />
+
+        <Button x:Name="b1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="351,0,0,28" Width="100" Height="50" Background="LightBlue" FontWeight="Bold" FontSize="18" Click="b1_Click">
             <materialDesign:PackIcon Kind="Play" Height="47" Width="50" VerticalAlignment="Center"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="b2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="378 0 0 70" Width="100" Height="47" Background="LightBlue" FontWeight="Bold" FontSize="18" Click="b2_Click">
+        <!--<Button x:Name="b2" HorizontalAlignment="Center" Margin="0,625,0,0" Width="100" Background="LightBlue" FontWeight="Bold" Height="50" FontSize="18" Click="b2_Click" VerticalAlignment="Top">
             <materialDesign:PackIcon Kind="Pause" Height="47" Width="50" VerticalAlignment="Center"></materialDesign:PackIcon>
-        </Button>
-        <Button x:Name="b3" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="488 0 0 70" Height="47" Background="LightBlue" FontWeight="Bold" Foreground="Black" FontSize="18" Click="b3_Click">
+        </Button>-->
+        <Button x:Name="b3" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="572,0,0,28" Height="50" Background="LightBlue" FontWeight="Bold" Foreground="Black" FontSize="18" Click="b3_Click">
             <materialDesign:PackIcon Kind="Stop" Height="47" Width="50" VerticalContentAlignment="Center"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="b4" Content="EXIT" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,185,70" Width="200" Height="47" FontWeight="Bold" Background="LightBlue" Foreground="Black" FontSize="28" TextBlock.FontWeight="Bold" Click="b4_Click"></Button>
     </Grid>
 </Page>

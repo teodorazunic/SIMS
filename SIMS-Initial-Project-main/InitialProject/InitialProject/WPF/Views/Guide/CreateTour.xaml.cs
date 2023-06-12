@@ -33,6 +33,7 @@ namespace InitialProject.WPF.Views.Guide
         public CreateTour()
         {
             InitializeComponent();
+           
         }
 
         public static string image;
@@ -79,24 +80,34 @@ namespace InitialProject.WPF.Views.Guide
         List<KeyPoint> keyPoints = new List<KeyPoint>();
 
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int id = repository.NextId();
-            String name = txtName.Text;
-            Location location = new Location(txtCountry.Text, txtCity.Text);
-            String description = txtDescription.Text;
-            string language = txtLanguage.Text;
-            int maxGuests = Convert.ToInt32(txtMaxGuests.Text);
-            DateTime start = Convert.ToDateTime(datePicker1.Text);
-            int duration = Convert.ToInt32(txtDuration.Text);
-           
-            string status = "Pending";
+            if ( txtName.Text !="" && txtCity.Text != "" && txtCountry.Text != "" && txtDescription.Text != "" && txtLanguage.Text != "" && txtMaxGuests.Text != "" && datePicker1.Text != null
+                && Convert.ToDateTime(datePicker1.Text) > DateTime.Now)
+            {
+
+                int id = repository.NextId();
+                String name = txtName.Text;
+                Location location = new Location(txtCountry.Text, txtCity.Text);
+                String description = txtDescription.Text;
+                string language = txtLanguage.Text;
+                int maxGuests = Convert.ToInt32(txtMaxGuests.Text);
+                DateTime start = Convert.ToDateTime(datePicker1.Text);
+                int duration = Convert.ToInt32(txtDuration.Text);
+
+                string status = "Pending";
 
 
-            Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
-            Tour saveTour = repository.Save(tour);
-            //MessageBox.Show("Succesfully added tour!");
-            txtSaved.Text = "Succesfully added tour!";
+                Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
+                Tour saveTour = repository.Save(tour);
+
+                txtSaved.Text = "Succesfully added tour!";
+            }
+            else
+            {
+                txtSaved.Text = "Fields are not correctly field.";
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

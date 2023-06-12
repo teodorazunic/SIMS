@@ -36,7 +36,7 @@
         <Button Content="Dates" HorizontalAlignment="Left" Margin="780,149,0,0" VerticalAlignment="Top" Click="Button_Click_1" FontSize="18" Height ="30" Width="80"/>
         <DatePicker x:Name="tourDate" HorizontalAlignment="Left" Margin="48,544,0,0" VerticalAlignment="Top" Height="30" Width="150" FontSize="18"/>
         <Button Content="Accept tour" HorizontalAlignment="Left" Margin="227,544,0,0" VerticalAlignment="Top" Click="Button_Click_3" FontSize="18" Width="130" Height="30"/>
-        <Label Content="REQUESTS" HorizontalAlignment="Left" Margin="365,6,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <Label Foreground="MidnightBlue" Content="REQUESTS" HorizontalAlignment="Left" Margin="365,6,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
         <Label Content="Select the date for tour:" HorizontalAlignment="Left" Margin="43,485,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
         <Label Content="Filter requests:" HorizontalAlignment="Left" Margin="43,73,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="From:" HorizontalAlignment="Left" Margin="525,115,0,0" VerticalAlignment="Top" FontSize="18"/>

@@ -69,7 +69,7 @@
         </DataGrid>
         <Label Content="Select the tour you want to cancel:" HorizontalAlignment="Left" Margin="45,71,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Rectangle HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
-        <Label Content="CANCEL TOUR" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <Label  Foreground="MidnightBlue" Content="CANCEL TOUR" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
         <TextBlock x:Name="txtBlock"  HorizontalAlignment="Left" Height="35" Margin="412,529,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" FontSize="16"/>
 
     </Grid>
