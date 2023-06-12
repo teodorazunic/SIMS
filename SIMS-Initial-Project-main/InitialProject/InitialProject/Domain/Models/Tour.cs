@@ -28,7 +28,7 @@ namespace InitialProject.Domain.Models
 
         public string Image { get; set; }
 
-        public List <KeyPoint> KeyPoints { get; set; }
+        //public List <KeyPoint> KeyPoints { get; set; }
 
         //public int GuideId { get; set; }
 

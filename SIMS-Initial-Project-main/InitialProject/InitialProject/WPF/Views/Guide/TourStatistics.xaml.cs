@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Browsing;
 using InitialProject.Domain.Models;
 using InitialProject.Repositories;
+using InitialProject.View;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Series;
@@ -98,8 +99,7 @@ namespace InitialProject.WPF.Views.Guide
             _tourReservationRepositery = new TourReservationRepositery();
             List<int> vouchers = new List<int>();
             vouchers = reservationRepositery.GetVoucherStatistics(reservations);
-            //txtUsed.Text = vouchers[0].ToString();
-            //txtUnused.Text = vouchers[1].ToString();
+           
 
             
             AcceptedCount = vouchers[0];
@@ -167,10 +167,14 @@ namespace InitialProject.WPF.Views.Guide
                 {
 
                     TourReservations tourReservation = new TourReservations();
+                    Tour tour = new Tour();
+                    List<Tour> gridTours = new List<Tour>();
                     List<TourReservations> tourReservations = new List<TourReservations>();
                     tourReservation = _tourReservationRepositery.FindMostAttendantTour(FilePath);
                     tourReservations.Add(tourReservation);
-                    MostVisitedTour.ItemsSource = tourReservations;
+                    tour = _tourReservationRepositery.FindTourByTourReservationid(tourReservation.Tour.Id);
+                    gridTours.Add(tour);
+                    MostVisitedTour.ItemsSource = gridTours;
 
 
                 }
@@ -178,9 +182,13 @@ namespace InitialProject.WPF.Views.Guide
                 {
                     TourReservations tourReservation = new TourReservations();
                     List<TourReservations> tourReservations = new List<TourReservations>();
+                    Tour tour = new Tour();
+                    List<Tour> gridTours = new List<Tour>();
                     tourReservation = _tourReservationRepositery.FindMostAttendantTourByYear(FilePath, selectedYear);
                     tourReservations.Add(tourReservation);
-                    MostVisitedTour.ItemsSource = tourReservations;
+                    tour = _tourReservationRepositery.FindTourByTourReservationid(tourReservation.Tour.Id);
+                    gridTours.Add(tour);
+                    MostVisitedTour.ItemsSource = gridTours;
 
                 }
 

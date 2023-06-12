@@ -23,7 +23,7 @@ namespace InitialProject.WPF.Views.Guide
         public CreateTourByStatistics()
         {
             InitializeComponent();
-            txtLanguage.Text = "Srpski";
+            txtLanguage.Text = "srpski";
             txtLocation.Text = "Novi Sad";
         }
 
@@ -34,7 +34,7 @@ namespace InitialProject.WPF.Views.Guide
 
         private void Fill1(object sender, RoutedEventArgs e)
         {
-            txtLanguage.Text = "Srpski";
+            txtLanguage.Text = "srpski";
         }
 
 

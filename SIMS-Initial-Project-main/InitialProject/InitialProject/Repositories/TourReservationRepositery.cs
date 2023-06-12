@@ -227,6 +227,20 @@ namespace InitialProject.Repositories
             return tourReservation;
         }
 
+        public Tour FindTourByTourReservationid(int id)
+        {
+            List<Tour> allTours = _tourRepository.GetAllTours();
+            Tour tour = new Tour();
+            for(int i = 0;i < allTours.Count; i++)
+            {
+                if (allTours[i].Id == id)
+                {
+                    tour = allTours[i];
+                }
+            }
+            return tour;
+        }
+
         public List<GuestOnTour> ReadFromGuestOnTour(string FileName)
         {
             List<GuestOnTour> guestsOnTour = new List<GuestOnTour>();
