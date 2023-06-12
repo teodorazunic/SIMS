@@ -15,7 +15,7 @@
         <Label Content="USERNAME:" HorizontalAlignment="Left" Margin="342,224,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="PASSWORD:" HorizontalAlignment="Left" Margin="342,301,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox HorizontalAlignment="Left"  Text="{Binding Path=Username, UpdateSourceTrigger=PropertyChanged}" Margin="345,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="230" FontSize="20"/>
-        <Button  Content="CONFIRM DISSMISAL" Click ="Button_Click" HorizontalAlignment="Left" Margin="345,405,0,0" VerticalAlignment="Top" FontSize="20" Height="40" Width="230"/>
+        <Button  Content="CONFIRM DISSMISAL" Foreground="White" Background="MidnightBlue" Click ="Button_Click" HorizontalAlignment="Left" Margin="345,405,0,0" VerticalAlignment="Top" FontSize="20" Height="40" Width="230"/>
         <Rectangle HorizontalAlignment="Left" Height="290" Margin="310,192,0,0" Stroke="Black" VerticalAlignment="Top" Width="298"/>
         <Rectangle HorizontalAlignment="Left" Height="610" Margin="16,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>
 

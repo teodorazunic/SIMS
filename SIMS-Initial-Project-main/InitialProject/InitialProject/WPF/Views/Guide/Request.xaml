@@ -13,7 +13,7 @@
         <DataGrid  ItemsSource="{Binding TourRequests}" SelectedItem="{Binding SelectedTourRequest}" IsReadOnly="True" SelectionMode="Single" 
             AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="18" Margin="48,203,48,227">
             <DataGrid.Columns>
-                <!--<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />-->
+                
                 <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" />
                 <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
@@ -30,15 +30,15 @@
         <TextBox x:Name="txtCity" Text="{Binding Path=RequestCity, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="45,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="90" FontSize="18"/>
         <TextBox x:Name="txtMaxGuests" HorizontalAlignment="Left" Margin="265,152,0,0" TextWrapping="Wrap" Text="{Binding Path=RequestMaxGuests, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="90" FontSize="18"/>
         <TextBox x:Name="txtLanguage" HorizontalAlignment="Left" Margin="155,152,0,0" TextWrapping="Wrap" Text="{Binding Path=RequestLanguage, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height ="30" Width="90" FontSize="18"/>
-        <Button Content="Filter" HorizontalAlignment="Left" Margin="396,151,0,0" VerticalAlignment="Top" Click="Button_Click" FontSize="18" Height="30" Width="80"/>
+        <Button Foreground="White" Background="MidnightBlue" Content="Filter" HorizontalAlignment="Left" Margin="396,151,0,0" VerticalAlignment="Top" Click="Button_Click" FontSize="18" Height="30" Width="80"/>
         <DatePicker x:Name="startDate" Width="100" HorizontalAlignment="Left" Margin="530,150,0,0"  Text="{Binding Path=RequestStart, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontSize="16" Height="30"/>
         <DatePicker x:Name="endDate" Width="100" HorizontalAlignment="Left" Margin="650,150,0,0" Text="{Binding Path=RequestEnd, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontSize="16" Height="30"/>
-        <Button Content="Dates" HorizontalAlignment="Left" Margin="780,149,0,0" VerticalAlignment="Top" Click="Button_Click_1" FontSize="18" Height ="30" Width="80"/>
+        <Button Foreground="White" Background="MidnightBlue" Content="Dates" HorizontalAlignment="Left" Margin="780,149,0,0" VerticalAlignment="Top" Click="Button_Click_1" FontSize="18" Height ="30" Width="80"/>
         <DatePicker x:Name="tourDate" HorizontalAlignment="Left" Margin="48,544,0,0" VerticalAlignment="Top" Height="30" Width="150" FontSize="18"/>
-        <Button Content="Accept tour" HorizontalAlignment="Left" Margin="227,544,0,0" VerticalAlignment="Top" Click="Button_Click_3" FontSize="18" Width="130" Height="30"/>
+        <Button Foreground="White" Background="MidnightBlue" Content="Accept tour" HorizontalAlignment="Left" Margin="227,544,0,0" VerticalAlignment="Top" Click="Button_Click_3" FontSize="18" Width="130" Height="30"/>
         <Label Foreground="MidnightBlue" Content="REQUESTS" HorizontalAlignment="Left" Margin="365,6,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
         <Label Content="Select the date for tour:" HorizontalAlignment="Left" Margin="43,485,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Filter requests:" HorizontalAlignment="Left" Margin="43,73,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Filter requests:" HorizontalAlignment="Left" Margin="40,73,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="From:" HorizontalAlignment="Left" Margin="525,115,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="To:" HorizontalAlignment="Left" Margin="645,115,0,0" VerticalAlignment="Top" FontSize="18"/>
     </Grid>

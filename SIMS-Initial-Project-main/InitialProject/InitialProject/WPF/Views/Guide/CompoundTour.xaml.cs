@@ -89,12 +89,13 @@ namespace InitialProject.WPF.Views.Guide
 
                     if (count > 0)
                     {
-                        MessageBox.Show("You are not available for this tour");
+                        txtLab.Text = "You are not available for this tour.";
+                        //MessageBox.Show("You are not available for this tour");
                     }
                     else
-                    
-                        
-                        MessageBox.Show("Accepted request.");
+
+                        txtLab.Text = "Accepted request.";
+                        //MessageBox.Show("Accepted request.");
                         _tourRequestsRepository.AcceptCompoundTour(SelectedTourRequest);
 
                     }
