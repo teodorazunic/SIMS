@@ -95,7 +95,8 @@ namespace InitialProject.WPF.Views.Guide
 
             Tour tour = new Tour(id, name, location, description, language, maxGuests, start, duration, image, status);
             Tour saveTour = repository.Save(tour);
-            MessageBox.Show("Succesfully added tour!");
+            //MessageBox.Show("Succesfully added tour!");
+            txtSaved.Text = "Succesfully added tour!";
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
