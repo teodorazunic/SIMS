@@ -97,15 +97,25 @@ namespace InitialProject.WPF.Views.Guide
             DataContext = this;
             LoggedInUser = user;
             _tourReservationRepositery = new TourReservationRepositery();
-            List<int> vouchers = new List<int>();
-            vouchers = reservationRepositery.GetVoucherStatistics(reservations);
-           
 
-            
+            TourReservations tourReservation1 = new TourReservations();
+            Tour tour = new Tour();
+            List<Tour> gridTours = new List<Tour>();
+            List<TourReservations> tourReservations1 = new List<TourReservations>();
+            tourReservation1 = _tourReservationRepositery.FindMostAttendantTour(FilePath);
+            tourReservations1.Add(tourReservation1);
+            tour = _tourReservationRepositery.FindTourByTourReservationid(tourReservation1.Tour.Id);
+            gridTours.Add(tour);
+            MostVisitedTour.ItemsSource = gridTours;
+
+            List<int> vouchers = new List<int>();
+            vouchers = reservationRepositery.GetVoucherStatistics( tourReservation1.Tour.Id);
+
+
             AcceptedCount = vouchers[0];
             DeniedCount = vouchers[1];
-            
-            
+
+
             DataChart = new SeriesCollection
             {
                 new PieSeries
@@ -119,7 +129,6 @@ namespace InitialProject.WPF.Views.Guide
                 Values = new ChartValues<ObservableValue> { new ObservableValue(DeniedCount)}
             }
             };
-
 
 
             Age1 = 5;
@@ -161,36 +170,41 @@ namespace InitialProject.WPF.Views.Guide
 
             if (!string.IsNullOrEmpty(selectedYear))
             {
+                int year = Convert.ToInt32(selectedYear);
 
-
-                if (ComboBox.SelectedItem.ToString() == "All years")
-                {
+               
 
                     TourReservations tourReservation = new TourReservations();
+                    List<TourReservations> tourReservations = new List<TourReservations>();
                     Tour tour = new Tour();
                     List<Tour> gridTours = new List<Tour>();
-                    List<TourReservations> tourReservations = new List<TourReservations>();
-                    tourReservation = _tourReservationRepositery.FindMostAttendantTour(FilePath);
+                    tourReservation = _tourReservationRepositery.FindMostAttendantTourByYear(FilePath, year);
                     tourReservations.Add(tourReservation);
                     tour = _tourReservationRepositery.FindTourByTourReservationid(tourReservation.Tour.Id);
                     gridTours.Add(tour);
                     MostVisitedTour.ItemsSource = gridTours;
 
+                List<int> vouchers = new List<int>();
+                vouchers = reservationRepositery.GetVoucherStatistics(tourReservation.Tour.Id);
 
-                }
-                else
+
+
+                AcceptedCount = vouchers[0];
+                DeniedCount = vouchers[1];
+
+                DataChart.Clear();
+                DataChart.Add(new PieSeries
                 {
-                    TourReservations tourReservation = new TourReservations();
-                    List<TourReservations> tourReservations = new List<TourReservations>();
-                    Tour tour = new Tour();
-                    List<Tour> gridTours = new List<Tour>();
-                    tourReservation = _tourReservationRepositery.FindMostAttendantTourByYear(FilePath, selectedYear);
-                    tourReservations.Add(tourReservation);
-                    tour = _tourReservationRepositery.FindTourByTourReservationid(tourReservation.Tour.Id);
-                    gridTours.Add(tour);
-                    MostVisitedTour.ItemsSource = gridTours;
+                    Title = "Accepted",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(AcceptedCount) }
+                });
+                DataChart.Add(new PieSeries
+                {
+                    Title = "Denied",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(DeniedCount) }
+                });
 
-                }
+
 
             }
         }
@@ -205,7 +219,7 @@ namespace InitialProject.WPF.Views.Guide
             ComboBox.Items.Add("2023");
             ComboBox.Items.Add("2022");
             ComboBox.Items.Add("2021");
-            ComboBox.Items.Add("All years");
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

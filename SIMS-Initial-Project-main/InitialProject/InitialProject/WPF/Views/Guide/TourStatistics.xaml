@@ -9,7 +9,8 @@
       Title="TourStatistics">
 
     <Grid Background="White">
-        <DataGrid Name="MostVisitedTour" Margin="300,100,50,442"/>
+        <DataGrid Name="MostVisitedTour" Margin="230,100,31,442"/>
+        
         <Label  Foreground="MidnightBlue" Content="TOUR STATISTICS" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
 
         <!--<Rectangle HorizontalAlignment="Left" Height="346" Margin="16,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>-->
@@ -18,12 +19,14 @@
         <Rectangle HorizontalAlignment="Left" Height="346" Margin="476,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="465"/>
 
         <!--<RadioButton Content="All years" HorizontalAlignment="Left" Margin="141,36,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>-->
-        <ComboBox Name ="ComboBox" Margin="80,100,714,536" Loaded="Fill" SelectionChanged="ComboBox_SelectionChanged" FontSize="18"/>
-        <lvc:PieChart Name= "name" Height="200" Width="200" Series="{Binding DataChart}" Margin="130,391,623,0" VerticalAlignment="Top"/>
-        <lvc:PieChart Name= "name1" Height="200" Width="200" Series="{Binding DataChart1}" Margin="608,391,145,0" VerticalAlignment="Top"/>
-        <Label Content="Choose a year:" HorizontalAlignment="Left" Margin="75,61,0,0" VerticalAlignment="Top" FontSize="18
+        <ComboBox Name ="ComboBox" Margin="35,100,760,536" Loaded="Fill" SelectionChanged="ComboBox_SelectionChanged" FontSize="18"/>
+        <lvc:PieChart Name= "name" Height="200" Width="200" Series="{Binding DataChart}" Margin="130,425,623,0" VerticalAlignment="Top"/>
+        <lvc:PieChart Name= "name1" Height="200" Width="200" Series="{Binding DataChart1}" Margin="608,425,145,0" VerticalAlignment="Top"/>
+        <Label Content="Choose a year:" HorizontalAlignment="Left" Margin="30,61,0,0" VerticalAlignment="Top" FontSize="18
                "/>
-        <Label Content="Most visited tour:" HorizontalAlignment="Left" Margin="295,61,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Most visited tour:" HorizontalAlignment="Left" Margin="225,61,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBlock HorizontalAlignment="Left" Height="59" FontSize=" 18" Margin="75,342,0,0" TextWrapping="Wrap" Text="Choose a year for voucher statistics!" VerticalAlignment="Top" Width="294"/>
+        <TextBlock HorizontalAlignment="Left" Height="59" FontSize=" 18" Margin="562,342,0,0" TextWrapping="Wrap" Text="Choose a year for age statistics!" VerticalAlignment="Top" Width="294"/>
 
 
         <!--<Button Content="Select year" HorizontalAlignment="Left" Margin="536,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.416,-0.208" Click="Button_Click"/>-->

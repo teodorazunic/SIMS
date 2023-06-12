@@ -46,15 +46,16 @@ namespace InitialProject.Repositories
         }
 
 
-        public List<int> GetVoucherStatistics(List<TourReservations> tourReservations)
+        public List<int> GetVoucherStatistics( int id)
         {
-            tourReservations = _serializer.FromCSV(FilePath);
+            
             List<int> vouchers = new List<int>();
+            List<TourReservations> reservations = GetAllReservationsByTourId(id);
             int usedVoucher = 0;
             int unusedVoucher = 0;
-            foreach (var reservation in tourReservations)
+            foreach (var reservation in reservations )
             {
-                if (reservation.UsedVoucher == true)
+                if (reservation.UsedVoucher == true )
                 {
                     usedVoucher++;
                 }
@@ -185,7 +186,7 @@ namespace InitialProject.Repositories
             return _tourreservations.Max(t=> t.TourReservationId) + 1;
         }
         
-        public TourReservations FindMostAttendantTourByYear(string filename, string year)
+        public TourReservations FindMostAttendantTourByYear(string filename, int year)
         {
             TourReservations tourReservation = new TourReservations();
             List<TourReservations> tourReservations = ReadFromTourReservationsCsv(filename);
@@ -195,7 +196,7 @@ namespace InitialProject.Repositories
             {
                 for (int j = 0; j < tourReservations.Count; j++)
                 {
-                    if (tours[i].Id == tourReservations[j].Tour.Id && tourReservations[j].NumberOfGuests > maxGuests && tours[i].Start.Year == Convert.ToInt32(year))
+                    if (tours[i].Id == tourReservations[j].Tour.Id && tourReservations[j].NumberOfGuests > maxGuests && tours[i].Start.Year ==year)
                     {
                         maxGuests = tourReservations[j].NumberOfGuests;
                         tourReservation = tourReservations[j];
