@@ -65,7 +65,7 @@ namespace InitialProject.WPF.Views.Guide
             _tourRequestsRepository = new TourRequestRepository();
             TourRequests = new ObservableCollection<TourRequest>(_tourRequestsRepository.GetCompoundTourRequests());
             tourRepository = new TourRepository();
-            myRectangle.Fill = System.Windows.Media.Brushes.AliceBlue;
+            //myRectangle.Fill = System.Windows.Media.Brushes.AliceBlue;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

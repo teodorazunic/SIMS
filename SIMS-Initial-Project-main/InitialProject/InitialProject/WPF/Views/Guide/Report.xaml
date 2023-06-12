@@ -146,7 +146,7 @@
 
             </Grid>
         </Grid>
-        <Button Content="Save pdf" FontSize="20" HorizontalAlignment="Center" Margin="0,617,0,0" Click="Button_Click" VerticalAlignment="Top" Width="124"/>
+        <Button Content="Save pdf" Background="MidnightBlue" Foreground="White" FontSize="20" HorizontalAlignment="Center" Margin="0,617,0,0" Click="Button_Click" VerticalAlignment="Top" Width="124"/>
 
 
     </Grid>

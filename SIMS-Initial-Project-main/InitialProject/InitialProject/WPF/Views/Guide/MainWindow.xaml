@@ -18,7 +18,7 @@
         <Button Content="Report" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,575,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_8"/>
         <Button Content="Create by statistics" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,520,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_5"/>
         <Button Content="Request statistics" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,465,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_9"/>
-        <Button Content="Complex tour" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,410,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_7"/>
+        <Button Content="Compound tour" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,410,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_7"/>
         <Button Content="Reviews" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,355,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_4"/>
         <Button Content="Tour statistics" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,300,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_10"/>
         <Button Content="Cancel Tour" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="13,245,0,0" VerticalAlignment="Top" Height="37" Width="178" FontSize="18" Click="Button_Click_1"/>

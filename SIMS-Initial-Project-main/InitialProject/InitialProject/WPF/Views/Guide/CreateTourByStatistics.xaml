@@ -13,8 +13,8 @@
 
         <Label Content="Most wanted LOCATION by statistics is: " HorizontalAlignment="Left" Margin="65,100,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Would you like to create a tour with this location?" HorizontalAlignment="Left" Margin="65,180,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Button Content="YES" HorizontalAlignment="Left" Margin="234,240,0,0" VerticalAlignment="Top" FontSize="20" Width="79" Click="Button_Click_1"/>
-        <Button Content="YES" HorizontalAlignment="Left" Margin="234,560,0,0" VerticalAlignment="Top" FontSize="20" Width="79" Click="Button_Click"/>
+        <Button Content="YES" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="234,240,0,0" VerticalAlignment="Top" FontSize="20" Width="79" Click="Button_Click_1"/>
+        <Button Content="YES" Foreground="White" Background="MidnightBlue" HorizontalAlignment="Left" Margin="234,560,0,0" VerticalAlignment="Top" FontSize="20" Width="79" Click="Button_Click"/>
         <Label Content="Most wanted LANGUAGE by statistics is: " HorizontalAlignment="Left" Margin="65,420,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Would you like to create a tour with this language?" HorizontalAlignment="Left" Margin="65,500,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Rectangle HorizontalAlignment="Left" Height="266" Margin="18,369,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>

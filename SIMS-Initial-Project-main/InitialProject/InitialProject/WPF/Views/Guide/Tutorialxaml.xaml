@@ -10,7 +10,7 @@
       Title="Tutorialxaml">
 
     <Grid Background="White">
-        <MediaElement x:Name="mojVideo" Stretch="Fill" LoadedBehavior="Manual" Source="C:\Users\Korisnik\Desktop\ProjekatGIT\SIMS\SIMS-Initial-Project-main\InitialProject\InitialProject\WPF\Views\Guide\Tutorial.mp4"  MediaEnded="b3_Click" UnloadedBehavior="Manual" Margin="36,39,36,131" />
+        <MediaElement x:Name="mojVideo" Stretch="Fill" LoadedBehavior="Manual" Source="C:\Users\Korisnik\Desktop\ProjekatGIT\SIMS\SIMS-Initial-Project-main\InitialProject\InitialProject\WPF\Views\Guide\Tutorijal.mp4"  MediaEnded="b3_Click" UnloadedBehavior="Manual" Margin="36,39,36,131" />
 
         <Button x:Name="b1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="351,0,0,28" Width="100" Height="50" Background="LightBlue" FontWeight="Bold" FontSize="18" Click="b1_Click">
             <materialDesign:PackIcon Kind="Play" Height="47" Width="50" VerticalAlignment="Center"></materialDesign:PackIcon>

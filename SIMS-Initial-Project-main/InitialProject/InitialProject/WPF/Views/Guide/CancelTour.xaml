@@ -9,7 +9,9 @@
       Title="Cancel">
 
     <Grid Background="White">
-        <Button Content="Cancel tour" HorizontalAlignment="Center" Margin="0,476,0,0" VerticalAlignment="Top" Click="Button_Click" Height="34" Width="136" FontSize="20"/>
+        <Button Content="Cancel tour"  Background="MidnightBlue" Foreground="White" HorizontalAlignment="Center" Margin="0,476,0,0" VerticalAlignment="Top" Click="Button_Click" Height="34" Width="136" FontSize="20">
+            
+        </Button>
         <DataGrid  x:Name="Tours" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}" IsReadOnly="True" SelectionMode="Single" 
             AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="50,108,51,261">
             <DataGrid.Columns>

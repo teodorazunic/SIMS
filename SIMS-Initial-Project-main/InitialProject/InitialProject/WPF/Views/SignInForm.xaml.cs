@@ -5,9 +5,11 @@ using InitialProject.Forms;
 using InitialProject.Repository;
 using InitialProject.View;
 using InitialProject.WPF.Guide;
+using InitialProject.WPF.Views.Guide;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace InitialProject
 {
@@ -76,8 +78,14 @@ namespace InitialProject
                     }
                     else if (user.Role == UserRole.guide)
                     {
-                        MainWindow guideOverview = new MainWindow(user);
-                        guideOverview.Show();
+                        MainWindow mainWindow = new MainWindow(user);
+                        mainWindow.Show();
+
+
+                        CreateTour page1 = new CreateTour();
+                        Frame mainFrame = mainWindow.FindName("page") as Frame;
+                        mainFrame.NavigationService.Navigate(page1);
+
                         Close();
 
                     }
