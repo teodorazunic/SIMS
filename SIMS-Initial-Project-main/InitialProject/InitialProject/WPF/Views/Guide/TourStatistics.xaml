@@ -9,8 +9,65 @@
       Title="TourStatistics">
 
     <Grid Background="White">
-        <DataGrid Name="MostVisitedTour" Margin="230,100,31,442"/>
         
+        <DataGrid  x:Name="MostVisitedTour" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}" IsReadOnly="True" SelectionMode="Single" 
+            AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16" Margin="222,100,51,429">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tour name" Binding="{Binding Name}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />-->
+                <!--<DataGridTextColumn Header="Language" Binding="{Binding Language.Name}" Width="*" />
+                <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*" />-->
+                <DataGridTextColumn Header="Date" Binding="{Binding Start}" Width="200" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Image" Binding="{Binding Image}" Width="*" />-->
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+
         <Label  Foreground="MidnightBlue" Content="TOUR STATISTICS" HorizontalAlignment="Left" Margin="355,5,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
 
         <!--<Rectangle HorizontalAlignment="Left" Height="346" Margin="16,318,0,0" Stroke="Black" VerticalAlignment="Top" Width="925"/>-->

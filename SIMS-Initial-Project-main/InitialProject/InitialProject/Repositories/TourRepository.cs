@@ -116,7 +116,7 @@ namespace InitialProject.Repository
             
             if ((tour.Start -currentDate).TotalHours < 48)
             {
-                return "Unable to cancel tour";
+                return "Unable to cancel tour.";
             }
 
             tour.Status = "Ended";

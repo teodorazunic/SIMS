@@ -98,12 +98,14 @@ namespace InitialProject
                 }
                 else
                 {
-                    MessageBox.Show("Wrong password!");
+                    txtBlock.Text = "Wrong password!";
+                    //MessageBox.Show("Wrong password!");
                 }
             }
             else
             {
-                MessageBox.Show("Wrong username!");
+                txtBlock.Text = "Wrong username!";
+                //MessageBox.Show("Wrong username!");
             }
 
         }
